@@ -1,0 +1,202 @@
+---
+// src/components/ContactForm.astro
+import Schema from './JsonLD.astro';
+---
+
+<Schema type="ContactPage" data={{}} />
+
+<div class="w-full max-w-[90%] md:max-w-2xl mx-auto my-12 md:my-20">
+  <div class="relative bg-white rounded-2xl shadow-xl overflow-hidden">
+    <!-- Decoración de fondo -->
+    <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-purple-50 opacity-50"></div>
+    
+    <div class="relative p-6 md:p-8">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 bg-blue-800 bg-clip-text text-transparent">
+          Contáctame
+        </h2>
+        <p class="mt-3 text-gray-600 text-sm md:text-base">
+          Estaré encantado de responder a tus preguntas
+        </p>
+      </div>
+
+      <form id="contact-form" class="space-y-6">
+        <!-- Campo nombre -->
+        <div class="space-y-2">
+          <label for="name" class="block text-sm md:text-base font-medium text-gray-700">
+            Nombre
+          </label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="form-input"
+              placeholder="¿Cómo te llamas?"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Campo email -->
+        <div class="space-y-2">
+          <label for="email" class="block text-sm md:text-base font-medium text-gray-700">
+            Correo electrónico
+          </label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+              </svg>
+            </div>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="form-input"
+              placeholder="tu@email.com"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Campo mensaje -->
+        <div class="space-y-2">
+          <label for="message" class="block text-sm md:text-base font-medium text-gray-700">
+            Mensaje
+          </label>
+          <div class="relative">
+            <div class="absolute left-3 top-3 pointer-events-none">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              class="form-input !pt-10 md:!pt-8"
+              placeholder="Escribe tu mensaje aquí..."
+              required
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Botón enviar -->
+        <button
+          type="submit"
+          class="w-full px-6 py-3 md:py-4 bg-gradient-to-r from-blue-600 bg-blue-600 text-white text-sm md:text-base font-semibold rounded-xl shadow-lg hover:shadow-xl transform transition duration-200 hover:scale-[1.02] focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 focus:outline-none"
+        >
+          <span class="flex items-center justify-center gap-2">
+            <svg
+              id="form-loading"
+              class="hidden w-5 h-5 animate-spin"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M12 3a9 9 0 1 0 9 9"></path>
+            </svg>
+            Enviar mensaje
+          </span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Mensaje de éxito -->
+  <dialog id="form-good-feedback" class="feedback-dialog bg-green-100">
+    <div class="p-4 flex items-center gap-3">
+      <svg class="h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+      </svg>
+      <p class="text-green-700">¡Mensaje enviado con éxito! Me pondré en contacto contigo pronto.</p>
+    </div>
+  </dialog>
+
+  <!-- Mensaje de error -->
+  <dialog id="form-bad-feedback" class="feedback-dialog bg-red-100">
+    <div class="p-4 flex items-center gap-3">
+      <svg class="h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+      </svg>
+      <p class="text-red-700">Algo salió mal. Por favor, inténtalo de nuevo o contáctame por email.</p>
+    </div>
+  </dialog>
+</div>
+
+<style>
+  .form-input {
+    @apply w-full pl-10 pr-4 py-3 md:py-3.5 rounded-xl border border-gray-200 text-gray-800 text-sm md:text-base placeholder:text-gray-400 bg-white/80 shadow-sm transition duration-200;
+    @apply hover:border-gray-300 hover:bg-white;
+    @apply focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 focus:outline-none;
+  }
+
+  .feedback-dialog {
+    @apply invisible fixed bottom-4 left-1/2 -translate-x-1/2 z-10 rounded-lg border shadow-lg opacity-0 transition duration-300;
+    @apply md:bottom-8;
+  }
+</style>
+
+<script>
+const form = document.getElementById('contact-form') as HTMLFormElement;
+const formLoadingIndicator = document.getElementById('form-loading') as HTMLElement;
+const formGoodFeedback = document.getElementById('form-good-feedback') as HTMLDialogElement;
+const formBadFeedback = document.getElementById('form-bad-feedback') as HTMLDialogElement;
+
+const handleSubmit = async (event: SubmitEvent) => {
+  event.preventDefault();
+  
+  // Mostrar indicador de carga
+  formLoadingIndicator?.classList.remove('hidden');
+  
+  try {
+    const formData = new FormData(form);
+    
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+    
+    if (response.ok) {
+      // Éxito
+      form.reset();
+      showFeedback(formGoodFeedback);
+    } else {
+      // Error
+      showFeedback(formBadFeedback);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    showFeedback(formBadFeedback);
+  } finally {
+    formLoadingIndicator?.classList.add('hidden');
+  }
+};
+
+const showFeedback = (dialog: HTMLDialogElement | null) => {
+  if (!dialog) return;
+  
+  dialog.classList.remove('invisible');
+  setTimeout(() => dialog.classList.add('opacity-100'), 100);
+
+  setTimeout(() => {
+    dialog.classList.remove('opacity-100');
+    setTimeout(() => dialog.classList.add('invisible'), 300);
+  }, 5000);
+};
+
+form?.addEventListener('submit', handleSubmit);
+</script>

@@ -1,0 +1,98 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import JsonLD from '../components/JsonLD.astro';
+
+// Obtener todos los posts
+const posts = await getCollection('blog');
+
+// Ordenar por fecha más reciente
+const sortedPosts = posts.sort((a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => 
+  new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
+);
+
+// Metadata para SEO
+const title = "Blog | Nexito Technology";
+const description = "Explora nuestros artículos sobre automatización, IA y transformación digital. Mantente al día con las últimas tendencias tecnológicas.";
+
+// Schema para el listado de blog
+const blogListSchema = {
+  "@type": "CollectionPage",
+  "name": title,
+  "description": description,
+  "url": new URL("/blog", Astro.site).toString(),
+  "isPartOf": {
+    "@type": "Website",
+    "name": "Nexito Technology"
+  },
+  "about": {
+    "@type": "Organization",
+    "name": "Nexito Technology"
+  },
+  "hasPart": sortedPosts.map((post: CollectionEntry<'blog'>) => ({
+    "@type": "BlogPosting",
+    "headline": post.data.title,
+    "description": post.data.description,
+    "datePublished": new Date(post.data.date).toISOString(),
+    "url": new URL(`/blog/${post.slug}`, Astro.site).toString(),
+    "author": {
+      "@type": "Organization",
+      "name": "Nexito Technology"
+    }
+  }))
+};
+---
+
+<Layout 
+  title={title}
+  description={description}
+  type="website"
+>
+  <JsonLD type="WebPage" data={blogListSchema} />
+  
+  <main class="max-w-4xl mx-auto px-4 py-12">
+    <header class="text-center mb-12">
+      <h1 class="text-4xl font-bold mb-4">Blog</h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        Descubre las últimas tendencias en automatización e inteligencia artificial
+      </p>
+    </header>
+    
+    <div class="grid gap-8">
+      {sortedPosts.map((post: CollectionEntry<'blog'>) => (
+        <article class="border border-gray-200 p-6 rounded-lg hover:shadow-lg transition-shadow">
+          <h2 class="text-2xl font-bold mb-3">
+            <a 
+              href={`/blog/${post.slug}`}
+              class="hover:text-blue-600 transition-colors"
+            >
+              {post.data.title}
+            </a>
+          </h2>
+          <p class="text-gray-600 mb-4">{post.data.description}</p>
+          <div class="flex items-center justify-between">
+            <time 
+              datetime={post.data.date}
+              class="text-sm text-gray-500"
+            >
+              {new Date(post.data.date).toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </time>
+            {post.data.tags && (
+              <div class="flex gap-2">
+                {post.data.tags.map((tag: string) => (
+                  <span class="text-xs bg-gray-100 px-2 py-1 rounded">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </main>
+</Layout>

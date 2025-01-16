@@ -46,3 +46,10 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+¿Quieres que hagamos algún ajuste específico o que nos centremos en mejorar alguna sección en particular? Por ejemplo, podríamos:
+
+Añadir más interactividad
+Mejorar las animaciones
+Trabajar en la versión móvil
+Añadir más elementos de social proof

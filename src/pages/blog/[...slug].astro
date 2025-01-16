@@ -1,0 +1,109 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import JsonLD from '../../components/JsonLD.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  
+  return posts.map((post: CollectionEntry<'blog'>) => ({
+    params: { slug: post.slug },
+    props: { post }
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+
+// Schema para el artículo
+const articleSchema = {
+  "@type": "BlogPosting",
+  "headline": post.data.title,
+  "description": post.data.description,
+  "datePublished": new Date(post.data.date).toISOString(),
+  "dateModified": post.data.lastModified 
+    ? new Date(post.data.lastModified).toISOString() 
+    : new Date(post.data.date).toISOString(),
+  "image": post.data.image 
+    ? new URL(post.data.image, Astro.site).toString()
+    : new URL("/og-image.jpg", Astro.site).toString(),
+  "author": {
+    "@type": "Organization",
+    "name": "Nexito Technology"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nexito Technology",
+    "logo": {
+      "@type": "ImageObject",
+      "url": new URL("/Logo.svg", Astro.site).toString()
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": new URL(Astro.url.pathname, Astro.site).toString()
+  }
+};
+---
+
+<Layout 
+  title={`${post.data.title} | Blog Nexito Technology`}
+  description={post.data.description}
+  image={post.data.image}
+  type="article"
+>
+  <JsonLD type="Article" data={articleSchema} />
+  
+  <main class="max-w-3xl mx-auto px-4 py-12">
+    <article class="prose lg:prose-xl mx-auto">
+      <header class="mb-8 not-prose">
+        <h1 class="text-4xl font-bold mb-4">{post.data.title}</h1>
+        <div class="flex items-center gap-4 text-gray-600">
+          <time 
+            datetime={post.data.date}
+            class="text-sm"
+          >
+            {new Date(post.data.date).toLocaleDateString('es-ES', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </time>
+          {post.data.readingTime && (
+            <span class="text-sm">
+              {post.data.readingTime} min de lectura
+            </span>
+          )}
+        </div>
+        {post.data.tags && (
+          <div class="flex gap-2 mt-4">
+            {post.data.tags.map((tag: string) => (
+              <span class="text-sm bg-gray-100 px-3 py-1 rounded-full">
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </header>
+      
+      <div class="mt-8">
+        <Content />
+      </div>
+      
+      <footer class="mt-12 border-t pt-8">
+        <div class="flex justify-between items-center">
+          <a 
+            href="/blog"
+            class="text-blue-600 hover:underline"
+          >
+            ← Volver al blog
+          </a>
+        </div>
+      </footer>
+    </article>
+  </main>
+</Layout>

@@ -1,0 +1,334 @@
+---
+// src/pages/servicios/consultoria.astro
+
+import Layout from '../../layouts/Layout.astro';
+import JsonLD from '../../components/JsonLD.astro';
+import ContactForm from '../../components/ContactForm.astro';
+
+// Datos estructurados para la página
+const consultoriaData = {
+  title: "Consultoría Tecnológica | Nexito Technology",
+  description: "Optimiza tu negocio con nuestros servicios de consultoría tecnológica. Mejora la eficiencia, reduce costos y adopta las mejores prácticas tecnológicas.",
+  heroTitle: "Consultoría Tecnológica",
+  heroSubtitle: "Optimiza tu Negocio con Soluciones Tecnológicas",
+  features: [
+    {
+      title: "Estrategia Digital",
+      description: "Desarrollo de estrategias digitales personalizadas",
+      icon: "🌐"
+    },
+    {
+      title: "Transformación Digital",
+      description: "Transformación de procesos y operaciones",
+      icon: "🔄"
+    },
+    {
+      title: "Gestión de Proyectos",
+      description: "Planificación y ejecución de proyectos tecnológicos",
+      icon: "📊"
+    },
+    {
+      title: "Ciberseguridad",
+      description: "Protección y seguridad de la información",
+      icon: "🔒"
+    }
+  ],
+  benefits: [
+    "Mejora de la eficiencia operativa",
+    "Reducción de costos",
+    "Adopción de mejores prácticas",
+    "Innovación continua",
+    "Ventaja competitiva"
+  ],
+  useCases: [
+    {
+      title: "Finanzas",
+      description: "Optimización de procesos financieros y gestión de riesgos",
+      image: "/images/finance-consulting.jpg"
+    },
+    {
+      title: "Salud",
+      description: "Implementación de sistemas de gestión de pacientes y telemedicina",
+      image: "/images/health-consulting.jpg"
+    },
+    {
+      title: "Retail",
+      description: "Mejora de la experiencia del cliente y gestión de inventario",
+      image: "/images/retail-consulting.jpg"
+    }
+  ],
+  process: [
+    {
+      step: 1,
+      title: "Análisis",
+      description: "Identificación de necesidades y oportunidades"
+    },
+    {
+      step: 2,
+      title: "Diseño",
+      description: "Planificación y modelado de soluciones"
+    },
+    {
+      step: 3,
+      title: "Desarrollo",
+      description: "Implementación de soluciones tecnológicas"
+    },
+    {
+      step: 4,
+      title: "Pruebas",
+      description: "Validación y ajuste de resultados"
+    },
+    {
+      step: 5,
+      title: "Despliegue",
+      description: "Integración y monitoreo continuo"
+    }
+  ],
+  faq: [
+    {
+      question: "¿Qué es la consultoría tecnológica?",
+      answer: "La consultoría tecnológica es un servicio que ayuda a las empresas a optimizar sus procesos y operaciones mediante el uso de tecnologías avanzadas."
+    },
+    {
+      question: "¿Cuánto tiempo se tarda en implementar una solución tecnológica?",
+      answer: "La implementación puede variar de 2 a 12 semanas, dependiendo de la complejidad de los procesos a optimizar."
+    },
+    {
+      question: "¿Qué procesos se pueden optimizar?",
+      answer: "Cualquier proceso que involucre tecnología y datos es candidato para la consultoría tecnológica."
+    },
+    {
+      question: "¿Se necesita conocimientos técnicos?",
+      answer: "No necesariamente. Nuestras soluciones son accesibles y proporcionamos formación completa a tu equipo."
+    }
+  ]
+};
+
+// Schema para la página de servicio
+const serviceSchema = {
+  "@type": "Service",
+  "name": consultoriaData.heroTitle,
+  "description": consultoriaData.description,
+  "provider": {
+    "@type": "Organization",
+    "name": "Nexito Technology"
+  },
+  "serviceType": "Technology Consulting",
+  "areaServed": "ES"
+};
+---
+
+<Layout title={consultoriaData.title} description={consultoriaData.description}>
+  <JsonLD type="Service" data={serviceSchema} />
+
+  <!-- Hero Section -->
+  <section class="relative py-20 overflow-hidden bg-gradient-to-b from-blue-900 to-blue-700">
+    <div class="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative">
+      <div class="text-center max-w-3xl mx-auto">
+        <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
+          {consultoriaData.heroTitle}
+          <span class="block text-blue-300 mt-2">{consultoriaData.heroSubtitle}</span>
+        </h1>
+        <p class="text-xl text-blue-100 mb-8">
+          Optimiza tu negocio con soluciones tecnológicas avanzadas
+        </p>
+        <a
+          href="#contact"
+          class="inline-block bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
+        >
+          Evalúa tus Procesos Gratis
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Características -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Funcionalidades de Consultoría
+        </h2>
+        <p class="text-xl text-gray-600">
+          Herramientas avanzadas para la consultoría tecnológica
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {consultoriaData.features.map(feature => (
+          <div class="bg-gray-50 p-6 rounded-xl">
+            <div class="text-4xl mb-4">{feature.icon}</div>
+            <h3 class="text-xl font-semibold mb-2">{feature.title}</h3>
+            <p class="text-gray-600">{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Casos de Uso -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Casos de Éxito en Consultoría
+        </h2>
+        <p class="text-xl text-gray-600">
+          Descubre cómo la consultoría tecnológica transforma las empresas
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {consultoriaData.useCases.map(useCase => (
+          <div class="bg-white rounded-xl overflow-hidden shadow-lg">
+            <div class="aspect-video bg-gray-200">
+              <img
+                src={useCase.image}
+                alt={useCase.title}
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">{useCase.title}</h3>
+              <p class="text-gray-600">{useCase.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Beneficios -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Beneficios de la Consultoría
+        </h2>
+        <p class="text-xl text-gray-600">
+          Ventajas competitivas de la consultoría tecnológica
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {consultoriaData.benefits.map(benefit => (
+          <div class="flex items-start space-x-4">
+            <div class="flex-shrink-0">
+              <svg class="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <p class="text-gray-700">{benefit}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Proceso -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Proceso de Implementación
+        </h2>
+        <p class="text-xl text-gray-600">
+          Metodología probada para el éxito
+        </p>
+      </div>
+
+      <div class="relative">
+        <div class="absolute top-1/2 left-0 w-full h-1 bg-blue-200 -translate-y-1/2 hidden md:block"></div>
+
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+          {consultoriaData.process.map(step => (
+            <div class="relative">
+              <div class="bg-white rounded-full w-12 h-12 flex items-center justify-center text-blue-600 font-bold text-xl border-4 border-blue-200 mx-auto z-10 relative">
+                {step.step}
+              </div>
+              <div class="text-center mt-4">
+                <h3 class="font-semibold mb-2">{step.title}</h3>
+                <p class="text-gray-600 text-sm">{step.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 bg-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Preguntas Frecuentes
+        </h2>
+      </div>
+
+      <div class="space-y-6">
+        {consultoriaData.faq.map(item => (
+          <div class="bg-gray-50 rounded-lg shadow-sm p-6">
+            <h3 class="text-lg font-semibold mb-2">{item.question}</h3>
+            <p class="text-gray-600">{item.answer}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ CTA -->
+  <div class="mt-12 text-center">
+    <p class="text-gray-600 mb-6">
+      ¿Tienes más preguntas? Estamos aquí para ayudarte
+    </p>
+    <a
+      href="#calendar-booking"
+      class="inline-flex items-center justify-center px-6 py-3 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg shadow-md hover:shadow-lg transform hover:scale-[1.02] transition-all duration-200 group"
+    >
+      <span>Agenda una llamada gratuita</span>
+      <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+      </svg>
+    </a>
+  </div>
+
+  <div class="w-full max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+  </div>
+
+  <!-- Contacto -->
+  <section id="contact" class="py-12 bg-gradient-to-br from-blue-800 to-blue-900 relative overflow-hidden">
+    <!-- Elementos decorativos de fondo -->
+    <div class="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]"></div>
+    <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+    <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+
+    <div class="relative">
+      <ContactForm />
+    </div>
+  </section>
+
+  <div class="w-full max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent"></div>
+  </div>
+
+  <style>
+    @keyframes blob {
+      0% { transform: translate(0px, 0px) scale(1); }
+      33% { transform: translate(30px, -50px) scale(1.1); }
+      66% { transform: translate(-20px, 20px) scale(0.9); }
+      100% { transform: translate(0px, 0px) scale(1); }
+    }
+
+    .animate-blob {
+      animation: blob 7s infinite;
+    }
+
+    .animation-delay-2000 {
+      animation-delay: 2s;
+    }
+  </style>
+</Layout>
