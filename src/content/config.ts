@@ -1,27 +1,44 @@
 import { defineCollection, z } from 'astro:content';
 
-// Schema para el blog
 const blog = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
     date: z.date(),
     description: z.string(),
-    // Nuevos campos opcionales que mantienen compatibilidad
+    // Contenido y multimedia
     image: z.string().optional(),
+    imageAlt: z.string().optional(), // Texto alternativo para la imagen
     tags: z.array(z.string()).optional(),
+    categoria: z.string().optional(),  // Cambiado de z.enum a z.string
+    
+    // Metadatos del artículo
     lastModified: z.date().optional(),
     readingTime: z.number().optional(),
-    // SEO y metadatos adicionales
+    dificultad: z.enum(['Básico', 'Intermedio', 'Avanzado']).optional(),
+    audiencia: z.array(z.string()).optional(),
+    
+    // SEO y metadatos
     metaTitle: z.string().optional(),
     metaDescription: z.string().optional(),
     ogImage: z.string().optional(),
-    // Campos de gestión
+    
+    // Gestión y organización
     isPublished: z.boolean().default(true),
     featured: z.boolean().default(false),
-    author: z.string().default('Nexito Technology')
+    author: z.string().default('Nexito Technology'),
+    
+    // Relaciones y series
+    articulosRelacionados: z.array(z.string()).optional(),
+    serie: z.string().optional(),
+    ordenEnSerie: z.number().optional(),
+    
+    // Requisitos y tiempo
+    requisitoPrevio: z.array(z.string()).optional(),
+    tiempoImplementacion: z.string().optional()
   })
 });
+
 
 // Schema para testimonios
 const testimonials = defineCollection({
