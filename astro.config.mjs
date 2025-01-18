@@ -40,6 +40,15 @@ export default defineConfig({
     }),
     robotsTxt()
   ],
+  image: {
+    service: { 
+      entrypoint: 'astro/assets/services/sharp',
+      config: {
+        quality: 80, // Calidad de compresión por defecto
+        format: 'webp' // Formato por defecto
+      }
+    }
+  },
   build: {
     inlineStylesheets: "always" // Esto inlinea los estilos CSS críticos
   },

@@ -4,6 +4,7 @@
 import Layout from "../../layouts/Layout.astro";
 import JsonLD from "../../components/JsonLD.astro";
 import ContactForm from "../../components/ContactForm.astro";
+import { Image } from "astro:assets";
 
 // Datos estructurados para la página
 const rpaData = {
@@ -220,12 +221,11 @@ const serviceSchema = {
             Empresas que confían en nosotros
           </p>
           <div
-            class="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 opacity-70 grayscale"
+            class="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 opacity-70"
           >
-            <!-- Añade aquí los logos de tus clientes/partners -->
-            <img src="/client-logo-1.svg" alt="Cliente 1" class="h-8" />
-            <img src="/client-logo-2.svg" alt="Cliente 2" class="h-8" />
-            <img src="/client-logo-3.svg" alt="Cliente 3" class="h-8" />
+            <img src="/images/client-logo-1.svg" alt="TechFlow" class="h-8" />
+            <img src="/images/client-logo-2.svg" alt="DataSphere" class="h-8" />
+            <img src="/images/client-logo-3.svg" alt="InnovateIQ" class="h-8" />
           </div>
         </div>
       </div>
