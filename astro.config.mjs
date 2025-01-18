@@ -5,6 +5,7 @@ import compress from 'astro-compress';
 import robotsTxt from 'astro-robots-txt';
 
 export default defineConfig({
+  output: 'server',
   site: 'https://nexito.tech',
   integrations: [
     tailwind(),
