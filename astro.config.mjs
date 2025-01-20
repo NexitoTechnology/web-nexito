@@ -6,6 +6,7 @@ import robotsTxt from 'astro-robots-txt';
 
 export default defineConfig({
   output: 'server',
+  adapter: vercel(),
   site: 'https://nexito.tech',
   integrations: [
     tailwind(),
