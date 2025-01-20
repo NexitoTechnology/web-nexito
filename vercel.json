@@ -4,11 +4,6 @@
     "buildCommand": "npm run build",
     "devCommand": "npm run dev",
     "framework": "astro",
-    "env": {
-      "EMAIL_USER": "@email_user",
-      "EMAIL_PASSWORD": "@email_password",
-      "EMAIL_TO": "@email_to"
-    },
     "git": {
       "deploymentEnabled": {
         "main": true
