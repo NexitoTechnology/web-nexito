@@ -1,0 +1,16 @@
+{
+    "buildCommand": "astro build",
+    "devCommand": "astro dev",
+    "installCommand": "npm install",
+    "framework": "astro",
+    "github": {
+      "enabled": true,
+      "silent": true
+    },
+    "builds": [
+      {
+        "src": "package.json",
+        "use": "@vercel/static-build"
+      }
+    ]
+  }
