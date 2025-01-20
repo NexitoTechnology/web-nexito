@@ -1,8 +1,6 @@
 import type { APIRoute } from 'astro';
 import type * as NodeMailer from 'nodemailer';
-export const config = {
-  runtime: 'nodejs' // o 'edge' dependiendo de tu infraestructura
-};
+export const prerender = false; // Indica que es una ruta dinámica/serverless
 
 // Rate limiting map
 const RATE_LIMIT = new Map();
