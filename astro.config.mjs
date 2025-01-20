@@ -15,7 +15,6 @@ export default defineConfig({
       enabled: true,
     },
     files: {
-      // Configuración para servir archivos estáticos
       '/**/*.png': {
         type: 'asset',
         contentType: 'image/png',
@@ -23,7 +22,6 @@ export default defineConfig({
     },
     imageService: true,
     imagesOptimizer: {
-      // Opciones de optimización de imágenes
       layout: 'constrained',
       formats: ['webp', 'avif'],
       quality: 80,
@@ -34,7 +32,7 @@ export default defineConfig({
     functionPerRoute: true,
     maxDuration: 60,
     memorySize: 1024,
-    analytics: true, // Habilita Analytics en general
+    analytics: true,
   }),
   site: 'https://nexito.tech',
   integrations: [
