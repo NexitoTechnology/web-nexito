@@ -1,16 +1,12 @@
 {
-    "buildCommand": "astro build",
-    "devCommand": "astro dev",
-    "installCommand": "npm install",
+    "version": 2,
+    "cleanUrls": true,
+    "buildCommand": "npm run build",
+    "devCommand": "npm run dev",
     "framework": "astro",
-    "github": {
-      "enabled": true,
-      "silent": true
-    },
-    "builds": [
-      {
-        "src": "package.json",
-        "use": "@vercel/static-build"
+    "functions": {
+      "api/*.js": {
+        "runtime": "nodejs18.x"
       }
-    ]
+    }
   }

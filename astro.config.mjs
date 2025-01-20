@@ -3,12 +3,14 @@ import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import compress from 'astro-compress';
 import robotsTxt from 'astro-robots-txt';
-import vercel from '@astrojs/vercel/serverless'; // Cambiado a serverless
-
+import vercel from '@astrojs/vercel/serverless';
 
 export default defineConfig({
-  output: 'server',  // Cambiado a server
-  adapter: vercel(),
+  output: 'server',
+  adapter: vercel({
+    functionName: 'web-nexito',
+    maxDuration: 10
+  }),
   site: 'https://nexito.tech',
   integrations: [
     tailwind(),
