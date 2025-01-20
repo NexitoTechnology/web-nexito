@@ -22,30 +22,6 @@
 		{
 			"src": "^\\/api\\/send-email\\/?$",
 			"dest": "_render"
-		},
-		{
-			"src": "^\\/servicios\\/automatizacion\\/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^\\/servicios\\/bi\\/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^\\/servicios\\/consultoria\\/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^\\/servicios\\/ia\\/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^\\/servicios\\/power-bi\\/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^\\/servicios\\/sap\\/?$",
-			"dest": "_render"
 		}
 	],
 	"images": {
