@@ -1,5 +1,5 @@
 import { i as isRemotePath, j as joinPaths } from './path_I7weJv-K.mjs';
-import { A as AstroError, E as ExpectedImage, L as LocalImageUsedWrongly, l as MissingImageDimension, n as UnsupportedImageFormat, I as IncompatibleDescriptorOptions, o as UnsupportedImageConversion, p as NoImageMetadata, q as FailedToFetchRemoteImageDimensions, s as ExpectedImageOptions, t as ExpectedNotESMImage, v as InvalidImageService, w as toStyleString, d as createAstro, c as createComponent, x as ImageMissingAlt, r as renderTemplate, m as maybeRenderHead, e as addAttribute, y as spreadAttributes } from './astro/server_CJ6p3tUL.mjs';
+import { A as AstroError, E as ExpectedImage, L as LocalImageUsedWrongly, M as MissingImageDimension, l as UnsupportedImageFormat, I as IncompatibleDescriptorOptions, n as UnsupportedImageConversion, o as NoImageMetadata, p as FailedToFetchRemoteImageDimensions, q as ExpectedImageOptions, s as ExpectedNotESMImage, t as InvalidImageService, v as toStyleString, d as createAstro, c as createComponent, w as ImageMissingAlt, r as renderTemplate, m as maybeRenderHead, e as addAttribute, x as spreadAttributes } from './astro/server_BE3i_TMP.mjs';
 import * as mime from 'mrmime';
 import 'clsx';
 
@@ -199,13 +199,6 @@ function isLocalService(service) {
     return false;
   }
   return "transform" in service;
-}
-function parseQuality(quality) {
-  let result = parseInt(quality);
-  if (Number.isNaN(result)) {
-    return quality;
-  }
-  return result;
 }
 const sortNumeric = (a, b) => a - b;
 const baseService = {
@@ -1254,7 +1247,7 @@ async function getConfiguredImageService() {
   if (!globalThis?.astroAsset?.imageService) {
     const { default: service } = await import(
       // @ts-expect-error
-      './sharp_C32KkJrH.mjs'
+      './build-service_DGvppYFC.mjs'
     ).catch((e) => {
       const error = new AstroError(InvalidImageService);
       error.cause = e;
@@ -1525,7 +1518,7 @@ const $$Picture = createComponent(async ($$result, $$props, $$slots) => {
   })}  <img${addAttribute(fallbackImage.src, "src")}${spreadAttributes(attributes)}${addAttribute(className, "class")}> </picture>`;
 }, "C:/Users/Adrían/Desktop/web-nexito/node_modules/astro/components/Picture.astro", undefined);
 
-const imageConfig = {"endpoint":{"route":"/_image"},"service":{"entrypoint":"astro/assets/services/sharp","config":{"quality":80,"format":"webp"}},"domains":[],"remotePatterns":[],"experimentalResponsiveImages":false};
+const imageConfig = {"endpoint":{"route":"/_image"},"service":{"entrypoint":"@astrojs/vercel/build-image-service","config":{"quality":80,"format":"webp","sizes":[640,750,828,1080,1200,1920,2048,3840],"domains":[],"remotePatterns":[]}},"domains":[],"remotePatterns":[],"experimentalResponsiveImages":false};
 					const getImage = async (options) => await getImage$1(options, imageConfig);
 
 const _astro_assets = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
@@ -1538,4 +1531,4 @@ const _astro_assets = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.definePrope
   isLocalService
 }, Symbol.toStringTag, { value: 'Module' }));
 
-export { $$Image as $, VALID_INPUT_FORMATS as V, _astro_assets as _, isRemoteAllowed as a, baseService as b, getConfiguredImageService as g, imageConfig as i, parseQuality as p };
+export { $$Image as $, VALID_INPUT_FORMATS as V, _astro_assets as _, isRemoteAllowed as a, baseService as b, getConfiguredImageService as g, imageConfig as i };

@@ -24,30 +24,6 @@
 			"dest": "_render"
 		},
 		{
-			"src": "^\\/aviso-legal\\/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^\\/blog\\/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^\\/contacto\\/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^\\/nosotros\\/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^\\/politica-de-cookies\\/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^\\/politica-de-privacidad\\/?$",
-			"dest": "_render"
-		},
-		{
 			"src": "^\\/servicios\\/automatizacion\\/?$",
 			"dest": "_render"
 		},
@@ -70,6 +46,24 @@
 		{
 			"src": "^\\/servicios\\/sap\\/?$",
 			"dest": "_render"
+		},
+		{
+			"src": "^\\/$",
+			"dest": "_render"
 		}
-	]
+	],
+	"images": {
+		"sizes": [
+			640,
+			750,
+			828,
+			1080,
+			1200,
+			1920,
+			2048,
+			3840
+		],
+		"domains": [],
+		"remotePatterns": []
+	}
 }

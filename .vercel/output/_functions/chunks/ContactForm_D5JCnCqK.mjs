@@ -1,6 +1,6 @@
-import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, b as renderScript } from './astro/server_CJ6p3tUL.mjs';
+import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, b as renderScript } from './astro/server_BE3i_TMP.mjs';
 import 'kleur/colors';
-import { $ as $$JsonLD } from './Layout_DSxI79ZF.mjs';
+import { $ as $$JsonLD } from './Layout_CMMWLRpX.mjs';
 /* empty css                            */
 
 const $$ContactForm = createComponent(async ($$result, $$props, $$slots) => {

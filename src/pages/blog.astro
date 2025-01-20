@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
 import JsonLD from '../components/JsonLD.astro';
+export const prerender = true;
 import { collections } from '../content/config';
 
 interface BlogSchema {
