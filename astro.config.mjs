@@ -5,6 +5,7 @@ import compress from 'astro-compress';
 import robotsTxt from 'astro-robots-txt';
 import vercel from '@astrojs/vercel/serverless'; // Cambiado a serverless
 
+
 export default defineConfig({
   output: 'server',  // Cambiado a server
   adapter: vercel(),
