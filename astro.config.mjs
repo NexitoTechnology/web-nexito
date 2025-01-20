@@ -4,11 +4,15 @@ import tailwind from '@astrojs/tailwind';
 import compress from 'astro-compress';
 import robotsTxt from 'astro-robots-txt';
 import node from '@astrojs/node';
+import vercel from '@astrojs/vercel/serverless';
 
 export default defineConfig({
   output: 'server',
-  adapter: node({
-    mode: 'standalone'
+  adapter: vercel({
+    analytics: true, // opcional
+    webAnalytics: {
+      enabled: true // opcional
+    }
   }),
   site: 'https://nexito.tech',
   // resto de tu configuración...

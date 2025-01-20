@@ -1,8 +1,8 @@
 /* empty css                                       */
 import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, e as addAttribute } from '../chunks/astro/server_CJ6p3tUL.mjs';
 import 'kleur/colors';
-import { $ as $$JsonLD, a as $$Layout } from '../chunks/Layout_BOxJ0sKy.mjs';
-import { $ as $$ContactForm } from '../chunks/ContactForm_BOB11ckY.mjs';
+import { $ as $$JsonLD, a as $$Layout } from '../chunks/Layout_DSxI79ZF.mjs';
+import { $ as $$ContactForm } from '../chunks/ContactForm_C1eck_H9.mjs';
 /* empty css                                    */
 export { renderers } from '../renderers.mjs';
 

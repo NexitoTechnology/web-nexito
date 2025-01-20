@@ -1,6 +1,9 @@
 export { renderers } from '../../renderers.mjs';
 
 const RATE_LIMIT = /* @__PURE__ */ new Map();
+const GET = () => {
+  return new Response("Test API working!", { status: 200 });
+};
 const POST = async ({ request }) => {
   try {
     const userIP = request.headers.get("x-forwarded-for") || "unknown";
@@ -90,6 +93,7 @@ const POST = async ({ request }) => {
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
+  GET,
   POST
 }, Symbol.toStringTag, { value: 'Module' }));
 
