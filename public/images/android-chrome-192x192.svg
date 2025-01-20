@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192">
+  <defs>
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2563EB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1E40AF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Fondo -->
+  <rect width="192" height="192" rx="40" fill="url(#blueGradient)" />
+  
+  <!-- Símbolo tecnológico -->
+  <g transform="translate(48, 48) scale(0.6)">
+    <path 
+      d="M96 0L192 55.7385L96 110.4615L0 55.7385L96 0Z" 
+      fill="white" 
+      opacity="0.8"
+    />
+    <path 
+      d="M96 110.4615L192 55.7385V166.2615L96 220.9231V110.4615Z" 
+      fill="white" 
+      opacity="0.5"
+    />
+    <path 
+      d="M0 55.7385V166.2615L96 220.9231V110.4615L0 55.7385Z" 
+      fill="white" 
+      opacity="0.3"
+    />
+  </g>
+  
+  <!-- Letra "N" estilizada -->
+  <text 
+    x="96" 
+    y="140" 
+    font-family="Arial, sans-serif" 
+    font-size="64" 
+    font-weight="bold" 
+    text-anchor="middle" 
+    fill="white"
+  >
+    N
+  </text>
+</svg>
