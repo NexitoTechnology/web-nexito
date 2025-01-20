@@ -8,7 +8,7 @@ import vercel from '@astrojs/vercel/serverless';
 export default defineConfig({
   output: 'server',
   adapter: vercel({
-    includeFiles: ["./src/pages/api/**/*.ts"],  // Incluimos explícitamente los archivos de API
+    includeFiles: ["./src/pages/api/send-email.ts"],  // Ruta específica en lugar de patrón
     analytics: true
   }),
   site: 'https://nexito.tech',
