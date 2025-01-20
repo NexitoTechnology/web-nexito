@@ -46,10 +46,6 @@
 		{
 			"src": "^\\/servicios\\/sap\\/?$",
 			"dest": "_render"
-		},
-		{
-			"src": "^\\/$",
-			"dest": "_render"
 		}
 	],
 	"images": {
