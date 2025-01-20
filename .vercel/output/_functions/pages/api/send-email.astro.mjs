@@ -1,5 +1,9 @@
 export { renderers } from '../../renderers.mjs';
 
+const config = {
+  runtime: "nodejs"
+  // o 'edge' dependiendo de tu infraestructura
+};
 const RATE_LIMIT = /* @__PURE__ */ new Map();
 const GET = () => {
   return new Response("Test API working!", { status: 200 });
@@ -137,7 +141,8 @@ const POST = async ({ request }) => {
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   __proto__: null,
   GET,
-  POST
+  POST,
+  config
 }, Symbol.toStringTag, { value: 'Module' }));
 
 const page = () => _page;
