@@ -1,7 +1,7 @@
-import { z as ROUTE_TYPE_HEADER, B as REROUTE_DIRECTIVE_HEADER, A as AstroError, C as i18nNoLocaleFoundInPath, G as ResponseSentError, H as MiddlewareNoDataOrNextCalled, J as MiddlewareNotAResponse, K as RewriteWithBodyUsed, O as originPathnameSymbol, P as GetStaticPathsRequired, Q as InvalidGetStaticPathsReturn, S as InvalidGetStaticPathsEntry, T as GetStaticPathsExpectedParams, V as GetStaticPathsInvalidRouteParam, W as PageNumberParamNotFound, X as decryptString, Y as createSlotValueFromString, Z as isAstroComponentFactory, r as renderTemplate, a as renderComponent, D as DEFAULT_404_COMPONENT, _ as NoMatchingStaticPathFound, $ as PrerenderDynamicEndpointPathCollide, a0 as ReservedSlotName, a1 as renderSlotToString, a2 as renderJSX, a3 as chunkToString, a4 as isRenderInstruction, a5 as ForbiddenRewrite, a6 as SessionStorageSaveError, a7 as SessionStorageInitError, a8 as LocalsReassigned, a9 as AstroResponseHeadersReassigned, aa as PrerenderClientAddressNotAvailable, ab as clientAddressSymbol, ac as ClientAddressNotAvailable, ad as StaticClientAddressNotAvailable, ae as ASTRO_VERSION, af as responseSentSymbol$1, ag as renderPage, ah as REWRITE_DIRECTIVE_HEADER_KEY, ai as REWRITE_DIRECTIVE_HEADER_VALUE, aj as renderEndpoint, ak as LocalsNotAnObject, al as REROUTABLE_STATUS_CODES } from './astro/server_DElV5CCb.mjs';
+import { z as ROUTE_TYPE_HEADER, B as REROUTE_DIRECTIVE_HEADER, A as AstroError, C as i18nNoLocaleFoundInPath, G as ResponseSentError, H as MiddlewareNoDataOrNextCalled, J as MiddlewareNotAResponse, K as RewriteWithBodyUsed, O as originPathnameSymbol, P as GetStaticPathsRequired, Q as InvalidGetStaticPathsReturn, S as InvalidGetStaticPathsEntry, T as GetStaticPathsExpectedParams, V as GetStaticPathsInvalidRouteParam, W as PageNumberParamNotFound, X as decryptString, Y as createSlotValueFromString, Z as isAstroComponentFactory, r as renderTemplate, a as renderComponent, D as DEFAULT_404_COMPONENT, _ as NoMatchingStaticPathFound, $ as PrerenderDynamicEndpointPathCollide, a0 as ReservedSlotName, a1 as renderSlotToString, a2 as renderJSX, a3 as chunkToString, a4 as isRenderInstruction, a5 as ForbiddenRewrite, a6 as SessionStorageSaveError, a7 as SessionStorageInitError, a8 as LocalsReassigned, a9 as AstroResponseHeadersReassigned, aa as PrerenderClientAddressNotAvailable, ab as clientAddressSymbol, ac as ClientAddressNotAvailable, ad as StaticClientAddressNotAvailable, ae as ASTRO_VERSION, af as responseSentSymbol$1, ag as renderPage, ah as REWRITE_DIRECTIVE_HEADER_KEY, ai as REWRITE_DIRECTIVE_HEADER_VALUE, aj as renderEndpoint, ak as LocalsNotAnObject, al as REROUTABLE_STATUS_CODES } from './astro/server_CJ6p3tUL.mjs';
 import { serialize, parse } from 'cookie';
 import { bold, red, yellow, dim, blue } from 'kleur/colors';
-import { g as getActionQueryString, d as deserializeActionResult, D as DEFAULT_404_ROUTE, a as default404Instance, N as NOOP_MIDDLEWARE_FN, e as ensure404Route } from './astro-designed-error-pages_D7E3MIhl.mjs';
+import { g as getActionQueryString, d as deserializeActionResult, D as DEFAULT_404_ROUTE, a as default404Instance, N as NOOP_MIDDLEWARE_FN, e as ensure404Route } from './astro-designed-error-pages_B67IVPNC.mjs';
 import 'es-module-lexer';
 import 'clsx';
 import buffer from 'node:buffer';
@@ -29,6 +29,24 @@ function shouldAppendForwardSlash(trailingSlash, buildFormat) {
       }
     }
   }
+}
+
+function matchRoute(pathname, manifest) {
+  const decodedPathname = decodeURI(pathname);
+  return manifest.routes.find((route) => {
+    return route.pattern.test(decodedPathname) || route.fallbackRoutes.some((fallbackRoute) => fallbackRoute.pattern.test(decodedPathname));
+  });
+}
+const ROUTE404_RE = /^\/404\/?$/;
+const ROUTE500_RE = /^\/500\/?$/;
+function isRoute404(route) {
+  return ROUTE404_RE.test(route);
+}
+function isRoute500(route) {
+  return ROUTE500_RE.test(route);
+}
+function isRoute404or500(route) {
+  return isRoute404(route.route) || isRoute500(route.route);
 }
 
 function createI18nMiddleware(i18n, base, trailingSlash, format) {
@@ -84,6 +102,7 @@ function createI18nMiddleware(i18n, base, trailingSlash, format) {
     }
     const { currentLocale } = context;
     switch (i18n.strategy) {
+      // NOTE: theoretically, we should never hit this code path
       case "manual": {
         return response;
       }
@@ -155,7 +174,8 @@ function requestHasLocale(locales) {
 }
 function requestIs404Or500(request, base = "") {
   const url = new URL(request.url);
-  return url.pathname.startsWith(`${base}/404`) || url.pathname.startsWith(`${base}/500`);
+  const pathname = url.pathname.slice(base.length);
+  return isRoute404(pathname) || isRoute500(pathname);
 }
 function pathHasLocale(path, locales) {
   const segments = path.split("/");
@@ -1628,16 +1648,6 @@ function sequence(...handlers) {
 
 function defineMiddleware(fn) {
   return fn;
-}
-
-function matchRoute(pathname, manifest) {
-  const decodedPathname = decodeURI(pathname);
-  return manifest.routes.find((route) => {
-    return route.pattern.test(decodedPathname) || route.fallbackRoutes.some((fallbackRoute) => fallbackRoute.pattern.test(decodedPathname));
-  });
-}
-function isRoute404or500(route) {
-  return route.pattern.test("/404") || route.pattern.test("/500");
 }
 
 const PERSIST_SYMBOL = Symbol();

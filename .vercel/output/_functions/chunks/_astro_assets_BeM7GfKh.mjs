@@ -1,5 +1,5 @@
 import { i as isRemotePath, j as joinPaths } from './path_I7weJv-K.mjs';
-import { A as AstroError, E as ExpectedImage, L as LocalImageUsedWrongly, l as MissingImageDimension, n as UnsupportedImageFormat, I as IncompatibleDescriptorOptions, o as UnsupportedImageConversion, p as NoImageMetadata, q as FailedToFetchRemoteImageDimensions, s as ExpectedImageOptions, t as ExpectedNotESMImage, v as InvalidImageService, w as toStyleString, d as createAstro, c as createComponent, x as ImageMissingAlt, r as renderTemplate, m as maybeRenderHead, e as addAttribute, y as spreadAttributes } from './astro/server_DElV5CCb.mjs';
+import { A as AstroError, E as ExpectedImage, L as LocalImageUsedWrongly, l as MissingImageDimension, n as UnsupportedImageFormat, I as IncompatibleDescriptorOptions, o as UnsupportedImageConversion, p as NoImageMetadata, q as FailedToFetchRemoteImageDimensions, s as ExpectedImageOptions, t as ExpectedNotESMImage, v as InvalidImageService, w as toStyleString, d as createAstro, c as createComponent, x as ImageMissingAlt, r as renderTemplate, m as maybeRenderHead, e as addAttribute, y as spreadAttributes } from './astro/server_CJ6p3tUL.mjs';
 import * as mime from 'mrmime';
 import 'clsx';
 
@@ -120,10 +120,14 @@ const getSizesAttribute = ({
     return undefined;
   }
   switch (layout) {
+    // If screen is wider than the max size then image width is the max size,
+    // otherwise it's the width of the screen
     case `responsive`:
       return `(min-width: ${width}px) ${width}px, 100vw`;
+    // Image is always the same width, whatever the size of the screen
     case `fixed`:
       return `${width}px`;
+    // Image is always the width of the screen
     case `full-width`:
       return `100vw`;
     case "none":
@@ -1250,7 +1254,7 @@ async function getConfiguredImageService() {
   if (!globalThis?.astroAsset?.imageService) {
     const { default: service } = await import(
       // @ts-expect-error
-      './sharp_DZn3r7fC.mjs'
+      './sharp_C32KkJrH.mjs'
     ).catch((e) => {
       const error = new AstroError(InvalidImageService);
       error.cause = e;

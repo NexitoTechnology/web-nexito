@@ -1,9 +1,9 @@
 /* empty css                                       */
-import { c as createComponent, r as renderTemplate, m as maybeRenderHead, a as renderComponent, e as addAttribute, d as createAstro, b as renderScript } from '../chunks/astro/server_DElV5CCb.mjs';
+import { c as createComponent, r as renderTemplate, m as maybeRenderHead, a as renderComponent, e as addAttribute, d as createAstro, b as renderScript } from '../chunks/astro/server_CJ6p3tUL.mjs';
 import 'kleur/colors';
-import { $ as $$JsonLD, a as $$Layout } from '../chunks/Layout_D7fsvetn.mjs';
+import { $ as $$JsonLD, a as $$Layout } from '../chunks/Layout_BOxJ0sKy.mjs';
 /* empty css                                 */
-import { g as getCollection } from '../chunks/_astro_content_BAfs8fuE.mjs';
+import { g as getCollection } from '../chunks/_astro_content_B3cXCnDJ.mjs';
 import 'clsx';
 export { renderers } from '../renderers.mjs';
 
