@@ -4,23 +4,14 @@
     "buildCommand": "npm run build",
     "devCommand": "npm run dev",
     "framework": "astro",
-    "functions": {
-      "api/*.js": {
-        "runtime": "nodejs18.x"
-      }
-    },
-    "builds": [
-      {
-        "src": "package.json",
-        "use": "@vercel/static-build",
-        "config": {
-          "zeroConfig": true
-        }
-      }
-    ],
     "env": {
       "EMAIL_USER": "@email_user",
       "EMAIL_PASSWORD": "@email_password",
       "EMAIL_TO": "@email_to"
+    },
+    "git": {
+      "deploymentEnabled": {
+        "main": true
+      }
     }
   }
