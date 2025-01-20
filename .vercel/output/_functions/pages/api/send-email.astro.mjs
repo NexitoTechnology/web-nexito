@@ -66,17 +66,16 @@ const POST = async ({ request }) => {
       hasPass: true
     });
     const transporter = nodemailer.createTransport({
-      service: "gmail",
-      // En lugar de host y port
+      host: "smtp.gmail.com",
+      port: 465,
+      // Puerto seguro para SSL
+      secure: true,
+      // Usa SSL
       auth: {
         user: "adrianmartintoro@gmail.com",
         pass: "mraq xenn xikv gwyd"
-      },
-      tls: {
-        rejectUnauthorized: false
-        // Solo para debugging
-      },
-      debug: true
+        // Usa la contraseña de aplicación
+      }
     });
     console.log("Verificando transporter");
     await transporter.verify();

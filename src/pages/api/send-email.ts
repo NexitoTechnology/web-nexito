@@ -84,15 +84,13 @@ export const POST: APIRoute = async ({ request }) => {
    });
 
    const transporter = nodemailer.createTransport({
-    service: 'gmail',  // En lugar de host y port
+    host: 'smtp.gmail.com',
+    port: 465, // Puerto seguro para SSL
+    secure: true, // Usa SSL
     auth: {
       user: import.meta.env.EMAIL_USER,
-      pass: import.meta.env.EMAIL_PASSWORD
-    },
-    tls: {
-      rejectUnauthorized: false // Solo para debugging
-    },
-    debug: true
+      pass: import.meta.env.EMAIL_PASSWORD // Usa la contraseña de aplicación
+    }
   });
 
    console.log('Verificando transporter');
