@@ -4,6 +4,10 @@ import type * as NodeMailer from 'nodemailer';
 // Rate limiting map
 const RATE_LIMIT = new Map();
 
+export const GET = () => {
+  return new Response('Test API working!', { status: 200 });
+};
+
 export const POST: APIRoute = async ({ request }) => {
   try {
     // Rate limiting check

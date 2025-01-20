@@ -8,7 +8,6 @@ import vercel from '@astrojs/vercel';
 export default defineConfig({
   output: 'server',
   adapter: vercel({
-    includeFiles: ["./src/pages/api/send-email.ts"],  // Ruta específica en lugar de patrón
     analytics: true
   }),
   site: 'https://nexito.tech',
