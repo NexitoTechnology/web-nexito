@@ -9,10 +9,17 @@ import vercel from '@astrojs/vercel/serverless';
 export default defineConfig({
   output: 'server',
   adapter: vercel({
-    analytics: true, // opcional
     webAnalytics: {
-      enabled: true // opcional
-    }
+      enabled: true
+    },
+    speedInsights: {
+      enabled: true
+    },
+    imageService: true,
+    devImageService: 'sharp',
+    includedFiles: [
+      "./src/**/*"  // Asegura que todos los archivos necesarios se incluyan
+    ]
   }),
   site: 'https://nexito.tech',
   // resto de tu configuración...
