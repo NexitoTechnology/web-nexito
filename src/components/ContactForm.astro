@@ -20,29 +20,6 @@ import Schema from "./JsonLD.astro";
         </p>
       </div>
 
-      <form id="contact-form" class="space-y-6">
-        <!-- Campo nombre -->
-        <div class="space-y-2">
-          <label for="name" class="block text-sm md:text-base font-medium text-gray-700">
-            Nombre
-          </label>
-          <div class="relative">
-            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-              </svg>
-            </div>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              class="form-input"
-              placeholder="¿Cómo te llamas?"
-              required
-            />
-          </div>
-        </div>
-
         <!-- Form -->
         <form id="contact-form" class="space-y-6" action="/api/send-email" method="POST">
           <!-- Nombre -->
