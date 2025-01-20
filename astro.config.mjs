@@ -3,18 +3,28 @@ import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import compress from 'astro-compress';
 import robotsTxt from 'astro-robots-txt';
-import vercel from '@astrojs/vercel';
-//import vercel from '@astrojs/vercel/serverless';
+//import vercel from '@astrojs/vercel';
+import vercel from '@astrojs/vercel/serverless';
 
 export default defineConfig({
  output: 'server',
  adapter: vercel({
+  build: {
+    serverEntry: 'src/pages/api/send-email.ts',
+    server: './src/pages/api/'
+  },
    webAnalytics: {
      enabled: true,
    },
    speedInsights: {
      enabled: true,
    },
+   adapter: vercel({
+    // Configuraciones específicas de Vercel
+    includeFiles: [
+      'src/pages/api/send-email.ts'
+    ]
+  }),
    imageService: true,
    imagesOptimizer: {
      // Opciones de optimización de imágenes
