@@ -3,10 +3,10 @@ import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import compress from 'astro-compress';
 import robotsTxt from 'astro-robots-txt';
-import vercel from '@astrojs/vercel/serverless'; // Cambiado a serverless
+import vercel from '@astrojs/vercel/static'; // Cambiado a static
 
 export default defineConfig({
-  output: 'server',
+  output: 'static',  // Cambiado a static
   adapter: vercel(),
   site: 'https://nexito.tech',
   integrations: [
