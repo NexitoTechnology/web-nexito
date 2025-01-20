@@ -6,6 +6,10 @@ const GET = () => {
 };
 const POST = async ({ request }) => {
   try {
+    console.log("Verificando variables de entorno");
+    if (false) ;
+    if (false) ;
+    if (false) ;
     console.log("Iniciando procesamiento de email");
     const userIP = request.headers.get("x-forwarded-for") || "unknown";
     const now = Date.now();
@@ -62,13 +66,17 @@ const POST = async ({ request }) => {
       hasPass: true
     });
     const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 465,
-      secure: true,
+      service: "gmail",
+      // En lugar de host y port
       auth: {
         user: "adrianmartintoro@gmail.com",
         pass: "mraq xenn xikv gwyd"
-      }
+      },
+      tls: {
+        rejectUnauthorized: false
+        // Solo para debugging
+      },
+      debug: true
     });
     console.log("Verificando transporter");
     await transporter.verify();
@@ -102,28 +110,35 @@ const POST = async ({ request }) => {
     });
   } catch (error) {
     const err = error;
-    console.error("Error detallado:", {
+    console.error("Error completo:", {
       name: err.name,
       message: err.message,
-      code: err.code,
-      stack: err.stack
-    });
-    return new Response(JSON.stringify({
-      message: "Error al enviar el email",
-      error: err.message
-    }), {
-      status: 500,
-      headers: {
-        "Content-Type": "application/json"
+      stack: err.stack,
+      env: {
+        hasUser: true,
+        hasPass: true,
+        hasTo: true
       }
     });
+    return new Response(
+      JSON.stringify({
+        message: "Error al enviar el email",
+        error: process.env.NODE_ENV === "development" ? err.message : "Error interno del servidor"
+      }),
+      {
+        status: 500,
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }
+    );
   }
 };
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
-   __proto__: null,
-   GET,
-   POST
+  __proto__: null,
+  GET,
+  POST
 }, Symbol.toStringTag, { value: 'Module' }));
 
 const page = () => _page;
