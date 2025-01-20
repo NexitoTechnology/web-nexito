@@ -3,14 +3,17 @@ import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import compress from 'astro-compress';
 import robotsTxt from 'astro-robots-txt';
-import vercel from '@astrojs/vercel';
+//import vercel from '@astrojs/vercel';
 
 export default defineConfig({
   output: 'server',
-  adapter: vercel({
-    analytics: true
-  }),
+//  adapter: vercel({
+//    analytics: true,
+//    functionPerRoute: false, // Deshabilitamos esto para simplificar
+//    deploymentSuffix: String(Date.now()) // Esto fuerza un nuevo deploy
+//  }),
   site: 'https://nexito.tech',
+  // resto de tu configuración...
   integrations: [
     tailwind(),
     sitemap({
