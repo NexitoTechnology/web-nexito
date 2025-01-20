@@ -3,7 +3,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import compress from 'astro-compress';
 import robotsTxt from 'astro-robots-txt';
-import vercel from '@astrojs/vercel/static';
+import vercel from '@astrojs/vercel/serverless'; // Cambiado a serverless
 
 export default defineConfig({
   output: 'server',
@@ -47,12 +47,12 @@ export default defineConfig({
     service: { 
       entrypoint: 'astro/assets/services/sharp',
       config: {
-        quality: 80, // Calidad de compresión por defecto
-        format: 'webp' // Formato por defecto
+        quality: 80,
+        format: 'webp'
       }
     }
   },
   build: {
-    inlineStylesheets: "always" // Esto inlinea los estilos CSS críticos
+    inlineStylesheets: "always"
   },
 });
