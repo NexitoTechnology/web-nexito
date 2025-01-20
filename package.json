@@ -17,6 +17,7 @@
     "@astrojs/tailwind": "^5.1.4",
     "@astrojs/vercel": "^8.0.2",
     "@types/nodemailer": "^6.4.17",
+    "@vercel/speed-insights": "^1.1.0",
     "astro": "^5.1.6",
     "astro-robots-txt": "^1.0.0",
     "astro-sitemap": "^1.0.0",

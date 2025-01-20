@@ -6,10 +6,12 @@ const GET = () => {
 };
 const POST = async ({ request }) => {
   try {
+    console.log("Iniciando procesamiento de email");
     const userIP = request.headers.get("x-forwarded-for") || "unknown";
     const now = Date.now();
     const lastSubmission = RATE_LIMIT.get(userIP) || 0;
     if (now - lastSubmission < 6e4) {
+      console.log("Rate limit alcanzado para IP:", userIP);
       return new Response(JSON.stringify({
         message: "Por favor, espera un minuto antes de enviar otro mensaje"
       }), {
@@ -19,11 +21,18 @@ const POST = async ({ request }) => {
         }
       });
     }
+    console.log("Obteniendo FormData");
     const formData = await request.formData();
+    console.log("FormData recibido:", {
+      name: formData.get("name"),
+      email: formData.get("email"),
+      hasMessage: !!formData.get("message")
+    });
     const name = formData.get("name");
     const email = formData.get("email");
     const message = formData.get("message");
     if (!name || !email || !message) {
+      console.log("Campos vacíos detectados");
       return new Response(JSON.stringify({
         message: "Todos los campos son requeridos"
       }), {
@@ -35,6 +44,7 @@ const POST = async ({ request }) => {
     }
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email.toString())) {
+      console.log("Formato de email inválido");
       return new Response(JSON.stringify({
         message: "El formato del email no es válido"
       }), {
@@ -45,31 +55,43 @@ const POST = async ({ request }) => {
       });
     }
     RATE_LIMIT.set(userIP, now);
+    console.log("Configurando nodemailer");
     const nodemailer = (await import('nodemailer')).default;
+    console.log("Creando transporter con:", {
+      user: "adrianmartintoro@gmail.com",
+      hasPass: true
+    });
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
       auth: {
         user: "adrianmartintoro@gmail.com",
         pass: "mraq xenn xikv gwyd"
       }
     });
+    console.log("Verificando transporter");
+    await transporter.verify();
+    console.log("Transporter verificado");
     const mailOptions = {
       from: "adrianmartintoro@gmail.com",
       to: "admin@nexito.tech",
       subject: `Nuevo mensaje de ${name}`,
       text: `
-        Nombre: ${name}
-        Email: ${email}
-        Mensaje: ${message}
-      `,
+       Nombre: ${name}
+       Email: ${email}
+       Mensaje: ${message}
+     `,
       html: `
-        <h2>Nuevo mensaje de contacto</h2>
-        <p><strong>Nombre:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Mensaje:</strong> ${message}</p>
-      `
+       <h2>Nuevo mensaje de contacto</h2>
+       <p><strong>Nombre:</strong> ${name}</p>
+       <p><strong>Email:</strong> ${email}</p>
+       <p><strong>Mensaje:</strong> ${message}</p>
+     `
     };
-    await transporter.sendMail(mailOptions);
+    console.log("Enviando email");
+    const info = await transporter.sendMail(mailOptions);
+    console.log("Email enviado:", info);
     return new Response(JSON.stringify({
       message: "Email enviado correctamente"
     }), {
@@ -79,9 +101,15 @@ const POST = async ({ request }) => {
       }
     });
   } catch (error) {
-    console.error("Error al enviar email:", error);
+    console.error("Error detallado:", {
+      name: error.name,
+      message: error.message,
+      code: error.code,
+      stack: error.stack
+    });
     return new Response(JSON.stringify({
-      message: "Error al enviar el email"
+      message: "Error al enviar el email",
+      error: error.message
     }), {
       status: 500,
       headers: {

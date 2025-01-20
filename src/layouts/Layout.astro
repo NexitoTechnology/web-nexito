@@ -1,15 +1,16 @@
 ---
-import Menu from '../components/Menu.astro';
-import Footer from '../components/Footer.astro';
-import JsonLD from '../components/JsonLD.astro';
-import CookieConsent from '../components/CookieConsent.astro';
-import { ClientRouter } from 'astro:transitions';
+import Menu from "../components/Menu.astro";
+import Footer from "../components/Footer.astro";
+import JsonLD from "../components/JsonLD.astro";
+import CookieConsent from "../components/CookieConsent.astro";
+import { ClientRouter } from "astro:transitions";
+import SpeedInsights from "@vercel/speed-insights/astro";
 
 interface Props {
   title?: string;
   description?: string;
   image?: string;
-  type?: 'website' | 'article' | 'about' | 'service';
+  type?: "website" | "article" | "about" | "service";
   schemaData?: Record<string, any>;
 }
 
@@ -18,7 +19,7 @@ const {
   description = "Transformamos empresas mediante automatización de procesos e Inteligencia Artificial. Soluciones personalizadas para impulsar la eficiencia de tu negocio.",
   image = "/og-image.jpg",
   type = "website",
-  schemaData = {}
+  schemaData = {},
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -34,20 +35,20 @@ const baseSchema = {
 
 // Seleccionar el tipo de Schema según la página
 const getSchemaType = () => {
-  switch(type) {
-    case 'article':
-      return 'Article';
-    case 'about':
-      return 'AboutPage';
-    case 'service':
-      return 'Service';
+  switch (type) {
+    case "article":
+      return "Article";
+    case "about":
+      return "AboutPage";
+    case "service":
+      return "Service";
     default:
-      return 'WebPage';
+      return "WebPage";
   }
 };
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es" class="scroll-smooth">
   <head>
     <!-- Metadatos básicos -->
@@ -61,17 +62,20 @@ const getSchemaType = () => {
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="author" content="Nexito Technology" />
     <meta name="generator" content={Astro.generator} />
-    
+
     <!-- Open Graph mejorado -->
     <meta property="og:locale" content="es_ES" />
     <meta property="og:site_name" content="Nexito Technology" />
-    <meta property="og:type" content={type === 'article' ? 'article' : 'website'} />
+    <meta
+      property="og:type"
+      content={type === "article" ? "article" : "website"}
+    />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, siteURL)} />
     <meta property="og:image:alt" content={title} />
     <meta property="og:url" content={canonicalURL} />
-    
+
     <!-- Twitter Card mejorada -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
@@ -86,20 +90,27 @@ const getSchemaType = () => {
     <link rel="apple-touch-icon" href="/Logo.svg" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    
     <!-- Preconexiones para mejorar rendimiento -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="anonymous" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-    
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin="anonymous"
+    />
+
     <!-- Precargar fuentes críticas -->
-    <link 
-      rel="preload" 
+    <link
+      rel="preload"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       as="style"
       onload="this.onload=null;this.rel='stylesheet'"
     />
     <noscript>
-      <link 
+      <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
         rel="stylesheet"
       />
@@ -108,30 +119,35 @@ const getSchemaType = () => {
     <!-- JSON-LD Schemas -->
     <JsonLD type="Organization" data={{}} />
     <JsonLD type="WebSite" data={{}} />
-    <JsonLD 
+    <JsonLD
       type={getSchemaType()}
       data={{
         ...baseSchema,
-        ...schemaData
+        ...schemaData,
       }}
     />
 
     <!-- Astro View Transitions -->
     <ClientRouter />
   </head>
-  <body class="font-[Inter] bg-gradient-to-b from-white to-gray-50 min-h-screen flex flex-col">
+  <body
+    class="font-[Inter] bg-gradient-to-b from-white to-gray-50 min-h-screen flex flex-col"
+  >
     <!-- Skip to main content para accesibilidad -->
-    <a 
-      href="#main-content" 
+    <a
+      href="#main-content"
       class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded"
     >
       Saltar al contenido principal
     </a>
-    
+
     <Menu />
-    
+
     <!-- Gradient background -->
-    <div class="bg-gradient-to-b from-[#0B1120] to-transparent h-32 w-full absolute top-0 -z-10 opacity-10"></div>
+    <div
+      class="bg-gradient-to-b from-[#0B1120] to-transparent h-32 w-full absolute top-0 -z-10 opacity-10"
+    >
+    </div>
 
     <!-- Main content -->
     <main id="main-content" class="flex-grow">
@@ -149,11 +165,12 @@ const getSchemaType = () => {
           document.fonts.load("400 1em Inter"),
           document.fonts.load("500 1em Inter"),
           document.fonts.load("600 1em Inter"),
-          document.fonts.load("700 1em Inter")
+          document.fonts.load("700 1em Inter"),
         ]).then(() => {
           document.documentElement.classList.add("fonts-loaded");
         });
       }
     </script>
+    <SpeedInsights />
   </body>
 </html>
