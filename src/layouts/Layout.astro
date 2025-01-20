@@ -4,7 +4,6 @@ import Footer from "../components/Footer.astro";
 import JsonLD from "../components/JsonLD.astro";
 import CookieConsent from "../components/CookieConsent.astro";
 import { ClientRouter } from "astro:transitions";
-import SpeedInsights from "@vercel/speed-insights/astro";
 
 interface Props {
   title?: string;
@@ -171,6 +170,5 @@ const getSchemaType = () => {
         });
       }
     </script>
-    <SpeedInsights />
   </body>
 </html>
