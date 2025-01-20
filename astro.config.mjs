@@ -8,8 +8,8 @@ import vercel from '@astrojs/vercel/serverless';
 export default defineConfig({
   output: 'server',
   adapter: vercel({
-    functionName: 'web-nexito',
-    maxDuration: 10
+    includeFiles: ["./src/pages/api/**/*.ts"],  // Incluimos explícitamente los archivos de API
+    analytics: true
   }),
   site: 'https://nexito.tech',
   integrations: [
