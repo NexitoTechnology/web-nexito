@@ -123,22 +123,23 @@ export const POST: APIRoute = async ({ request }) => {
      }
    });
 
-  } catch (error: any) {  // o podemos usar un tipo más específico
-    console.error('Error detallado:', {
-      name: error.name,
-      message: error.message,
-      code: error.code,
-      stack: error.stack
-    });
-    
-    return new Response(JSON.stringify({
-      message: 'Error al enviar el email',
-      error: error.message
-    }), {
-      status: 500,
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
-  }
+ } catch (error: Error | unknown) {
+   const err = error as Error;
+   console.error('Error detallado:', {
+     name: err.name,
+     message: err.message,
+     code: (err as any).code,
+     stack: err.stack
+   });
+   
+   return new Response(JSON.stringify({
+     message: 'Error al enviar el email',
+     error: err.message
+   }), {
+     status: 500,
+     headers: {
+       'Content-Type': 'application/json'
+     }
+   });
+ }
 }

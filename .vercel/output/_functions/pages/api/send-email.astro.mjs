@@ -101,15 +101,16 @@ const POST = async ({ request }) => {
       }
     });
   } catch (error) {
+    const err = error;
     console.error("Error detallado:", {
-      name: error.name,
-      message: error.message,
-      code: error.code,
-      stack: error.stack
+      name: err.name,
+      message: err.message,
+      code: err.code,
+      stack: err.stack
     });
     return new Response(JSON.stringify({
       message: "Error al enviar el email",
-      error: error.message
+      error: err.message
     }), {
       status: 500,
       headers: {
@@ -120,9 +121,9 @@ const POST = async ({ request }) => {
 };
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
-  __proto__: null,
-  GET,
-  POST
+   __proto__: null,
+   GET,
+   POST
 }, Symbol.toStringTag, { value: 'Module' }));
 
 const page = () => _page;
