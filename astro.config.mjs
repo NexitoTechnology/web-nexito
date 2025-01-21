@@ -6,7 +6,8 @@ import robotsTxt from 'astro-robots-txt';
 
 export default defineConfig({
   output: 'static',
-  site: 'https://nexito.tech',
+  site: 'https://nexitotechnology.github.io',
+  base: '/web-nexito',
   integrations: [
     tailwind(),
     sitemap({
@@ -30,7 +31,7 @@ export default defineConfig({
       CSS: true,
       HTML: true,
       JavaScript: true,
-      SVG: true,
+      SVG: true, // Compresión de SVG habilitada
       Logger: 1,
       minify: true,
       gzip: true,
@@ -46,12 +47,66 @@ export default defineConfig({
       entrypoint: 'astro/assets/services/sharp',
       config: {
         quality: 80,
-        format: 'webp',
+        formats: ['webp', 'avif', 'svg'],
+        svg: {
+          optimization: true,
+          cleanupAttrs: true,
+          removeDoctype: true,
+          removeXMLProcInst: true,
+          removeComments: true,
+          removeMetadata: true,
+          removeTitle: true,
+          removeDesc: true,
+          removeUselessDefs: true,
+          removeEditorsNSData: true,
+          removeEmptyAttrs: true,
+          removeEmptyContainers: true,
+          minifyStyles: true,
+          convertStyleToAttrs: true,
+          convertColors: true,
+          convertPathData: true,
+          convertTransform: true,
+          removeUnknownsAndDefaults: true,
+          removeNonInheritableGroupAttrs: true,
+          removeUselessStrokeAndFill: true,
+          removeUnusedNS: true,
+          cleanupIDs: true,
+          cleanupNumericValues: true,
+          cleanupListOfValues: true,
+          moveGroupAttrsToElems: true,
+          collapseGroups: true,
+          removeRasterImages: false,
+          mergePaths: true,
+          convertShapeToPath: true,
+          sortAttrs: true,
+          removeDimensions: true,
+        }
       },
     },
   },
-  build: {
-    inlineStylesheets: 'always',
-    format: 'directory',
-  },
+  vite: {
+    plugins: [
+      {
+        name: 'svg-loader',
+        enforce: 'pre',
+        transform(code, id) {
+          if (!id.endsWith('.svg')) return null;
+          return {
+            code: `export default ${JSON.stringify(code)}`,
+            map: null
+          };
+        }
+      }
+    ],
+    build: {
+      cssCodeSplit: true,
+      minify: 'terser',
+      assetsInlineLimit: 4096,
+      rollupOptions: {
+        output: {
+          assetFileNames: 'assets/[ext]/[name]-[hash][extname]',
+        }
+      }
+    }
+  }
 });
