@@ -5,6 +5,7 @@ import compress from 'astro-compress';
 import robotsTxt from 'astro-robots-txt';
 
 export default defineConfig({
+  viewTransitions: true,
   output: 'static',
   site: 'https://nexito.tech',
   base: '/',

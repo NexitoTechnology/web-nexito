@@ -91,7 +91,7 @@ const blogListSchema = {
 
     <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
       {sortedPosts.map(post => (
-        <article class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 opacity-0">
+        <article class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
           <a href={`/blog/${post.slug}`} class="block h-full">
             <div class="relative aspect-video overflow-hidden">
               {post.data.image ? (
@@ -147,62 +147,83 @@ const blogListSchema = {
 </Layout>
 
 <script>
-  const POSTS_PER_LOAD = 6;
-  let visiblePosts = 0;
-  const articles = document.querySelectorAll('article');
-
-  function showInitialPosts() {
-    for(let i = 0; i < Math.min(POSTS_PER_LOAD, articles.length); i++) {
-      articles[i].classList.add('fade-in');
-      visiblePosts++;
-    }
-  }
-
-  function showMorePosts() {
-    const start = visiblePosts;
-    const end = Math.min(start + POSTS_PER_LOAD, articles.length);
+  function initializeBlogGrid() {
+    const POSTS_PER_LOAD = 6;
+    let visiblePosts = 0;
+    const articles = document.querySelectorAll('#posts-grid article');
     
-    for(let i = start; i < end; i++) {
-      articles[i].classList.add('fade-in');
-    }
+    // Reset: asegurarse de que todos los artículos empiezan sin la clase fade-in
+    articles.forEach(article => {
+      article.classList.remove('fade-in');
+    });
     
-    visiblePosts = end;
-    
-    if (visiblePosts >= articles.length) {
-      const spinner = document.getElementById('loading-spinner');
-      if (spinner) {
-        spinner.style.display = 'none';
+    // Mostrar los primeros posts inmediatamente
+    function showInitialPosts() {
+      for(let i = 0; i < Math.min(POSTS_PER_LOAD, articles.length); i++) {
+        articles[i].classList.add('fade-in');
+        visiblePosts++;
       }
-      observer.disconnect();
     }
+
+    // Mostrar más posts al hacer scroll
+    function showMorePosts() {
+      const start = visiblePosts;
+      const end = Math.min(start + POSTS_PER_LOAD, articles.length);
+      
+      for(let i = start; i < end; i++) {
+        articles[i].classList.add('fade-in');
+      }
+      
+      visiblePosts = end;
+      
+      if (visiblePosts >= articles.length) {
+        const spinner = document.getElementById('loading-spinner');
+        if (spinner) {
+          spinner.style.display = 'none';
+        }
+        observer.disconnect();
+      }
+    }
+
+    // Configurar el observer para la carga infinita
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        setTimeout(showMorePosts, 300);
+      }
+    }, {
+      rootMargin: '100px'
+    });
+
+    // Iniciar la carga
+    showInitialPosts();
+
+    // Configurar el spinner para la carga infinita
+    const spinner = document.getElementById('loading-spinner');
+    if (spinner) {
+      spinner.classList.remove('hidden');
+      observer.observe(spinner);
+    }
+
+    // Limpiar el observer cuando se desmonte la página
+    return () => observer.disconnect();
   }
 
-  const observer = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) {
-      setTimeout(showMorePosts, 300);
-    }
-  }, {
-    rootMargin: '100px'
-  });
-
-  const spinner = document.getElementById('loading-spinner');
-  if (spinner) {
-    spinner.classList.remove('hidden');
-    observer.observe(spinner);
+  // Inicializar en la carga inicial
+  document.addEventListener('astro:page-load', initializeBlogGrid);
+  
+  // También inicializar si el documento ya está cargado (para navegación posterior)
+  if (document.readyState === 'complete') {
+    initializeBlogGrid();
   }
-
-  document.addEventListener('DOMContentLoaded', showInitialPosts);
 </script>
 
 <style>
   article {
-    opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    transition: transform 0.5s ease-out;
   }
 
   article.fade-in {
-    opacity: 1;
     transform: translateY(0);
   }
 </style>
