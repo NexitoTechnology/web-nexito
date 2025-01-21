@@ -16,9 +16,9 @@ interface Props {
   subtitle: string;
   description: string;
   tag: string;
-  companyLogos?: CompanyLogo[];
   ctaButtons?: CTAButton[];
   showTrustBar?: boolean;
+  companyLogos?: CompanyLogo[];
 }
 
 const { 
@@ -26,11 +26,6 @@ const {
   subtitle, 
   description, 
   tag,
-  companyLogos = [
-    { src: "/images/client-logo-1.svg", alt: "TechFlow" },
-    { src: "/images/client-logo-2.svg", alt: "DataSphere" },
-    { src: "/images/client-logo-3.svg", alt: "InnovateIQ" }
-  ],
   ctaButtons = [
     {
       text: "Agenda tu Consultoría Gratuita",
@@ -44,7 +39,12 @@ const {
       isMain: false
     }
   ],
-  showTrustBar = true
+  showTrustBar = true,
+  companyLogos = [
+    { src: "/images/client-logo-1.svg", alt: "TechFlow" },
+    { src: "/images/client-logo-2.svg", alt: "DataSphere" },
+    { src: "/images/client-logo-3.svg", alt: "InnovateIQ" }
+  ]
 } = Astro.props;
 ---
 
@@ -66,9 +66,13 @@ const {
         </span>
       </div>
 
+      <!-- Título y subtítulo optimizados -->
       <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold text-white mb-6 tracking-tight">
         {title}
-        <span class="block text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-purple-300 mt-2">
+        <span 
+          class="block mt-2 text-transparent"
+          style="background: linear-gradient(to right, rgb(191, 219, 254), rgb(216, 180, 254)); -webkit-background-clip: text; background-clip: text;"
+        >
           {subtitle}
         </span>
       </h1>
@@ -129,7 +133,7 @@ const {
           </p>
           <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 opacity-70">
             {companyLogos.map((logo) => (
-              <img src={logo.src} alt={logo.alt} class="h-8" />
+              <img src={logo.src} alt={logo.alt} class="h-8" loading="lazy" />
             ))}
           </div>
         </div>
@@ -137,3 +141,30 @@ const {
     </div>
   </div>
 </section>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    .animate-blob {
+      will-change: transform;
+    }
+  }
+
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+  }
+
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+</style>
