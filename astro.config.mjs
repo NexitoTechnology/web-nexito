@@ -6,8 +6,8 @@ import robotsTxt from 'astro-robots-txt';
 
 export default defineConfig({
   output: 'static',
-  site: 'https://nexitotechnology.github.io',
-  base: '/web-nexito',
+  site: 'https://nexito.tech',
+  base: '/',
   integrations: [
     tailwind(),
     sitemap({
