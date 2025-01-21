@@ -1,6 +1,4 @@
 ---
-import { Image } from 'astro:assets';
-import Logo from '../assets/LogoFooter.svg';
 import JsonLD from './JsonLD.astro';
 
 const currentYear = new Date().getFullYear();
@@ -60,10 +58,12 @@ const footerSchema = {
       {/* Columna 1: Logo e información */}
       <div class="space-y-4">
         <a href="/" aria-label="Inicio">
-          <Image 
-            src={Logo} 
+          <img 
+            src="/LogoFooter.svg"
             alt={companyData.name}
             class="h-16 w-auto"
+            width="400"
+            height="120"
           />
         </a>
         <p class="text-gray-300 text-sm leading-relaxed">

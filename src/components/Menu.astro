@@ -1,12 +1,11 @@
 ---
 import { Image } from "astro:assets";
-import Logo from "../assets/Logo.svg";
 import JsonLD from "./JsonLD.astro";
 
 // Datos estructurados del menú
 const menuData = {
   logo: {
-    src: Logo,
+    src: "/Logo.svg", // Actualizado para usar la ruta desde public
     alt: "Logo Nexito Technology",
     loading: "eager" as const,
   },
@@ -47,14 +46,12 @@ const navigationSchema = {
         class="flex-shrink-0 transform hover:scale-105 transition-transform duration-200" 
         aria-label="Ir a la página principal"
       >
-        <Image
+        <img
           src={menuData.logo.src}
           alt={menuData.logo.alt}
           loading={menuData.logo.loading}
-          width={144}
-          height={104}
-          format="webp"
-          quality={90}
+          width="144"
+          height="104"
           class="w-auto h-8 md:h-10"
         />
       </a>
