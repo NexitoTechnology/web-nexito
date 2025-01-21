@@ -12,15 +12,25 @@ interface Metric {
   label: string;
 }
 
-// Schema para los testimonios
+// Schema mejorado para los testimonios
 const testimonialSchema = {
   "@type": "Organization",
+  "name": "Nexito Technology",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "bestRating": "5",
+    "worstRating": "1",
+    "ratingCount": sortedTestimonials.length,
+    "reviewCount": sortedTestimonials.length
+  },
   "review": sortedTestimonials.map((testimonial: CollectionEntry<'testimonials'>) => ({
     "@type": "Review",
     "reviewRating": {
       "@type": "Rating",
       "ratingValue": "5",
-      "bestRating": "5"
+      "bestRating": "5",
+      "worstRating": "1"
     },
     "author": {
       "@type": "Person",
@@ -32,7 +42,11 @@ const testimonialSchema = {
       }
     },
     "reviewBody": testimonial.data.quote,
-    "datePublished": new Date().toISOString().split('T')[0]
+    "datePublished": new Date().toISOString().split('T')[0],
+    "itemReviewed": {
+      "@type": "Organization",
+      "name": "Nexito Technology"
+    }
   }))
 };
 ---
