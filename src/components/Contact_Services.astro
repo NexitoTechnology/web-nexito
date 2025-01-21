@@ -1,0 +1,17 @@
+---
+import ContactForm from "./ContactForm.astro";
+---
+
+<section
+  id="contact"
+  class="py-12 bg-gradient-to-br from-blue-800 to-blue-900 relative overflow-hidden"
+>
+  <!-- Elementos decorativos de fondo -->
+  <div class="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]"></div>
+  <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+  <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob delay-[2000ms]"></div>
+
+  <div class="relative">
+    <ContactForm />
+  </div>
+</section>

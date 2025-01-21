@@ -1,0 +1,67 @@
+---
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  description: string;
+  tag: string;
+  faqItems: FAQItem[];
+}
+
+const { title, subtitle, description, tag, faqItems } = Astro.props;
+---
+
+<section class="py-12 bg-gradient-to-b from-white to-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16">
+        <span class="inline-block px-4 py-1.5 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mb-4">
+          {tag}
+        </span>
+        <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          {title}
+          {subtitle && <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800">{subtitle}</span>}
+        </h2>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+          {description}
+        </p>
+      </div>
+  
+      <div class="space-y-4">
+        {faqItems.map((item) => (
+          <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow border border-gray-100">
+            <div class="p-6">
+              <div class="flex items-start gap-4">
+                <div class="flex-shrink-0">
+                  <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                    <svg
+                      class="w-5 h-5 text-blue-600"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div>
+                  <h3 class="text-lg font-semibold text-gray-900 mb-2">
+                    {item.question}
+                  </h3>
+                  <p class="text-gray-600">{item.answer}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
