@@ -40,7 +40,14 @@ export default defineConfig({
         threshold: 0,
       },
     }),
-    robotsTxt(),
+    robotsTxt({
+      content: `User-agent: *
+Allow: /
+Disallow: /aviso-legal
+Disallow: /politica-de-cookies
+Disallow: /politica-de-privacidad
+Sitemap: https://nexito.tech/sitemap-index.xml`
+    }),
   ],
   image: {
     service: {
