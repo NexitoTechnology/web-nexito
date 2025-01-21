@@ -85,7 +85,7 @@ const getSchemaType = () => {
     <!-- Favicon y manifest mejorado -->
     <!--<link rel="icon" href="/favicon.ico" sizes="32x32" /> -->
     <!-- Favicon y manifest mejorado -->
-    <link rel="icon" href="/Favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/Logo.svg" />
     <link rel="manifest" href="/manifest.json">
 
@@ -149,9 +149,16 @@ const getSchemaType = () => {
     </div>
 
     <!-- Main content -->
-    <main id="main-content" class="flex-grow">
-      <slot />
-    </main>
+     <!--<main id="main-content" class="flex-grow">-->
+    <!-- Main content -->
+    <div class="overflow-x-hidden">
+      <main
+        id="main-content"
+        class="flex-grow w-full px-4 md:w-3/4 mx-auto"
+      >
+        <slot />
+      </main>
+    </div>
 
     <Footer />
     <CookieConsent />
