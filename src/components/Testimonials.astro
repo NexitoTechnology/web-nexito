@@ -51,7 +51,7 @@ const testimonialSchema = {
 };
 ---
 
-<section class="py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+<section class="py-32 md:py-40 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
   <JsonLD type="Organization" data={testimonialSchema} />
 
   <!-- Fondo con patrón -->
@@ -59,7 +59,7 @@ const testimonialSchema = {
   
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
     <!-- Header mejorado -->
-    <div class="text-center max-w-3xl mx-auto mb-16">
+    <div class="text-center max-w-3xl mx-auto mb-20">
       <span class="text-blue-800 font-medium bg-blue-200 inline-block mb-4 px-4 py-1.5 rounded-full text-sm">
         Testimonios
       </span>
@@ -74,9 +74,9 @@ const testimonialSchema = {
     <!-- Carrusel mejorado -->
     <div class="testimonials-carousel relative">
       <div class="overflow-hidden">
-        <div id="testimonials-container" class="flex transition-transform duration-500">
+        <div id="testimonials-container" class="flex transition-transform duration-500 ease-in-out">
           {sortedTestimonials.map((testimonial) => (
-            <div class="w-full lg:w-1/3 flex-shrink-0 px-4">
+            <div class="w-full lg:w-1/3 flex-shrink-0 px-4 transition-opacity duration-500">
               <div class="bg-white rounded-2xl shadow-xl p-8 h-full hover:shadow-2xl transition-all duration-300 border border-gray-100">
                 <!-- Quote icon -->
                 <div class="mb-6">
@@ -86,11 +86,11 @@ const testimonialSchema = {
                     </svg>
                   </div>
                 </div>
-
+    
                 <blockquote class="mb-8">
                   <p class="text-gray-700 text-lg leading-relaxed">{testimonial.data.quote}</p>
                 </blockquote>
-
+    
                 <div class="flex justify-between items-center">
                   <div class="flex items-center">
                     <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white font-bold">
@@ -153,50 +153,89 @@ const testimonialSchema = {
     let currentIndex = 0;
     const items = container.children;
     const itemCount = items.length;
-    const itemsPerView = window.innerWidth >= 1024 ? 3 : 1;
-    const maxIndex = Math.max(0, itemCount - itemsPerView);
+    
+    function getItemsPerView() {
+      return window.innerWidth >= 1024 ? 3 : 1;
+    }
+
+    function getMaxIndex() {
+      return Math.max(0, itemCount - getItemsPerView());
+    }
 
     function updateCarousel() {
       if (!container) return;
-      const offset = currentIndex * (-100 / itemCount);
+      const itemsPerView = getItemsPerView();
+      
+      const itemWidth = 100 / itemsPerView;
+      const offset = currentIndex * -itemWidth;
+      
       container.style.transform = `translateX(${offset}%)`;
       
-      // Actualizar ARIA labels
-      container.setAttribute('aria-label', `Testimonio ${currentIndex + 1} de ${itemCount}`);
+      // Actualizar visibilidad y opacidad de los elementos con type casting correcto
+      Array.from(items).forEach((item, index) => {
+        const isVisible = index >= currentIndex && index < currentIndex + itemsPerView;
+        const htmlItem = item as HTMLElement;
+        htmlItem.style.opacity = isVisible ? '1' : '0';
+        htmlItem.style.pointerEvents = isVisible ? 'auto' : 'none';
+      });
+
+      // Actualizar estado de los botones con type casting correcto
+      const prevButton = document.getElementById('prev') as HTMLButtonElement | null;
+      const nextButton = document.getElementById('next') as HTMLButtonElement | null;
+
+      if (prevButton) {
+        prevButton.disabled = currentIndex === 0;
+        prevButton.classList.toggle('opacity-50', currentIndex === 0);
+      }
+      if (nextButton) {
+        nextButton.disabled = currentIndex === getMaxIndex();
+        nextButton.classList.toggle('opacity-50', currentIndex === getMaxIndex());
+      }
     }
 
-    const prevButton = document.getElementById('prev');
-    const nextButton = document.getElementById('next');
+    const prevButton = document.getElementById('prev') as HTMLButtonElement | null;
+    const nextButton = document.getElementById('next') as HTMLButtonElement | null;
 
     prevButton?.addEventListener('click', () => {
-      currentIndex = Math.max(0, currentIndex - 1);
-      updateCarousel();
-    });
-
-    nextButton?.addEventListener('click', () => {
-      currentIndex = Math.min(maxIndex, currentIndex + 1);
-      updateCarousel();
-    });
-
-    // Auto-play
-    const interval = setInterval(() => {
-      currentIndex = currentIndex === maxIndex ? 0 : currentIndex + 1;
-      updateCarousel();
-    }, 5000);
-
-    // Keyboard navigation
-    container.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') {
-        currentIndex = Math.max(0, currentIndex - 1);
-        updateCarousel();
-      } else if (e.key === 'ArrowRight') {
-        currentIndex = Math.min(maxIndex, currentIndex + 1);
+      if (currentIndex > 0) {
+        currentIndex--;
         updateCarousel();
       }
     });
 
-    // Cleanup on page navigation
-    return () => clearInterval(interval);
+    nextButton?.addEventListener('click', () => {
+      if (currentIndex < getMaxIndex()) {
+        currentIndex++;
+        updateCarousel();
+      }
+    });
+
+    // Auto-play
+    let interval = setInterval(() => {
+      if (currentIndex === getMaxIndex()) {
+        currentIndex = 0;
+      } else {
+        currentIndex = Math.min(getMaxIndex(), currentIndex + 1);
+      }
+      updateCarousel();
+    }, 5000);
+
+    // Responsive handling
+    const handleResize = () => {
+      currentIndex = Math.min(currentIndex, getMaxIndex());
+      updateCarousel();
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Inicializar
+    updateCarousel();
+
+    // Cleanup
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('resize', handleResize);
+    };
   }
 
   // Setup on page load and after route changes
