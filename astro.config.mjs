@@ -3,38 +3,11 @@ import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import compress from 'astro-compress';
 import robotsTxt from 'astro-robots-txt';
-import vercel from '@astrojs/vercel';
 
 export default defineConfig({
-  output: 'server',
-  adapter: vercel({
-    webAnalytics: {
-      enabled: true,
-    },
-    speedInsights: {
-      enabled: true,
-    },
-    files: {
-      '/**/*.png': {
-        type: 'asset',
-        contentType: 'image/png',
-      },
-    },
-    imageService: true,
-    imagesOptimizer: {
-      layout: 'constrained',
-      formats: ['webp', 'avif'],
-      quality: 80,
-      breakpoints: [640, 768, 1024, 1280, 1536],
-    },
-    devImageService: 'sharp',
-    edgeMiddleware: true,
-    functionPerRoute: true,
-    maxDuration: 60,
-    memorySize: 1024,
-    analytics: true,
-  }),
-  site: 'https://nexito.tech',
+  output: 'static',
+  site: 'https://nexitotechnology.github.io',
+  base: '/web-nexito',
   integrations: [
     tailwind(),
     sitemap({
