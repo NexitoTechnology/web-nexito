@@ -119,7 +119,7 @@ const seriesPosts = post.data.serie
             {post.data.categoria && (
               <>
                 <li class="text-gray-400">/</li>
-                <li><a href={`/blog/categoria/${post.data.categoria.toLowerCase()}`} class="text-gray-500 hover:text-blue-600">{post.data.categoria}</a></li>
+                <li><a href={`/blog/${post.data.categoria.toLowerCase()}`} class="text-gray-500 hover:text-blue-600">{post.data.categoria}</a></li>
               </>
             )}
           </ol>
