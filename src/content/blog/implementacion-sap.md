@@ -31,7 +31,7 @@ Este es mi segundo post de blog.
 
 Implementar SAP en tu empresa puede ser una tarea compleja, pero con la guía adecuada, puedes lograr una implementación exitosa que mejore la eficiencia y la productividad de tu negocio. En este artículo, te proporcionaremos una guía completa para implementar SAP en tu empresa.
 
-![Implementación de SAP](/images/implementacion-sap.jpg)
+![Implementación de SAP](/images/implementacion-sap.webp)
 
 ## ¿Qué es SAP?
 
@@ -81,7 +81,7 @@ Una vez que se han identificado las necesidades, el siguiente paso es planificar
 
 La configuración del sistema implica la instalación y configuración del software SAP según las necesidades de tu empresa. Esto puede incluir la personalización de módulos y la integración con otros sistemas.
 
-![Configuración de SAP](/images/configuracion-sap.jpg)
+![Configuración de SAP](/images/configuracion-sap.webp)
 
 ### 4. Capacitación
 

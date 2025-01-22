@@ -12,7 +12,7 @@ dificultad: "Intermedio"
 audiencia: ["Gerentes", "Analistas de Datos", "Tomadores de Decisiones"]
 metaTitle: "Cómo Implementar Business Intelligence (BI) en tu Empresa: Guía Completa"
 metaDescription: "Aprende a implementar Business Intelligence (BI) en tu empresa para mejorar la toma de decisiones y aumentar la eficiencia operativa."
-ogImage: "/images/og/business-intelligence-implementacion-og.jpg"
+ogImage: "/images/og/business-intelligence-implementacion-og.webp"
 isPublished: true
 featured: true
 author: "Nexito Technology"
@@ -33,7 +33,7 @@ tiempoImplementacion: "15-20 minutos"
 
 En el mundo empresarial actual, la toma de decisiones basada en datos es crucial para el éxito. El Business Intelligence (BI) proporciona las herramientas y técnicas necesarias para analizar datos y obtener información valiosa que puede guiar a las empresas hacia una mayor eficiencia y rentabilidad. En esta guía completa, te mostraremos cómo implementar BI en tu empresa, desde la planificación hasta la ejecución y el mantenimiento.
 
-![Análisis de Datos](/images/analisis-datos-bi.jpg)
+![Análisis de Datos](/images/analisis-datos-bi.webp)
 
 ## ¿Qué es Business Intelligence (BI)?
 
@@ -46,7 +46,7 @@ Business Intelligence (BI) es un conjunto de estrategias y tecnologías utilizad
 3. **Ventaja Competitiva**: Las empresas que utilizan BI pueden obtener una ventaja competitiva al entender mejor a sus clientes y mercados.
 4. **Reducción de Costos**: Al identificar ineficiencias y áreas de desperdicio, BI puede ayudar a reducir costos.
 
-![Dashboard de BI](/images/dashboard-bi.jpg)
+![Dashboard de BI](/images/dashboard-bi.webp)
 
 ## Pasos para Implementar BI en tu Empresa
 
@@ -66,7 +66,7 @@ La calidad de los datos es crucial para el éxito de cualquier implementación d
 
 Una vez que hayas seleccionado la herramienta y preparado los datos, es hora de implementar la solución de BI. Esto puede incluir la configuración de la herramienta, la creación de informes y dashboards, y la capacitación de los usuarios finales.
 
-![Implementación de BI](/images/implementacion-bi.jpg)
+![Implementación de BI](/images/implementacion-bi.webp)
 
 ### 5. Capacitación y Adopción
 

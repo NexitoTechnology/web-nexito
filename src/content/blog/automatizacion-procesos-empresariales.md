@@ -12,7 +12,7 @@ dificultad: "Intermedio"
 audiencia: ["Directores de Operaciones", "Gerentes de TI", "Empresarios"]
 metaTitle: "Automatización de Procesos Empresariales: Guía Completa 2024 | Nexito Technology"
 metaDescription: "Guía definitiva sobre automatización de procesos empresariales. Descubre beneficios, casos de éxito y cómo implementarla en tu empresa. Incluye ejemplos reales y mejores prácticas."
-ogImage: "/images/og/automatizacion-procesos-og.jpg"
+ogImage: "/images/og/automatizacion-procesos-og.webp"
 isPublished: true
 featured: true
 author: "Nexito Technology"
@@ -29,7 +29,7 @@ tiempoImplementacion: "15-20 minutos"
 
 La automatización de procesos empresariales (BPA, por sus siglas en inglés) se ha convertido en una herramienta esencial para las empresas que buscan mejorar su eficiencia operativa, reducir costos y aumentar la productividad. En este artículo, exploraremos los beneficios clave de la automatización de procesos y algunos casos de éxito que demuestran su impacto positivo en diversas industrias.
 
-![Automatización de Procesos](/images/automatizacion-procesos.jpg)
+![Automatización de Procesos](/images/automatizacion-procesos.webp)
 
 ## ¿Qué es la Automatización de Procesos Empresariales?
 
@@ -45,7 +45,7 @@ Uno de los beneficios más evidentes de la automatización es la mejora de la ef
 
 La automatización puede llevar a una reducción significativa de costos. Al eliminar la necesidad de mano de obra manual para tareas repetitivas, las empresas pueden ahorrar en salarios y otros costos operativos. Además, la automatización puede reducir el riesgo de errores costosos y mejorar la precisión de los procesos.
 
-![Beneficios de la Automatización](/images/beneficios-automatizacion.jpg)
+![Beneficios de la Automatización](/images/beneficios-automatizacion.webp)
 
 ### 3. Mejora de la Calidad y Consistencia
 

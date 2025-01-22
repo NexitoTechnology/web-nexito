@@ -43,7 +43,7 @@ Power BI es una suite de herramientas de análisis de negocios que permite visua
 
 Power BI ofrece una amplia gama de visualizaciones que permiten a los usuarios explorar datos de manera intuitiva. Desde gráficos de barras y líneas hasta mapas y gráficos de dispersión, Power BI tiene todo lo que necesitas para visualizar tus datos de manera efectiva.
 
-![Gráficos de Power BI](/images/power-bi-charts.jpg)
+![Gráficos de Power BI](/images/power-bi-charts.webp)
 *Gráficos de Power BI con diferentes tipos de visualizaciones*
 
 ### 2. Integración con Fuentes de Datos
@@ -68,7 +68,7 @@ Antes de comenzar con la implementación, es importante evaluar las necesidades 
 
 Una vez que hayas identificado tus necesidades, el siguiente paso es preparar los datos. Esto incluye la limpieza de datos, la transformación y la consolidación de datos de diferentes fuentes.
 
-![Preparación de Datos](/images/power-bi-data-preparation.jpg)
+![Preparación de Datos](/images/power-bi-data-preparation.webp)
 *Proceso de preparación de datos en Power BI*
 
 ### 3. Creación de Informes y Dashboards
@@ -93,7 +93,7 @@ Una empresa de manufactura implementó Power BI para analizar sus datos de produ
 
 Una empresa de ventas minoristas utilizó Power BI para analizar sus datos de ventas. Con los informes de Power BI, pudieron identificar patrones de compra y optimizar sus estrategias de marketing para aumentar las ventas.
 
-![Optimización de Ventas](/images/power-bi-sales-optimization.jpg)
+![Optimización de Ventas](/images/power-bi-sales-optimization.webp)
 *Optimización de ventas utilizando Power BI*
 
 ## Conclusión

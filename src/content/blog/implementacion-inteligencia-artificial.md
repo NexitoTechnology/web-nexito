@@ -12,7 +12,7 @@ dificultad: "Intermedio"
 audiencia: ["Gerentes de TI", "Empresarios", "Profesionales de TI"]
 metaTitle: "Cómo Implementar Inteligencia Artificial en tu Empresa: Guía Completa"
 metaDescription: "Descubre cómo implementar inteligencia artificial en tu empresa para mejorar la eficiencia y reducir costos."
-ogImage: "/images/og/implementacion-ia-principal-og.jpg"
+ogImage: "/images/og/implementacion-ia-principal-og.webp"
 isPublished: true
 featured: true
 author: "Nexito Technology"
@@ -45,7 +45,7 @@ Antes de comenzar con la implementación de IA, es crucial realizar una evaluaci
 - **Infraestructura Tecnológica:** Evalúa si tu infraestructura actual es compatible con las soluciones de IA.
 - **Recursos Humanos:** Asegúrate de contar con un equipo capacitado o considera la capacitación necesaria.
 
-![Evaluación Inicial](/images/evaluacion-inicial-ia.jpg)
+![Evaluación Inicial](/images/evaluacion-inicial-ia.webp)
 *Evaluación inicial de necesidades y recursos para la implementación de IA.*
 
 ## 2. Selección de la Tecnología Adecuada
@@ -63,7 +63,7 @@ Una vez que hayas identificado tus necesidades y evaluado tus recursos, el sigui
 - **RPA (Robotic Process Automation):** Herramientas como UiPath y Blue Prism.
 - **Chatbots:** Plataformas como Dialogflow y Microsoft Bot Framework.
 
-![Selección de Tecnología](/images/seleccion-tecnologia-ia.jpg)
+![Selección de Tecnología](/images/seleccion-tecnologia-ia.webp)
 *Selección de la tecnología adecuada para la implementación de IA.*
 
 ## 3. Implementación
@@ -85,7 +85,7 @@ La fase de implementación es crucial y debe ser manejada con cuidado para asegu
 - **Pruebas Piloto:** Realiza pruebas piloto para evaluar el rendimiento y la eficacia de las soluciones de IA.
 - **Ajustes:** Realiza ajustes basados en los resultados de las pruebas.
 
-![Implementación de IA](/images/implementacion-ia.jpg)
+![Implementación de IA](/images/implementacion-ia.webp)
 *Implementación de soluciones de IA en la empresa.*
 
 ## 4. Mantenimiento y Mejora Continua
@@ -102,7 +102,7 @@ La implementación de IA no termina con la puesta en marcha. Es importante mante
 - **Actualizaciones Regulares:** Mantén las soluciones de IA actualizadas con las últimas tecnologías y mejoras.
 - **Capacitación Continua:** Asegúrate de que tu equipo esté constantemente capacitado en las últimas tendencias y tecnologías de IA.
 
-![Mantenimiento y Mejora Continua](/images/mantenimiento-ia.jpg)
+![Mantenimiento y Mejora Continua](/images/mantenimiento-ia.webp)
 *Mantenimiento y mejora continua de las soluciones de IA.*
 
 ## Conclusión

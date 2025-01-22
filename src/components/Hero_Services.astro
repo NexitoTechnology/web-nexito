@@ -29,9 +29,9 @@ const {
   ctaButtons = [
     {
       text: "Agenda tu Consultoría Gratuita",
-      href: "#calendar-booking",
+      href: "https://cal.com/nexito/30min",
       isMain: true,
-      duration: "15min"
+      duration: "30min"
     },
     {
       text: "Ver Beneficios",
@@ -92,7 +92,7 @@ const {
   
   <p 
     class="
-      mt-6 
+      mt-10 mb-12
       text-xl md:text-2xl 
       text-blue-50 
       max-w-3xl 
@@ -104,12 +104,12 @@ const {
   </p>
 </div>
 
-      <!-- CTAs -->
-      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+<!-- CTAs -->
+<div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-2">  
         {ctaButtons.map((button) => (
           button.isMain ? (
             <a
-              href={button.href}
+              href={button.href} target="_blank" rel="nofollow"
               class="group relative inline-flex items-center justify-center px-8 py-4 text-lg md:text-xl font-bold text-blue-800 bg-white rounded-xl shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-200"
             >
               <span class="relative flex items-center">
