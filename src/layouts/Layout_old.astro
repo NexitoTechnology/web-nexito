@@ -107,15 +107,51 @@ const getSchemaType = () => {
     <!-- Astro View Transitions -->
     <ClientRouter />
   </head>
-  <body>
+  <body class="font-[Inter] bg-gradient-to-b from-white to-gray-50 min-h-screen flex flex-col">
+    <!-- Skip to main content para accesibilidad -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-600 focus:text-white focus:rounded"
+    >
+      Saltar al contenido principal
+    </a>
+
     <Menu />
+
+    <!-- Gradient background -->
+    <div
+      class="bg-gradient-to-b from-[#0B1120] to-transparent h-32 w-full absolute top-0 -z-10 opacity-10"
+    >
+    </div>
+
+    <!-- Main content -->
+     <!--<main id="main-content" class="flex-grow">-->
     <!-- Main content -->
     <div class="overflow-x-hidden">
-      <main id="main-content" class="flex-grow w-full px-4 md:w-3/4 mx-auto">
+      <main
+        id="main-content"
+        class="flex-grow w-full px-4 md:w-3/4 mx-auto"
+      >
         <slot />
       </main>
     </div>
+
     <Footer />
     <CookieConsent />
+
+    <!-- Script para mejorar el rendimiento de las fuentes -->
+    <script>
+      // Marcar cuando las fuentes están cargadas
+      if ("fonts" in document) {
+        Promise.all([
+          document.fonts.load("400 1em Inter"),
+          document.fonts.load("500 1em Inter"),
+          document.fonts.load("600 1em Inter"),
+          document.fonts.load("700 1em Inter"),
+        ]).then(() => {
+          document.documentElement.classList.add("fonts-loaded");
+        });
+      }
+    </script>
   </body>
 </html>
