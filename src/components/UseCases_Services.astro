@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 interface UseCaseItem {
   title: string;
   description: string;
@@ -52,12 +54,13 @@ const {
       {useCases.map((useCase) => (
         <div class="group bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-blue-200">
           <div class="aspect-video overflow-hidden">
-            <img
+            <Image
               src={useCase.image}
               alt={useCase.title}
               loading="lazy"
               width="600"
               height="400"
+              format="webp"
               class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
             />
           </div>

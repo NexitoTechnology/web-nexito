@@ -32,7 +32,7 @@ export default defineConfig({
       CSS: true,
       HTML: true,
       JavaScript: true,
-      SVG: true, // Compresión de SVG habilitada
+      SVG: true,
       Logger: 1,
       minify: true,
       gzip: true,
@@ -47,7 +47,7 @@ export default defineConfig({
       entrypoint: 'astro/assets/services/sharp',
       config: {
         quality: 80,
-        formats: ['webp', 'avif', 'svg'],
+        formats: ['webp'],
         svg: {
           optimization: true,
           cleanupAttrs: true,

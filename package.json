@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "convert:webp": "node convert-webp.js",
+    "build": "npm run convert:webp && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -14,10 +15,11 @@
     "astro": "^5.1.6",
     "astro-robots-txt": "^1.0.0",
     "astro-sitemap": "^1.0.0",
-    "sharp": "^0.33.5"
+    "sharp": "^0.33.5",
+    "tailwindcss": "^3.4.1"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.16",
     "astro-compress": "^2.3.6"
   }
-}
+ }
