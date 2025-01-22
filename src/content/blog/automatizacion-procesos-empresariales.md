@@ -2,7 +2,7 @@
 title: "Automatización de Procesos Empresariales: Beneficios y Casos de Éxito"
 date: 2024-01-16
 description: "Descubre cómo la automatización de procesos empresariales puede transformar tu negocio, mejorar la eficiencia y reducir costos. Explora casos de éxito y beneficios clave."
-image: "/images/automatizacion-procesos.jpg"
+image: "/images/automatizacion-procesos.webp"
 imageAlt: "Diagrama de automatización de procesos empresariales con flujos de trabajo"
 tags: ["Automatización", "BPA", "Eficiencia Empresarial", "Transformación Digital", "Productividad", "RPA"]
 categoria: "Automatización"

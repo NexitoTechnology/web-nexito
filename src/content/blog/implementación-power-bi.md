@@ -2,7 +2,7 @@
 title: "Implementación de Power BI en tu Empresa: Guía Completa"
 date: 2025-01-16
 description: "Descubre cómo implementar Power BI en tu empresa para mejorar la toma de decisiones y aumentar la eficiencia."
-image: "/images/power-bi-dashboard.jpg"
+image: "/images/power-bi-dashboard.webp"
 imageAlt: "Dashboard de Power BI con gráficos y tablas"
 tags: ["Power BI", "Business Intelligence", "Implementación"]
 categoria: "Tecnología"
@@ -12,7 +12,7 @@ dificultad: "Intermedio"
 audiencia: ["Gerentes de TI", "Analistas de Datos", "Empresarios"]
 metaTitle: "Implementación de Power BI en tu Empresa: Guía Completa"
 metaDescription: "Aprende a implementar Power BI en tu empresa para mejorar la toma de decisiones y aumentar la eficiencia."
-ogImage: "/images/og/power-bi-dashboard-og.jpg"
+ogImage: "/images/og/power-bi-dashboard-og.webp"
 isPublished: true
 featured: true
 author: "Nexito Technology"

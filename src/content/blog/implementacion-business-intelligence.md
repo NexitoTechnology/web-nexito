@@ -2,7 +2,7 @@
 title: "Cómo Implementar Business Intelligence (BI) en tu Empresa: Guía Completa"
 date: 2025-01-16
 description: "Descubre cómo implementar Business Intelligence (BI) en tu empresa para mejorar la toma de decisiones y aumentar la eficiencia operativa."
-image: "/images/business-intelligence-implementacion.jpg"
+image: "/images/business-intelligence-implementacion.webp"
 imageAlt: "Implementación de Business Intelligence en una empresa"
 tags: ["Business Intelligence", "BI", "Implementación", "Toma de Decisiones", "Eficiencia Operativa"]
 categoria: "Tecnología"

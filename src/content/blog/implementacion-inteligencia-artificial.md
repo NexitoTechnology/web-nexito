@@ -2,7 +2,7 @@
 title: "Cómo Implementar Inteligencia Artificial en tu Empresa: Guía Completa"
 date: 2025-01-16
 description: "Descubre cómo implementar inteligencia artificial en tu empresa para mejorar la eficiencia y reducir costos."
-image: "/images/implementacion-ia-principal.jpg"
+image: "/images/implementacion-ia-principal.webp"
 imageAlt: "Implementación de IA en una empresa"
 tags: ["Inteligencia Artificial", "Automatización", "Eficiencia Empresarial"]
 categoria: "Tecnología"
