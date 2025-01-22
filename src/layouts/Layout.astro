@@ -50,6 +50,16 @@ const getSchemaType = () => {
 <!doctype html>
 <html lang="es" class="scroll-smooth">
   <head>
+    <!-- En el head -->
+<head>
+  <link 
+    rel="preload" 
+    href="/fonts/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyrAZ9hiA.woff2" 
+    as="font" 
+    type="font/woff2" 
+    crossorigin
+  />
+</head>
     <!-- Metadatos básicos -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -125,7 +135,7 @@ const getSchemaType = () => {
     />
 
     <!-- Astro View Transitions -->
-    <!--<ClientRouter /> -->
+    <ClientRouter />
   </head>
   <body
     class="font-[Inter] bg-gradient-to-b from-white to-gray-50 min-h-screen flex flex-col"
@@ -160,6 +170,14 @@ const getSchemaType = () => {
 
     <Footer />
     <CookieConsent />
+
+    <style is:global>
+      @font-face {
+        font-family: 'Your Font';
+        font-display: swap;
+        src: url('/fonts/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyrAZ9hiA.woff2');
+      }
+    </style>
 
     <!-- Script para mejorar el rendimiento de las fuentes -->
     <script>
