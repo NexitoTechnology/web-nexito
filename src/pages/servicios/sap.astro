@@ -1,287 +1,331 @@
 ---
-// src/pages/servicios/sap.astro
-import Layout from '../../layouts/Layout.astro';
-import JsonLD from '../../components/JsonLD.astro';
-import ContactForm from '../../components/ContactForm.astro';
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero_Services.astro";
+import Features from "../../components/Features_Services.astro";
+import UseCases from "../../components/UseCases_Services.astro";
+import Benefits from "../../components/Benefits_Services.astro";
+import Process from "../../components/Process_Services.astro";
+import FAQ from "../../components/FAQ_Services.astro";
+import CTASection from "../../components/CTASection_Services.astro";
+import FaqCtaServices from "../../components/FaqCta_Services.astro";
+import Divider from "../../components/Divider_Services.astro";
+import ContactServices from "../../components/Contact_Services.astro";
+import JsonLD from "../../components/JsonLD.astro";
 
-// Datos estructurados para la página
-const sapData = {
-  title: "Servicios SAP | Nexito Technology",
-  description: "Transforma tu negocio con nuestros servicios de SAP. Implementa soluciones SAP para mejorar la eficiencia, optimizar procesos y obtener insights valiosos.",
-  heroTitle: "Servicios SAP",
-  heroSubtitle: "Transforma tu Negocio con Soluciones SAP",
-  features: [
-    {
-      title: "Implementación SAP S/4HANA",
-      description: "Migra a la última versión de SAP para una gestión empresarial más eficiente",
-      icon: "🔧"
-    },
-    {
-      title: "Consultoría SAP",
-      description: "Asesoramiento experto para optimizar tus procesos con SAP",
-      icon: "💡"
-    },
-    {
-      title: "Soporte y Mantenimiento",
-      description: "Servicios de soporte continuo para asegurar el funcionamiento óptimo de tus sistemas SAP",
-      icon: "🛠"
-    },
-    {
-      title: "Formación SAP",
-      description: "Capacitación para tu equipo en el uso de soluciones SAP",
-      icon: "📚"
+// Interfaces
+interface Feature {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+interface UseCase {
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+  linkText: string;
+}
+
+interface ProcessStep {
+  step: number;
+  title: string;
+  description: string;
+}
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface PageData {
+  title: string;
+  description: string;
+  hero: {
+    title: string;
+    subtitle: string;
+    description: string;
+    tag: string;
+  };
+  features: {
+    title: string;
+    subtitle: string;
+    description: string;
+    tag: string;
+    features: Feature[];
+  };
+  useCases: {
+    title: string;
+    subtitle: string;
+    description: string;
+    tag: string;
+    useCases: UseCase[];
+    extraCTA: {
+      text: string;
+      href: string;
+    };
+  };
+  benefits: {
+    title: string;
+    subtitle: string;
+    description: string;
+    tag: string;
+    benefits: string[];
+  };
+  process: {
+    title: string;
+    subtitle: string;
+    description: string;
+    tag: string;
+    steps: ProcessStep[];
+  };
+  faq: {
+    title: string;
+    description: string;
+    tag: string;
+    faqItems: FAQItem[];
+  };
+  cta: {
+    title: string;
+    description: string;
+    buttonText: string;
+    buttonLink: string;
+    features: string[];
+  };
+  faqCta: {
+    title: string;
+    description: string;
+    btnText: string;
+    btnLink: string;
+  }
+}
+
+// Datos de la página mejorados para SEO
+const sapData: PageData = {
+  title: "Servicios de Implementación y Consultoría SAP | Nexito Technology",
+  description: "Optimiza tu empresa con nuestros servicios especializados en SAP. Implementación de S/4HANA, consultoría experta y soporte continuo para maximizar el valor de tu inversión en SAP.",
+  
+  hero: {
+    title: "Servicios Profesionales SAP",
+    subtitle: "Transformación Digital con SAP",
+    description: "Implementación, consultoría y optimización de soluciones SAP para impulsar la eficiencia empresarial",
+    tag: "🔧 Expertos en Soluciones SAP"
+  },
+
+  features: {
+    title: "Soluciones",
+    subtitle: "SAP Enterprise",
+    description: "Servicios especializados para maximizar tu inversión en SAP",
+    tag: "Servicios SAP",
+    features: [
+      {
+        title: "Migración a S/4HANA",
+        description: "Implementación y migración a la última versión de SAP con mínimo impacto operativo",
+        icon: "🔧"
+      },
+      {
+        title: "Consultoría SAP Estratégica",
+        description: "Asesoramiento experto en optimización de procesos y mejores prácticas SAP",
+        icon: "💡"
+      },
+      {
+        title: "Soporte SAP 24/7",
+        description: "Mantenimiento proactivo y soporte técnico especializado continuo",
+        icon: "🛠"
+      },
+      {
+        title: "Capacitación SAP Integral",
+        description: "Programas de formación personalizados para maximizar la adopción",
+        icon: "📚"
+      }
+    ]
+  },
+
+  useCases: {
+    title: "Casos de",
+    subtitle: "Éxito SAP",
+    description: "Transformaciones empresariales con SAP",
+    tag: "Implementaciones Exitosas",
+    useCases: [
+      {
+        title: "SAP Finance",
+        description: "Gestión financiera end-to-end y optimización de procesos contables",
+        image: "/images/finance-sap.webp",
+        link: "/casos/finanzas-sap",
+        linkText: "Ver caso completo"
+      },
+      {
+        title: "SAP Manufacturing",
+        description: "Optimización integral de producción y cadena de suministro",
+        image: "/images/manufacturing-sap.webp",
+        link: "/casos/manufactura-sap",
+        linkText: "Ver caso completo"
+      },
+      {
+        title: "SAP Retail",
+        description: "Gestión omnicanal y optimización de inventario en tiempo real",
+        image: "/images/retail-sap.webp",
+        link: "/casos/retail-sap",
+        linkText: "Ver caso completo"
+      }
+    ],
+    extraCTA: {
+      text: "Explora más casos de éxito",
+      href: "#calendar-booking"
     }
-  ],
-  benefits: [
-    "Mejora de la eficiencia operativa",
-    "Optimización de procesos",
-    "Información en tiempo real",
-    "Toma de decisiones informadas",
-    "Ventaja competitiva"
-  ],
-  useCases: [
-    {
-      title: "Finanzas",
-      description: "Gestión financiera integral y análisis de riesgos con SAP",
-      image: "/images/finance-sap.jpg"
-    },
-    {
-      title: "Manufactura",
-      description: "Optimización de la cadena de suministro y producción con SAP",
-      image: "/images/manufacturing-sap.jpg"
-    },
-    {
-      title: "Retail",
-      description: "Mejora de la experiencia del cliente y gestión de inventario con SAP",
-      image: "/images/retail-sap.jpg"
-    }
-  ],
-  process: [
-    {
-      step: 1,
-      title: "Análisis",
-      description: "Evaluación de necesidades y oportunidades"
-    },
-    {
-      step: 2,
-      title: "Planificación",
-      description: "Diseño de la estrategia de implementación"
-    },
-    {
-      step: 3,
-      title: "Desarrollo",
-      description: "Configuración y personalización de soluciones SAP"
-    },
-    {
-      step: 4,
-      title: "Pruebas",
-      description: "Validación y ajuste de la implementación"
-    },
-    {
-      step: 5,
-      title: "Despliegue",
-      description: "Implementación y monitoreo continuo"
-    }
-  ],
-  faq: [
-    {
-      question: "¿Qué es SAP?",
-      answer: "SAP es un sistema de planificación de recursos empresariales que ayuda a las empresas a gestionar sus operaciones y procesos de negocio de manera eficiente."
-    },
-    {
-      question: "¿Cuánto tiempo se tarda en implementar SAP?",
-      answer: "La implementación puede variar de 3 a 12 meses, dependiendo de la complejidad de los procesos y el tamaño de la empresa."
-    },
-    {
-      question: "¿Qué procesos se pueden optimizar con SAP?",
-      answer: "Cualquier proceso empresarial, desde finanzas y recursos humanos hasta cadena de suministro y manufactura, puede ser optimizado con SAP."
-    },
-    {
-      question: "¿Se necesita conocimientos técnicos para usar SAP?",
-      answer: "No necesariamente. Proporcionamos formación completa y soporte continuo para asegurar que tu equipo pueda utilizar SAP de manera efectiva."
-    }
-  ]
+  },
+
+  benefits: {
+    title: "Beneficios",
+    subtitle: "SAP",
+    description: "Ventajas competitivas de implementar SAP",
+    tag: "Valor Empresarial",
+    benefits: [
+      "Reducción del 50% en tiempos de cierre financiero",
+      "Mejora del 85% en precisión de inventario",
+      "Automatización del 70% de procesos manuales",
+      "ROI promedio del 300% en 24 meses",
+      "Reducción del 40% en costos operativos"
+    ]
+  },
+
+  process: {
+    title: "Implementación",
+    subtitle: "SAP",
+    description: "Metodología probada para proyectos SAP exitosos",
+    tag: "Metodología SAP",
+    steps: [
+      {
+        step: 1,
+        title: "Diagnóstico",
+        description: "Análisis de procesos y requerimientos"
+      },
+      {
+        step: 2,
+        title: "Blueprint",
+        description: "Diseño detallado de la solución"
+      },
+      {
+        step: 3,
+        title: "Construcción",
+        description: "Desarrollo y configuración SAP"
+      },
+      {
+        step: 4,
+        title: "Testing",
+        description: "Pruebas integrales del sistema"
+      },
+      {
+        step: 5,
+        title: "Go-Live",
+        description: "Despliegue y soporte post-implementación"
+      }
+    ]
+  },
+
+  faq: {
+    title: "Preguntas Frecuentes sobre SAP",
+    description: "Resolvemos tus dudas sobre implementaciones SAP",
+    tag: "FAQ",
+    faqItems: [
+      {
+        question: "¿Por qué elegir SAP para mi empresa?",
+        answer: "SAP es el líder mundial en software empresarial, ofreciendo soluciones integradas que optimizan todos los procesos de negocio. Las empresas que implementan SAP experimentan en promedio una mejora del 40% en eficiencia operativa y un ROI significativo en los primeros 24 meses."
+      },
+      {
+        question: "¿Cuánto tiempo toma implementar SAP?",
+        answer: "Una implementación típica de SAP toma entre 3 y 12 meses, dependiendo del alcance y complejidad. Utilizamos una metodología ágil que permite obtener resultados tangibles en fases tempranas del proyecto."
+      },
+      {
+        question: "¿Qué procesos empresariales puede optimizar SAP?",
+        answer: "SAP puede optimizar prácticamente todos los procesos empresariales: finanzas, contabilidad, recursos humanos, ventas, compras, producción, logística, mantenimiento, y más. Cada módulo se integra perfectamente para proporcionar una visión completa del negocio."
+      },
+      {
+        question: "¿Qué nivel de soporte ofrecen post-implementación?",
+        answer: "Proporcionamos soporte técnico 24/7, mantenimiento preventivo, actualizaciones periódicas y consultoría continua. Nuestro equipo de expertos SAP está siempre disponible para asegurar el funcionamiento óptimo de tu sistema."
+      }
+    ]
+  },
+
+  cta: {
+    title: "¿Listo para transformar tu empresa con SAP?",
+    description: "Descubre cómo SAP puede optimizar tus procesos con una consultoría gratuita",
+    buttonText: "Agenda tu Consultoría Gratuita",
+    buttonLink: "#calendar-booking",
+    features: ["Sin compromiso", "100% Personalizado", "ROI Garantizado"]
+  },
+
+  faqCta: {
+    title: "¿Tienes más preguntas sobre SAP?",
+    description: "Nuestros expertos están listos para ayudarte",
+    btnText: "Agenda una llamada gratuita",
+    btnLink: "#calendar-booking"
+  }
 };
 
-// Schema para la página de servicio
+// Schema mejorado para SEO
 const serviceSchema = {
   "@type": "Service",
-  "name": sapData.heroTitle,
-  "description": sapData.description,
-  "provider": {
+  name: sapData.hero.title,
+  description: sapData.description,
+  provider: {
     "@type": "Organization",
-    "name": "Nexito Technology"
+    name: "Nexito Technology",
+    "@id": "https://nexito.com"
   },
-  "serviceType": "SAP Services",
-  "areaServed": "ES"
+  serviceType: "SAP Implementation Services",
+  areaServed: "ES",
+  offers: {
+    "@type": "Offer",
+    availability: "https://schema.org/InStock",
+    priceSpecification: {
+      "@type": "PriceSpecification",
+      price: "0",
+      priceCurrency: "EUR",
+      description: "Consulta inicial gratuita"
+    }
+  }
 };
 ---
 
-<Layout
-  title={sapData.title}
-  description={sapData.description}
->
+<Layout title={sapData.title} description={sapData.description}>
   <JsonLD type="Service" data={serviceSchema} />
 
-  <!-- Hero Section -->
-  <section class="relative py-20 overflow-hidden bg-gradient-to-b from-blue-900 to-blue-700">
-    <div class="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]"></div>
+  <Hero {...sapData.hero} />
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative">
-      <div class="text-center max-w-3xl mx-auto">
-        <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
-          {sapData.heroTitle}
-          <span class="block text-blue-300 mt-2">{sapData.heroSubtitle}</span>
-        </h1>
-        <p class="text-xl text-blue-100 mb-8">
-          Transforma tu negocio con soluciones SAP avanzadas
-        </p>
-        <a
-          href="#contact"
-          class="inline-block bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
-        >
-          Evalúa tus Procesos Gratis
-        </a>
-      </div>
-    </div>
-  </section>
+  <Divider />
 
-  <!-- Características -->
-  <section class="py-20 bg-white">
+  <Features {...sapData.features} />
+
+  <Divider />
+
+  <UseCases {...sapData.useCases} />
+
+  <Divider />
+
+  <Benefits {...sapData.benefits} />
+
+  <Divider />
+
+  <section class="py-12 md:py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Funcionalidades SAP
-        </h2>
-        <p class="text-xl text-gray-600">
-          Herramientas avanzadas para la implementación de SAP
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {sapData.features.map(feature => (
-          <div class="bg-gray-50 p-6 rounded-xl">
-            <div class="text-4xl mb-4">{feature.icon}</div>
-            <h3 class="text-xl font-semibold mb-2">{feature.title}</h3>
-            <p class="text-gray-600">{feature.description}</p>
-          </div>
-        ))}
-      </div>
+      <CTASection {...sapData.cta} />
     </div>
   </section>
 
-  <!-- Casos de Uso -->
-  <section class="py-20 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Casos de Éxito SAP
-        </h2>
-        <p class="text-xl text-gray-600">
-          Descubre cómo SAP transforma las empresas
-        </p>
-      </div>
+  <Divider />
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {sapData.useCases.map(useCase => (
-          <div class="bg-white rounded-xl overflow-hidden shadow-lg">
-            <div class="aspect-video bg-gray-200">
-              <img
-                src={useCase.image}
-                alt={useCase.title}
-                class="w-full h-full object-cover"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">{useCase.title}</h3>
-              <p class="text-gray-600">{useCase.description}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+  <Process {...sapData.process} />
 
-  <!-- Beneficios -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Beneficios SAP
-        </h2>
-        <p class="text-xl text-gray-600">
-          Ventajas competitivas de la implementación de SAP
-        </p>
-      </div>
+  <Divider />
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {sapData.benefits.map(benefit => (
-          <div class="flex items-start space-x-4">
-            <div class="flex-shrink-0">
-              <svg class="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <p class="text-gray-700">{benefit}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+  <FAQ {...sapData.faq} />
 
-  <!-- Proceso -->
-  <section class="py-20 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Proceso de Implementación
-        </h2>
-        <p class="text-xl text-gray-600">
-          Metodología probada para el éxito
-        </p>
-      </div>
+  <FaqCtaServices />
 
-      <div class="relative">
-        <div class="absolute top-1/2 left-0 w-full h-1 bg-blue-200 -translate-y-1/2 hidden md:block"></div>
+  <Divider />
 
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
-          {sapData.process.map(step => (
-            <div class="relative">
-              <div class="bg-white rounded-full w-12 h-12 flex items-center justify-center text-blue-600 font-bold text-xl border-4 border-blue-200 mx-auto z-10 relative">
-                {step.step}
-              </div>
-              <div class="text-center mt-4">
-                <h3 class="font-semibold mb-2">{step.title}</h3>
-                <p class="text-gray-600 text-sm">{step.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
+  <ContactServices />
 
-  <!-- FAQ -->
-  <section class="py-20 bg-white">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Preguntas Frecuentes
-        </h2>
-      </div>
-
-      <div class="space-y-6">
-        {sapData.faq.map(item => (
-          <div class="bg-gray-50 rounded-lg shadow-sm p-6">
-            <h3 class="text-lg font-semibold mb-2">{item.question}</h3>
-            <p class="text-gray-600">{item.answer}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Contacto -->
-  <section id="contact" class="py-20 bg-blue-900">
-    <ContactForm />
+  <Divider />
 </Layout>

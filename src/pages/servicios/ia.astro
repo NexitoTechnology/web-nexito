@@ -1,288 +1,331 @@
 ---
-// src/pages/servicios/ia.astro
-import Layout from '../../layouts/Layout.astro';
-import JsonLD from '../../components/JsonLD.astro';
-import ContactForm from '../../components/ContactForm.astro';
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero_Services.astro";
+import Features from "../../components/Features_Services.astro";
+import UseCases from "../../components/UseCases_Services.astro";
+import Benefits from "../../components/Benefits_Services.astro";
+import Process from "../../components/Process_Services.astro";
+import FAQ from "../../components/FAQ_Services.astro";
+import CTASection from "../../components/CTASection_Services.astro";
+import FaqCtaServices from "../../components/FaqCta_Services.astro";
+import Divider from "../../components/Divider_Services.astro";
+import ContactServices from "../../components/Contact_Services.astro";
+import JsonLD from "../../components/JsonLD.astro";
 
-// Datos estructurados para la página
-const iaData = {
-  title: "Desarrollos de IA | Nexito Technology",
-  description: "Transforma tu negocio con nuestras soluciones de inteligencia artificial. Mejora la eficiencia, toma decisiones informadas y optimiza procesos con IA.",
-  heroTitle: "Desarrollos de IA",
-  heroSubtitle: "Transforma tu Negocio con Inteligencia Artificial",
-  features: [
-    {
-      title: "Automatización Inteligente",
-      description: "Automatización de procesos complejos con algoritmos avanzados",
-      icon: "🤖"
-    },
-    {
-      title: "Análisis Predictivo",
-      description: "Previsión de tendencias y comportamientos con precisión",
-      icon: "📈"
-    },
-    {
-      title: "Procesamiento de Lenguaje Natural",
-      description: "Interacción humana natural con máquinas",
-      icon: "🗣"
-    },
-    {
-      title: "Visión por Computadora",
-      description: "Reconocimiento y análisis de imágenes y videos",
-      icon: "📸"
+// Interfaces
+interface Feature {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+interface UseCase {
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+  linkText: string;
+}
+
+interface ProcessStep {
+  step: number;
+  title: string;
+  description: string;
+}
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface PageData {
+  title: string;
+  description: string;
+  hero: {
+    title: string;
+    subtitle: string;
+    description: string;
+    tag: string;
+  };
+  features: {
+    title: string;
+    subtitle: string;
+    description: string;
+    tag: string;
+    features: Feature[];
+  };
+  useCases: {
+    title: string;
+    subtitle: string;
+    description: string;
+    tag: string;
+    useCases: UseCase[];
+    extraCTA: {
+      text: string;
+      href: string;
+    };
+  };
+  benefits: {
+    title: string;
+    subtitle: string;
+    description: string;
+    tag: string;
+    benefits: string[];
+  };
+  process: {
+    title: string;
+    subtitle: string;
+    description: string;
+    tag: string;
+    steps: ProcessStep[];
+  };
+  faq: {
+    title: string;
+    description: string;
+    tag: string;
+    faqItems: FAQItem[];
+  };
+  cta: {
+    title: string;
+    description: string;
+    buttonText: string;
+    buttonLink: string;
+    features: string[];
+  };
+  faqCta: {
+    title: string;
+    description: string;
+    btnText: string;
+    btnLink: string;
+  }
+}
+
+// Datos de la página mejorados para SEO
+const iaData: PageData = {
+  title: "Desarrollo de Inteligencia Artificial y Machine Learning | Nexito Technology",
+  description: "Impulsa tu negocio con soluciones avanzadas de IA y Machine Learning. Automatización inteligente, análisis predictivo y procesamiento de lenguaje natural para optimizar tus procesos empresariales.",
+  
+  hero: {
+    title: "Soluciones de Inteligencia Artificial",
+    subtitle: "Innovación y Automatización Inteligente",
+    description: "Potencia tu empresa con IA avanzada: machine learning, deep learning y sistemas cognitivos que transforman datos en resultados",
+    tag: "🤖 Lidera la Revolución Digital"
+  },
+
+  features: {
+    title: "Tecnologías",
+    subtitle: "de IA Avanzada",
+    description: "Soluciones de última generación en inteligencia artificial",
+    tag: "Capacidades IA",
+    features: [
+      {
+        title: "Automatización Cognitiva",
+        description: "Sistemas inteligentes que automatizan procesos complejos y toma de decisiones",
+        icon: "🤖"
+      },
+      {
+        title: "Machine Learning Avanzado",
+        description: "Algoritmos predictivos y análisis de patrones en tiempo real",
+        icon: "📈"
+      },
+      {
+        title: "NLP y Procesamiento Semántico",
+        description: "Comprensión y generación de lenguaje natural avanzado",
+        icon: "🗣"
+      },
+      {
+        title: "Computer Vision & Deep Learning",
+        description: "Análisis visual inteligente y reconocimiento de patrones",
+        icon: "📸"
+      }
+    ]
+  },
+
+  useCases: {
+    title: "Casos de",
+    subtitle: "Aplicación IA",
+    description: "Soluciones de IA que transforman industrias",
+    tag: "Impacto Real",
+    useCases: [
+      {
+        title: "IA en Finanzas",
+        description: "Sistemas avanzados de detección de fraude y análisis predictivo de riesgos",
+        image: "/images/finance-ai.webp",
+        link: "/casos/finanzas-ia",
+        linkText: "Ver caso completo"
+      },
+      {
+        title: "IA en Salud",
+        description: "Diagnóstico asistido y medicina personalizada basada en datos",
+        image: "/images/health-ai.webp",
+        link: "/casos/salud-ia",
+        linkText: "Ver caso completo"
+      },
+      {
+        title: "IA en Retail",
+        description: "Personalización avanzada y optimización inteligente de inventario",
+        image: "/images/retail-ai.webp",
+        link: "/casos/retail-ia",
+        linkText: "Ver caso completo"
+      }
+    ],
+    extraCTA: {
+      text: "Descubre más aplicaciones de IA",
+      href: "#calendar-booking"
     }
-  ],
-  benefits: [
-    "Mejora de la eficiencia operativa",
-    "Toma de decisiones informadas",
-    "Optimización de procesos",
-    "Innovación continua",
-    "Ventaja competitiva"
-  ],
-  useCases: [
-    {
-      title: "Finanzas",
-      description: "Detección de fraudes y análisis de riesgos",
-      image: "/images/finance-ai.jpg"
-    },
-    {
-      title: "Salud",
-      description: "Diagnósticos médicos y tratamientos personalizados",
-      image: "/images/health-ai.jpg"
-    },
-    {
-      title: "Retail",
-      description: "Recomendaciones de productos y gestión de inventario",
-      image: "/images/retail-ai.jpg"
-    }
-  ],
-  process: [
-    {
-      step: 1,
-      title: "Análisis",
-      description: "Identificación de necesidades y oportunidades"
-    },
-    {
-      step: 2,
-      title: "Diseño",
-      description: "Planificación y modelado de soluciones"
-    },
-    {
-      step: 3,
-      title: "Desarrollo",
-      description: "Implementación de algoritmos y modelos"
-    },
-    {
-      step: 4,
-      title: "Pruebas",
-      description: "Validación y ajuste de resultados"
-    },
-    {
-      step: 5,
-      title: "Despliegue",
-      description: "Integración y monitoreo continuo"
-    }
-  ],
-  faq: [
-    {
-      question: "¿Qué es IA?",
-      answer: "IA (Inteligencia Artificial) es una tecnología que permite a las máquinas realizar tareas que normalmente requieren inteligencia humana."
-    },
-    {
-      question: "¿Cuánto tiempo se tarda en implementar IA?",
-      answer: "La implementación puede variar de 2 a 12 semanas, dependiendo de la complejidad de los procesos a automatizar."
-    },
-    {
-      question: "¿Qué procesos se pueden automatizar?",
-      answer: "Cualquier proceso que involucre datos y toma de decisiones es candidato para IA."
-    },
-    {
-      question: "¿Se necesita conocimientos técnicos?",
-      answer: "No necesariamente. Nuestras soluciones IA son accesibles y proporcionamos formación completa a tu equipo."
-    }
-  ]
+  },
+
+  benefits: {
+    title: "Ventajas",
+    subtitle: "de la IA",
+    description: "Beneficios transformadores para tu negocio",
+    tag: "Impacto Empresarial",
+    benefits: [
+      "Incremento del 300% en eficiencia operativa",
+      "Reducción del 75% en errores de proceso",
+      "Predicciones con 95% de precisión",
+      "Automatización del 80% de tareas repetitivas",
+      "ROI demostrable en implementaciones de IA"
+    ]
+  },
+
+  process: {
+    title: "Implementación",
+    subtitle: "de IA",
+    description: "Metodología probada para proyectos de IA exitosos",
+    tag: "Proceso de IA",
+    steps: [
+      {
+        step: 1,
+        title: "Análisis de Datos",
+        description: "Evaluación y preparación de datasets"
+      },
+      {
+        step: 2,
+        title: "Diseño IA",
+        description: "Arquitectura de modelos y algoritmos"
+      },
+      {
+        step: 3,
+        title: "Desarrollo ML",
+        description: "Entrenamiento y optimización de modelos"
+      },
+      {
+        step: 4,
+        title: "Testing & Validación",
+        description: "Evaluación de precisión y rendimiento"
+      },
+      {
+        step: 5,
+        title: "Despliegue & Monitoreo",
+        description: "Implementación y mejora continua"
+      }
+    ]
+  },
+
+  faq: {
+    title: "Preguntas Frecuentes sobre IA",
+    description: "Resolvemos tus dudas sobre inteligencia artificial",
+    tag: "FAQ",
+    faqItems: [
+      {
+        question: "¿Qué beneficios específicos aporta la IA a mi empresa?",
+        answer: "La IA mejora significativamente la eficiencia operativa, automatiza procesos complejos, proporciona insights predictivos precisos y permite la toma de decisiones basada en datos. Nuestros clientes experimentan en promedio un aumento del 300% en productividad."
+      },
+      {
+        question: "¿Cuánto tiempo lleva implementar una solución de IA?",
+        answer: "El tiempo de implementación varía entre 2 y 12 semanas, dependiendo de la complejidad del proyecto y la disponibilidad de datos. Comenzamos con un MVP en 2-4 semanas para validar resultados rápidamente."
+      },
+      {
+        question: "¿Qué tipos de procesos pueden beneficiarse de la IA?",
+        answer: "La IA puede optimizar prácticamente cualquier proceso que involucre datos: análisis financiero, servicio al cliente, marketing predictivo, mantenimiento preventivo, gestión de inventario, y más. Evaluamos tu caso específico para identificar las mejores oportunidades."
+      },
+      {
+        question: "¿Se necesita experiencia técnica previa en IA?",
+        answer: "No es necesaria experiencia previa. Proporcionamos capacitación completa y acompañamiento continuo para que tu equipo pueda aprovechar al máximo las soluciones de IA implementadas."
+      }
+    ]
+  },
+
+  cta: {
+    title: "¿Listo para potenciar tu negocio con IA?",
+    description: "Descubre cómo la inteligencia artificial puede transformar tu empresa con una consultoría especializada gratuita",
+    buttonText: "Agenda tu Evaluación Gratuita",
+    buttonLink: "#calendar-booking",
+    features: ["Sin compromiso", "100% Confidencial", "ROI Garantizado"]
+  },
+
+  faqCta: {
+    title: "¿Tienes más preguntas sobre IA?",
+    description: "Nuestros expertos están listos para ayudarte",
+    btnText: "Agenda una llamada gratuita",
+    btnLink: "#calendar-booking"
+  }
 };
 
-// Schema para la página de servicio
+// Schema mejorado para SEO
 const serviceSchema = {
   "@type": "Service",
-  "name": iaData.heroTitle,
-  "description": iaData.description,
-  "provider": {
+  name: iaData.hero.title,
+  description: iaData.description,
+  provider: {
     "@type": "Organization",
-    "name": "Nexito Technology"
+    name: "Nexito Technology",
+    "@id": "https://nexito.com"
   },
-  "serviceType": "Artificial Intelligence Development",
-  "areaServed": "ES"
+  serviceType: "Artificial Intelligence Development",
+  areaServed: "ES",
+  offers: {
+    "@type": "Offer",
+    availability: "https://schema.org/InStock",
+    priceSpecification: {
+      "@type": "PriceSpecification",
+      price: "0",
+      priceCurrency: "EUR",
+      description: "Consulta inicial gratuita"
+    }
+  }
 };
 ---
 
-<Layout
-  title={iaData.title}
-  description={iaData.description}
->
+<Layout title={iaData.title} description={iaData.description}>
   <JsonLD type="Service" data={serviceSchema} />
 
-  <!-- Hero Section -->
-  <section class="relative py-20 overflow-hidden bg-gradient-to-b from-blue-900 to-blue-700">
-    <div class="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]"></div>
+  <Hero {...iaData.hero} />
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative">
-      <div class="text-center max-w-3xl mx-auto">
-        <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
-          {iaData.heroTitle}
-          <span class="block text-blue-300 mt-2">{iaData.heroSubtitle}</span>
-        </h1>
-        <p class="text-xl text-blue-100 mb-8">
-          Transforma tu negocio con soluciones de inteligencia artificial
-        </p>
-        <a
-          href="#contact"
-          class="inline-block bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
-        >
-          Evalúa tus Procesos Gratis
-        </a>
-      </div>
-    </div>
-  </section>
+  <Divider />
 
-  <!-- Características -->
-  <section class="py-20 bg-white">
+  <Features {...iaData.features} />
+
+  <Divider />
+
+  <UseCases {...iaData.useCases} />
+
+  <Divider />
+
+  <Benefits {...iaData.benefits} />
+
+  <Divider />
+
+  <section class="py-12 md:py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Funcionalidades IA
-        </h2>
-        <p class="text-xl text-gray-600">
-          Herramientas avanzadas para la inteligencia artificial
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {iaData.features.map(feature => (
-          <div class="bg-gray-50 p-6 rounded-xl">
-            <div class="text-4xl mb-4">{feature.icon}</div>
-            <h3 class="text-xl font-semibold mb-2">{feature.title}</h3>
-            <p class="text-gray-600">{feature.description}</p>
-          </div>
-        ))}
-      </div>
+      <CTASection {...iaData.cta} />
     </div>
   </section>
 
-  <!-- Casos de Uso -->
-  <section class="py-20 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Casos de Éxito IA
-        </h2>
-        <p class="text-xl text-gray-600">
-          Descubre cómo la inteligencia artificial transforma las empresas
-        </p>
-      </div>
+  <Divider />
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {iaData.useCases.map(useCase => (
-          <div class="bg-white rounded-xl overflow-hidden shadow-lg">
-            <div class="aspect-video bg-gray-200">
-              <img
-                src={useCase.image}
-                alt={useCase.title}
-                class="w-full h-full object-cover"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">{useCase.title}</h3>
-              <p class="text-gray-600">{useCase.description}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+  <Process {...iaData.process} />
 
-  <!-- Beneficios -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Beneficios IA
-        </h2>
-        <p class="text-xl text-gray-600">
-          Ventajas competitivas de la inteligencia artificial
-        </p>
-      </div>
+  <Divider />
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {iaData.benefits.map(benefit => (
-          <div class="flex items-start space-x-4">
-            <div class="flex-shrink-0">
-              <svg class="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <p class="text-gray-700">{benefit}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+  <FAQ {...iaData.faq} />
 
-  <!-- Proceso -->
-  <section class="py-20 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Proceso de Implementación
-        </h2>
-        <p class="text-xl text-gray-600">
-          Metodología probada para el éxito
-        </p>
-      </div>
+  <FaqCtaServices />
 
-      <div class="relative">
-        <div class="absolute top-1/2 left-0 w-full h-1 bg-blue-200 -translate-y-1/2 hidden md:block"></div>
+  <Divider />
 
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
-          {iaData.process.map(step => (
-            <div class="relative">
-              <div class="bg-white rounded-full w-12 h-12 flex items-center justify-center text-blue-600 font-bold text-xl border-4 border-blue-200 mx-auto z-10 relative">
-                {step.step}
-              </div>
-              <div class="text-center mt-4">
-                <h3 class="font-semibold mb-2">{step.title}</h3>
-                <p class="text-gray-600 text-sm">{step.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
+  <ContactServices />
 
-  <!-- FAQ -->
-  <section class="py-20 bg-white">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Preguntas Frecuentes
-        </h2>
-      </div>
-
-      <div class="space-y-6">
-        {iaData.faq.map(item => (
-          <div class="bg-gray-50 rounded-lg shadow-sm p-6">
-            <h3 class="text-lg font-semibold mb-2">{item.question}</h3>
-            <p class="text-gray-600">{item.answer}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Contacto -->
-  <section id="contact" class="py-20 bg-blue-900">
-    <ContactForm />
-  </section>
+  <Divider />
 </Layout>

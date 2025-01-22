@@ -1,269 +1,331 @@
 ---
-// src/pages/servicios/power-bi.astro
-import Layout from '../../layouts/Layout.astro';
-import JsonLD from '../../components/JsonLD.astro';
-import ContactForm from '../../components/ContactForm.astro';
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero_Services.astro";
+import Features from "../../components/Features_Services.astro";
+import UseCases from "../../components/UseCases_Services.astro";
+import Benefits from "../../components/Benefits_Services.astro";
+import Process from "../../components/Process_Services.astro";
+import FAQ from "../../components/FAQ_Services.astro";
+import CTASection from "../../components/CTASection_Services.astro";
+import FaqCtaServices from "../../components/FaqCta_Services.astro";
+import Divider from "../../components/Divider_Services.astro";
+import ContactServices from "../../components/Contact_Services.astro";
+import JsonLD from "../../components/JsonLD.astro";
 
-// Datos estructurados para la página
-const powerBIData = {
-  title: "Servicios Power BI | Nexito Technology",
-  description: "Convierte tus datos en decisiones estratégicas con nuestros servicios de Power BI. Dashboards personalizados, informes en tiempo real y análisis avanzado de datos.",
-  heroTitle: "Servicios Power BI",
-  heroSubtitle: "Transforma tus Datos en Decisiones Inteligentes",
-  features: [
-    {
-      title: "Dashboards Interactivos",
-      description: "Visualizaciones dinámicas que permiten explorar tus datos en tiempo real",
-      icon: "📊"
-    },
-    {
-      title: "Integración de Datos",
-      description: "Conecta y unifica datos de múltiples fuentes en un solo lugar",
-      icon: "🔄"
-    },
-    {
-      title: "Informes Automatizados",
-      description: "Generación y distribución automática de informes personalizados",
-      icon: "📈"
-    },
-    {
-      title: "Analytics Avanzado",
-      description: "Análisis predictivo y descubrimiento de patrones en tus datos",
-      icon: "🎯"
+// Interfaces
+interface Feature {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+interface UseCase {
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+  linkText: string;
+}
+
+interface ProcessStep {
+  step: number;
+  title: string;
+  description: string;
+}
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface PageData {
+  title: string;
+  description: string;
+  hero: {
+    title: string;
+    subtitle: string;
+    description: string;
+    tag: string;
+  };
+  features: {
+    title: string;
+    subtitle: string;
+    description: string;
+    tag: string;
+    features: Feature[];
+  };
+  useCases: {
+    title: string;
+    subtitle: string;
+    description: string;
+    tag: string;
+    useCases: UseCase[];
+    extraCTA: {
+      text: string;
+      href: string;
+    };
+  };
+  benefits: {
+    title: string;
+    subtitle: string;
+    description: string;
+    tag: string;
+    benefits: string[];
+  };
+  process: {
+    title: string;
+    subtitle: string;
+    description: string;
+    tag: string;
+    steps: ProcessStep[];
+  };
+  faq: {
+    title: string;
+    description: string;
+    tag: string;
+    faqItems: FAQItem[];
+  };
+  cta: {
+    title: string;
+    description: string;
+    buttonText: string;
+    buttonLink: string;
+    features: string[];
+  };
+  faqCta: {
+    title: string;
+    description: string;
+    btnText: string;
+    btnLink: string;
+  }
+}
+
+// Datos de la página mejorados para SEO
+const powerBIData: PageData = {
+  title: "Servicios de Power BI y Análisis Empresarial | Nexito Technology",
+  description: "Optimiza la toma de decisiones con nuestros servicios especializados de Power BI. Dashboards interactivos, análisis en tiempo real e integración de datos para impulsar el crecimiento de tu negocio.",
+  
+  hero: {
+    title: "Servicios Profesionales de Power BI",
+    subtitle: "Analytics Empresarial Avanzado",
+    description: "Transforma tus datos en insights estratégicos con dashboards interactivos y análisis en tiempo real",
+    tag: "📊 Potencia tus Decisiones con Datos"
+  },
+
+  features: {
+    title: "Soluciones",
+    subtitle: "Power BI",
+    description: "Herramientas analíticas avanzadas para tu negocio",
+    tag: "Características Avanzadas",
+    features: [
+      {
+        title: "Dashboards Dinámicos e Interactivos",
+        description: "Visualizaciones personalizadas con actualización en tiempo real",
+        icon: "📊"
+      },
+      {
+        title: "Integración Multi-fuente de Datos",
+        description: "Conexión seamless con todas tus fuentes de información",
+        icon: "🔄"
+      },
+      {
+        title: "Informes Automatizados Inteligentes",
+        description: "Generación y distribución automática de insights clave",
+        icon: "📈"
+      },
+      {
+        title: "Analytics Predictivo Avanzado",
+        description: "Modelos predictivos y descubrimiento de patrones",
+        icon: "🎯"
+      }
+    ]
+  },
+
+  useCases: {
+    title: "Casos de",
+    subtitle: "Éxito Power BI",
+    description: "Soluciones que transforman datos en resultados",
+    tag: "Implementaciones Exitosas",
+    useCases: [
+      {
+        title: "Analytics Financiero",
+        description: "KPIs financieros y análisis predictivo de rendimiento",
+        image: "/images/finance-dashboard.webp",
+        link: "/casos/finanzas-powerbi",
+        linkText: "Ver caso completo"
+      },
+      {
+        title: "Inteligencia Comercial",
+        description: "Analytics avanzado de ventas y forecasting",
+        image: "/images/sales-dashboard.webp",
+        link: "/casos/ventas-powerbi",
+        linkText: "Ver caso completo"
+      },
+      {
+        title: "Performance Marketing",
+        description: "Análisis multi-canal y optimización de ROI",
+        image: "/images/marketing-dashboard.webp",
+        link: "/casos/marketing-powerbi",
+        linkText: "Ver caso completo"
+      }
+    ],
+    extraCTA: {
+      text: "Explora más casos de éxito",
+      href: "#calendar-booking"
     }
-  ],
-  benefits: [
-    "Toma de decisiones basada en datos",
-    "Reducción del tiempo de análisis",
-    "Mejora en la precisión de reportes",
-    "Acceso en tiempo real a información crítica",
-    "Colaboración mejorada entre equipos"
-  ],
-  useCases: [
-    {
-      title: "Finanzas",
-      description: "Análisis financiero y reportes de KPIs",
-      image: "/images/finance-dashboard.jpg"
-    },
-    {
-      title: "Ventas",
-      description: "Seguimiento de ventas y análisis de rendimiento",
-      image: "/images/sales-dashboard.jpg"
-    },
-    {
-      title: "Marketing",
-      description: "Análisis de campañas y ROI",
-      image: "/images/marketing-dashboard.jpg"
-    }
-  ],
-  process: [
-    {
-      step: 1,
-      title: "Evaluación",
-      description: "Análisis de necesidades y objetivos"
-    },
-    {
-      step: 2,
-      title: "Diseño",
-      description: "Creación de mockups y arquitectura de datos"
-    },
-    {
-      step: 3,
-      title: "Desarrollo",
-      description: "Implementación y configuración"
-    },
-    {
-      step: 4,
-      title: "Pruebas",
-      description: "Validación y ajustes"
-    },
-    {
-      step: 5,
-      title: "Despliegue",
-      description: "Implementación y capacitación"
-    }
-  ],
-  faq: [
-    {
-      question: "¿Qué es Power BI?",
-      answer: "Power BI es una plataforma de análisis empresarial que permite visualizar sus datos y compartir información en toda su organización."
-    },
-    {
-      question: "¿Cuánto tiempo toma implementar Power BI?",
-      answer: "El tiempo de implementación varía según la complejidad del proyecto, pero típicamente toma entre 2-8 semanas."
-    },
-    // ... más preguntas frecuentes
-  ]
+  },
+
+  benefits: {
+    title: "Ventajas",
+    subtitle: "Power BI",
+    description: "Beneficios estratégicos para tu empresa",
+    tag: "Beneficios Empresariales",
+    benefits: [
+      "Reducción del 70% en tiempo de análisis y reportes",
+      "Precisión del 99.9% en la toma de decisiones basada en datos",
+      "Incremento del 45% en eficiencia operativa",
+      "Actualización en tiempo real de KPIs críticos",
+      "Colaboración mejorada con insights compartidos"
+    ]
+  },
+
+  process: {
+    title: "Implementación",
+    subtitle: "Power BI",
+    description: "Metodología probada para proyectos exitosos",
+    tag: "Proceso Power BI",
+    steps: [
+      {
+        step: 1,
+        title: "Diagnóstico",
+        description: "Análisis de necesidades y fuentes de datos"
+      },
+      {
+        step: 2,
+        title: "Arquitectura",
+        description: "Diseño de modelos y flujos de datos"
+      },
+      {
+        step: 3,
+        title: "Desarrollo",
+        description: "Creación de dashboards y reportes"
+      },
+      {
+        step: 4,
+        title: "Testing",
+        description: "Validación y optimización"
+      },
+      {
+        step: 5,
+        title: "Despliegue",
+        description: "Implementación y capacitación"
+      }
+    ]
+  },
+
+  faq: {
+    title: "Preguntas Frecuentes sobre Power BI",
+    description: "Resolvemos tus dudas sobre análisis de datos",
+    tag: "FAQ",
+    faqItems: [
+      {
+        question: "¿Qué ventajas ofrece Power BI sobre otras herramientas?",
+        answer: "Power BI destaca por su capacidad de integración con múltiples fuentes de datos, visualizaciones interactivas avanzadas, análisis predictivo incorporado y una interfaz intuitiva. Además, su integración con el ecosistema Microsoft facilita la colaboración y el intercambio de insights."
+      },
+      {
+        question: "¿Cuánto tiempo toma implementar una solución de Power BI?",
+        answer: "El tiempo de implementación varía según la complejidad del proyecto, típicamente entre 2-8 semanas. Comenzamos con un MVP en 2 semanas para validar el valor y escalamos progresivamente."
+      },
+      {
+        question: "¿Qué tipos de datos puede analizar Power BI?",
+        answer: "Power BI puede procesar prácticamente cualquier tipo de dato empresarial: financiero, ventas, marketing, operaciones, recursos humanos, etc. Se integra con más de 100 fuentes de datos diferentes, incluyendo bases de datos, hojas de cálculo, servicios en la nube y aplicaciones empresariales."
+      },
+      {
+        question: "¿Se requiere conocimiento técnico para usar Power BI?",
+        answer: "No es necesario conocimiento técnico previo. Proporcionamos capacitación completa y creamos dashboards intuitivos que cualquier usuario puede utilizar. Además, ofrecemos soporte continuo para maximizar el valor de la herramienta."
+      }
+    ]
+  },
+
+  cta: {
+    title: "¿Listo para potenciar tu análisis de datos?",
+    description: "Descubre el poder de Power BI con una demo personalizada gratuita",
+    buttonText: "Solicitar Demo Gratuita",
+    buttonLink: "#calendar-booking",
+    features: ["Sin compromiso", "100% Personalizado", "ROI Garantizado"]
+  },
+
+  faqCta: {
+    title: "¿Tienes más preguntas sobre Power BI?",
+    description: "Nuestros expertos están listos para ayudarte",
+    btnText: "Agenda una demo gratuita",
+    btnLink: "#calendar-booking"
+  }
 };
 
-// Schema para la página de servicio
+// Schema mejorado para SEO
 const serviceSchema = {
   "@type": "Service",
-  "name": powerBIData.heroTitle,
-  "description": powerBIData.description,
-  "provider": {
+  name: powerBIData.hero.title,
+  description: powerBIData.description,
+  provider: {
     "@type": "Organization",
-    "name": "Nexito Technology"
+    name: "Nexito Technology",
+    "@id": "https://nexito.com"
   },
-  "serviceType": "Business Intelligence Service",
-  "areaServed": "ES"
+  serviceType: "Power BI Development Services",
+  areaServed: "ES",
+  offers: {
+    "@type": "Offer",
+    availability: "https://schema.org/InStock",
+    priceSpecification: {
+      "@type": "PriceSpecification",
+      price: "0",
+      priceCurrency: "EUR",
+      description: "Demo inicial gratuita"
+    }
+  }
 };
 ---
 
-<Layout 
-  title={powerBIData.title}
-  description={powerBIData.description}
->
+<Layout title={powerBIData.title} description={powerBIData.description}>
   <JsonLD type="Service" data={serviceSchema} />
-  
-  <section class="relative py-20 overflow-hidden bg-gradient-to-b from-blue-900 to-blue-700">
-    <div class="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]"></div>
-    
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative">
-      <div class="text-center max-w-3xl mx-auto">
-        <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
-          {powerBIData.heroTitle}
-          <span class="block text-blue-300 mt-2">{powerBIData.heroSubtitle}</span>
-        </h1>
-        <p class="text-xl text-blue-100 mb-8">
-          Convierte tus datos en insights accionables con dashboards interactivos y reportes personalizados
-        </p>
-        <a 
-          href="#contact" 
-          class="inline-block bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
-        >
-          Solicitar Demo Gratuita
-        </a>
-      </div>
-    </div>
-  </section>
-  <section class="py-20 bg-white">
+
+  <Hero {...powerBIData.hero} />
+
+  <Divider />
+
+  <Features {...powerBIData.features} />
+
+  <Divider />
+
+  <UseCases {...powerBIData.useCases} />
+
+  <Divider />
+
+  <Benefits {...powerBIData.benefits} />
+
+  <Divider />
+
+  <section class="py-12 md:py-16">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Características Principales
-        </h2>
-        <p class="text-xl text-gray-600">
-          Todo lo que necesitas para transformar tus datos en decisiones inteligentes
-        </p>
-      </div>
-  
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {powerBIData.features.map(feature => (
-          <div class="bg-gray-50 p-6 rounded-xl">
-            <div class="text-4xl mb-4">{feature.icon}</div>
-            <h3 class="text-xl font-semibold mb-2">{feature.title}</h3>
-            <p class="text-gray-600">{feature.description}</p>
-          </div>
-        ))}
-      </div>
+      <CTASection {...powerBIData.cta} />
     </div>
   </section>
-  <section class="py-20 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Casos de Uso
-        </h2>
-        <p class="text-xl text-gray-600">
-          Descubre cómo Power BI puede transformar tu negocio
-        </p>
-      </div>
-  
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {powerBIData.useCases.map(useCase => (
-          <div class="bg-white rounded-xl overflow-hidden shadow-lg">
-            <div class="aspect-video bg-gray-200">
-              <img 
-                src={useCase.image} 
-                alt={useCase.title}
-                class="w-full h-full object-cover"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">{useCase.title}</h3>
-              <p class="text-gray-600">{useCase.description}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Proceso de Implementación
-        </h2>
-        <p class="text-xl text-gray-600">
-          Un enfoque estructurado para garantizar el éxito
-        </p>
-      </div>
-  
-      <div class="relative">
-        {/* Línea de conexión */}
-        <div class="absolute top-1/2 left-0 w-full h-1 bg-blue-200 -translate-y-1/2 hidden md:block"></div>
-  
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
-          {powerBIData.process.map(step => (
-            <div class="relative">
-              <div class="bg-white rounded-full w-12 h-12 flex items-center justify-center text-blue-600 font-bold text-xl border-4 border-blue-200 mx-auto z-10 relative">
-                {step.step}
-              </div>
-              <div class="text-center mt-4">
-                <h3 class="font-semibold mb-2">{step.title}</h3>
-                <p class="text-gray-600 text-sm">{step.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="py-20 bg-gray-50">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Preguntas Frecuentes
-        </h2>
-      </div>
-  
-      <div class="space-y-6">
-        {powerBIData.faq.map(item => (
-          <div class="bg-white rounded-lg shadow-sm p-6">
-            <h3 class="text-lg font-semibold mb-2">{item.question}</h3>
-            <p class="text-gray-600">{item.answer}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-  <section id="contact" class="py-20 bg-blue-900">
-    <ContactForm />
-  </section>
-  <section class="py-20 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-          Beneficios
-        </h2>
-        <p class="text-xl text-gray-600">
-          Ventajas competitivas que obtendrás
-        </p>
-      </div>
-  
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {powerBIData.benefits.map(benefit => (
-          <div class="flex items-start space-x-4">
-            <div class="flex-shrink-0">
-              <svg class="w-6 h-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <p class="text-gray-700">{benefit}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+
+  <Divider />
+
+  <Process {...powerBIData.process} />
+
+  <Divider />
+
+  <FAQ {...powerBIData.faq} />
+
+  <FaqCtaServices />
+
+  <Divider />
+
+  <ContactServices />
+
+  <Divider />
 </Layout>
