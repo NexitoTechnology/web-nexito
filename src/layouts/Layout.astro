@@ -6,7 +6,6 @@ import CookieConsent from "../components/CookieConsent.astro";
 import { ClientRouter } from "astro:transitions";
 
 interface Props {
-  isAmp?: boolean;
   title?: string;
   description?: string;
   image?: string;
@@ -15,7 +14,6 @@ interface Props {
 }
 
 const {
-  isAmp = false,
   title = "Nexito Technology | Automatización Inteligente y Soluciones IA",
   description = "Transformamos empresas mediante automatización de procesos e Inteligencia Artificial. Soluciones personalizadas para impulsar la eficiencia de tu negocio.",
   image = "/og-image.jpg",
