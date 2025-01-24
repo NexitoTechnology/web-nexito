@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import ServicesSection from '../components/ServicesSection.astro';
+import Testimonials from '../components/Testimonials.astro';
+import CTASection from '../components/CTASection.astro';
+import BenefitsSection from '../components/BenefitsSection.astro';
+import ProcessSection from '../components/ProcessSection.astro';
+
+const pageTitle = "Nexito Technology | Automatización Inteligente y Soluciones IA";
+const pageDescription = "Transformamos empresas mediante automatización de procesos e Inteligencia Artificial. Soluciones personalizadas para impulsar la eficiencia de tu negocio.";
+---
+
+<Layout title={pageTitle} description={pageDescription}>
+  <HeroSection />
+  <BenefitsSection />
+  <ServicesSection />
+  <ProcessSection />
+  <Testimonials />
+  <CTASection />
+</Layout>
