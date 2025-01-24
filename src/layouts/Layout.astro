@@ -6,6 +6,7 @@ import CookieConsent from "../components/CookieConsent.astro";
 import { ClientRouter } from "astro:transitions";
 
 interface Props {
+  isAmp?: boolean;
   title?: string;
   description?: string;
   image?: string;
@@ -14,6 +15,7 @@ interface Props {
 }
 
 const {
+  isAmp = false,
   title = "Nexito Technology | Automatización Inteligente y Soluciones IA",
   description = "Transformamos empresas mediante automatización de procesos e Inteligencia Artificial. Soluciones personalizadas para impulsar la eficiencia de tu negocio.",
   image = "/og-image.jpg",
@@ -48,8 +50,15 @@ const getSchemaType = () => {
 ---
 
 <!doctype html>
-<html lang="es" class="scroll-smooth">
+<html lang="es" ⚡={isAmp} class={isAmp ? undefined : "scroll-smooth"}>
   <head>
+    {isAmp && <script async src="https://cdn.ampproject.org/v0.js"></script>}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    {isAmp && (
+      <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style>
+    )}
     <!-- Metadatos básicos -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -104,8 +113,10 @@ const getSchemaType = () => {
       }}
     />
 
+    {!isAmp && <link rel="amphtml" href={`${canonicalURL}.amp`} />}
+    {isAmp && <link rel="canonical" href={canonicalURL} />}
     <!-- Astro View Transitions -->
-    <ClientRouter />
+    {!isAmp && <ClientRouter />}
   </head>
   <body>
     <Menu />
