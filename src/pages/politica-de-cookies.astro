@@ -1,8 +1,19 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+interface PageData {
+  title: string;
+  description: string;
+}
+
+// Datos de la página para la Política de Cookies
+const politicaDeCookiesData: PageData = {
+  title: "Política de Cookies | Nexito Technology",
+  description: "Conoce cómo utilizamos las cookies para mejorar tu experiencia en nuestro sitio web.",
+};
 ---
 
-<Layout>
+<Layout title={politicaDeCookiesData.title} description={politicaDeCookiesData.description} type="website">
   <section class="py-16 bg-white shadow-inner rounded-lg">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <h1 class="text-4xl font-bold mb-6 text-center text-gray-800">
