@@ -2,7 +2,7 @@
 title: "Caso de Éxito: Cómo Power BI Revolucionó el Marketing de GlobalTech y Aumentó un 240% el ROI en 6 Meses"
 date: 2025-01-16
 description: "Descubre cómo la implementación estratégica de Power BI transformó el caos de datos en insights accionables para un departamento de marketing en crisis. Métricas reales, lecciones aprendidas y plantillas descargables."
-image: "/images/power-bi-marketing-success.webp"
+image: "/images/data-chaos-vs-order-infographic.webp"
 imageAlt: "Equipo de marketing analizando dashboards de Power BI con expresiones de satisfacción"
 tags: ["Power BI", "Marketing Analytics", "Transformación Digital", "ROI", "Business Intelligence"]
 categoria: "Casos de Éxito"
@@ -12,7 +12,7 @@ dificultad: "Avanzado"
 audiencia: ["Directores de Marketing", "Analistas de Datos", "CIOs"]
 metaTitle: "Caso de Éxito Power BI en Marketing: +240% ROI en 6 Meses"
 metaDescription: "Implementación estratégica de Power BI en departamento de marketing: de la saturación de datos a la toma de decisiones predictiva. Resultados verificables."
-ogImage: "/images/power-bi-marketing-og.webp"
+ogImage: "/images/data-chaos-vs-order-infographic.webp"
 isPublished: true
 featured: true
 author: "Nexito Technology"

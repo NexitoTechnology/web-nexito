@@ -16,7 +16,7 @@ interface Props {
 const {
   title = "Nexito Technology | Automatización Inteligente y Soluciones IA",
   description = "Transformamos empresas mediante automatización de procesos e Inteligencia Artificial. Soluciones personalizadas para impulsar la eficiencia de tu negocio.",
-  image = "/og-image.jpg",
+  image = "/Logo.svg",
   type = "website",
   schemaData = {},
 } = Astro.props;
@@ -111,7 +111,7 @@ const getSchemaType = () => {
     <Menu />
     <!-- Main content -->
     <div class="overflow-x-hidden">
-      <main id="main-content" class="flex-grow w-full px-4 md:w-3/4 mx-auto">
+      <main id="main-content" class="flex-grow w-full px-4 md:w-3/4 lg:w-9/12 xl:w-4/5 mx-auto">
         <slot />
       </main>
     </div>

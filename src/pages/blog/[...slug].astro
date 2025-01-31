@@ -3,6 +3,8 @@ import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import JsonLD from '../../components/JsonLD.astro';
+import CTASection from "../../components/CTASection_Services.astro";
+import ContactServices from "../../components/Contact_Services.astro";
 export const prerender = true;  // Añade esta línea aquí
 
 interface BlogSchema {
@@ -98,6 +100,25 @@ const seriesPosts = post.data.serie
     "@id": new URL(Astro.url.pathname, Astro.site).toString()
   }
 };
+interface PageData {
+cta: {
+    title: string;
+    description: string;
+    buttonText: string;
+    buttonLink: string;
+    features: string[];
+  };
+}
+const automatizacionData: PageData = {
+
+  cta: {
+    title: "¿Listo para automatizar tu negocio?",
+    description: "Agenda una consultoría gratuita y descubre el potencial de la automatización",
+    buttonText: "Reserva tu Consultoría Gratis",
+    buttonLink: "https://cal.com/nexito/30min",
+    features: ["Sin compromiso", "100% Confidencial", "Gratis"]
+  }
+}
 ---
 
 <Layout 
@@ -108,8 +129,8 @@ const seriesPosts = post.data.serie
 >
   <JsonLD type="Article" data={articleSchema} />
   
-  <main class="max-w-4xl mx-auto px-4 py-12">
-    <article class="prose lg:prose-xl prose-slate mx-auto"> <!-- Esta es la clase importante -->
+  <main class="w-full max-w-none mx-auto px-4 py-12 md:max-w-3/4 lg:max-w-9/12 xl:max-w-4/5">
+    <article class="prose lg:prose-xl prose-slate mx-auto max-w-none">
       <header class="not-prose mb-12">
         <nav class="text-sm mb-8">
           <ol class="flex items-center space-x-2">
@@ -225,6 +246,13 @@ const seriesPosts = post.data.serie
       <div class="mt-8">
         <Content />
       </div>
+
+      <section class="py-12 md:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+          <CTASection {...automatizacionData.cta} />
+        </div>
+      </section>
+      <ContactServices />
       
       {(relatedPosts.length > 0 || seriesPosts.length > 0) && (
         <aside class="mt-16 pt-8 border-t not-prose">
