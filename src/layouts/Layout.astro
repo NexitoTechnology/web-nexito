@@ -16,7 +16,7 @@ interface Props {
 const {
   title = "Nexito Technology | Automatización Inteligente y Soluciones IA",
   description = "Transformamos empresas mediante automatización de procesos e Inteligencia Artificial. Soluciones personalizadas para impulsar la eficiencia de tu negocio.",
-  image = "/Favicon.svg",
+  image = "/icon-512x512.png",
   type = "website",
   schemaData = {},
 } = Astro.props;
@@ -65,7 +65,7 @@ const getSchemaType = () => {
     <!-- Open Graph para WhatsApp y redes sociales -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={new URL(image, siteURL)} />
+    <meta property="og:image" content="https://nexito.tech/icon-512x512.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:url" content={canonicalURL} />
