@@ -1,3 +1,4 @@
+---
 title: "Caso de Éxito: Cómo Power BI Revolucionó el Marketing de GlobalTech y Aumentó un 240% el ROI en 6 Meses"
 date: 2025-01-16
 description: "Descubre cómo la implementación estratégica de Power BI transformó el caos de datos en insights accionables para un departamento de marketing en crisis. Métricas reales, lecciones aprendidas y plantillas descargables."
