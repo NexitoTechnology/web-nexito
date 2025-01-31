@@ -2,7 +2,7 @@
 title: "Caso de Éxito: Cómo Power BI Revolucionó el Marketing de GlobalTech y Aumentó un 240% el ROI en 6 Meses"
 date: 2025-01-16
 description: "Descubre cómo la implementación estratégica de Power BI transformó el caos de datos en insights accionables para un departamento de marketing en crisis. Métricas reales, lecciones aprendidas y plantillas descargables."
-image: "/images/power-bi-marketing-success.jpg"
+image: "/images/power-bi-marketing-success.webp"
 imageAlt: "Equipo de marketing analizando dashboards de Power BI con expresiones de satisfacción"
 tags: ["Power BI", "Marketing Analytics", "Transformación Digital", "ROI", "Business Intelligence"]
 categoria: "Casos de Éxito"
@@ -12,7 +12,7 @@ dificultad: "Avanzado"
 audiencia: ["Directores de Marketing", "Analistas de Datos", "CIOs"]
 metaTitle: "Caso de Éxito Power BI en Marketing: +240% ROI en 6 Meses"
 metaDescription: "Implementación estratégica de Power BI en departamento de marketing: de la saturación de datos a la toma de decisiones predictiva. Resultados verificables."
-ogImage: "/images/og/power-bi-marketing-og.jpg"
+ogImage: "/images/power-bi-marketing-og.webp"
 isPublished: true
 featured: true
 author: "Nexito Technology"
@@ -29,9 +29,6 @@ tiempoImplementacion: "8-12 semanas"
 
 # 🚀 Caso de Éxito: Cómo Power BI Revolucionó el Marketing de GlobalTech y Aumentó un 240% el ROI en 6 Meses  
 
-![Equipo de marketing analizando dashboards interactivos de Power BI](/images/power-bi-team-collaboration.jpg "Reunión estratégica con datos en tiempo real")  
-*Imagen 1: Equipo multidisciplinario tomando decisiones basadas en datos actualizados cada 15 minutos*
-
 ## 📌 Introducción: El Tsunami de Datos que Paralizaba a GlobalTech  
 
 En febrero de 2024, el CMO de GlobalTech - empresa líder en soluciones IoT para retail - enfrentaba una crisis sin precedentes:  
@@ -45,8 +42,8 @@ En febrero de 2024, el CMO de GlobalTech - empresa líder en soluciones IoT para
 - 68% de discrepancia entre datos de diferentes plataformas  
 - 12 horas semanales por analista limpiando datos manualmente  
 
-📊 **Imagen 1 - Prompt para IA:**  
-*"Equipo de marketing en crisis: pantallas con docenas de gráficas contradictorias, papeles desordenados, reloj mostrando las 2 AM, rostros de frustración y estrés visible. Estilo realista con iluminación dramática."*  
+![Equipo de marketing analizando dashboards interactivos de Power BI](/images/power-bi-team-collaboration.webp "Reunión estratégica con datos en tiempo real")  
+*Equipo multidisciplinario tomando decisiones basadas en datos actualizados cada 15 minutos*
 
 ---
 
@@ -84,8 +81,9 @@ GlobalTech recopilaba datos de 37 fuentes diferentes:
 | Velocidad de detección de anomalías | 15 minutos | 6 días |  
 | ROI promedio campañas | 4:1 | 1.8:1 |  
 
-📊 **Imagen 2 - Prompt para IA:**  
-*"Infografía 3D mostrando una torre de datos caótica vs una estructura organizada con Power BI. Incluir iconos de relojes rotos, signos de dólorlar sangrando, y flechas rojas descendentes."*  
+![Comparación del caos vs orden en la gestión de datos con Power BI](/images/data-chaos-vs-order-infographic.webp "Infografía 3D sobre la transformación digital de los datos")  
+*Visualización del contraste entre datos desordenados y la organización estructurada con Power BI*  
+
 
 ---
 
@@ -157,8 +155,9 @@ Sistema basado en machine learning con:
 | Velocidad de detección de anomalías | 6 días             | 47 minutos          | 99% ↓        |  
 | ROI promedio campañas    | 1.8:1              | 6.3:1               | 250% ↑       |  
 
-📊 **Imagen 3 - Prompt para IA:**  
-*"Dashboard interactivo futurista mostrando ROI en tiempo real con gráficos de correlación, mapas de calor de conversiones, y predicciones AI. Estilo cyberpunk con elementos holográficos."*  
+![Dashboard futurista de Power BI con gráficos interactivos](/images/power-bi-futuristic-dashboard.webp "Interfaz holográfica mostrando análisis avanzados en tiempo real")  
+*Exploración de datos con tecnología de realidad aumentada y dashboards 3D de última generación*  
+
 
 ---
 
@@ -194,8 +193,8 @@ Sistema basado en machine learning con:
 - **89% más velocidad en ajustes estratégicos:**  
   - Tiempo medio de implementación de cambios: 6 horas vs 55 horas  
 
-📊 **Imagen 4 - Prompt para IA:**  
-*"Comparación lado a lado: Izquierda oficina caótica con papeles y pantallas rojas, derecha equipo colaborando alrededor de pantallas táctiles con dashboards claros. Estilo realista con transición dramática."*  
+![Equipo de marketing: estrés vs éxito con herramientas de análisis](/images/marketing-team-stress-vs-success.webp "Comparación entre la gestión manual y la optimización con Power BI")  
+*De la frustración a la claridad: impacto de un flujo de trabajo basado en datos optimizados*  
 
 ---
 
