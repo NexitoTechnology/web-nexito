@@ -16,7 +16,7 @@ ogImage: "/images/og/automatizacion-documental-og.webp"
 isPublished: true
 featured: true
 author: "Nexito Technology"
-articulosRelacionados:
+articulosRelacionados: []
 serie: "Casos de Éxito en Automatización"
 ordenEnSerie: 1
 requisitoPrevio: ["Conocimientos básicos de gestión documental", "Interés en transformación digital"]
