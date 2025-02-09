@@ -16,18 +16,12 @@ ogImage: "/images/og/business-intelligence-implementacion-og.webp"
 isPublished: true
 featured: true
 author: "Nexito Technology"
-articulosRelacionados: [
-  "automatizacion-procesos-empresariales",
-  "implementacion-inteligencia-artificial",
-  "implementacion-sap"
-]
+articulosRelacionados: []
 serie: "Guías de Implementación Tecnológica"
 ordenEnSerie: 4
 requisitoPrevio: ["Conocimientos Básicos de TI", "Acceso a Datos Empresariales"]
 tiempoImplementacion: "15-20 minutos"
 ---
-
-# Cómo Implementar Business Intelligence (BI) en tu Empresa: Guía Completa
 
 ## Introducción
 

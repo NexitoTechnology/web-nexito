@@ -16,11 +16,7 @@ ogImage: "/images/og/implementacion-sap-og.webp"
 isPublished: true
 featured: true
 author: "Nexito Technology"
-articulosRelacionados: [
-  "beneficios-sap",
-  "modulos-sap",
-  "casos-exito-sap"
-]
+articulosRelacionados: []
 serie: "Guía Completa de SAP"
 ordenEnSerie: 1
 requisitoPrevio: ["Conocimientos básicos de ERP", "Familiaridad con sistemas de gestión empresarial"]

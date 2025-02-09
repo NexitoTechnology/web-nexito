@@ -16,18 +16,12 @@ ogImage: "/images/og/inteligencia-comercial-og.webp"
 isPublished: true
 featured: true
 author: "Nexito Technology"
-articulosRelacionados: [
-  "automatizacion-procesos-empresariales",
-  "implementacion-inteligencia-artificial",
-  "implementacion-sap"
-]
+articulosRelacionados: []
 serie: "Casos de Éxito en Tecnología"
 ordenEnSerie: 1
 requisitoPrevio: ["Conocimientos básicos de BI", "Acceso a datos de ventas"]
 tiempoImplementacion: "20-25 minutos"
 ---
-
-# Caso de Éxito: Implementación de Inteligencia Comercial en una Empresa de Retail
 
 ## Introducción
 

@@ -16,11 +16,7 @@ ogImage: "/images/og/automatizacion-procesos-og.webp"
 isPublished: true
 featured: true
 author: "Nexito Technology"
-articulosRelacionados: [
-  "guia-rpa",
-  "beneficios-power-automate",
-  "casos-exito-automatizacion"
-]
+articulosRelacionados: []
 serie: "Guía Completa de Automatización"
 ordenEnSerie: 1
 requisitoPrevio: ["Conocimientos básicos de procesos empresariales", "Familiaridad con herramientas digitales"]

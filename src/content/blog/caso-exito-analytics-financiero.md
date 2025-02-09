@@ -16,18 +16,12 @@ ogImage: "/images/og/analytics-financiero-og.webp"
 isPublished: true
 featured: true
 author: "Nexito Technology"
-articulosRelacionados: [
-  "automatizacion-procesos-empresariales",
-  "implementacion-inteligencia-artificial",
-  "implementacion-sap"
-]
+articulosRelacionados: []
 serie: "Casos de Éxito en Tecnología"
 ordenEnSerie: 1
 requisitoPrevio: ["Conocimientos básicos de BI", "Acceso a datos financieros"]
 tiempoImplementacion: "15-20 minutos"
 ---
-
-# Caso de Éxito: Implementación de Analytics Financiero en una Empresa de Servicios Financieros
 
 ## Introducción
 

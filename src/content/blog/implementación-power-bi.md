@@ -16,18 +16,12 @@ ogImage: "/images/og/power-bi-dashboard-og.webp"
 isPublished: true
 featured: true
 author: "Nexito Technology"
-articulosRelacionados: [
-  "automatizacion-procesos-empresariales",
-  "implementacion-inteligencia-artificial",
-  "implementacion-sap"
-]
+articulosRelacionados: []
 serie: "Herramientas de Business Intelligence"
 ordenEnSerie: 1
 requisitoPrevio: ["Conocimientos básicos de BI", "Acceso a datos empresariales"]
 tiempoImplementacion: "15-20 minutos"
 ---
-
-# Implementación de Power BI en tu Empresa: Guía Completa
 
 ## Introducción
 
