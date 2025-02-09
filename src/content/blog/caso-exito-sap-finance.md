@@ -2,7 +2,7 @@
 title: "⚡ Adiós a los Errores Contables: Cómo FinCorp Solutions Logró una Gestión Financiera Sin Fricción"
 date: 2025-02-09
 description: "Descubre cómo FinCorp Solutions revolucionó su gestión financiera con SAP Finance, reduciendo errores en un 95% y optimizando sus procesos contables. Conoce su caso de éxito y cómo puedes aplicar esta transformación en tu empresa."
-image: "/images/transformacion-financiera-sap.webp"
+image: "/images/finance-sap.webp"
 imageAlt: "Ilustración de automatización financiera con SAP Finance"
 tags: ["Automatización Financiera", "SAP Finance", "Gestión Contable", "Transformación Digital", "Optimización de Procesos"]
 categoria: "Gestión Financiera"
@@ -12,7 +12,7 @@ dificultad: "Intermedio"
 audiencia: ["Directores Financieros", "Gerentes de Contabilidad", "Empresarios", "Consultores de SAP"]
 metaTitle: "Caso de Éxito: Cómo FinCorp Solutions Optimizó su Gestión Financiera con SAP Finance"
 metaDescription: "Descubre cómo SAP Finance transformó la contabilidad de FinCorp Solutions, reduciendo errores y acelerando procesos. Aprende cómo puedes implementar esta tecnología en tu empresa."
-ogImage: "/images/transformacion-financiera-sap.webp"
+ogImage: "/images/finance-sap.webp"
 isPublished: true
 featured: true
 author: "Nexito Technology"

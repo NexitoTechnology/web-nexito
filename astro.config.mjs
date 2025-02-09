@@ -3,6 +3,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import compress from 'astro-compress';
 import robotsTxt from 'astro-robots-txt';
+import partytown from '@astrojs/partytown';
 
 export default defineConfig({
  viewTransitions: true,
@@ -10,6 +11,11 @@ export default defineConfig({
  site: 'https://nexito.tech',
  base: '/',
  integrations: [
+  partytown({
+    config: {
+      forward: ["dataLayer.push"],
+    },
+  }),
    tailwind(),
    sitemap({
      changefreq: 'weekly',
