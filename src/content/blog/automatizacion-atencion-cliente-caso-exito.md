@@ -23,8 +23,7 @@ requisitoPrevio: ["Conocimientos básicos de atención al cliente", "Familiarida
 tiempoImplementacion: "15-20 minutos"
 ---
 
-![Atención al Cliente Automatizada](/images/atencion-cliente-automatizada.webp)
-*Ilustración de un centro de atención al cliente automatizado, con chatbots en acción y pantallas digitales que visualizan flujos de datos interactivos.*
+
 
 Bienvenidos a un viaje transformador en el mundo del soporte digital.  
 En este artículo descubrirás cómo la **automatización** se ha convertido en el aliado estratégico que redefine la **atención al cliente** y abre nuevas puertas hacia la eficiencia y la innovación.
@@ -44,6 +43,9 @@ La necesidad de evolucionar surge en un escenario donde el soporte tradicional y
 Hoy en día, la **automatización** redefine el concepto de servicio.  
 Permite respuestas inmediatas, personalizadas y llenas de empatía.  
 Se convierte en el puente entre la eficiencia tecnológica y la experiencia humana.
+
+![Atención al Cliente Automatizada](/images/atencion-cliente-automatizada.webp)
+*Ilustración de un centro de atención al cliente automatizado, con chatbots en acción y pantallas digitales que visualizan flujos de datos interactivos.*
 
 ### 🔍 El reto del soporte tradicional y la necesidad de evolución
 
