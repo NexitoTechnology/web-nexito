@@ -12,7 +12,7 @@ dificultad: "Intermedio"
 audiencia: ["Gerentes de Ventas", "Analistas de Datos", "Directores de Marketing"]
 metaTitle: "Caso de Éxito: Implementación de Inteligencia Comercial"
 metaDescription: "Aprende cómo una empresa de retail mejoró su estrategia comercial y aumentó sus ventas con Inteligencia Comercial."
-ogImage: "/images/og/inteligencia-comercial-og.webp"
+ogImage: "/images/inteligencia-comercial-principal.webp"
 isPublished: true
 featured: true
 author: "Nexito Technology"

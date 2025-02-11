@@ -12,7 +12,7 @@ dificultad: "Intermedio"
 audiencia: ["Gerentes", "Analistas de Datos", "Tomadores de Decisiones"]
 metaTitle: "Cómo Implementar Business Intelligence (BI) en tu Empresa: Guía Completa"
 metaDescription: "Aprende a implementar Business Intelligence (BI) en tu empresa para mejorar la toma de decisiones y aumentar la eficiencia operativa."
-ogImage: "/images/og/business-intelligence-implementacion-og.webp"
+ogImage: "/images/business-intelligence-implementacion.webp"
 isPublished: true
 featured: true
 author: "Nexito Technology"

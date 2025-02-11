@@ -12,7 +12,7 @@ dificultad: "Intermedio"
 audiencia: ["Gerentes de TI", "Analistas de Datos", "Empresarios"]
 metaTitle: "Implementación de Power BI en tu Empresa: Guía Completa"
 metaDescription: "Aprende a implementar Power BI en tu empresa para mejorar la toma de decisiones y aumentar la eficiencia."
-ogImage: "/images/og/power-bi-dashboard-og.webp"
+ogImage: "/images/power-bi-dashboard.webp"
 isPublished: true
 featured: true
 author: "Nexito Technology"

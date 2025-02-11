@@ -12,7 +12,7 @@ dificultad: "Intermedio"
 audiencia: ["Gerentes Financieros", "Analistas de Datos", "Directores de TI"]
 metaTitle: "Caso de Éxito: Implementación de Analytics Financiero"
 metaDescription: "Aprende cómo una empresa de servicios financieros mejoró su toma de decisiones y optimizó sus procesos con Analytics Financiero."
-ogImage: "/images/og/analytics-financiero-og.webp"
+ogImage: "/images/analytics-financiero-principal.webp"
 isPublished: true
 featured: true
 author: "Nexito Technology"

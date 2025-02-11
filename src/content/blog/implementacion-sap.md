@@ -12,7 +12,7 @@ dificultad: "Intermedio"
 audiencia: ["Directores de TI", "Gerentes de Proyectos", "Consultores de ERP", "Empresarios"]
 metaTitle: "Cómo Implementar SAP en tu Empresa: Guía Completa 2025 | Nexito Technology"
 metaDescription: "Guía definitiva sobre cómo implementar SAP en tu empresa. Descubre los pasos, beneficios y casos de éxito para una implementación exitosa."
-ogImage: "/images/og/implementacion-sap-og.webp"
+ogImage: "/images/implementacion-sap.webp"
 isPublished: true
 featured: true
 author: "Nexito Technology"

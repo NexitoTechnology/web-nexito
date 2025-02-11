@@ -12,7 +12,7 @@ dificultad: "Intermedio"
 audiencia: ["Gerentes de TI", "Empresarios", "Profesionales de TI"]
 metaTitle: "Cómo Implementar Inteligencia Artificial en tu Empresa: Guía Completa"
 metaDescription: "Descubre cómo implementar inteligencia artificial en tu empresa para mejorar la eficiencia y reducir costos."
-ogImage: "/images/og/implementacion-ia-principal-og.webp"
+ogImage: "/images/implementacion-ia-principal.webp"
 isPublished: true
 featured: true
 author: "Nexito Technology"
