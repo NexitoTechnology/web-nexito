@@ -81,8 +81,8 @@ Con herramientas inteligentes como **chatbots, respuestas automatizadas y flujos
 
 👉 **Si te identificas con Carlos, sigue leyendo. Te mostraremos cómo la automatización puede transformar tu empresa.**
 
-  ![Beneficios de la Automatización](/images/beneficios-automatizacion.webp)  
-  *Infografía visual que presenta estadísticas clave sobre cómo la automatización optimiza la atención al cliente y mejora la eficiencia empresarial.* 
+![Beneficios de la Automatización](/images/beneficios-automatizacion.webp)  
+*Infografía visual que presenta estadísticas clave sobre cómo la automatización optimiza la atención al cliente y mejora la eficiencia empresarial.* 
 
 ## ❌ El Problema: Ineficiencia en la Atención al Cliente  
 
@@ -151,7 +151,7 @@ Implementó un **chatbot con respuestas automatizadas**, integró su CRM con Wha
 
 🔥 **Si ella lo logró, tú también puedes. Y lo mejor es que no necesitas ser una gran empresa para hacerlo.**  
 
-![Implementación de Automatización](/images/implementacion-automatizacion.webp)  
+![Implementación de Automatización](/images/implementacion-ia-principal.webp)  
   *Ilustración de un empresario ajustando flujos de automatización en su computadora, mientras su equipo observa la optimización de procesos en tiempo real.*  
 
 ## 🏆 Casos de Éxito: Empresas que ya lo Aplican  
@@ -203,8 +203,9 @@ A continuación, te mostramos tres casos de éxito en diferentes industrias.
 
 🔥 **Ahora el equipo se enfoca en preparar los pedidos, no en responder mensajes manualmente.**  
 
-  ![Futuro de la Atención al Cliente](/images/futuro-atencion-cliente.webp)  
-  *Representación futurista de la atención al cliente con inteligencia artificial y automatización, donde agentes y asistentes virtuales trabajan en sinergia para ofrecer un servicio eficiente.*  
+  ![Chatbot en Ecommerce](/images/chatbot-ecommerce.webp)  
+  *Escena que muestra un chatbot guiando a un cliente en un sitio web de ecommerce, demostrando cómo la automatización mejora la experiencia de compra.*  
+
 
 💡 **Estos son solo algunos ejemplos de cómo la automatización transforma la atención al cliente. ¿Listo para implementarla en tu negocio? Sigue leyendo. 🚀**
 
