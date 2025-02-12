@@ -6,6 +6,10 @@ import robotsTxt from 'astro-robots-txt';
 import partytown from '@astrojs/partytown';
 
 export default defineConfig({
+  redirects: {
+    '/servicios': '/#servicios',  // Asegúrate que la sección tenga id="servicios"
+    '/servicios/': '/#servicios'
+  },
  viewTransitions: true,
  output: 'static',
  site: 'https://nexito.tech',
@@ -103,7 +107,11 @@ export default defineConfig({
    },
    server: {
      headers: {
-       'Cache-Control': 'public, max-age=31536000, immutable'
+      'Cache-Control': 'public, max-age=31536000, immutable',
+      'Content-Security-Policy': "default-src 'self';", // Política de seguridad de contenido
+      'X-Frame-Options': 'SAMEORIGIN', // Previene clickjackin
+      'Referrer-Policy': 'strict-origin-when-cross-origin', // Controla cómo el referrer debe ser enviado
+      'X-Content-Type-Options': 'nosniff' // Previene que el navegador MIME-sniff la respuesta
      }
    },
    build: {
