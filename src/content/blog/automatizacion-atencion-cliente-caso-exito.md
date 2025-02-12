@@ -10,7 +10,7 @@ lastModified: 2024-01-16
 readingTime: 12
 dificultad: "Intermedio"
 audiencia: ["Directores de Servicio al Cliente", "Gerentes de Soporte", "Empresarios", "Profesionales de TI"]
-metaTitle: "Automatización en Atención al Cliente: La Revolución que Transforma Experiencias y Eleva Resultados | Nexito Technology"
+metaTitle: "Auto. Atención: Revolución y Resultados | Nexito Tech"
 metaDescription: "Guía definitiva sobre automatización en atención al cliente. Descubre cómo transformar la experiencia del usuario y optimizar procesos con soluciones automatizadas. Explora casos de éxito y mejores prácticas para fidelizar a tus clientes."
 ogImage: "/images/atencion-cliente-automatizada.webp"
 isPublished: true

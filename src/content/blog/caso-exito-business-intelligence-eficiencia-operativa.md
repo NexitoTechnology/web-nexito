@@ -10,7 +10,7 @@ lastModified: 2025-02-10
 readingTime: 10
 dificultad: "Intermedio"
 audiencia: ["Gerentes de Operaciones", "CEOs", "Analistas de Datos", "Empresas en Crecimiento"]
-metaTitle: "Caso de Éxito: Cómo Business Intelligence Redujo Costos en un 25% y Aumentó la Productividad"
+metaTitle: "Éxito BI: Reducción de Costos 25% y Mayor Productividad"
 metaDescription: "Descubre cómo una empresa logró mejorar su eficiencia operativa con Business Intelligence, reduciendo costos, optimizando procesos y acelerando la toma de decisiones estratégicas."
 ogImage: "/images/operations-bi.webp"
 isPublished: true

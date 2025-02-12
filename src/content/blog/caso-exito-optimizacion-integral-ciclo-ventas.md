@@ -19,7 +19,7 @@ audiencia:
   - "Directores de Operaciones"
   - "Gerentes de TI"
   - "Empresarios"
-metaTitle: "Automatización de Procesos Empresariales: Guía Completa 2025 | Nexito Technology"
+metaTitle: "Auto. de Procesos Empresariales: Guía 2025 | Nexito Tech"
 metaDescription: "Guía definitiva sobre automatización de procesos empresariales. Descubre beneficios, casos de éxito y cómo implementarla en tu empresa. Incluye ejemplos reales y mejores prácticas."
 ogImage: "/images/diagrama-flujo-empresarial.webp"
 isPublished: true

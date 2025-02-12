@@ -10,7 +10,7 @@ lastModified: 2025-02-09
 readingTime: 12
 dificultad: "Intermedio"
 audiencia: ["Gerentes de Retail", "Dueños de Tiendas", "Estrategas de Negocio", "Consultores en IA"]
-metaTitle: "Caso de Éxito: Cómo la IA Transformó el Retail y Aumentó las Ventas en un 35%"
+metaTitle: "Éxito IA: Transformación en Retail, Ventas +35%"
 metaDescription: "Descubre cómo una empresa de retail optimizó su servicio al cliente, redujo costos operativos y aumentó ventas gracias a la inteligencia artificial. Aprende cómo implementar IA en tu negocio."
 ogImage: "/images/retail-ai.webp"
 isPublished: true

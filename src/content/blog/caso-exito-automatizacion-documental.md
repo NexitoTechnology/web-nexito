@@ -10,7 +10,7 @@ lastModified: 2024-02-08
 readingTime: 8
 dificultad: "Intermedio"
 audiencia: ["Gerentes de Operaciones", "Directores de TI", "Empresarios"]
-metaTitle: "Automatización Documental: Caso de Éxito y Beneficios Clave | Nexito Technology"
+metaTitle: "Auto. Documental: Éxito y Beneficios Clave | Nexito Tech"
 metaDescription: "Descubre cómo la automatización documental ayudó a una empresa a reducir costos, eliminar errores y mejorar la productividad en un 300%."
 ogImage: "/images/automatizacion-documental.webp"
 isPublished: true

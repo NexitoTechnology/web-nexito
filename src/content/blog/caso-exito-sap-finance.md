@@ -10,7 +10,7 @@ lastModified: 2025-02-09
 readingTime: 14
 dificultad: "Intermedio"
 audiencia: ["Directores Financieros", "Gerentes de Contabilidad", "Empresarios", "Consultores de SAP"]
-metaTitle: "Caso de Éxito: Cómo FinCorp Solutions Optimizó su Gestión Financiera con SAP Finance"
+metaTitle: "Éxito FinCorp: Optimización Financiera con SAP Finance"
 metaDescription: "Descubre cómo SAP Finance transformó la contabilidad de FinCorp Solutions, reduciendo errores y acelerando procesos. Aprende cómo puedes implementar esta tecnología en tu empresa."
 ogImage: "/images/finance-sap.webp"
 isPublished: true

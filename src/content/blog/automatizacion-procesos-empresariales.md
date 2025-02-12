@@ -10,7 +10,7 @@ lastModified: 2024-01-16
 readingTime: 7
 dificultad: "Intermedio"
 audiencia: ["Directores de Operaciones", "Gerentes de TI", "Empresarios"]
-metaTitle: "Automatización de Procesos Empresariales: Guía Completa 2024 | Nexito Technology"
+metaTitle: "Auto. Procesos Empresariales: Guía 2025 | Nexito Tech"
 metaDescription: "Guía definitiva sobre automatización de procesos empresariales. Descubre beneficios, casos de éxito y cómo implementarla en tu empresa. Incluye ejemplos reales y mejores prácticas."
 ogImage: "/images/automatizacion-procesos.webp"
 isPublished: true

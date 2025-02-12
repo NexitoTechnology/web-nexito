@@ -10,7 +10,7 @@ lastModified: 2025-02-09
 readingTime: 14
 dificultad: "Avanzado"
 audiencia: ["Directores de Retail", "Gerentes de eCommerce", "Estrategas de Negocio", "Consultores en Transformación Digital"]
-metaTitle: "Caso de Éxito: Cómo la Automatización Omnicanal Revolucionó el Retail y Aumentó Ventas en un 40%"
+metaTitle: "Éxito: Auto. Omnicanal en Retail, Ventas +40%"
 metaDescription: "Descubre cómo una estrategia omnicanal bien ejecutada puede mejorar la fidelización del cliente, reducir costos operativos y aumentar la conversión en retail gracias a la automatización y la inteligencia artificial."
 ogImage: "/images/retail-consulting.webp"
 isPublished: true

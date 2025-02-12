@@ -10,7 +10,7 @@ lastModified: 2025-01-16
 readingTime: 10
 dificultad: "Intermedio"
 audiencia: ["Gerentes de TI", "Empresarios", "Profesionales de TI"]
-metaTitle: "Cómo Implementar Inteligencia Artificial en tu Empresa: Guía Completa"
+metaTitle: "Implementa IA en tu Empresa: Guía Completa"
 metaDescription: "Descubre cómo implementar inteligencia artificial en tu empresa para mejorar la eficiencia y reducir costos."
 ogImage: "/images/implementacion-ia-principal.webp"
 isPublished: true
