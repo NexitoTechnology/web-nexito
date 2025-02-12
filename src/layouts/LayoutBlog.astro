@@ -18,7 +18,6 @@ type GTM = {
   start: number;
 };
 
-
 interface Props {
   title?: string;
   description?: string;
@@ -64,21 +63,23 @@ const getSchemaType = () => {
 <!doctype html>
 <html lang="es" class="scroll-smooth">
   <head>
-
     <!-- Google Tag Manager -->
-    <script is:inline define:vars={{gtmId: 'GTM-WQS3F67G'}}>
-      (function(w,d,s,l,i) {
+    <script is:inline define:vars={{ gtmId: "GTM-WQS3F67G" }}>
+      (function (w, d, s, l, i) {
         w[l] = w[l] || [];
-        w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
         var f = d.getElementsByTagName(s)[0];
         var j = d.createElement(s);
-        var dl = l != 'dataLayer' ? '&l='+l : '';
-        j.setAttribute('async', 'true');
-        j.setAttribute('src', 'https://www.googletagmanager.com/gtm.js?id='+i+dl);
+        var dl = l != "dataLayer" ? "&l=" + l : "";
+        j.setAttribute("async", "true");
+        j.setAttribute(
+          "src",
+          "https://www.googletagmanager.com/gtm.js?id=" + i + dl
+        );
         if (f && f.parentNode) {
-          f.parentNode.insertBefore(j,f);
+          f.parentNode.insertBefore(j, f);
         }
-      })(window,document,'script','dataLayer',gtmId);
+      })(window, document, "script", "dataLayer", gtmId);
     </script>
 
     <!-- Google Analytics 
@@ -110,10 +111,12 @@ const getSchemaType = () => {
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:type" content={type === "article" ? "article" : "website"} />
+    <meta
+      property="og:type"
+      content={type === "article" ? "article" : "website"}
+    />
     <meta property="og:site_name" content="Nexito Technology" />
     <meta property="og:image:alt" content={title} />
-
 
     <!-- Twitter Card mejorada -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -127,11 +130,9 @@ const getSchemaType = () => {
     <!-- Favicon y manifest mejorado -->
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/Logo.svg" />
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/manifest.json" />
     <!-- Sitemaps -->
     <link rel="sitemap" href="/sitemap-index.xml" />
-
-
 
     <!-- JSON-LD Schemas -->
     <JsonLD type="Organization" data={{}} />
@@ -148,10 +149,22 @@ const getSchemaType = () => {
     <ClientRouter />
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-WQS3F67G"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe></noscript
+    >
+    <!-- End Google Tag Manager (noscript) -->
     <Menu />
     <!-- Main content -->
     <div class="overflow-x-hidden">
-      <main id="main-content" class="flex-grow w-full px-4 md:w-4/5 lg:w-3/4 xl:w-2/3 mx-auto">
+      <main
+        id="main-content"
+        class="flex-grow w-full px-4 md:w-4/5 lg:w-3/4 xl:w-2/3 mx-auto"
+      >
         <slot />
       </main>
     </div>
