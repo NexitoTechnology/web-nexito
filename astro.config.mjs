@@ -7,8 +7,14 @@ import partytown from '@astrojs/partytown';
 
 export default defineConfig({
   redirects: {
-    '/servicios': '/#servicios',  // Asegúrate que la sección tenga id="servicios"
-    '/servicios/': '/#servicios'
+    '/servicios': {
+      destination: '/',
+      permanent: true // Esto configura un 301 (redirección permanente)
+    },
+    '/servicios': {
+      destination: '/',
+      permanent: true // Esto configura un 301 (redirección permanente)
+    }
   },
  viewTransitions: true,
  output: 'static',
