@@ -6,12 +6,6 @@ import robotsTxt from 'astro-robots-txt';
 import partytown from '@astrojs/partytown';
 
 export default defineConfig({
-  redirects: {
-    '/servicios': {
-      destination: '/',
-      status: 301
-    }
-  },
   headers: {
     'Cache-Control': 'public, max-age=31536000, immutable',
     'Content-Security-Policy': "default-src 'self' 'unsafe-inline' 'unsafe-eval' https:; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https:; connect-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https: https://www.googletagmanager.com;",
