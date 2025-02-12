@@ -4,8 +4,7 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "convert:webp": "node convert-webp.js",
-    "build": "npm run convert:webp && astro build",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
