@@ -9,7 +9,7 @@ const pageData = {
   description: "¿Necesitas ayuda con la automatización o IA para tu empresa? Contáctanos y te ayudaremos a transformar tu negocio con soluciones tecnológicas innovadoras.",
   canonical: "https://nexito.tech/contacto",
   openGraph: {
-    image: "https://nexito.tech/favicon.svg", // Asegúrate de tener esta imagen
+    image: "https://nexito.tech/favicon.svg",
     title: "Contacta con Nexito Technology",
     description: "Transforma tu empresa con automatización e IA"
   }
@@ -22,20 +22,6 @@ const pageData = {
 >
   <link rel="canonical" href={pageData.canonical} slot="head" />
   
-  <!-- Open Graph / Social Media Meta Tags -->
-  <meta property="og:title" content={pageData.openGraph.title} slot="head" />
-  <meta property="og:description" content={pageData.openGraph.description} slot="head" />
-  <meta property="og:image" content={pageData.openGraph.image} slot="head" />
-  <meta property="og:url" content={pageData.canonical} slot="head" />
-  <meta property="og:type" content="website" slot="head" />
-  
-  <!-- Twitter Card Meta Tags -->
-  <meta name="twitter:card" content="summary_large_image" slot="head" />
-  <meta name="twitter:title" content={pageData.openGraph.title} slot="head" />
-  <meta name="twitter:description" content={pageData.openGraph.description} slot="head" />
-  <meta name="twitter:image" content={pageData.openGraph.image} slot="head" />
-
-  <!-- Schema.org markup -->
   <JsonLD type="ContactPage" data={{
     name: pageData.title,
     description: pageData.description,
@@ -53,59 +39,79 @@ const pageData = {
   }} />
 
   <main class="bg-gradient-to-br from-white via-gray-50 to-blue-50">
-    <!-- Sección de encabezado -->
     <section class="container mx-auto px-4 pt-12 pb-8 md:pt-20 md:pb-16 text-center">
       <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-        Hablemos sobre tu proyecto
+        Hablemos sobre tu proyecto 🚀
       </h1>
       <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-        Estamos aquí para ayudarte a transformar tu empresa con soluciones de automatización e inteligencia artificial.
+        Estamos aquí para ayudarte a transformar tu empresa con soluciones de automatización e inteligencia artificial. Escríbenos y te asesoraremos sin compromiso.
       </p>
     </section>
 
-    <!-- Sección de información de contacto -->
+    
+
     <section class="container mx-auto px-4 mb-12 md:mb-20">
       <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-8 mb-12">
         <div class="text-center p-6 rounded-xl bg-white shadow-md">
-          <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-          </div>
-          <h2 class="text-xl font-semibold text-gray-900 mb-2">Email</h2>
+          <h2 class="text-xl font-semibold text-gray-900 mb-2">📧 Email</h2>
           <p class="text-gray-600">info@nexito.tech</p>
         </div>
-
         <div class="text-center p-6 rounded-xl bg-white shadow-md">
-          <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-          </div>
-          <h2 class="text-xl font-semibold text-gray-900 mb-2">Ubicación</h2>
+          <h2 class="text-xl font-semibold text-gray-900 mb-2">📍 Ubicación</h2>
           <p class="text-gray-600">España</p>
         </div>
-
         <div class="text-center p-6 rounded-xl bg-white shadow-md">
-          <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <h2 class="text-xl font-semibold text-gray-900 mb-2">Horario</h2>
+          <h2 class="text-xl font-semibold text-gray-900 mb-2">⏰ Horario</h2>
           <p class="text-gray-600">Lun - Vie: 9:00 - 18:00</p>
         </div>
       </div>
     </section>
 
+    <!-- Call to Action: Agendar reunión -->
+    <section class="container mx-auto px-4 py-12 text-center bg-blue-600 text-white rounded-xl shadow-md">
+      <h2 class="text-3xl font-bold mb-4">🚀 ¡Transforma tu negocio ahora!</h2>
+      <p class="text-lg mb-6">Agendar una reunión con nuestro equipo y descubre cómo nuestras soluciones pueden ayudarte a automatizar procesos y escalar tu empresa.</p>
+      <a href="https://calendly.com/nexito-tech/consulta" target="_blank" class="px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition">
+        📅 Agendar una reunión gratis
+      </a>
+    </section>
+
     <!-- Formulario de contacto -->
     <ContactForm />
+
+    <!-- Sección de preguntas frecuentes -->
+    <section class="container mx-auto px-4 py-12 bg-white rounded-xl shadow-md max-w-4xl">
+      <h2 class="text-3xl font-bold text-gray-900 text-center mb-6">Preguntas Frecuentes</h2>
+      <div class="space-y-6">
+        <details class="p-4 bg-gray-100 rounded-lg">
+          <summary class="font-semibold cursor-pointer">¿Qué servicios ofrece Nexito Technology?</summary>
+          <p class="mt-2 text-gray-600">Ofrecemos automatización de procesos, integración de IA en negocios y soluciones SaaS personalizadas.</p>
+        </details>
+        <details class="p-4 bg-gray-100 rounded-lg">
+          <summary class="font-semibold cursor-pointer">¿Cómo funciona la integración de IA en mi empresa?</summary>
+          <p class="mt-2 text-gray-600">Analizamos tus procesos actuales y desarrollamos una solución de IA personalizada que optimiza la productividad y reduce costos.</p>
+        </details>
+        <details class="p-4 bg-gray-100 rounded-lg">
+          <summary class="font-semibold cursor-pointer">¿Puedo solicitar una demostración gratuita?</summary>
+          <p class="mt-2 text-gray-600">Sí, ofrecemos demostraciones gratuitas donde mostramos cómo nuestras soluciones pueden impactar en tu empresa.</p>
+        </details>
+      </div>
+    </section>
+
+    
+
+    
   </main>
 </Layout>
 
 <style>
   main {
     min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  }
+  details {
+    transition: all 0.3s ease-in-out;
+  }
+  details[open] {
+    background-color: #f3f4f6;
   }
 </style>
