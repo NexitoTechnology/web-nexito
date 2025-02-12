@@ -10,10 +10,6 @@ export default defineConfig({
     '/servicios': {
       destination: '/',
       status: 301
-    },
-    '/servicios/': {
-      destination: '/',
-      status: 301
     }
   },
   headers: {
