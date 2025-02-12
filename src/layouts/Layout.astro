@@ -5,6 +5,19 @@ import JsonLD from "../components/JsonLD.astro";
 import CookieConsent from "../components/CookieConsent.astro";
 import { ClientRouter } from "astro:transitions";
 
+declare global {
+  interface Window {
+    dataLayer: any[];
+    [key: string]: any;
+  }
+}
+
+// Define el tipo para GTM
+type GTM = {
+  push: (...args: any[]) => void;
+  start: number;
+};
+
 interface Props {
   title?: string;
   description?: string;
@@ -50,18 +63,38 @@ const getSchemaType = () => {
 <!doctype html>
 <html lang="es" class="scroll-smooth">
   <head>
-  <!-- End Google Tag Manager -->
-    <!-- Google Analytics -->
-    <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-ZWTXV0T5GN"></script>
+    <!-- Google Tag Manager -->
+    <script is:inline define:vars={{ gtmId: "GTM-WQS3F67G" }}>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0];
+        var j = d.createElement(s);
+        var dl = l != "dataLayer" ? "&l=" + l : "";
+        j.setAttribute("async", "true");
+        j.setAttribute(
+          "src",
+          "https://www.googletagmanager.com/gtm.js?id=" + i + dl
+        );
+        if (f && f.parentNode) {
+          f.parentNode.insertBefore(j, f);
+        }
+      })(window, document, "script", "dataLayer", gtmId);
+    </script>
+    <!-- End Google Tag Manager -->
+    <!-- Google Analytics 
+    <script
+      type="text/partytown"
+      src="https://www.googletagmanager.com/gtag/js?id=G-ZWTXV0T5GN"></script>
     <script type="text/partytown">
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
       }
-      gtag('js', new Date());
-      gtag('config', 'G-ZWTXV0T5GN');
-    </script>
-    
+      gtag("js", new Date());
+      gtag("config", "G-ZWTXV0T5GN");
+    </script>-->
+
     <!-- Metadatos básicos -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -81,10 +114,12 @@ const getSchemaType = () => {
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:type" content={type === "article" ? "article" : "website"} />
+    <meta
+      property="og:type"
+      content={type === "article" ? "article" : "website"}
+    />
     <meta property="og:site_name" content="Nexito Technology" />
     <meta property="og:image:alt" content={title} />
-
 
     <!-- Twitter Card mejorada -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -98,11 +133,9 @@ const getSchemaType = () => {
     <!-- Favicon y manifest mejorado -->
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/Logo.svg" />
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="/manifest.json" />
     <!-- Sitemaps -->
     <link rel="sitemap" href="/sitemap-index.xml" />
-
-
 
     <!-- JSON-LD Schemas -->
     <JsonLD type="Organization" data={{}} />
