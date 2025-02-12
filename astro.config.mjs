@@ -6,17 +6,37 @@ import robotsTxt from 'astro-robots-txt';
 import partytown from '@astrojs/partytown';
 
 export default defineConfig({
-  headers: {
-    'Cache-Control': 'public, max-age=31536000, immutable',
-    'Content-Security-Policy': "default-src 'self' 'unsafe-inline' 'unsafe-eval' https:; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https:; connect-src 'self' https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https: https://www.googletagmanager.com;",
-    'X-Frame-Options': 'SAMEORIGIN',
-    'Referrer-Policy': 'strict-origin-when-cross-origin',
-    'X-Content-Type-Options': 'nosniff'
-  },
-  viewTransitions: true,
   output: 'static',
   site: 'https://nexito.tech',
   base: '/',
+
+  // 🔹 ENCABEZADOS DE SEGURIDAD PARA GITHUB PAGES
+  vite: {
+    server: {
+      headers: {
+        'Cache-Control': 'public, max-age=31536000, immutable',
+        'Content-Security-Policy': "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com; object-src 'none'; style-src 'self' 'unsafe-inline' https:; img-src 'self' data: https:; connect-src 'self' https:;",
+        'X-Frame-Options': 'SAMEORIGIN',
+        'Referrer-Policy': 'strict-origin-when-cross-origin',
+        'X-Content-Type-Options': 'nosniff'
+      }
+    }
+  },
+
+  // 🔹 ASEGURAR QUE _HEADERS SE MANTENGA EN EL BUILD
+  build: {
+    rollupOptions: {
+      output: {
+        assetFileNames: ({ name }) => {
+          if (name === '_headers') return '_headers';
+          return name;
+        }
+      }
+    }
+  },
+
+  viewTransitions: true,
+
   integrations: [
     partytown({
       config: {
@@ -59,6 +79,7 @@ export default defineConfig({
     }),
     robotsTxt(),
   ],
+
   image: {
     service: {
       entrypoint: 'astro/assets/services/sharp',
@@ -101,6 +122,7 @@ export default defineConfig({
       },
     },
   },
+
   vite: {
     optimizeDeps: {
       entries: [],
