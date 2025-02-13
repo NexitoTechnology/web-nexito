@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120">
+  <!-- Main text in white -->
+  <text x="20" y="85" 
+        font-family="Arial, sans-serif" 
+        font-weight="800" 
+        font-size="80" 
+        fill="white"
+        letter-spacing="2">
+    NEXITO
+  </text>
+
+  <!-- Decorative tech element in white -->
+  <path d="M380 40 L390 40 L390 80 L380 80" 
+        stroke="white" 
+        stroke-width="3" 
+        fill="none"/>
+
+  <!-- Additional tech dots in white -->
+  <circle cx="385" cy="30" r="3" fill="white"/>
+  <circle cx="385" cy="90" r="3" fill="white"/>
+</svg>
