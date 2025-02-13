@@ -1,11 +1,9 @@
 ---
-import JsonLD from './JsonLD.astro';
-
 const currentYear = new Date().getFullYear();
 
 // Datos de la empresa para reutilizar
 const companyData = {
-  name: "NEXITO TECHNOLOGY",
+  name: "Nexito Technology",
   email: "info@nexito.tech",
   phone: "+34 950 79 45 43",
   description: "Transformamos empresas a través de la automatización inteligente y soluciones de IA personalizadas.",
@@ -17,42 +15,10 @@ const companyData = {
     stackoverflow: "#"
   }
 };
-
-// Schema para el footer
-const footerSchema = {
-  "@type": "Organization",
-  "name": companyData.name,
-  "description": companyData.description,
-  "url": "https://nexito.tech",
-  "logo": {
-    "@type": "ImageObject",
-    "url": "https://nexito.tech/Logo.svg"
-  },
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": companyData.phone,
-    "contactType": "customer service",
-    "email": companyData.email,
-    "areaServed": "ES",
-    "availableLanguage": ["Spanish", "English"]
-  },
-  "sameAs": [
-    companyData.social.linkedin,
-    companyData.social.twitter,
-    companyData.social.github,
-    companyData.social.discord,
-    companyData.social.stackoverflow
-  ],
-  "address": {
-    "@type": "PostalAddress",
-    "addressCountry": "ES"
-  }
-};
 ---
 
-<footer class="bg-[#0B1120] text-white">
-  <JsonLD type="Organization" data={footerSchema} />
-  
+
+<footer class="bg-[#0B1120] text-white">  
   <div class="max-w-7xl mx-auto px-6 py-12">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-x-12 gap-y-12">
       {/* Columna 1: Logo e información */}

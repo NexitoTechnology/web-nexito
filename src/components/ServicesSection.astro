@@ -122,33 +122,9 @@ const services: Service[] = [
     }
   }
 ];
-
-// Schema para los servicios
-const servicesSchema = {
-  "@type": "ItemList",
-  "itemListElement": services.map((service, index) => ({
-    "@type": "Service",
-    "position": index + 1,
-    "name": service.title,
-    "description": service.description,
-    "url": new URL(`/servicios#${service.id}`, Astro.site).toString(),
-    "provider": {
-      "@type": "Organization",
-      "name": "Nexito Technology",
-      "url": Astro.site?.toString()
-    },
-    "offers": {
-      "@type": "Offer",
-      "price": service.price || "Consultar",
-      "priceCurrency": "EUR"
-    }
-  }))
-};
 ---
 
 <section id="servicios" class="relative py-24 overflow-hidden">
-  <JsonLD type="Service" data={servicesSchema} />
-  
   <!-- Fondo con gradiente y efecto de grid -->
   <div class="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 opacity-5"></div>
   <div class="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]"></div>

@@ -4,7 +4,7 @@ import Footer from "../components/Footer.astro";
 import JsonLD from "../components/JsonLD.astro";
 import CookieConsent from "../components/CookieConsent.astro";
 import { ClientRouter } from "astro:transitions";
-import '/globals.css';
+import "/globals.css";
 
 declare global {
   interface Window {
@@ -13,64 +13,25 @@ declare global {
   }
 }
 
-// Define el tipo para GTM
-type GTM = {
-  push: (...args: any[]) => void;
-  start: number;
-};
-
-// Primero, la función helper (al inicio del archivo)
-function normalizeUrl(url: string): string {
-  return url.endsWith('/') ? url : `${url}/`;
-}
-
-
 interface Props {
   title?: string;
   description?: string;
   image?: string;
-  type?: "website" | "article" | "about" | "service";
-  schemaData?: Record<string, any>;
 }
 
 const {
   title = "Nexito Technology | Automatización Inteligente y Soluciones IA",
   description = "Transformamos empresas mediante automatización de procesos e Inteligencia Artificial. Soluciones personalizadas para impulsar la eficiencia de tu negocio.",
   image = "/icon-512x512.png",
-  type = "website",
-  schemaData = {},
 } = Astro.props;
 
-const canonicalURL = new URL(normalizeUrl(Astro.url.pathname), Astro.site);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const siteURL = "https://nexito.tech";
-
-// Base Schema para todas las páginas
-const baseSchema = {
-  name: title,
-  description: description,
-  url: canonicalURL.toString(),
-  image: new URL(image, siteURL).toString(),
-};
-
-// Seleccionar el tipo de Schema según la página
-const getSchemaType = () => {
-  switch (type) {
-    case "article":
-      return "Article";
-    case "about":
-      return "AboutPage";
-    case "service":
-      return "Service";
-    default:
-      return "WebPage";
-  }
-};
 ---
 
 <!doctype html>
 <html lang="es" class="scroll-smooth">
   <head>
-    <!--<link rel="stylesheet" href="/src/styles/globals.css" />-->
     <!-- Google Tag Manager -->
     <script is:inline define:vars={{ gtmId: "GTM-WQS3F67G" }}>
       (function (w, d, s, l, i) {
@@ -89,19 +50,6 @@ const getSchemaType = () => {
         }
       })(window, document, "script", "dataLayer", gtmId);
     </script>
-    <!-- End Google Tag Manager -->
-    <!-- Google Analytics
-    <script
-      type="text/partytown"
-      src="https://www.googletagmanager.com/gtag/js?id=G-ZWTXV0T5GN"></script>
-    <script type="text/partytown">
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-ZWTXV0T5GN");
-    </script> -->
 
     <!-- Metadatos básicos -->
     <meta charset="UTF-8" />
@@ -115,44 +63,126 @@ const getSchemaType = () => {
     <meta name="author" content="Nexito Technology" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Open Graph para WhatsApp y redes sociales -->
+    <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content="https://nexito.tech/icon-512x512.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:url" content={canonicalURL} />
-    <meta
-      property="og:type"
-      content={type === "article" ? "article" : "website"}
-    />
+    <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Nexito Technology" />
     <meta property="og:image:alt" content={title} />
 
-    <!-- Twitter Card mejorada -->
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={new URL(image, siteURL)} />
     <meta name="twitter:image:alt" content={title} />
 
-    <!-- Favicon y manifest mejorado -->
-    <!--<link rel="icon" href="/favicon.ico" sizes="32x32" /> -->
-    <!-- Favicon y manifest mejorado -->
+    <!-- Favicon y manifest -->
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/Logo.svg" />
     <link rel="manifest" href="/manifest.json" />
-    <!-- Sitemaps -->
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <!-- JSON-LD Schemas -->
-    <JsonLD type="Organization" data={{}} />
-    <JsonLD type="WebSite" data={{}} />
+    <!-- JSON-LD Schema -->
     <JsonLD
-      type={getSchemaType()}
+      type="Organization"
       data={{
-        ...baseSchema,
-        ...schemaData,
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        name: "Nexito Technology",
+        url: "https://nexito.tech",
+        logo: "https://nexito.tech/Logo.svg",
+        image: "https://nexito.tech/icon-512x512.png",
+        description:
+          "Transformamos empresas mediante automatización de procesos e Inteligencia Artificial",
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: "Calle Lira 8, N36",
+          postalCode: "04648",
+          addressLocality: "Almería",
+          addressRegion: "Almería",
+          addressCountry: "ES",
+        },
+        contactPoint: [
+          {
+            "@type": "ContactPoint",
+            contactType: "customer service",
+            email: "info@nexito.tech",
+            availableLanguage: ["Spanish", "English"],
+          },
+        ],
+        sameAs: [],
+        knowsAbout: [
+          "Inteligencia Artificial",
+          "Automatización de Procesos",
+          "Business Intelligence",
+          "Consultoría Tecnológica",
+          "Power BI",
+          "SAP",
+        ],
+        areaServed: {
+          "@type": "Country",
+          name: "España",
+        },
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "Servicios de Nexito Technology",
+          itemListElement: [
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Automatización de Procesos",
+                description:
+                  "Automatización inteligente de procesos empresariales",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Inteligencia Artificial",
+                description: "Soluciones de IA personalizadas para empresas",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Business Intelligence",
+                description: "Análisis de datos y business intelligence",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Consultoría Tecnológica",
+                description: "Servicios de consultoría tecnológica",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "Power BI",
+                description: "Implementación y desarrollo en Power BI",
+              },
+            },
+            {
+              "@type": "Offer",
+              itemOffered: {
+                "@type": "Service",
+                name: "SAP",
+                description: "Servicios y soluciones SAP",
+              },
+            },
+          ],
+        },
       }}
     />
 
@@ -168,17 +198,16 @@ const getSchemaType = () => {
         width="0"
         style="display:none;visibility:hidden"></iframe></noscript
     >
-    <!-- End Google Tag Manager (noscript) -->
     <Menu />
     <!-- Main content -->
-    <div class="overflow-x-hidden">    
-      <main
-        id="main-content"
-        class="flex-grow w-full px-4 md:w-4/5 lg:w-3/4 xl:w-2/3 mx-auto"
-      >
-        <slot />
-      </main>
-    </div>
+    <div class="overflow-x-hidden"></div>
+    <main
+      id="main-content"
+      class="flex-grow w-full px-4 md:w-4/5 lg:w-3/4 xl:w-2/3 mx-auto"
+    >
+      <slot />
+    </main>
+
     <Footer />
     <CookieConsent />
   </body>

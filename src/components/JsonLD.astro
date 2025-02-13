@@ -1,10 +1,10 @@
 ---
-// src/components/JsonLD.astro
 interface Props {
-  type: 'Organization' | 'WebSite' | 'WebPage' | 'Article' | 'Service' | 'AboutPage' | 'ContactPage';
+  type: 'Organization' | 'WebSite' | 'WebPage' | 'Article' | 'Service' | 
+        'AboutPage' | 'ContactPage' | 'FAQPage' | 'Product'; // Cambiado Review por Product
   data: Record<string, any>;
 }
-const { type, data } = Astro.props;
+const props = Astro.props;
 
 // Schema base para la organización
 const organizationSchema = {
@@ -13,16 +13,31 @@ const organizationSchema = {
   "name": "Nexito Technology",
   "url": "https://nexito.tech",
   "logo": "https://nexito.tech/Logo.svg",
-  "sameAs": [
-    // Añade aquí tus redes sociales cuando las tengas
-    // "https://linkedin.com/company/nexito",
-    // "https://twitter.com/nexito"
-  ],
-  "contactPoint": {
+  "image": "https://nexito.tech/icon-512x512.png",
+  "description": "Transformamos empresas a través de la automatización inteligente y soluciones de IA personalizadas.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calle Lira 8, N36",
+    "postalCode": "04648",
+    "addressLocality": "Almería",
+    "addressRegion": "Almería",
+    "addressCountry": {
+      "@type": "Country",
+      "name": "ES"
+    }
+  },
+  "contactPoint": [{
     "@type": "ContactPoint",
     "contactType": "customer service",
-    "email": "soporte@nexito.tech" // Ajusta según tu email
-  }
+    "telephone": "+34 950 79 45 43",
+    "email": "info@nexito.tech",
+    "areaServed": {
+      "@type": "Country",
+      "name": "ES"
+    },
+    "availableLanguage": ["Spanish", "English"]
+  }],
+  "sameAs": []
 };
 
 // Schema base para el sitio web
@@ -31,46 +46,176 @@ const websiteSchema = {
   "@type": "WebSite",
   "name": "Nexito Technology",
   "url": "https://nexito.technology",
-  "description": "Transformamos empresas mediante automatización de procesos e Inteligencia Artificial"
+  "description": "Transformamos empresas mediante automatización de procesos e Inteligencia Artificial",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://nexito.tech/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+};
+
+// Schema base para página web
+const webPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "",
+  "description": "",
+  "url": "",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Nexito Technology",
+    "url": "https://nexito.tech"
+  }
+};
+
+// Schema base para página Acerca de
+const aboutPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "Acerca de Nexito Technology",
+  "description": "",
+  "url": "https://nexito.tech/about",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Nexito Technology",
+    "url": "https://nexito.tech"
+  }
+};
+
+// Schema base para artículos
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "",
+  "description": "",
+  "image": "",
+  "datePublished": "",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "",
+    "url": ""
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nexito Technology",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://nexito.tech/Logo.svg"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": ""
+  },
+  "keywords": []
+};
+
+// Schema base para servicios
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "",
+  "name": "",
+  "description": "",
+  "provider": {
+    "@type": "Organization",
+    "name": "Nexito Technology",
+    "url": "https://nexito.tech"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "México"
+  },
+  "offers": {
+    "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "price": "",
+    "priceCurrency": "MXN"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "",
+    "itemListElement": []
+  }
+};
+
+// Schema base para página de contacto
+const contactPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contacto Nexito Technology",
+  "description": "Contacta con nuestro equipo",
+  "url": "https://nexito.tech/contact",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "Nexito Technology",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "email": "soporte@nexito.tech"
+    }
+  }
+};
+
+// Schema base para FAQs
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [], // Se llenará con los datos que pasemos
+  "url": "https://nexito.tech",
+  "name": "Preguntas Frecuentes - Nexito Technology",
+  "description": "Encuentra respuestas a las preguntas más frecuentes sobre nuestros servicios de automatización e IA"
+};
+
+// Schema base para testimonios
+const reviewSchema = {
+  "@context": "https://schema.org",
+  "@type": "Product", // Cambiado a Product
+  "name": "Nexito Technology Services",
+  "description": "Servicios de automatización e inteligencia artificial para empresas",
+  "brand": {
+    "@type": "Brand",
+    "name": "Nexito Technology"
+  },
+  "review": [], // Aquí irán las reseñas individuales
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "bestRating": "5",
+    "worstRating": "1",
+    "ratingCount": 0, // Se actualiza con el número real de reseñas
+    "reviewCount": 0  // Se actualiza con el número real de reseñas
+  }
 };
 
 // Función para obtener el schema según el tipo
-const getSchema = () => {
+const getSchema = (type: Props['type'], data: Props['data']) => {
   switch(type) {
     case 'Organization':
       return { ...organizationSchema, ...data };
     case 'WebSite':
       return { ...websiteSchema, ...data };
     case 'WebPage':
-      return {
-        "@context": "https://schema.org",
-        "@type": "WebPage",
-        ...data
-      };
+      return { ...webPageSchema, ...data };
     case 'AboutPage':
-      return {
-        "@context": "https://schema.org",
-        "@type": "AboutPage",
-        ...data
-      };
+      return { ...aboutPageSchema, ...data };
     case 'Article':
-      return {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        ...data
-      };
+      return { ...articleSchema, ...data };
     case 'Service':
-      return {
-        "@context": "https://schema.org",
-        "@type": "Service",
-        ...data
-      };
+      return { ...serviceSchema, ...data };
+    case 'ContactPage':
+      return { ...contactPageSchema, ...data };
+    case 'FAQPage':
+      return { ...faqSchema, ...data };
+      case 'Product': // Cambiado de Review a Product
+      return { ...reviewSchema, ...data };
     default:
       return {};
   }
 };
 
-const schema = getSchema();
+const schema = getSchema(props.type, props.data);
 ---
 
 <script type="application/ld+json" set:html={JSON.stringify(schema)} />
