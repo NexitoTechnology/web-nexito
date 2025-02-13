@@ -1,0 +1,76 @@
+---
+// src/components/JsonLD.astro
+interface Props {
+  type: 'Organization' | 'WebSite' | 'WebPage' | 'Article' | 'Service' | 'AboutPage' | 'ContactPage';
+  data: Record<string, any>;
+}
+const { type, data } = Astro.props;
+
+// Schema base para la organización
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Nexito Technology",
+  "url": "https://nexito.tech",
+  "logo": "https://nexito.tech/Logo.svg",
+  "sameAs": [
+    // Añade aquí tus redes sociales cuando las tengas
+    // "https://linkedin.com/company/nexito",
+    // "https://twitter.com/nexito"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "email": "soporte@nexito.tech" // Ajusta según tu email
+  }
+};
+
+// Schema base para el sitio web
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Nexito Technology",
+  "url": "https://nexito.technology",
+  "description": "Transformamos empresas mediante automatización de procesos e Inteligencia Artificial"
+};
+
+// Función para obtener el schema según el tipo
+const getSchema = () => {
+  switch(type) {
+    case 'Organization':
+      return { ...organizationSchema, ...data };
+    case 'WebSite':
+      return { ...websiteSchema, ...data };
+    case 'WebPage':
+      return {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        ...data
+      };
+    case 'AboutPage':
+      return {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        ...data
+      };
+    case 'Article':
+      return {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        ...data
+      };
+    case 'Service':
+      return {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        ...data
+      };
+    default:
+      return {};
+  }
+};
+
+const schema = getSchema();
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

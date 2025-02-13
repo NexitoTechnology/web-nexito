@@ -1,0 +1,72 @@
+---
+// src/components/CookieConsent.astro
+---
+
+<div id="cookie-consent" class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg transform translate-y-full transition-transform duration-300 z-50">
+    <div class="container mx-auto px-4 py-6 md:px-6">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div class="flex-1">
+          <p class="text-gray-600 text-sm md:text-base">
+            Utilizamos cookies propias y de terceros para mejorar nuestros servicios y mostrarle publicidad relacionada con sus preferencias mediante el análisis de sus hábitos de navegación. 
+            <a href="/politica-de-cookies" class="text-blue-600 hover:text-blue-700 underline">
+              Ver política de cookies
+            </a>
+          </p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <button
+            id="reject-cookies"
+            class="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            Rechazar opcionales
+          </button>
+          <button
+            id="accept-cookies"
+            class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          >
+            Aceptar todas
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    const cookieConsent = document.getElementById('cookie-consent');
+    const acceptButton = document.getElementById('accept-cookies');
+    const rejectButton = document.getElementById('reject-cookies');
+  
+    // Comprobar si ya existe el consentimiento
+    const hasConsent = localStorage.getItem('cookie-consent');
+  
+    if (!hasConsent) {
+      // Mostrar el banner si no hay consentimiento previo
+      setTimeout(() => {
+        cookieConsent?.classList.remove('translate-y-full');
+      }, 500);
+    }
+  
+    // Función para gestionar el consentimiento
+    const handleConsent = (accepted: boolean) => {
+      // Guardar la preferencia
+      localStorage.setItem('cookie-consent', accepted ? 'accepted' : 'rejected');
+      
+      // Si se aceptan las cookies, inicializar servicios de analytics, etc.
+      if (accepted) {
+        // Aquí inicializarías tus servicios de analytics
+        console.log('Cookies aceptadas - inicializando servicios');
+      }
+  
+      // Ocultar el banner
+      cookieConsent?.classList.add('translate-y-full');
+  
+      // Opcional: Eliminar el elemento después de la animación
+      setTimeout(() => {
+        cookieConsent?.remove();
+      }, 300);
+    };
+  
+    // Event listeners
+    acceptButton?.addEventListener('click', () => handleConsent(true));
+    rejectButton?.addEventListener('click', () => handleConsent(false));
+  </script>

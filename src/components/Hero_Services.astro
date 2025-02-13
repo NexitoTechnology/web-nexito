@@ -1,0 +1,206 @@
+---
+interface CompanyLogo {
+  src: string;
+  alt: string;
+}
+
+interface CTAButton {
+  text: string;
+  href: string;
+  isMain?: boolean;
+  duration?: string;
+}
+
+interface Props {
+  title: string;
+  subtitle: string;
+  description: string;
+  tag: string;
+  ctaButtons?: CTAButton[];
+  showTrustBar?: boolean;
+  companyLogos?: CompanyLogo[];
+}
+
+const { 
+  title, 
+  subtitle, 
+  description, 
+  tag,
+  ctaButtons = [
+    {
+      text: "Agenda tu Consultoría Gratuita",
+      href: "https://cal.com/nexito/30min",
+      isMain: true,
+      duration: "30min"
+    },
+    {
+      text: "Ver Beneficios",
+      href: "#benefits",
+      isMain: false
+    }
+  ],
+  showTrustBar = true,
+  companyLogos = [
+    { src: "/images/client-logo-1.svg", alt: "TechFlow" },
+    { src: "/images/client-logo-2.svg", alt: "DataSphere" },
+    { src: "/images/client-logo-3.svg", alt: "InnovateIQ" }
+  ]
+} = Astro.props;
+---
+
+<section class="relative py-16 md:py-24 overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 relative">
+    <div class="text-center">
+      <!-- Tag -->
+      <div class="mb-4">
+        <span class="inline-flex items-center px-4 py-1.5 rounded-full border border-blue-300/30 bg-blue-400/10 text-blue-200 text-sm font-medium">
+          {tag}
+        </span>
+      </div>
+
+      <!-- Títulos optimizados -->
+<div class="max-w-4xl mx-auto text-center">
+  <h1 
+    class="
+      text-4xl md:text-5xl lg:text-6xl 
+      font-extrabold 
+      text-white 
+      mb-4 
+      tracking-tight 
+      bg-clip-text 
+      text-transparent 
+      bg-gradient-to-r 
+      from-white 
+      to-blue-200
+    "
+  >
+    {title}
+  </h1>
+  
+  <h2 
+    class="
+      text-3xl md:text-4xl lg:text-5xl 
+      font-bold 
+      text-blue-100 
+      mb-6 
+      opacity-90
+    "
+  >
+    {subtitle}
+  </h2>
+  
+  <p 
+    class="
+      mt-10 mb-12
+      text-xl md:text-2xl 
+      text-blue-50 
+      max-w-3xl 
+      mx-auto 
+      leading-relaxed
+    "
+  >
+    {description}
+  </p>
+</div>
+
+<!-- CTAs -->
+<div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-2">  
+        {ctaButtons.map((button) => (
+          button.isMain ? (
+            <a
+              href={button.href} target="_blank" rel="nofollow"
+              class="group relative inline-flex items-center justify-center px-8 py-4 text-lg md:text-xl font-bold text-blue-800 bg-white rounded-xl shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-200"
+            >
+              <span class="relative flex items-center">
+                <span>{button.text}</span>
+                {button.duration && (
+                  <span class="ml-2 bg-blue-100 rounded-lg px-2 py-1 text-sm font-normal">
+                    {button.duration}
+                  </span>
+                )}
+                <svg
+                  class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </span>
+            </a>
+          ) : (
+            <a
+              href={button.href}
+              class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-blue-100 border-2 border-blue-400/30 rounded-xl hover:bg-blue-800/30 backdrop-blur-sm transition-colors"
+            >
+              {button.text}
+            </a>
+          )
+        ))}
+      </div>
+
+      <!-- Slot para contenido personalizado -->
+      <slot />
+
+      {showTrustBar && (
+        <!-- Elementos de confianza -->
+        <div class="pt-8 border-t border-blue-600/30">
+          <p class="text-blue-200 text-sm mb-4">
+            Empresas que confían en nosotros
+          </p>
+          <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 opacity-70">
+            {companyLogos.map((logo) => (
+              <img src={logo.src} alt={logo.alt} width="200" height="100"class="h-8" loading="lazy" />
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  </div>
+ <!-- Elementos de fondo movidos al final -->
+ <div class="absolute inset-0 -z-20 bg-grid-white/[0.05] bg-[size:20px_20px]"></div>
+ <div class="absolute inset-0 -z-10 bg-gradient-to-t from-blue-900/50 to-transparent"></div>
+ <!-- Blobs decorativos -->
+ <div class="absolute -top-40 -right-40 -z-10 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+ <div class="absolute -bottom-40 -left-40 -z-10 w-80 h-80 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+</section>
+
+
+
+<script>
+  // Aplicar el gradiente después del renderizado inicial
+  window.addEventListener('load', () => {
+    const elements = document.querySelectorAll('.enhance-later');
+    elements.forEach(el => {
+      el.classList.add('gradient-animation');
+    });
+  });
+</script>
+
+<style>
+  /* Estilos optimizados para el texto principal */
+  .heading-primary {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  /* Solo mantenemos las animaciones de blob si son necesarias */
+  @media (prefers-reduced-motion: no-preference) {
+    .blob {
+      animation: blob 7s infinite;
+    }
+    
+    @keyframes blob {
+      0% { transform: translate(0px, 0px) scale(1); }
+      33% { transform: translate(30px, -50px) scale(1.1); }
+      66% { transform: translate(-20px, 20px) scale(0.9); }
+      100% { transform: translate(0px, 0px) scale(1); }
+    }
+  }
+</style>

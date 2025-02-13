@@ -1,0 +1,117 @@
+---
+// src/pages/contact.astro
+import Layout from '../layouts/Layout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import JsonLD from '../components/JsonLD.astro';
+
+const pageData = {
+  title: "Contáctanos | Nexito Technology",
+  description: "¿Necesitas ayuda con la automatización o IA para tu empresa? Contáctanos y te ayudaremos a transformar tu negocio con soluciones tecnológicas innovadoras.",
+  canonical: "https://nexito.tech/contacto",
+  openGraph: {
+    image: "https://nexito.tech/favicon.svg",
+    title: "Contacta con Nexito Technology",
+    description: "Transforma tu empresa con automatización e IA"
+  }
+};
+---
+
+<Layout 
+  title={pageData.title} 
+  description={pageData.description}
+>
+  <link rel="canonical" href={pageData.canonical} slot="head" />
+  
+  <JsonLD type="ContactPage" data={{
+    name: pageData.title,
+    description: pageData.description,
+    url: pageData.canonical,
+    mainEntity: {
+      "@type": "Organization",
+      "name": "Nexito Technology",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "email": "info@nexito.technology",
+        "availableLanguage": ["Spanish", "English"]
+      }
+    }
+  }} />
+
+  <main class="bg-gradient-to-br from-white via-gray-50 to-blue-50">
+    <section class="container mx-auto px-4 pt-12 pb-8 md:pt-20 md:pb-16 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        Hablemos sobre tu proyecto 🚀
+      </h1>
+      <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+        Estamos aquí para ayudarte a transformar tu empresa con soluciones de automatización e inteligencia artificial. Escríbenos y te asesoraremos sin compromiso.
+      </p>
+    </section>
+
+    
+
+    <section class="container mx-auto px-4 mb-12 md:mb-20">
+      <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-8 mb-12">
+        <div class="text-center p-6 rounded-xl bg-white shadow-md">
+          <h2 class="text-xl font-semibold text-gray-900 mb-2">📧 Email</h2>
+          <p class="text-gray-600">info@nexito.tech</p>
+        </div>
+        <div class="text-center p-6 rounded-xl bg-white shadow-md">
+          <h2 class="text-xl font-semibold text-gray-900 mb-2">📍 Ubicación</h2>
+          <p class="text-gray-600">España</p>
+        </div>
+        <div class="text-center p-6 rounded-xl bg-white shadow-md">
+          <h2 class="text-xl font-semibold text-gray-900 mb-2">⏰ Horario</h2>
+          <p class="text-gray-600">Lun - Vie: 9:00 - 18:00</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action: Agendar reunión -->
+    <section class="container mx-auto px-4 py-12 text-center bg-blue-600 text-white rounded-xl shadow-md">
+      <h2 class="text-3xl font-bold mb-4">🚀 ¡Transforma tu negocio ahora!</h2>
+      <p class="text-lg mb-6">Agendar una reunión con nuestro equipo y descubre cómo nuestras soluciones pueden ayudarte a automatizar procesos y escalar tu empresa.</p>
+      <a href="https://calendly.com/nexito-tech/consulta" target="_blank" class="px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg shadow-md hover:bg-gray-100 transition">
+        📅 Agendar una reunión gratis
+      </a>
+    </section>
+
+    <!-- Formulario de contacto -->
+    <ContactForm />
+
+    <!-- Sección de preguntas frecuentes -->
+    <section class="container mx-auto px-4 py-12 bg-white rounded-xl shadow-md max-w-4xl">
+      <h2 class="text-3xl font-bold text-gray-900 text-center mb-6">Preguntas Frecuentes</h2>
+      <div class="space-y-6">
+        <details class="p-4 bg-gray-100 rounded-lg">
+          <summary class="font-semibold cursor-pointer">¿Qué servicios ofrece Nexito Technology?</summary>
+          <p class="mt-2 text-gray-600">Ofrecemos automatización de procesos, integración de IA en negocios y soluciones SaaS personalizadas.</p>
+        </details>
+        <details class="p-4 bg-gray-100 rounded-lg">
+          <summary class="font-semibold cursor-pointer">¿Cómo funciona la integración de IA en mi empresa?</summary>
+          <p class="mt-2 text-gray-600">Analizamos tus procesos actuales y desarrollamos una solución de IA personalizada que optimiza la productividad y reduce costos.</p>
+        </details>
+        <details class="p-4 bg-gray-100 rounded-lg">
+          <summary class="font-semibold cursor-pointer">¿Puedo solicitar una demostración gratuita?</summary>
+          <p class="mt-2 text-gray-600">Sí, ofrecemos demostraciones gratuitas donde mostramos cómo nuestras soluciones pueden impactar en tu empresa.</p>
+        </details>
+      </div>
+    </section>
+
+    
+
+    
+  </main>
+</Layout>
+
+<style>
+  main {
+    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  }
+  details {
+    transition: all 0.3s ease-in-out;
+  }
+  details[open] {
+    background-color: #f3f4f6;
+  }
+</style>

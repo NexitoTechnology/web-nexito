@@ -1,11 +1,23 @@
 ---
-import Welcome from "../components/Welcome.astro";
-import Layout from "../layouts/Layout.astro";
-import "../styles/global.css";
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from '../layouts/Layout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import ServicesSection from '../components/ServicesSection.astro';
+import Testimonials from '../components/Testimonials.astro';
+import CTASection from '../components/CTASection.astro';
+import BenefitsSection from '../components/BenefitsSection.astro';
+import ProcessSection from '../components/ProcessSection.astro';
+import PopupNewsletter from '../components/PopupNewsletter.astro';
+
+const pageTitle = "Nexito Tech: Automatización y Soluciones IA";
+const pageDescription = "Transformamos empresas mediante automatización de procesos e Inteligencia Artificial. Soluciones personalizadas para impulsar la eficiencia de tu negocio.";
 ---
 
-<Layout>
-  <h1 class="text-3xl font-bold underline">Hello world!</h1>
+<Layout title={pageTitle} description={pageDescription}>
+  <HeroSection />
+  <BenefitsSection />
+  <ServicesSection />
+  <ProcessSection />
+  <Testimonials />
+  <CTASection />
+  <PopupNewsletter />
 </Layout>
