@@ -4,7 +4,7 @@ import Footer from "../components/Footer.astro";
 import JsonLD from "../components/JsonLD.astro";
 import CookieConsent from "../components/CookieConsent.astro";
 import { ClientRouter } from "astro:transitions";
-import '../styles/globals.css';
+import '/globals.css';
 
 declare global {
   interface Window {
@@ -18,6 +18,12 @@ type GTM = {
   push: (...args: any[]) => void;
   start: number;
 };
+
+// Primero, la función helper (al inicio del archivo)
+function normalizeUrl(url: string): string {
+  return url.endsWith('/') ? url : `${url}/`;
+}
+
 
 interface Props {
   title?: string;
@@ -35,7 +41,7 @@ const {
   schemaData = {},
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = new URL(normalizeUrl(Astro.url.pathname), Astro.site);
 const siteURL = "https://nexito.tech";
 
 // Base Schema para todas las páginas
@@ -64,6 +70,7 @@ const getSchemaType = () => {
 <!doctype html>
 <html lang="es" class="scroll-smooth">
   <head>
+    <!--<link rel="stylesheet" href="/src/styles/globals.css" />-->
     <!-- Google Tag Manager -->
     <script is:inline define:vars={{ gtmId: "GTM-WQS3F67G" }}>
       (function (w, d, s, l, i) {
@@ -82,17 +89,20 @@ const getSchemaType = () => {
         }
       })(window, document, "script", "dataLayer", gtmId);
     </script>
-
+    <!-- End Google Tag Manager -->
     <!-- Google Analytics
-    <script type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-ZWTXV0T5GN"></script>
+    <script
+      type="text/partytown"
+      src="https://www.googletagmanager.com/gtag/js?id=G-ZWTXV0T5GN"></script>
     <script type="text/partytown">
       window.dataLayer = window.dataLayer || [];
       function gtag() {
         dataLayer.push(arguments);
       }
-      gtag('js', new Date());
-      gtag('config', 'G-ZWTXV0T5GN');
+      gtag("js", new Date());
+      gtag("config", "G-ZWTXV0T5GN");
     </script> -->
+
     <!-- Metadatos básicos -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -161,7 +171,7 @@ const getSchemaType = () => {
     <!-- End Google Tag Manager (noscript) -->
     <Menu />
     <!-- Main content -->
-    <div class="overflow-x-hidden">
+    <div class="overflow-x-hidden">    
       <main
         id="main-content"
         class="flex-grow w-full px-4 md:w-4/5 lg:w-3/4 xl:w-2/3 mx-auto"

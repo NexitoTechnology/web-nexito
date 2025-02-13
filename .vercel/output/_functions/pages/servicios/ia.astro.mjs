@@ -1,9 +1,9 @@
 import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../../chunks/astro/server_D2lW42M0.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../../chunks/Layout_BgiOjcVG.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_pGFWBYzd.mjs';
 import { $ as $$HeroServices, a as $$DividerServices, b as $$FeaturesServices, c as $$UseCasesServices, d as $$BenefitsServices, e as $$ProcessServices, f as $$FAQServices, g as $$FaqCtaServices } from '../../chunks/Divider_Services_DrdDBDmQ.mjs';
-import { $ as $$CTASectionServices, a as $$ContactServices } from '../../chunks/Contact_Services_DztMoDam.mjs';
-import { $ as $$JsonLD } from '../../chunks/ClientRouter_D9o6ToZJ.mjs';
+import { $ as $$CTASectionServices, a as $$ContactServices } from '../../chunks/Contact_Services_C5lPsn0y.mjs';
+import { $ as $$JsonLD } from '../../chunks/ClientRouter_nhIQMViw.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const $$Ia = createComponent(($$result, $$props, $$slots) => {

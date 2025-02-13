@@ -4,7 +4,7 @@ import Footer from "../components/Footer.astro";
 import JsonLD from "../components/JsonLD.astro";
 import CookieConsent from "../components/CookieConsent.astro";
 import { ClientRouter } from "astro:transitions";
-import '../styles/globals.css';
+import '/globals.css';
 
 declare global {
   interface Window {
@@ -64,7 +64,7 @@ const getSchemaType = () => {
 <!doctype html>
 <html lang="es" class="scroll-smooth">
   <head>
-    <link rel="stylesheet" href="/src/styles/globals.css" />
+    <!--<link rel="stylesheet" href="/src/styles/globals.css" />-->
     <!-- Google Tag Manager -->
     <script is:inline define:vars={{ gtmId: "GTM-WQS3F67G" }}>
       (function (w, d, s, l, i) {

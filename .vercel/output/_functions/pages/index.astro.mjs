@@ -1,9 +1,9 @@
 import { c as createComponent, r as renderTemplate, m as maybeRenderHead, a as renderComponent, g as addAttribute, b as renderScript } from '../chunks/astro/server_D2lW42M0.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_BgiOjcVG.mjs';
-import { $ as $$JsonLD } from '../chunks/ClientRouter_D9o6ToZJ.mjs';
+import { $ as $$Layout } from '../chunks/Layout_pGFWBYzd.mjs';
+import { $ as $$JsonLD } from '../chunks/ClientRouter_nhIQMViw.mjs';
 /* empty css                                 */
-import { $ as $$ServicesSection, a as $$ProcessSection, b as $$Testimonials, c as $$CTASection } from '../chunks/ProcessSection_BEBxXfJy.mjs';
+import { $ as $$ServicesSection, a as $$ProcessSection, b as $$Testimonials, c as $$CTASection } from '../chunks/ProcessSection_Bb5G9nvX.mjs';
 import 'clsx';
 export { renderers } from '../renderers.mjs';
 
