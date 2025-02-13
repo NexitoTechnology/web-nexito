@@ -1,14 +1,14 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
-import vercelServerless from '@astrojs/vercel/serverless';
+import vercel from '@astrojs/vercel';
 
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://nexito.tech', 
   output: 'server',
-  adapter: vercelServerless({
+  adapter: vercel({
     webAnalytics: {
       enabled: true,
       },
