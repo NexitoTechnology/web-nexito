@@ -1,8 +1,8 @@
 import { d as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, b as renderScript, m as maybeRenderHead, g as addAttribute } from '../chunks/astro/server_D2lW42M0.mjs';
 import 'kleur/colors';
-import { g as getCollection } from '../chunks/_astro_content_DWJ0qoAj.mjs';
-import { $ as $$Layout } from '../chunks/Layout_BNqpp_f4.mjs';
-import { $ as $$JsonLD } from '../chunks/ClientRouter_Cy0holhV.mjs';
+import { g as getCollection } from '../chunks/_astro_content_D_Jp-U49.mjs';
+import { $ as $$Layout } from '../chunks/Layout_BgiOjcVG.mjs';
+import { $ as $$JsonLD } from '../chunks/ClientRouter_D9o6ToZJ.mjs';
 /* empty css                                */
 export { renderers } from '../renderers.mjs';
 
@@ -52,10 +52,10 @@ Descubre las últimas tendencias en automatización, inteligencia artificial y t
     year: "numeric",
     month: "long",
     day: "numeric"
-  })} </time> ${post.data.readingTime && renderTemplate`<span data-astro-cid-ijnerlr2>${post.data.readingTime} min de lectura</span>`} </div> </div> </a> </article>`)} </div> <!-- Loading indicator --> <div id="loading-spinner" class="hidden py-12 text-center" data-astro-cid-ijnerlr2> <div class="inline-block w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" data-astro-cid-ijnerlr2></div> </div> </main> ` })} ${renderScript($$result, "C:/Users/Adr\xEDan/Desktop/Nube Nexito/Proyectos Programacio\u0301n/web-nexito-vercel/src/pages/blog.astro?astro&type=script&index=0&lang.ts")} `;
-}, "C:/Users/Adr\xEDan/Desktop/Nube Nexito/Proyectos Programacio\u0301n/web-nexito-vercel/src/pages/blog.astro", void 0);
+  })} </time> ${post.data.readingTime && renderTemplate`<span data-astro-cid-ijnerlr2>${post.data.readingTime} min de lectura</span>`} </div> </div> </a> </article>`)} </div> <!-- Loading indicator --> <div id="loading-spinner" class="hidden py-12 text-center" data-astro-cid-ijnerlr2> <div class="inline-block w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin" data-astro-cid-ijnerlr2></div> </div> </main> ` })} ${renderScript($$result, "C:/ProyectosProgramacion/web-nexito-vercel/src/pages/blog.astro?astro&type=script&index=0&lang.ts")} `;
+}, "C:/ProyectosProgramacion/web-nexito-vercel/src/pages/blog.astro", void 0);
 
-const $$file = "C:/Users/Adrían/Desktop/Nube Nexito/Proyectos Programación/web-nexito-vercel/src/pages/blog.astro";
+const $$file = "C:/ProyectosProgramacion/web-nexito-vercel/src/pages/blog.astro";
 const $$url = "/blog";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

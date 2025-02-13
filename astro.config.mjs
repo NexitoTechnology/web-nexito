@@ -12,7 +12,6 @@ export default defineConfig({
       enabled: true,
     },
     maxDuration: 8,
-    includeFiles: ["./dist/**/*"], // Asegura que los archivos de dist se incluyan
   }),
   vite: {
     plugins: [tailwindcss()],

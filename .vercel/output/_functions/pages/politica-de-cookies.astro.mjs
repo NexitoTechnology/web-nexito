@@ -1,6 +1,6 @@
 import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_D2lW42M0.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_BNqpp_f4.mjs';
+import { $ as $$Layout } from '../chunks/Layout_BgiOjcVG.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$PoliticaDeCookies = createComponent(($$result, $$props, $$slots) => {
@@ -82,9 +82,9 @@ Web: <a href="https://nexito.tech" class="text-blue-500">https://nexito.tech</a>
 Correo electrónico: <a href="mailto:info@nexito.tech" class="text-blue-500">info@nexito.tech</a><br>
 Número de teléfono: 34 950 79 45 43
 </p> </div> </section> ` })}`;
-}, "C:/Users/Adr\xEDan/Desktop/Nube Nexito/Proyectos Programacio\u0301n/web-nexito-vercel/src/pages/politica-de-cookies.astro", void 0);
+}, "C:/ProyectosProgramacion/web-nexito-vercel/src/pages/politica-de-cookies.astro", void 0);
 
-const $$file = "C:/Users/Adrían/Desktop/Nube Nexito/Proyectos Programación/web-nexito-vercel/src/pages/politica-de-cookies.astro";
+const $$file = "C:/ProyectosProgramacion/web-nexito-vercel/src/pages/politica-de-cookies.astro";
 const $$url = "/politica-de-cookies";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

@@ -1,7 +1,7 @@
 import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, g as addAttribute } from '../chunks/astro/server_D2lW42M0.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_BNqpp_f4.mjs';
-import { $ as $$JsonLD } from '../chunks/ClientRouter_Cy0holhV.mjs';
+import { $ as $$Layout } from '../chunks/Layout_BgiOjcVG.mjs';
+import { $ as $$JsonLD } from '../chunks/ClientRouter_D9o6ToZJ.mjs';
 /* empty css                                    */
 export { renderers } from '../renderers.mjs';
 
@@ -148,9 +148,9 @@ Sin compromiso
 </span> <span class="flex items-center" data-astro-cid-noeej2nj> <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-astro-cid-noeej2nj> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" data-astro-cid-noeej2nj></path> </svg>
 Consultoría Inicial Gratuita
 </span> </div> </div> </div> </section>  ` })}`;
-}, "C:/Users/Adr\xEDan/Desktop/Nube Nexito/Proyectos Programacio\u0301n/web-nexito-vercel/src/pages/nosotros.astro", void 0);
+}, "C:/ProyectosProgramacion/web-nexito-vercel/src/pages/nosotros.astro", void 0);
 
-const $$file = "C:/Users/Adrían/Desktop/Nube Nexito/Proyectos Programación/web-nexito-vercel/src/pages/nosotros.astro";
+const $$file = "C:/ProyectosProgramacion/web-nexito-vercel/src/pages/nosotros.astro";
 const $$url = "/nosotros";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

@@ -73,7 +73,7 @@ const $$JsonLD = createComponent(($$result, $$props, $$slots) => {
   };
   const schema = getSchema();
   return renderTemplate(_a || (_a = __template(['<script type="application/ld+json">', "<\/script>"])), unescapeHTML(JSON.stringify(schema)));
-}, "C:/Users/Adr\xEDan/Desktop/Nube Nexito/Proyectos Programacio\u0301n/web-nexito-vercel/src/components/JsonLD.astro", void 0);
+}, "C:/ProyectosProgramacion/web-nexito-vercel/src/components/JsonLD.astro", void 0);
 
 const $$Menu = createComponent(($$result, $$props, $$slots) => {
   const menuData = {
@@ -110,8 +110,8 @@ Servicios
 Blog
 </a> <a href="/contacto" class="block text-center bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-3 rounded-lg font-medium hover:shadow-lg transition-shadow" role="menuitem">
 Contacto
-</a> </div> </div> </header> ${renderScript($$result, "C:/Users/Adr\xEDan/Desktop/Nube Nexito/Proyectos Programacio\u0301n/web-nexito-vercel/src/components/Menu.astro?astro&type=script&index=0&lang.ts")}`;
-}, "C:/Users/Adr\xEDan/Desktop/Nube Nexito/Proyectos Programacio\u0301n/web-nexito-vercel/src/components/Menu.astro", void 0);
+</a> </div> </div> </header> ${renderScript($$result, "C:/ProyectosProgramacion/web-nexito-vercel/src/components/Menu.astro?astro&type=script&index=0&lang.ts")}`;
+}, "C:/ProyectosProgramacion/web-nexito-vercel/src/components/Menu.astro", void 0);
 
 const $$Footer = createComponent(($$result, $$props, $$slots) => {
   const currentYear = (/* @__PURE__ */ new Date()).getFullYear();
@@ -172,7 +172,7 @@ Blog
 </a> </li> </ul> </nav>  <div class="space-y-4" role="contentinfo" aria-label="Información de contacto" data-astro-cid-sz7xmlte> <h3 class="text-lg font-semibold text-white" data-astro-cid-sz7xmlte>Contacto</h3> <ul class="space-y-3" data-astro-cid-sz7xmlte> <li data-astro-cid-sz7xmlte> <a${addAttribute(`mailto:${companyData.email}`, "href")} class="text-gray-300 hover:text-blue-400 transition-all duration-300 flex items-center" data-astro-cid-sz7xmlte> <svg class="h-5 w-5 text-gray-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-astro-cid-sz7xmlte> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" data-astro-cid-sz7xmlte></path> </svg> ${companyData.email} </a> </li> <li data-astro-cid-sz7xmlte> <div class="text-gray-300 flex items-center" data-astro-cid-sz7xmlte> <svg class="h-5 w-5 text-gray-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" data-astro-cid-sz7xmlte> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042  0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" data-astro-cid-sz7xmlte></path> </svg> ${companyData.phone} </div> </li> </ul> </div> </div>  <div class="mt-12 pt-6 border-t border-gray-800" data-astro-cid-sz7xmlte> <p class="text-center text-gray-400" data-astro-cid-sz7xmlte>
 © ${currentYear} ${companyData.name}. Todos los derechos reservados.
 </p> </div> </div> </footer> `;
-}, "C:/Users/Adr\xEDan/Desktop/Nube Nexito/Proyectos Programacio\u0301n/web-nexito-vercel/src/components/Footer.astro", void 0);
+}, "C:/ProyectosProgramacion/web-nexito-vercel/src/components/Footer.astro", void 0);
 
 const $$CookieConsent = createComponent(($$result, $$props, $$slots) => {
   return renderTemplate`${maybeRenderHead()}<div id="cookie-consent" class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg transform translate-y-full transition-transform duration-300 z-50"> <div class="container mx-auto px-4 py-6 md:px-6"> <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4"> <div class="flex-1"> <p class="text-gray-600 text-sm md:text-base">
@@ -183,15 +183,15 @@ Ver política de cookies
 Rechazar opcionales
 </button> <button id="accept-cookies" class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
 Aceptar todas
-</button> </div> </div> </div> </div> ${renderScript($$result, "C:/Users/Adr\xEDan/Desktop/Nube Nexito/Proyectos Programacio\u0301n/web-nexito-vercel/src/components/CookieConsent.astro?astro&type=script&index=0&lang.ts")}`;
-}, "C:/Users/Adr\xEDan/Desktop/Nube Nexito/Proyectos Programacio\u0301n/web-nexito-vercel/src/components/CookieConsent.astro", void 0);
+</button> </div> </div> </div> </div> ${renderScript($$result, "C:/ProyectosProgramacion/web-nexito-vercel/src/components/CookieConsent.astro?astro&type=script&index=0&lang.ts")}`;
+}, "C:/ProyectosProgramacion/web-nexito-vercel/src/components/CookieConsent.astro", void 0);
 
 const $$Astro = createAstro("https://nexito.tech");
 const $$ClientRouter = createComponent(($$result, $$props, $$slots) => {
   const Astro2 = $$result.createAstro($$Astro, $$props, $$slots);
   Astro2.self = $$ClientRouter;
   const { fallback = "animate" } = Astro2.props;
-  return renderTemplate`<meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback"${addAttribute(fallback, "content")}>${renderScript($$result, "C:/Users/Adr\xEDan/Desktop/Nube Nexito/Proyectos Programacio\u0301n/web-nexito-vercel/node_modules/astro/components/ClientRouter.astro?astro&type=script&index=0&lang.ts")}`;
-}, "C:/Users/Adr\xEDan/Desktop/Nube Nexito/Proyectos Programacio\u0301n/web-nexito-vercel/node_modules/astro/components/ClientRouter.astro", void 0);
+  return renderTemplate`<meta name="astro-view-transitions-enabled" content="true"><meta name="astro-view-transitions-fallback"${addAttribute(fallback, "content")}>${renderScript($$result, "C:/ProyectosProgramacion/web-nexito-vercel/node_modules/astro/components/ClientRouter.astro?astro&type=script&index=0&lang.ts")}`;
+}, "C:/ProyectosProgramacion/web-nexito-vercel/node_modules/astro/components/ClientRouter.astro", void 0);
 
 export { $$JsonLD as $, $$CookieConsent as a, $$Footer as b, $$Menu as c, $$ClientRouter as d };

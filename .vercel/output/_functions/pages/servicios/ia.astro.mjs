@@ -1,9 +1,9 @@
 import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../../chunks/astro/server_D2lW42M0.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../../chunks/Layout_BNqpp_f4.mjs';
-import { $ as $$HeroServices, a as $$DividerServices, b as $$FeaturesServices, c as $$UseCasesServices, d as $$BenefitsServices, e as $$ProcessServices, f as $$FAQServices, g as $$FaqCtaServices } from '../../chunks/Divider_Services_C-zf8p1Z.mjs';
-import { $ as $$CTASectionServices, a as $$ContactServices } from '../../chunks/Contact_Services_9T3kmKIX.mjs';
-import { $ as $$JsonLD } from '../../chunks/ClientRouter_Cy0holhV.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_BgiOjcVG.mjs';
+import { $ as $$HeroServices, a as $$DividerServices, b as $$FeaturesServices, c as $$UseCasesServices, d as $$BenefitsServices, e as $$ProcessServices, f as $$FAQServices, g as $$FaqCtaServices } from '../../chunks/Divider_Services_DrdDBDmQ.mjs';
+import { $ as $$CTASectionServices, a as $$ContactServices } from '../../chunks/Contact_Services_DztMoDam.mjs';
+import { $ as $$JsonLD } from '../../chunks/ClientRouter_D9o6ToZJ.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const $$Ia = createComponent(($$result, $$props, $$slots) => {
@@ -176,9 +176,9 @@ const $$Ia = createComponent(($$result, $$props, $$slots) => {
     }
   };
   return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": iaData.title, "description": iaData.description }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "JsonLD", $$JsonLD, { "type": "Service", "data": serviceSchema })} ${renderComponent($$result2, "Hero", $$HeroServices, { ...iaData.hero })} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${renderComponent($$result2, "Features", $$FeaturesServices, { ...iaData.features })} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${renderComponent($$result2, "UseCases", $$UseCasesServices, { ...iaData.useCases })} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${renderComponent($$result2, "Benefits", $$BenefitsServices, { ...iaData.benefits })} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${maybeRenderHead()}<section class="py-12 md:py-16"> <div class="max-w-7xl mx-auto px-4 sm:px-6"> ${renderComponent($$result2, "CTASection", $$CTASectionServices, { ...iaData.cta })} </div> </section> ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${renderComponent($$result2, "Process", $$ProcessServices, { ...iaData.process })} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${renderComponent($$result2, "FAQ", $$FAQServices, { ...iaData.faq })} ${renderComponent($$result2, "FaqCtaServices", $$FaqCtaServices, {})} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${renderComponent($$result2, "ContactServices", $$ContactServices, {})} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ` })}`;
-}, "C:/Users/Adr\xEDan/Desktop/Nube Nexito/Proyectos Programacio\u0301n/web-nexito-vercel/src/pages/servicios/ia.astro", void 0);
+}, "C:/ProyectosProgramacion/web-nexito-vercel/src/pages/servicios/ia.astro", void 0);
 
-const $$file = "C:/Users/Adrían/Desktop/Nube Nexito/Proyectos Programación/web-nexito-vercel/src/pages/servicios/ia.astro";
+const $$file = "C:/ProyectosProgramacion/web-nexito-vercel/src/pages/servicios/ia.astro";
 const $$url = "/servicios/ia";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

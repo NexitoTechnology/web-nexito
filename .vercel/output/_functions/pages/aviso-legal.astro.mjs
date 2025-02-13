@@ -1,6 +1,6 @@
 import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_D2lW42M0.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_BNqpp_f4.mjs';
+import { $ as $$Layout } from '../chunks/Layout_BgiOjcVG.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$AvisoLegal = createComponent(($$result, $$props, $$slots) => {
@@ -110,9 +110,9 @@ También puede dirigir su reclamación por correo postal dirigido a: Nexito Tech
 </h3> <p class="text-lg mb-4 text-gray-700">
 La relación entre Nexito Technology LLC y el USUARIO se regirá por la normativa española vigente y cualquier controversia se someterá a los Juzgados y tribunales de la ciudad de Barcelona, salvo que la Ley aplicable disponga otra cosa.
 </p> </div> </section> ` })}`;
-}, "C:/Users/Adr\xEDan/Desktop/Nube Nexito/Proyectos Programacio\u0301n/web-nexito-vercel/src/pages/aviso-legal.astro", void 0);
+}, "C:/ProyectosProgramacion/web-nexito-vercel/src/pages/aviso-legal.astro", void 0);
 
-const $$file = "C:/Users/Adrían/Desktop/Nube Nexito/Proyectos Programación/web-nexito-vercel/src/pages/aviso-legal.astro";
+const $$file = "C:/ProyectosProgramacion/web-nexito-vercel/src/pages/aviso-legal.astro";
 const $$url = "/aviso-legal";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

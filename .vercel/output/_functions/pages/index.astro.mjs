@@ -1,9 +1,9 @@
 import { c as createComponent, r as renderTemplate, m as maybeRenderHead, a as renderComponent, g as addAttribute, b as renderScript } from '../chunks/astro/server_D2lW42M0.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_BNqpp_f4.mjs';
-import { $ as $$JsonLD } from '../chunks/ClientRouter_Cy0holhV.mjs';
+import { $ as $$Layout } from '../chunks/Layout_BgiOjcVG.mjs';
+import { $ as $$JsonLD } from '../chunks/ClientRouter_D9o6ToZJ.mjs';
 /* empty css                                 */
-import { $ as $$ServicesSection, a as $$ProcessSection, b as $$Testimonials, c as $$CTASection } from '../chunks/ProcessSection_5Sj3J3Ug.mjs';
+import { $ as $$ServicesSection, a as $$ProcessSection, b as $$Testimonials, c as $$CTASection } from '../chunks/ProcessSection_DTA4KjzA.mjs';
 import 'clsx';
 export { renderers } from '../renderers.mjs';
 
@@ -54,7 +54,7 @@ Empresas que confían en nosotros
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
     </svg>
   </div>--> </div></section> `;
-}, "C:/Users/Adr\xEDan/Desktop/Nube Nexito/Proyectos Programacio\u0301n/web-nexito-vercel/src/components/HeroSection.astro", void 0);
+}, "C:/ProyectosProgramacion/web-nexito-vercel/src/components/HeroSection.astro", void 0);
 
 const $$BenefitsSection = createComponent(($$result, $$props, $$slots) => {
   const benefits = [
@@ -83,7 +83,7 @@ const $$BenefitsSection = createComponent(($$result, $$props, $$slots) => {
 Por Qué Elegir <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800">Nexito Technology</span> </h2> <p class="text-xl text-gray-600 max-w-3xl mx-auto">
 Impulsamos la transformación digital de tu empresa con soluciones tecnológicas avanzadas y resultados medibles
 </p> </div> <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"> ${benefits.map((benefit) => renderTemplate`<div class="group bg-white/80 backdrop-blur-sm p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-gray-100"> <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform"> ${benefit.icon} </div> <h3 class="text-xl font-bold text-gray-900 mb-4"> ${benefit.title} </h3> <p class="text-gray-600"> ${benefit.description} </p> </div>`)} </div> <div class="mt-16 text-center"> <div class="inline-flex items-center justify-center p-1 rounded-full bg-blue-100/80 backdrop-blur-sm"> <span class="px-4 py-2"> <span class="text-blue-900 font-medium">¿Quieres conocer más beneficios?</span> </span> <a href="https://cal.com/nexito/30min" target="_blank" rel="nofollow noreferrer" class="px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"> Agenda una demo </a> </div> </div> </div> </section>`;
-}, "C:/Users/Adr\xEDan/Desktop/Nube Nexito/Proyectos Programacio\u0301n/web-nexito-vercel/src/components/BenefitsSection.astro", void 0);
+}, "C:/ProyectosProgramacion/web-nexito-vercel/src/components/BenefitsSection.astro", void 0);
 
 const $$PopupNewsletter = createComponent(async ($$result, $$props, $$slots) => {
   return renderTemplate`// src/components/PopupNewsletter.astro  ${maybeRenderHead()}<div id="popup-overlay" class="invisible opacity-0 transition-all duration-300 fixed inset-0 z-40 flex items-center justify-center"> <div class="absolute inset-0 bg-slate-800/85 backdrop-blur-md"></div> <div id="popup-content" style="border: 12px solid rgba(255, 255, 255, 0.733);" class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 w-[500px] rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] transform transition-all p-8 mx-4"> <!-- Resto del contenido igual... --> <!-- Close button --> <button id="close-popup" class="absolute right-4 bg-white hover:bg-gray-500 rounded-full p-1.5 transition-all shadow-lg"> <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-sky-800" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path> </svg> </button> <!-- Badge --> <div class="inline-flex items-center mb-6"> <span class="text-sm font-medium bg-blue-600/30 text-blue-200 px-3 py-1 rounded-full border border-blue-500/30">
@@ -104,16 +104,16 @@ Templates listos para usar
 Descargar eBook Gratis
 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path> </svg> </button> <div class="text-center"> <p class="text-sm text-blue-200">
 🔒 Tu información está segura con nosotros
-</p> </div> </form> </div> </div> ${renderScript($$result, "C:/Users/Adr\xEDan/Desktop/Nube Nexito/Proyectos Programacio\u0301n/web-nexito-vercel/src/components/PopupNewsletter.astro?astro&type=script&index=0&lang.ts")}`;
-}, "C:/Users/Adr\xEDan/Desktop/Nube Nexito/Proyectos Programacio\u0301n/web-nexito-vercel/src/components/PopupNewsletter.astro", void 0);
+</p> </div> </form> </div> </div> ${renderScript($$result, "C:/ProyectosProgramacion/web-nexito-vercel/src/components/PopupNewsletter.astro?astro&type=script&index=0&lang.ts")}`;
+}, "C:/ProyectosProgramacion/web-nexito-vercel/src/components/PopupNewsletter.astro", void 0);
 
 const $$Index = createComponent(($$result, $$props, $$slots) => {
   const pageTitle = "Nexito Tech: Automatizaci\xF3n y Soluciones IA";
   const pageDescription = "Transformamos empresas mediante automatizaci\xF3n de procesos e Inteligencia Artificial. Soluciones personalizadas para impulsar la eficiencia de tu negocio.";
   return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": pageTitle, "description": pageDescription }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "HeroSection", $$HeroSection, {})} ${renderComponent($$result2, "BenefitsSection", $$BenefitsSection, {})} ${renderComponent($$result2, "ServicesSection", $$ServicesSection, {})} ${renderComponent($$result2, "ProcessSection", $$ProcessSection, {})} ${renderComponent($$result2, "Testimonials", $$Testimonials, {})} ${renderComponent($$result2, "CTASection", $$CTASection, {})} ${renderComponent($$result2, "PopupNewsletter", $$PopupNewsletter, {})} ` })}`;
-}, "C:/Users/Adr\xEDan/Desktop/Nube Nexito/Proyectos Programacio\u0301n/web-nexito-vercel/src/pages/index.astro", void 0);
+}, "C:/ProyectosProgramacion/web-nexito-vercel/src/pages/index.astro", void 0);
 
-const $$file = "C:/Users/Adrían/Desktop/Nube Nexito/Proyectos Programación/web-nexito-vercel/src/pages/index.astro";
+const $$file = "C:/ProyectosProgramacion/web-nexito-vercel/src/pages/index.astro";
 const $$url = "";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

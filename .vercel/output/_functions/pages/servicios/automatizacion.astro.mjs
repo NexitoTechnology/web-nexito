@@ -1,9 +1,9 @@
 import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../../chunks/astro/server_D2lW42M0.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../../chunks/Layout_BNqpp_f4.mjs';
-import { $ as $$HeroServices, a as $$DividerServices, b as $$FeaturesServices, c as $$UseCasesServices, d as $$BenefitsServices, e as $$ProcessServices, f as $$FAQServices, g as $$FaqCtaServices } from '../../chunks/Divider_Services_C-zf8p1Z.mjs';
-import { $ as $$CTASectionServices, a as $$ContactServices } from '../../chunks/Contact_Services_9T3kmKIX.mjs';
-import { $ as $$JsonLD } from '../../chunks/ClientRouter_Cy0holhV.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_BgiOjcVG.mjs';
+import { $ as $$HeroServices, a as $$DividerServices, b as $$FeaturesServices, c as $$UseCasesServices, d as $$BenefitsServices, e as $$ProcessServices, f as $$FAQServices, g as $$FaqCtaServices } from '../../chunks/Divider_Services_DrdDBDmQ.mjs';
+import { $ as $$CTASectionServices, a as $$ContactServices } from '../../chunks/Contact_Services_DztMoDam.mjs';
+import { $ as $$JsonLD } from '../../chunks/ClientRouter_D9o6ToZJ.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const $$Automatizacion = createComponent(($$result, $$props, $$slots) => {
@@ -169,9 +169,9 @@ const $$Automatizacion = createComponent(($$result, $$props, $$slots) => {
     areaServed: "ES"
   };
   return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": automatizacionData.title, "description": automatizacionData.description }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "JsonLD", $$JsonLD, { "type": "Service", "data": serviceSchema })} ${renderComponent($$result2, "Hero", $$HeroServices, { "title": automatizacionData.hero.title, "subtitle": automatizacionData.hero.subtitle, "description": automatizacionData.hero.description, "tag": automatizacionData.hero.tag }, { "default": ($$result3) => renderTemplate`  ` })} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${renderComponent($$result2, "Features", $$FeaturesServices, { ...automatizacionData.features })} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${renderComponent($$result2, "UseCases", $$UseCasesServices, { ...automatizacionData.useCases })} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${renderComponent($$result2, "Benefits", $$BenefitsServices, { ...automatizacionData.benefits })} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${maybeRenderHead()}<section class="py-12 md:py-16"> <div class="max-w-7xl mx-auto px-4 sm:px-6"> ${renderComponent($$result2, "CTASection", $$CTASectionServices, { ...automatizacionData.cta })} </div> </section> ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${renderComponent($$result2, "Process", $$ProcessServices, { ...automatizacionData.process })} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${renderComponent($$result2, "FAQ", $$FAQServices, { ...automatizacionData.faq })} ${renderComponent($$result2, "FaqCtaServices", $$FaqCtaServices, {})} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${renderComponent($$result2, "ContactServices", $$ContactServices, {})} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ` })}`;
-}, "C:/Users/Adr\xEDan/Desktop/Nube Nexito/Proyectos Programacio\u0301n/web-nexito-vercel/src/pages/servicios/automatizacion.astro", void 0);
+}, "C:/ProyectosProgramacion/web-nexito-vercel/src/pages/servicios/automatizacion.astro", void 0);
 
-const $$file = "C:/Users/Adrían/Desktop/Nube Nexito/Proyectos Programación/web-nexito-vercel/src/pages/servicios/automatizacion.astro";
+const $$file = "C:/ProyectosProgramacion/web-nexito-vercel/src/pages/servicios/automatizacion.astro";
 const $$url = "/servicios/automatizacion";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

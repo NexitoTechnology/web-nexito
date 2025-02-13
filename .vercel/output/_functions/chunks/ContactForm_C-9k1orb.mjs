@@ -1,6 +1,6 @@
 import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, b as renderScript } from './astro/server_D2lW42M0.mjs';
 import 'kleur/colors';
-import { $ as $$JsonLD } from './ClientRouter_Cy0holhV.mjs';
+import { $ as $$JsonLD } from './ClientRouter_D9o6ToZJ.mjs';
 /* empty css                          */
 
 const $$ContactForm = createComponent(async ($$result, $$props, $$slots) => {
@@ -18,7 +18,7 @@ Mensaje
 Por favor, espera un minuto antes de enviar otro mensaje.
 </p> </div> </div> </dialog> <dialog id="form-bad-feedback" class="feedback-dialog" data-astro-cid-svshx33u> <div class="flex items-center gap-4 p-4 bg-red-50 border-l-4 border-red-500" data-astro-cid-svshx33u> <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center rounded-full bg-red-100" data-astro-cid-svshx33u> <svg class="w-6 h-6 text-red-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" data-astro-cid-svshx33u> <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" data-astro-cid-svshx33u></path> </svg> </div> <div data-astro-cid-svshx33u> <p class="text-red-800 font-medium" data-astro-cid-svshx33u>¡Ups!</p> <p class="text-red-700 text-sm" data-astro-cid-svshx33u>
 Algo salió mal. Por favor, inténtalo de nuevo.
-</p> </div> </div> </dialog> </div>  ${renderScript($$result, "C:/Users/Adr\xEDan/Desktop/Nube Nexito/Proyectos Programacio\u0301n/web-nexito-vercel/src/components/ContactForm.astro?astro&type=script&index=0&lang.ts")}`;
-}, "C:/Users/Adr\xEDan/Desktop/Nube Nexito/Proyectos Programacio\u0301n/web-nexito-vercel/src/components/ContactForm.astro", void 0);
+</p> </div> </div> </dialog> </div>  ${renderScript($$result, "C:/ProyectosProgramacion/web-nexito-vercel/src/components/ContactForm.astro?astro&type=script&index=0&lang.ts")}`;
+}, "C:/ProyectosProgramacion/web-nexito-vercel/src/components/ContactForm.astro", void 0);
 
 export { $$ContactForm as $ };

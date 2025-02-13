@@ -1,7 +1,7 @@
 import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_D2lW42M0.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_BNqpp_f4.mjs';
-import { $ as $$ServicesSection, a as $$ProcessSection, b as $$Testimonials, c as $$CTASection } from '../chunks/ProcessSection_5Sj3J3Ug.mjs';
+import { $ as $$Layout } from '../chunks/Layout_BgiOjcVG.mjs';
+import { $ as $$ServicesSection, a as $$ProcessSection, b as $$Testimonials, c as $$CTASection } from '../chunks/ProcessSection_DTA4KjzA.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$Index = createComponent(($$result, $$props, $$slots) => {
@@ -59,9 +59,9 @@ Ver Servicios
       a: "Los tiempos var\xEDan seg\xFAn el proyecto, pero t\xEDpicamente desde 2-4 semanas para soluciones b\xE1sicas hasta 2-3 meses para implementaciones m\xE1s complejas."
     }
   ].map((faq) => renderTemplate`<div class="bg-white rounded-xl p-6 shadow-sm"> <h3 class="text-lg font-semibold text-gray-900 mb-2">${faq.q}</h3> <p class="text-gray-600">${faq.a}</p> </div>`)} </div> </div> </section>  ${renderComponent($$result2, "CTASection", $$CTASection, {})} ` })}`;
-}, "C:/Users/Adr\xEDan/Desktop/Nube Nexito/Proyectos Programacio\u0301n/web-nexito-vercel/src/pages/servicios/index.astro", void 0);
+}, "C:/ProyectosProgramacion/web-nexito-vercel/src/pages/servicios/index.astro", void 0);
 
-const $$file = "C:/Users/Adrían/Desktop/Nube Nexito/Proyectos Programación/web-nexito-vercel/src/pages/servicios/index.astro";
+const $$file = "C:/ProyectosProgramacion/web-nexito-vercel/src/pages/servicios/index.astro";
 const $$url = "/servicios";
 
 const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({

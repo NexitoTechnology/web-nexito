@@ -1,6 +1,6 @@
 import { d as createAstro, c as createComponent, r as renderTemplate, a as renderComponent, e as renderSlot, f as renderHead, g as addAttribute, h as defineScriptVars } from './astro/server_D2lW42M0.mjs';
 import 'kleur/colors';
-import { a as $$CookieConsent, b as $$Footer, c as $$Menu, d as $$ClientRouter, $ as $$JsonLD } from './ClientRouter_Cy0holhV.mjs';
+import { a as $$CookieConsent, b as $$Footer, c as $$Menu, d as $$ClientRouter, $ as $$JsonLD } from './ClientRouter_D9o6ToZJ.mjs';
 /* empty css                               */
 
 var __freeze = Object.freeze;
@@ -42,6 +42,6 @@ const $$Layout = createComponent(($$result, $$props, $$slots) => {
     ...baseSchema,
     ...schemaData
   } }), renderComponent($$result, "ClientRouter", $$ClientRouter, {}), renderHead(), renderComponent($$result, "Menu", $$Menu, {}), renderSlot($$result, $$slots["default"]), renderComponent($$result, "Footer", $$Footer, {}), renderComponent($$result, "CookieConsent", $$CookieConsent, {}));
-}, "C:/Users/Adr\xEDan/Desktop/Nube Nexito/Proyectos Programacio\u0301n/web-nexito-vercel/src/layouts/Layout.astro", void 0);
+}, "C:/ProyectosProgramacion/web-nexito-vercel/src/layouts/Layout.astro", void 0);
 
 export { $$Layout as $ };
