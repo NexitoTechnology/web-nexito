@@ -1,8 +1,0 @@
-
-User-agent: *
-Allow: /
-Disallow: /aviso-legal/
-Disallow: /politica-de-privacidad/
-Disallow: /politica-de-cookies/
-
-Sitemap: https://nexito.tech/sitemap-index.xml

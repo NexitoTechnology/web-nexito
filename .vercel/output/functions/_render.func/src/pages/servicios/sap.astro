@@ -1,0 +1,331 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero_Services.astro";
+import Features from "../../components/Features_Services.astro";
+import UseCases from "../../components/UseCases_Services.astro";
+import Benefits from "../../components/Benefits_Services.astro";
+import Process from "../../components/Process_Services.astro";
+import FAQ from "../../components/FAQ_Services.astro";
+import CTASection from "../../components/CTASection_Services.astro";
+import FaqCtaServices from "../../components/FaqCta_Services.astro";
+import Divider from "../../components/Divider_Services.astro";
+import ContactServices from "../../components/Contact_Services.astro";
+import JsonLD from "../../components/JsonLD.astro";
+
+// Interfaces
+interface Feature {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+interface UseCase {
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+  linkText: string;
+}
+
+interface ProcessStep {
+  step: number;
+  title: string;
+  description: string;
+}
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface PageData {
+  title: string;
+  description: string;
+  hero: {
+    title: string;
+    subtitle: string;
+    description: string;
+    tag: string;
+  };
+  features: {
+    title: string;
+    subtitle: string;
+    description: string;
+    tag: string;
+    features: Feature[];
+  };
+  useCases: {
+    title: string;
+    subtitle: string;
+    description: string;
+    tag: string;
+    useCases: UseCase[];
+    extraCTA: {
+      text: string;
+      href: string;
+    };
+  };
+  benefits: {
+    title: string;
+    subtitle: string;
+    description: string;
+    tag: string;
+    benefits: string[];
+  };
+  process: {
+    title: string;
+    subtitle: string;
+    description: string;
+    tag: string;
+    steps: ProcessStep[];
+  };
+  faq: {
+    title: string;
+    description: string;
+    tag: string;
+    faqItems: FAQItem[];
+  };
+  cta: {
+    title: string;
+    description: string;
+    buttonText: string;
+    buttonLink: string;
+    features: string[];
+  };
+  faqCta: {
+    title: string;
+    description: string;
+    btnText: string;
+    btnLink: string;
+  }
+}
+
+// Datos de la página mejorados para SEO
+const sapData: PageData = {
+  title: "Implementación y Consultoría SAP | Nexito Tech",
+  description: "Optimiza tu empresa con nuestros servicios especializados en SAP. Implementación de S/4HANA, consultoría experta y soporte continuo para maximizar el valor de tu inversión en SAP.",
+  
+  hero: {
+    title: "Servicios Profesionales SAP",
+    subtitle: "Transformación Digital con SAP",
+    description: "Implementación, consultoría y optimización de soluciones SAP para impulsar la eficiencia empresarial",
+    tag: "🔧 Expertos en Soluciones SAP"
+  },
+
+  features: {
+    title: "Soluciones",
+    subtitle: "SAP Enterprise",
+    description: "Servicios especializados para maximizar tu inversión en SAP",
+    tag: "Servicios SAP",
+    features: [
+      {
+        title: "Migración a S/4HANA",
+        description: "Implementación y migración a la última versión de SAP con mínimo impacto operativo",
+        icon: "🔧"
+      },
+      {
+        title: "Consultoría SAP Estratégica",
+        description: "Asesoramiento experto en optimización de procesos y mejores prácticas SAP",
+        icon: "💡"
+      },
+      {
+        title: "Soporte SAP 24/7",
+        description: "Mantenimiento proactivo y soporte técnico especializado continuo",
+        icon: "🛠"
+      },
+      {
+        title: "Capacitación SAP Integral",
+        description: "Programas de formación personalizados para maximizar la adopción",
+        icon: "📚"
+      }
+    ]
+  },
+
+  useCases: {
+    title: "Casos de",
+    subtitle: "Éxito SAP",
+    description: "Transformaciones empresariales con SAP",
+    tag: "Implementaciones Exitosas",
+    useCases: [
+      {
+        title: "SAP Finance",
+        description: "Gestión financiera end-to-end y optimización de procesos contables",
+        image: "/images/finance-sap.webp",
+        link: "/blog/caso-exito-sap-finance",
+        linkText: "Ver caso completo"
+      },
+      {
+        title: "SAP Manufacturing",
+        description: "Optimización integral de producción y cadena de suministro",
+        image: "/images/manufacturing-sap.webp",
+        link: "/blog/caso-exito-sap-finance",
+        linkText: "Ver caso completo"
+      },
+      {
+        title: "SAP Retail",
+        description: "Gestión omnicanal y optimización de inventario en tiempo real",
+        image: "/images/retail-sap.webp",
+        link: "/blog/caso-exito-sap-finance",
+        linkText: "Ver caso completo"
+      }
+    ],
+    extraCTA: {
+      text: "Explora más casos de éxito",
+      href: "#calendar-booking"
+    }
+  },
+
+  benefits: {
+    title: "Beneficios",
+    subtitle: "SAP",
+    description: "Ventajas competitivas de implementar SAP",
+    tag: "Valor Empresarial",
+    benefits: [
+      "Reducción del 50% en tiempos de cierre financiero",
+      "Mejora del 85% en precisión de inventario",
+      "Automatización del 70% de procesos manuales",
+      "ROI promedio del 300% en 24 meses",
+      "Reducción del 40% en costos operativos"
+    ]
+  },
+
+  process: {
+    title: "Implementación",
+    subtitle: "SAP",
+    description: "Metodología probada para proyectos SAP exitosos",
+    tag: "Metodología SAP",
+    steps: [
+      {
+        step: 1,
+        title: "Diagnóstico",
+        description: "Análisis de procesos y requerimientos"
+      },
+      {
+        step: 2,
+        title: "Blueprint",
+        description: "Diseño detallado de la solución"
+      },
+      {
+        step: 3,
+        title: "Construcción",
+        description: "Desarrollo y configuración SAP"
+      },
+      {
+        step: 4,
+        title: "Testing",
+        description: "Pruebas integrales del sistema"
+      },
+      {
+        step: 5,
+        title: "Go-Live",
+        description: "Despliegue y soporte post-implementación"
+      }
+    ]
+  },
+
+  faq: {
+    title: "Preguntas Frecuentes sobre SAP",
+    description: "Resolvemos tus dudas sobre implementaciones SAP",
+    tag: "FAQ",
+    faqItems: [
+      {
+        question: "¿Por qué elegir SAP para mi empresa?",
+        answer: "SAP es el líder mundial en software empresarial, ofreciendo soluciones integradas que optimizan todos los procesos de negocio. Las empresas que implementan SAP experimentan en promedio una mejora del 40% en eficiencia operativa y un ROI significativo en los primeros 24 meses."
+      },
+      {
+        question: "¿Cuánto tiempo toma implementar SAP?",
+        answer: "Una implementación típica de SAP toma entre 3 y 12 meses, dependiendo del alcance y complejidad. Utilizamos una metodología ágil que permite obtener resultados tangibles en fases tempranas del proyecto."
+      },
+      {
+        question: "¿Qué procesos empresariales puede optimizar SAP?",
+        answer: "SAP puede optimizar prácticamente todos los procesos empresariales: finanzas, contabilidad, recursos humanos, ventas, compras, producción, logística, mantenimiento, y más. Cada módulo se integra perfectamente para proporcionar una visión completa del negocio."
+      },
+      {
+        question: "¿Qué nivel de soporte ofrecen post-implementación?",
+        answer: "Proporcionamos soporte técnico 24/7, mantenimiento preventivo, actualizaciones periódicas y consultoría continua. Nuestro equipo de expertos SAP está siempre disponible para asegurar el funcionamiento óptimo de tu sistema."
+      }
+    ]
+  },
+
+  cta: {
+    title: "¿Listo para transformar tu empresa con SAP?",
+    description: "Descubre cómo SAP puede optimizar tus procesos con una consultoría gratuita",
+    buttonText: "Agenda tu Consultoría Gratuita",
+    buttonLink: "#calendar-booking",
+    features: ["Sin compromiso", "100% Personalizado", "ROI Garantizado"]
+  },
+
+  faqCta: {
+    title: "¿Tienes más preguntas sobre SAP?",
+    description: "Nuestros expertos están listos para ayudarte",
+    btnText: "Agenda una llamada gratuita",
+    btnLink: "#calendar-booking"
+  }
+};
+
+// Schema mejorado para SEO
+const serviceSchema = {
+  "@type": "Service",
+  name: sapData.hero.title,
+  description: sapData.description,
+  provider: {
+    "@type": "Organization",
+    name: "Nexito Technology",
+    "@id": "https://nexito.tech"
+  },
+  serviceType: "SAP Implementation Services",
+  areaServed: "ES",
+  offers: {
+    "@type": "Offer",
+    availability: "https://schema.org/InStock",
+    priceSpecification: {
+      "@type": "PriceSpecification",
+      price: "0",
+      priceCurrency: "EUR",
+      description: "Consulta inicial gratuita"
+    }
+  }
+};
+---
+
+<Layout title={sapData.title} description={sapData.description}>
+  <JsonLD type="Service" data={serviceSchema} />
+
+  <Hero {...sapData.hero} />
+
+  <Divider />
+
+  <Features {...sapData.features} />
+
+  <Divider />
+
+  <UseCases {...sapData.useCases} />
+
+  <Divider />
+
+  <Benefits {...sapData.benefits} />
+
+  <Divider />
+
+  <section class="py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <CTASection {...sapData.cta} />
+    </div>
+  </section>
+
+  <Divider />
+
+  <Process {...sapData.process} />
+
+  <Divider />
+
+  <FAQ {...sapData.faq} />
+
+  <FaqCtaServices />
+
+  <Divider />
+
+  <ContactServices />
+
+  <Divider />
+</Layout>

@@ -1,0 +1,371 @@
+---
+import Layout from '../layouts/Layout.astro';
+import JsonLD from '../components/JsonLD.astro';
+import { Image } from 'astro:assets';
+
+const pageData = {
+  title: "Transformación Digital | Nexito Technology",
+  description: "Somos líderes en transformación digital empresarial. Especialistas en automatización inteligente, IA, SAP y soluciones tecnológicas avanzadas con más de 50 proyectos exitosos y 98% de satisfacción del cliente.",
+  
+  hero: {
+    title: "Transformamos Empresas mediante Tecnología Avanzada",
+    subtitle: "Tu Socio en Transformación Digital",
+    description: "En Nexito Technology fusionamos innovación tecnológica con experiencia empresarial para crear soluciones que impulsan el crecimiento y la eficiencia operativa."
+  },
+
+  stats: [
+    { 
+      number: "98%", 
+      label: "Satisfacción cliente", 
+      description: "Basado en encuestas post-proyecto",
+      icon: "⭐"
+    },
+    { 
+      number: "50+", 
+      label: "Proyectos exitosos", 
+      description: "En múltiples sectores",
+      icon: "🚀"
+    },
+    { 
+      number: "30%", 
+      label: "Mejora eficiencia", 
+      description: "Promedio en nuestros clientes",
+      icon: "📈"
+    },
+    { 
+      number: "24/7", 
+      label: "Soporte técnico", 
+      description: "Respuesta garantizada",
+      icon: "🛠"
+    }
+  ],
+
+  mission: {
+    title: "Nuestra Misión",
+    mainText: "Democratizar el acceso a tecnologías avanzadas que impulsen la transformación digital empresarial",
+    description: [
+      "Nos dedicamos a hacer que la automatización inteligente y la IA sean accesibles para empresas de todos los tamaños, permitiéndoles competir y prosperar en la era digital.",
+      "Como socio estratégico, nos comprometemos con el éxito de nuestros clientes, desarrollando soluciones que generan impacto real y ROI medible.",
+      "Nuestra visión es liderar la revolución digital en España, estableciendo nuevos estándares de excelencia en consultoría tecnológica."
+    ]
+  },
+
+  values: [
+    {
+      title: "Innovación Continua",
+      description: "Investigamos y aplicamos constantemente las últimas tecnologías para ofrecer soluciones de vanguardia que mantengan a nuestros clientes por delante de la competencia.",
+      icon: "💡"
+    },
+    {
+      title: "Excelencia Técnica",
+      description: "Nuestro equipo de expertos certificados garantiza soluciones robustas, escalables y de alta calidad, respaldadas por metodologías probadas y mejores prácticas.",
+      icon: "🏆"
+    },
+    {
+      title: "Enfoque Personalizado",
+      description: "Desarrollamos soluciones únicas adaptadas a los objetivos específicos de cada cliente, asegurando resultados óptimos y máximo retorno de inversión.",
+      icon: "🎯"
+    },
+    {
+      title: "Transparencia Total",
+      description: "Mantenemos una comunicación clara y directa en cada fase del proyecto, con reportes regulares de progreso y métricas de rendimiento accesibles.",
+      icon: "🤝"
+    }
+  ],
+
+  expertise: {
+    title: "Nuestra Especialización",
+    areas: [
+      {
+        title: "Automatización Inteligente",
+        description: "Optimización de procesos empresariales mediante RPA e IA",
+        icon: "🤖"
+      },
+      {
+        title: "Consultoría SAP",
+        description: "Implementación y optimización de soluciones SAP",
+        icon: "💻"
+      },
+      {
+        title: "Business Intelligence",
+        description: "Análisis avanzado de datos y visualización",
+        icon: "📊"
+      },
+      {
+        title: "Desarrollo IA",
+        description: "Soluciones personalizadas de inteligencia artificial",
+        icon: "🧠"
+      }
+    ]
+  },
+
+  team: {
+    title: "Nuestro Equipo",
+    description: "Un equipo multidisciplinar de expertos certificados en tecnologías avanzadas",
+    highlights: [
+      "Consultores certificados SAP",
+      "Especialistas en IA y Machine Learning",
+      "Expertos en automatización de procesos",
+      "Arquitectos de soluciones empresariales"
+    ]
+  },
+
+  cta: {
+    title: "Construyamos Juntos el Futuro Digital",
+    description: "Descubre cómo nuestras soluciones pueden transformar tu negocio y prepararlo para los desafíos del mañana.",
+    buttonText: "Agenda una Consultoría Gratuita",
+    buttonLink: "https://cal.com/nexito/30min"
+  }
+};
+
+const aboutSchema = {
+  "@type": "Organization",
+  name: "Nexito Technology",
+  description: pageData.description,
+  foundingDate: "2023",
+  areaServed: "ES",
+  knowsAbout: [
+    "Automatización de Procesos",
+    "Inteligencia Artificial",
+    "Consultoría SAP",
+    "Business Intelligence",
+    "Transformación Digital"
+  ],
+  slogan: "Transformando el futuro empresarial",
+  numberOfEmployees: {
+    "@type": "QuantitativeValue",
+    minValue: "10",
+    maxValue: "50"
+  },
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "ES"
+  }
+};
+---
+
+<Layout title={pageData.title} description={pageData.description}>
+  <JsonLD type="Organization" data={aboutSchema} />
+  
+  <!-- Hero Section -->
+  <section class="relative py-24 overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-700">
+    <!-- Patrones de fondo -->
+    <div class="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent"></div>
+
+    <!-- Elementos decorativos -->
+    <div class="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+    <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 relative">
+      <div class="text-center max-w-3xl mx-auto">
+        <span class="inline-flex items-center px-4 py-1.5 rounded-full border border-blue-300/30 bg-blue-400/10 text-blue-200 text-sm font-medium backdrop-blur-sm mb-6">
+          🚀 Líderes en Transformación Digital
+        </span>
+        <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
+          {pageData.hero.title}
+          <span class="block text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-purple-300 mt-2">
+            {pageData.hero.subtitle}
+          </span>
+        </h1>
+        <p class="text-xl text-blue-100 mb-8">
+          {pageData.hero.description}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-16 bg-white relative z-10 -mt-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="bg-white rounded-xl shadow-xl p-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+          {pageData.stats.map(stat => (
+            <div class="text-center group">
+              <div class="text-4xl mb-2">{stat.icon}</div>
+              <div class="text-3xl md:text-4xl font-bold text-blue-600 mb-2 group-hover:scale-110 transition-transform">
+                {stat.number}
+              </div>
+              <div class="text-gray-900 font-medium mb-1">{stat.label}</div>
+              <div class="text-sm text-gray-600">{stat.description}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission Section -->
+  <section class="py-20 bg-gradient-to-b from-white to-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
+          {pageData.mission.title}
+        </h2>
+        <p class="text-xl font-medium text-blue-600 mb-8">
+          {pageData.mission.mainText}
+        </p>
+        <div class="space-y-6">
+          {pageData.mission.description.map(paragraph => (
+            <p class="text-lg text-gray-600">{paragraph}</p>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Expertise Section -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          {pageData.expertise.title}
+        </h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {pageData.expertise.areas.map(area => (
+          <div class="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-shadow group">
+            <div class="text-4xl mb-4 group-hover:scale-110 transition-transform">
+              {area.icon}
+            </div>
+            <h3 class="text-xl font-semibold text-gray-900 mb-2">
+              {area.title}
+            </h3>
+            <p class="text-gray-600">{area.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          Nuestros Valores
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8">
+        {pageData.values.map(value => (
+          <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all group border border-gray-100">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                  {value.icon}
+                </div>
+              </div>
+              <div>
+                <h3 class="text-xl font-semibold text-gray-900 mb-2">
+                  {value.title}
+                </h3>
+                <p class="text-gray-600">{value.description}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="py-20 bg-gradient-to-b from-white to-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          {pageData.team.title}
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          {pageData.team.description}
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {pageData.team.highlights.map(highlight => (
+          <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all border border-gray-100 text-center">
+            <p class="text-gray-900 font-medium">{highlight}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-r from-blue-800 to-blue-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+        {pageData.cta.title}
+      </h2>
+      <p class="text-xl text-blue-100 mb-8 max-w-2xl mx-auto">
+        {pageData.cta.description}
+      </p>
+      <a
+        href={pageData.cta.buttonLink}
+        class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-blue-800 bg-white rounded-xl shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-200"
+      >
+        <span>{pageData.cta.buttonText}</span>
+        <svg
+          class="w-5 h-5 ml-2"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+      </a>
+
+      <!-- Trust Elements -->
+      <div class="mt-8 pt-8 border-t border-white/20">
+        <div class="flex flex-wrap justify-center items-center gap-4 text-sm text-white">
+          <span class="flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Sin compromiso
+          </span>
+          <span class="flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            100% Confidencial
+          </span>
+          <span class="flex items-center">
+            <svg class="w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Consultoría Inicial Gratuita
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    @keyframes blob {
+      0% {
+        transform: translate(0px, 0px) scale(1);
+      }
+      33% {
+        transform: translate(30px, -50px) scale(1.1);
+      }
+      66% {
+        transform: translate(-20px, 20px) scale(0.9);
+      }
+      100% {
+        transform: translate(0px, 0px) scale(1);
+      }
+    }
+
+    .animate-blob {
+      animation: blob 7s infinite;
+    }
+
+    .animation-delay-2000 {
+      animation-delay: 2s;
+    }
+  </style>
+</Layout>

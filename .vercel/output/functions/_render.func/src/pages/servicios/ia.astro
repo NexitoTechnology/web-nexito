@@ -1,0 +1,331 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/Hero_Services.astro";
+import Features from "../../components/Features_Services.astro";
+import UseCases from "../../components/UseCases_Services.astro";
+import Benefits from "../../components/Benefits_Services.astro";
+import Process from "../../components/Process_Services.astro";
+import FAQ from "../../components/FAQ_Services.astro";
+import CTASection from "../../components/CTASection_Services.astro";
+import FaqCtaServices from "../../components/FaqCta_Services.astro";
+import Divider from "../../components/Divider_Services.astro";
+import ContactServices from "../../components/Contact_Services.astro";
+import JsonLD from "../../components/JsonLD.astro";
+
+// Interfaces
+interface Feature {
+  title: string;
+  description: string;
+  icon: string;
+}
+
+interface UseCase {
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+  linkText: string;
+}
+
+interface ProcessStep {
+  step: number;
+  title: string;
+  description: string;
+}
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface PageData {
+  title: string;
+  description: string;
+  hero: {
+    title: string;
+    subtitle: string;
+    description: string;
+    tag: string;
+  };
+  features: {
+    title: string;
+    subtitle: string;
+    description: string;
+    tag: string;
+    features: Feature[];
+  };
+  useCases: {
+    title: string;
+    subtitle: string;
+    description: string;
+    tag: string;
+    useCases: UseCase[];
+    extraCTA: {
+      text: string;
+      href: string;
+    };
+  };
+  benefits: {
+    title: string;
+    subtitle: string;
+    description: string;
+    tag: string;
+    benefits: string[];
+  };
+  process: {
+    title: string;
+    subtitle: string;
+    description: string;
+    tag: string;
+    steps: ProcessStep[];
+  };
+  faq: {
+    title: string;
+    description: string;
+    tag: string;
+    faqItems: FAQItem[];
+  };
+  cta: {
+    title: string;
+    description: string;
+    buttonText: string;
+    buttonLink: string;
+    features: string[];
+  };
+  faqCta: {
+    title: string;
+    description: string;
+    btnText: string;
+    btnLink: string;
+  }
+}
+
+// Datos de la página mejorados para SEO
+const iaData: PageData = {
+  title: "Desarrollo de IA y Machine Learning | Nexito Tech",
+  description: "Impulsa tu negocio con soluciones avanzadas de IA y Machine Learning. Automatización inteligente, análisis predictivo y procesamiento de lenguaje natural para optimizar tus procesos empresariales.",
+  
+  hero: {
+    title: "Soluciones de Inteligencia Artificial",
+    subtitle: "Innovación y Automatización Inteligente",
+    description: "Potencia tu empresa con IA avanzada: machine learning, deep learning y sistemas cognitivos que transforman datos en resultados",
+    tag: "🤖 Lidera la Revolución Digital"
+  },
+
+  features: {
+    title: "Tecnologías",
+    subtitle: "de IA Avanzada",
+    description: "Soluciones de última generación en inteligencia artificial",
+    tag: "Capacidades IA",
+    features: [
+      {
+        title: "Automatización Cognitiva",
+        description: "Sistemas inteligentes que automatizan procesos complejos y toma de decisiones",
+        icon: "🤖"
+      },
+      {
+        title: "Machine Learning Avanzado",
+        description: "Algoritmos predictivos y análisis de patrones en tiempo real",
+        icon: "📈"
+      },
+      {
+        title: "NLP y Procesamiento Semántico",
+        description: "Comprensión y generación de lenguaje natural avanzado",
+        icon: "🗣"
+      },
+      {
+        title: "Computer Vision & Deep Learning",
+        description: "Análisis visual inteligente y reconocimiento de patrones",
+        icon: "📸"
+      }
+    ]
+  },
+
+  useCases: {
+    title: "Casos de",
+    subtitle: "Aplicación IA",
+    description: "Soluciones de IA que transforman industrias",
+    tag: "Impacto Real",
+    useCases: [
+      {
+        title: "IA en Finanzas",
+        description: "Sistemas avanzados de detección de fraude y análisis predictivo de riesgos",
+        image: "/images/finance-ai.webp",
+        link: "/blog/caso-exito-ia-industria-retail",
+        linkText: "Ver caso completo"
+      },
+      {
+        title: "IA en Salud",
+        description: "Diagnóstico asistido y medicina personalizada basada en datos",
+        image: "/images/health-ai.webp",
+        link: "/blog/caso-exito-ia-industria-retail",
+        linkText: "Ver caso completo"
+      },
+      {
+        title: "IA en Retail",
+        description: "Personalización avanzada y optimización inteligente de inventario",
+        image: "/images/retail-ai.webp",
+        link: "/blog/caso-exito-ia-industria-retail",
+        linkText: "Ver caso completo"
+      }
+    ],
+    extraCTA: {
+      text: "Descubre más aplicaciones de IA",
+      href: "#calendar-booking"
+    }
+  },
+
+  benefits: {
+    title: "Ventajas",
+    subtitle: "de la IA",
+    description: "Beneficios transformadores para tu negocio",
+    tag: "Impacto Empresarial",
+    benefits: [
+      "Incremento del 300% en eficiencia operativa",
+      "Reducción del 75% en errores de proceso",
+      "Predicciones con 95% de precisión",
+      "Automatización del 80% de tareas repetitivas",
+      "ROI demostrable en implementaciones de IA"
+    ]
+  },
+
+  process: {
+    title: "Implementación",
+    subtitle: "de IA",
+    description: "Metodología probada para proyectos de IA exitosos",
+    tag: "Proceso de IA",
+    steps: [
+      {
+        step: 1,
+        title: "Análisis de Datos",
+        description: "Evaluación y preparación de datasets"
+      },
+      {
+        step: 2,
+        title: "Diseño IA",
+        description: "Arquitectura de modelos y algoritmos"
+      },
+      {
+        step: 3,
+        title: "Desarrollo ML",
+        description: "Entrenamiento y optimización de modelos"
+      },
+      {
+        step: 4,
+        title: "Testing & Validación",
+        description: "Evaluación de precisión y rendimiento"
+      },
+      {
+        step: 5,
+        title: "Despliegue & Monitoreo",
+        description: "Implementación y mejora continua"
+      }
+    ]
+  },
+
+  faq: {
+    title: "Preguntas Frecuentes sobre IA",
+    description: "Resolvemos tus dudas sobre inteligencia artificial",
+    tag: "FAQ",
+    faqItems: [
+      {
+        question: "¿Qué beneficios específicos aporta la IA a mi empresa?",
+        answer: "La IA mejora significativamente la eficiencia operativa, automatiza procesos complejos, proporciona insights predictivos precisos y permite la toma de decisiones basada en datos. Nuestros clientes experimentan en promedio un aumento del 300% en productividad."
+      },
+      {
+        question: "¿Cuánto tiempo lleva implementar una solución de IA?",
+        answer: "El tiempo de implementación varía entre 2 y 12 semanas, dependiendo de la complejidad del proyecto y la disponibilidad de datos. Comenzamos con un MVP en 2-4 semanas para validar resultados rápidamente."
+      },
+      {
+        question: "¿Qué tipos de procesos pueden beneficiarse de la IA?",
+        answer: "La IA puede optimizar prácticamente cualquier proceso que involucre datos: análisis financiero, servicio al cliente, marketing predictivo, mantenimiento preventivo, gestión de inventario, y más. Evaluamos tu caso específico para identificar las mejores oportunidades."
+      },
+      {
+        question: "¿Se necesita experiencia técnica previa en IA?",
+        answer: "No es necesaria experiencia previa. Proporcionamos capacitación completa y acompañamiento continuo para que tu equipo pueda aprovechar al máximo las soluciones de IA implementadas."
+      }
+    ]
+  },
+
+  cta: {
+    title: "¿Listo para potenciar tu negocio con IA?",
+    description: "Descubre cómo la inteligencia artificial puede transformar tu empresa con una consultoría especializada gratuita",
+    buttonText: "Agenda tu Evaluación Gratuita",
+    buttonLink: "#calendar-booking",
+    features: ["Sin compromiso", "100% Confidencial", "ROI Garantizado"]
+  },
+
+  faqCta: {
+    title: "¿Tienes más preguntas sobre IA?",
+    description: "Nuestros expertos están listos para ayudarte",
+    btnText: "Agenda una llamada gratuita",
+    btnLink: "#calendar-booking"
+  }
+};
+
+// Schema mejorado para SEO
+const serviceSchema = {
+  "@type": "Service",
+  name: iaData.hero.title,
+  description: iaData.description,
+  provider: {
+    "@type": "Organization",
+    name: "Nexito Technology",
+    "@id": "https://nexito.com"
+  },
+  serviceType: "Artificial Intelligence Development",
+  areaServed: "ES",
+  offers: {
+    "@type": "Offer",
+    availability: "https://schema.org/InStock",
+    priceSpecification: {
+      "@type": "PriceSpecification",
+      price: "0",
+      priceCurrency: "EUR",
+      description: "Consulta inicial gratuita"
+    }
+  }
+};
+---
+
+<Layout title={iaData.title} description={iaData.description}>
+  <JsonLD type="Service" data={serviceSchema} />
+
+  <Hero {...iaData.hero} />
+
+  <Divider />
+
+  <Features {...iaData.features} />
+
+  <Divider />
+
+  <UseCases {...iaData.useCases} />
+
+  <Divider />
+
+  <Benefits {...iaData.benefits} />
+
+  <Divider />
+
+  <section class="py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <CTASection {...iaData.cta} />
+    </div>
+  </section>
+
+  <Divider />
+
+  <Process {...iaData.process} />
+
+  <Divider />
+
+  <FAQ {...iaData.faq} />
+
+  <FaqCtaServices />
+
+  <Divider />
+
+  <ContactServices />
+
+  <Divider />
+</Layout>
