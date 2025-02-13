@@ -1,17 +1,4 @@
 {
-    "version": 2,
-    "functions": {
-      "api/index.js": {
-        "runtime": "nodejs22.x"
-      }
-    },
-    "routes": [
-      { "src": "/(.*)", "dest": "/dist/server/entry.mjs" }
-    ],
-    "build": {
-      "env": {
-        "NODE_ENV": "production"
-      }
-    }
+    "cleanUrls": true,
+    "framework": "astro"
   }
-  
