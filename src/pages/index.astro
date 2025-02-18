@@ -7,58 +7,58 @@ import CTASection from '../components/CTASection.astro';
 import BenefitsSection from '../components/BenefitsSection.astro';
 import ProcessSection from '../components/ProcessSection.astro';
 import PopupNewsletter from '../components/PopupNewsletter.astro';
-import JsonLD from '../components/JsonLD.astro';
+import FAQ_Services from '../components/FAQ_Services.astro';
 
 const pageTitle = "Nexito Tech: Automatización y Soluciones IA";
 const pageDescription = "Transformamos empresas mediante automatización de procesos e Inteligencia Artificial. Soluciones personalizadas para impulsar la eficiencia de tu negocio.";
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+interface homeFAQs { 
+  title: string;
+  description: string;
+  tag: string;
+  faqItems: FAQItem[]; 
+};
+
+const homeFAQs = {
+  title: "Preguntas Frecuentes",
+  description: "Resolvemos tus dudas sobre nuestros servicios de automatización e Inteligencia Artificial",
+  tag: "FAQ",
+  faqItems: [
+    {
+      question: "¿Qué servicios ofrece Nexito Technology?",
+      answer: "Ofrecemos servicios especializados en automatización de procesos, desarrollo de soluciones con Inteligencia Artificial, consultoría tecnológica, implementación de Business Intelligence, Power BI y servicios SAP. Nuestro objetivo es transformar y optimizar los procesos empresariales mediante tecnología avanzada."
+    },
+    {
+      question: "¿Cómo puedo saber si mi empresa necesita automatización?",
+      answer: "Si tu empresa dedica mucho tiempo a tareas repetitivas, maneja grandes volúmenes de datos manualmente, o busca mejorar la eficiencia operativa, probablemente te beneficiarías de la automatización. Ofrecemos una consulta inicial gratuita para evaluar tus necesidades específicas."
+    },
+    {
+      question: "¿Cuánto tiempo lleva implementar una solución de automatización?",
+      answer: "El tiempo de implementación varía según la complejidad del proyecto y las necesidades específicas de tu empresa. Típicamente, los proyectos pueden llevar desde algunas semanas para automatizaciones simples hasta varios meses para transformaciones más completas. Siempre proporcionamos un cronograma detallado al inicio del proyecto."
+    },
+    {
+      question: "¿Qué soporte ofrecéis después de la implementación?",
+      answer: "Proporcionamos soporte técnico continuo, mantenimiento y actualizaciones para todas nuestras soluciones. Además, ofrecemos formación para tu equipo y asistencia permanente para asegurar que obtienes el máximo beneficio de nuestras implementaciones."
+    },
+    {
+      question: "¿Trabajáis con empresas de cualquier tamaño?",
+      answer: "Sí, adaptamos nuestras soluciones a empresas de todos los tamaños. Desde startups hasta grandes corporaciones, desarrollamos soluciones escalables que se ajustan a tus necesidades y presupuesto específicos."
+    }
+  ]
+};
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  <JsonLD
-    type="WebSite"
-    data={{
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Nexito Technology",
-      "url": "https://nexito.tech",
-      "description": pageDescription,
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://nexito.tech/search?q={search_term_string}"
-        },
-        "query-input": "required name=search_term_string"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Nexito Technology",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://nexito.tech/Logo.svg"
-        }
-      },
-      "inLanguage": "es",
-      "alternateLanguage": [
-        {
-          "@type": "Language",
-          "name": "Spanish",
-          "alternateName": "es"
-        }
-      ],
-      "mainEntity": {
-        "@type": "WebPage",
-        "name": pageTitle,
-        "description": pageDescription,
-        "url": "https://nexito.tech"
-      }
-    }}
-  />
   <HeroSection />
   <BenefitsSection />
   <ServicesSection />
   <ProcessSection />
   <Testimonials />
   <CTASection />
+  <FAQ_Services { ...homeFAQs } />
   <PopupNewsletter />
 </Layout>

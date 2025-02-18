@@ -11,6 +11,7 @@ import FaqCtaServices from "../../components/FaqCta_Services.astro";
 import Divider from "../../components/Divider_Services.astro";
 import ContactServices from "../../components/Contact_Services.astro";
 import JsonLD from "../../components/JsonLD.astro";
+import Testimonials from '../../components/Testimonials.astro';
 
 // Interfaces
 interface Feature {
@@ -305,6 +306,11 @@ const serviceSchema = {
   <Divider />
 
   <UseCases {...biData.useCases} />
+
+  <Divider />
+
+  <!-- Testimonios Específicos -->
+  <Testimonials />
 
   <Divider />
 
