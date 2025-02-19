@@ -1,11 +1,11 @@
 ---
-import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
-import Layout from '../../layouts/LayoutBlog.astro';
-import JsonLD from '../../components/JsonLD.astro';
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import Layout from "../../layouts/LayoutBlog.astro";
+import JsonLD from "../../components/JsonLD.astro";
 import CTASection from "../../components/CTASection_Services.astro";
 import ContactServices from "../../components/Contact_Services.astro";
-export const prerender = true;  // Añade esta línea aquí
+export const prerender = true; // Añade esta línea aquí
 
 interface BlogSchema {
   title: string;
@@ -17,7 +17,7 @@ interface BlogSchema {
   categoria?: string;
   lastModified?: Date;
   readingTime?: number;
-  dificultad?: 'Básico' | 'Intermedio' | 'Avanzado';
+  dificultad?: "Básico" | "Intermedio" | "Avanzado";
   audiencia?: string[];
   metaTitle?: string;
   metaDescription?: string;
@@ -32,16 +32,18 @@ interface BlogSchema {
   tiempoImplementacion?: string;
 }
 
-type BlogPost = CollectionEntry<'blog'> & {
+type BlogPost = CollectionEntry<"blog"> & {
   data: BlogSchema;
 };
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-  return posts.filter(post => post.data.isPublished).map(post => ({
-    params: { slug: post.slug },
-    props: { post: post as BlogPost }
-  }));
+  const posts = await getCollection("blog");
+  return posts
+    .filter((post) => post.data.isPublished)
+    .map((post) => ({
+      params: { slug: post.slug },
+      props: { post: post as BlogPost },
+    }));
 }
 
 interface Props {
@@ -52,56 +54,58 @@ const { post } = Astro.props;
 const { Content } = await post.render();
 
 // Obtener posts relacionados basados en categoría y tags
-const allPosts = (await getCollection('blog')) as BlogPost[];
+const allPosts = (await getCollection("blog")) as BlogPost[];
 const relatedPosts = allPosts
-  .filter(p => 
-    p.slug !== post.slug && 
-    p.data.isPublished &&
-    (p.data.categoria === post.data.categoria || 
-    p.data.tags?.some(tag => post.data.tags?.includes(tag)))
+  .filter(
+    (p) =>
+      p.slug !== post.slug &&
+      p.data.isPublished &&
+      (p.data.categoria === post.data.categoria ||
+        p.data.tags?.some((tag) => post.data.tags?.includes(tag)))
   )
   .slice(0, 3);
 
 // Obtener artículos de la misma serie si existe
-const seriesPosts = post.data.serie 
+const seriesPosts = post.data.serie
   ? allPosts
-      .filter(p => 
-        p.data.isPublished && 
-        p.data.serie === post.data.serie
-      )
+      .filter((p) => p.data.isPublished && p.data.serie === post.data.serie)
       .sort((a, b) => (a.data.ordenEnSerie || 0) - (b.data.ordenEnSerie || 0))
   : [];
 
-  const articleSchema = {
+const articleSchema = {
   "@type": "BlogPosting",
-  "headline": post.data.metaTitle || post.data.title,
-  "description": post.data.metaDescription || post.data.description,
-  "datePublished": post.data.date.toISOString(),
-  "dateModified": post.data.lastModified 
-    ? post.data.lastModified.toISOString() 
+  headline: post.data.metaTitle || post.data.title,
+  description: post.data.metaDescription || post.data.description,
+  datePublished: post.data.date.toISOString(),
+  dateModified: post.data.lastModified
+    ? post.data.lastModified.toISOString()
     : post.data.date.toISOString(),
-  "image": (post.data.ogImage || post.data.image)
-    ? new URL(post.data.ogImage || post.data.image || '', Astro.site).toString()
-    : undefined,
-  "author": {
+  image:
+    post.data.ogImage || post.data.image
+      ? new URL(
+          post.data.ogImage || post.data.image || "",
+          Astro.site
+        ).toString()
+      : undefined,
+  author: {
     "@type": "Organization",
-    "name": post.data.author
+    name: post.data.author,
   },
-  "publisher": {
+  publisher: {
     "@type": "Organization",
-    "name": "Nexito Technology",
-    "logo": {
+    name: "Nexito Technology",
+    logo: {
       "@type": "ImageObject",
-      "url": new URL("/Logo.svg", Astro.site).toString()
-    }
+      url: new URL("/Logo.svg", Astro.site).toString(),
+    },
   },
-  "mainEntityOfPage": {
+  mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": new URL(Astro.url.pathname, Astro.site).toString()
-  }
+    "@id": new URL(Astro.url.pathname, Astro.site).toString(),
+  },
 };
 interface PageData {
-cta: {
+  cta: {
     title: string;
     description: string;
     buttonText: string;
@@ -110,131 +114,172 @@ cta: {
   };
 }
 const automatizacionData: PageData = {
-
   cta: {
     title: "¿Listo para automatizar tu negocio?",
-    description: "Agenda una consultoría gratuita y descubre el potencial de la automatización",
+    description:
+      "Agenda una consultoría gratuita y descubre el potencial de la automatización",
     buttonText: "Reserva tu Consultoría Gratis",
     buttonLink: "https://nexito.tech/consultoria-gratuita/",
-    features: ["Sin compromiso", "100% Confidencial", "Gratis"]
-  }
-}
+    features: ["Sin compromiso", "100% Confidencial", "Gratis"],
+  },
+};
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+  .toString()
+  .replace(/\/?$/, "/");
 ---
 
-<Layout 
+<Layout
   title={post.data.metaTitle || `${post.data.title} | Blog Nexito Technology`}
   description={post.data.metaDescription || post.data.description}
-  image={post.data.ogImage || post.data.image}>
+  image={post.data.ogImage || post.data.image}
+  canonicalURL={canonicalURL}
+>
   <JsonLD type="Article" data={articleSchema} />
-  
-  <main class="w-full max-w-none mx-auto px-4 py-12 md:max-w-3/4 lg:max-w-9/12 xl:max-w-4/5">
+
+  <main
+    class="w-full max-w-none mx-auto px-4 py-12 md:max-w-3/4 lg:max-w-9/12 xl:max-w-4/5"
+  >
     <article class="prose lg:prose-xl prose-slate mx-auto max-w-none">
       <header class="not-prose mb-12">
         <nav class="text-sm mb-8">
           <ol class="flex items-center space-x-2">
-            <li><a href="/" class="text-gray-500 hover:text-blue-600">Inicio</a></li>
+            <li>
+              <a href="/" class="text-gray-500 hover:text-blue-600">Inicio</a>
+            </li>
             <li class="text-gray-400">/</li>
-            <li><a href="/blog/" class="text-gray-500 hover:text-blue-600">Blog</a></li>
+            <li>
+              <a href="/blog/" class="text-gray-500 hover:text-blue-600"
+                >Blog</a>
+            </li>
           </ol>
         </nav>
 
-        {post.data.serie && (
-          <div class="bg-blue-50 rounded-lg p-4 mb-8">
-            <p class="text-sm text-blue-600 font-medium">Serie: {post.data.serie}</p>
-          </div>
-        )}
-        
-        {post.data.image && (
-          <div class="relative w-full aspect-[21/9] mb-8 rounded-xl overflow-hidden">
-            <img
-              src={post.data.image}
-              alt={post.data.imageAlt || post.data.title}
-              class="object-cover w-full h-full"
-            />
-          </div>
-        )}
+        {
+          post.data.serie && (
+            <div class="bg-blue-50 rounded-lg p-4 mb-8">
+              <p class="text-sm text-blue-600 font-medium">
+                Serie: {post.data.serie}
+              </p>
+            </div>
+          )
+        }
+
+        {
+          post.data.image && (
+            <div class="relative w-full aspect-[21/9] mb-8 rounded-xl overflow-hidden">
+              <img
+                src={post.data.image}
+                alt={post.data.imageAlt || post.data.title}
+                class="object-cover w-full h-full"
+              />
+            </div>
+          )
+        }
 
         <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
           {post.data.title}
         </h1>
-        
+
         <p class="text-xl text-gray-600 mb-6 leading-relaxed">
           {post.data.description}
         </p>
 
         <div class="flex flex-wrap items-center gap-4 text-gray-600 mb-6">
           <time datetime={post.data.date.toISOString()} class="text-sm">
-            {new Date(post.data.date).toLocaleDateString('es-ES', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
-            })}
+            {
+              new Date(post.data.date).toLocaleDateString("es-ES", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })
+            }
           </time>
 
-          {post.data.readingTime && (
-            <>
-              <span class="text-gray-300">•</span>
-              <span class="text-sm">
-                {post.data.readingTime} min de lectura
-              </span>
-            </>
-          )}
+          {
+            post.data.readingTime && (
+              <>
+                <span class="text-gray-300">•</span>
+                <span class="text-sm">
+                  {post.data.readingTime} min de lectura
+                </span>
+              </>
+            )
+          }
 
-          {post.data.dificultad && (
-            <>
-              <span class="text-gray-300">•</span>
-              <span class="text-sm px-3 py-1 bg-gray-100 rounded-full">
-                {post.data.dificultad}
-              </span>
-            </>
-          )}
+          {
+            post.data.dificultad && (
+              <>
+                <span class="text-gray-300">•</span>
+                <span class="text-sm px-3 py-1 bg-gray-100 rounded-full">
+                  {post.data.dificultad}
+                </span>
+              </>
+            )
+          }
 
-          {post.data.lastModified && (
-            <>
-              <span class="text-gray-300">•</span>
-              <span class="text-sm">
-                Actualizado: {new Date(post.data.lastModified).toLocaleDateString('es-ES', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
-                })}
-              </span>
-            </>
-          )}
+          {
+            post.data.lastModified && (
+              <>
+                <span class="text-gray-300">•</span>
+                <span class="text-sm">
+                  Actualizado:{" "}
+                  {new Date(post.data.lastModified).toLocaleDateString(
+                    "es-ES",
+                    {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    }
+                  )}
+                </span>
+              </>
+            )
+          }
         </div>
 
-        {post.data.tags && (
-          <div class="flex flex-wrap gap-2 mb-6">
-            {post.data.tags.map(tag => (
-              <span class="text-sm bg-blue-50 text-blue-600 px-3 py-1 rounded-full">
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
+        {
+          post.data.tags && (
+            <div class="flex flex-wrap gap-2 mb-6">
+              {post.data.tags.map((tag) => (
+                <span class="text-sm bg-blue-50 text-blue-600 px-3 py-1 rounded-full">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )
+        }
 
-        {(post.data.requisitoPrevio || post.data.tiempoImplementacion) && (
-          <div class="bg-gray-50 rounded-lg p-6 mb-8">
-            {post.data.requisitoPrevio && (
-              <div class="mb-4">
-                <h2 class="text-sm font-semibold text-gray-600 mb-2">Requisitos previos:</h2>
-                <ul class="list-disc list-inside text-sm text-gray-600">
-                  {post.data.requisitoPrevio.map(req => (
-                    <li>{req}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-            {post.data.tiempoImplementacion && (
-              <div>
-                <h2 class="text-sm font-semibold text-gray-600 mb-2">Tiempo estimado:</h2>
-                <p class="text-sm text-gray-600">{post.data.tiempoImplementacion}</p>
-              </div>
-            )}
-          </div>
-        )}
+        {
+          (post.data.requisitoPrevio || post.data.tiempoImplementacion) && (
+            <div class="bg-gray-50 rounded-lg p-6 mb-8">
+              {post.data.requisitoPrevio && (
+                <div class="mb-4">
+                  <h2 class="text-sm font-semibold text-gray-600 mb-2">
+                    Requisitos previos:
+                  </h2>
+                  <ul class="list-disc list-inside text-sm text-gray-600">
+                    {post.data.requisitoPrevio.map((req) => (
+                      <li>{req}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {post.data.tiempoImplementacion && (
+                <div>
+                  <h2 class="text-sm font-semibold text-gray-600 mb-2">
+                    Tiempo estimado:
+                  </h2>
+                  <p class="text-sm text-gray-600">
+                    {post.data.tiempoImplementacion}
+                  </p>
+                </div>
+              )}
+            </div>
+          )
+        }
       </header>
-      
+
       <div class="mt-8">
         <Content />
       </div>
@@ -245,63 +290,67 @@ const automatizacionData: PageData = {
         </div>
       </section>
       <ContactServices />
-      
-      {(relatedPosts.length > 0 || seriesPosts.length > 0) && (
-        <aside class="mt-16 pt-8 border-t not-prose">
-          {seriesPosts.length > 0 && (
-            <div class="mb-12">
-              <h2 class="text-2xl font-bold mb-6">Artículos de la serie</h2>
-              <div class="space-y-4">
-                {seriesPosts.map((seriesPost, index) => (
-                  <a 
-                    href={`/blog/${seriesPost.slug}`}
-                    class={`block p-4 rounded-lg border ${post.slug === seriesPost.slug ? 'bg-blue-50 border-blue-200' : 'hover:bg-gray-50 border-gray-200'}`}
-                  >
-                    <span class="text-sm text-gray-500 mb-1 block">Parte {index + 1}</span>
-                    <h3 class="font-medium">{seriesPost.data.title}</h3>
-                  </a>
-                ))}
-              </div>
-            </div>
-          )}
 
-          {relatedPosts.length > 0 && (
-            <div>
-              <h2 class="text-2xl font-bold mb-6">Artículos relacionados</h2>
-              <div class="grid md:grid-cols-3 gap-8">
-                {relatedPosts.map(relatedPost => (
-                  <a 
-                    href={`/blog/${relatedPost.slug}/`}
-                    class="group block"
-                  >
-                    <article>
-                      <div class="relative aspect-video mb-4 rounded-lg overflow-hidden bg-gray-100">
-                        {relatedPost.data.image && (
-                          <img
-                            src={relatedPost.data.image}
-                            alt={relatedPost.data.imageAlt || relatedPost.data.title}
-                            class="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
-                          />
-                        )}
-                      </div>
-                      <h3 class="font-semibold mb-2 group-hover:text-blue-600 transition-colors">
-                        {relatedPost.data.title}
-                      </h3>
-                      <p class="text-sm text-gray-600 line-clamp-2">
-                        {relatedPost.data.description}
-                      </p>
-                    </article>
-                  </a>
-                ))}
+      {
+        (relatedPosts.length > 0 || seriesPosts.length > 0) && (
+          <aside class="mt-16 pt-8 border-t not-prose">
+            {seriesPosts.length > 0 && (
+              <div class="mb-12">
+                <h2 class="text-2xl font-bold mb-6">Artículos de la serie</h2>
+                <div class="space-y-4">
+                  {seriesPosts.map((seriesPost, index) => (
+                    <a
+                      href={`/blog/${seriesPost.slug}/`}
+                      class={`block p-4 rounded-lg border ${post.slug === seriesPost.slug ? "bg-blue-50 border-blue-200" : "hover:bg-gray-50 border-gray-200"}`}
+                    >
+                      <span class="text-sm text-gray-500 mb-1 block">
+                        Parte {index + 1}
+                      </span>
+                      <h3 class="font-medium">{seriesPost.data.title}</h3>
+                    </a>
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
-        </aside>
-      )}
+            )}
+
+            {relatedPosts.length > 0 && (
+              <div>
+                <h2 class="text-2xl font-bold mb-6">Artículos relacionados</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                  {relatedPosts.map((relatedPost) => (
+                    <a href={`/blog/${relatedPost.slug}/`} class="group block">
+                      <article>
+                        <div class="relative aspect-video mb-4 rounded-lg overflow-hidden bg-gray-100">
+                          {relatedPost.data.image && (
+                            <img
+                              src={relatedPost.data.image}
+                              alt={
+                                relatedPost.data.imageAlt ||
+                                relatedPost.data.title
+                              }
+                              class="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+                            />
+                          )}
+                        </div>
+                        <h3 class="font-semibold mb-2 group-hover:text-blue-600 transition-colors">
+                          {relatedPost.data.title}
+                        </h3>
+                        <p class="text-sm text-gray-600 line-clamp-2">
+                          {relatedPost.data.description}
+                        </p>
+                      </article>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+          </aside>
+        )
+      }
 
       <footer class="mt-12 pt-8 border-t not-prose">
         <div class="flex justify-between items-center">
-          <a 
+          <a
             href="/blog/"
             class="inline-flex items-center text-blue-600 hover:text-blue-800 transition-colors"
           >
@@ -312,4 +361,3 @@ const automatizacionData: PageData = {
     </article>
   </main>
 </Layout>
-

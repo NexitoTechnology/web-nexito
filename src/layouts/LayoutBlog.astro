@@ -17,15 +17,16 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  canonicalURL?: string; // Añade esto
 }
 
 const {
   title = "Nexito Technology | Automatización Inteligente y Soluciones IA",
   description = "Transformamos empresas mediante automatización de procesos e Inteligencia Artificial. Soluciones personalizadas para impulsar la eficiencia de tu negocio.",
   image = "/icon-512x512.png",
+  canonicalURL = new URL(Astro.url.pathname, Astro.site), // Ya no necesitamos declararlo después
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const siteURL = "https://nexito.tech/";
 ---
 
@@ -58,7 +59,7 @@ const siteURL = "https://nexito.tech/";
     <title>{title}</title>
 
     <!-- SEO mejorado -->
-    <link rel="canonical" href={canonicalURL.toString().endsWith('/') ? canonicalURL : `${canonicalURL}/`} />
+    <link rel="canonical" href={canonicalURL} />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="author" content="Nexito Technology" />
     <meta name="generator" content={Astro.generator} />
