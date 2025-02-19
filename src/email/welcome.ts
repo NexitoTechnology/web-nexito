@@ -1,3 +1,4 @@
+export const welcomeTemplate = `
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,7 @@
 
     <!-- Contenido principal -->
     <div style="padding: 20px; background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); color: white; border-radius: 8px; margin-bottom: 20px;">
-      <h1 style="margin: 0; font-size: 24px; color: white;">¡Bienvenido/a a la innovación, {{name}}! 🚀</h1>
+      <h1 style="margin: 0; font-size: 24px; color: white;">¡Bienvenido/a a la innovación, ${name}! 🚀</h1>
       <p style="font-size: 16px; line-height: 1.5; margin-top: 15px;">
         ¡Qué alegría tenerte con nosotros! Has dado el primer paso hacia la transformación digital de tu empresa, y queremos agradecerte tu confianza con un regalo muy especial.
       </p>
@@ -72,7 +73,7 @@
     <!-- Footer -->
     <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e2e8f0;">
       <p style="color: #94a3b8; font-size: 12px;">
-        © {{year}} Nexito Technology. Todos los derechos reservados.
+        ©  ${new Date().getFullYear()} Nexito Technology. Todos los derechos reservados.
       </p>
       <p style="color: #94a3b8; font-size: 12px;">
         C/ Lira 8, N36, 04648 Almería, España
@@ -80,4 +81,4 @@
     </div>
   </div>
 </body>
-</html>
+</html>`;

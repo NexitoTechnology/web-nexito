@@ -7,6 +7,7 @@ Disallow: /aviso-legal/
 Disallow: /politica-de-privacidad/
 Disallow: /politica-de-cookies/
 Disallow: /consultoria-gratuita/
+Disallow: /download-ebook-index/
 
 Sitemap: ${sitemapURL.href}
 `;
