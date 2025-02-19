@@ -76,7 +76,7 @@ const blogListSchema = {
 };
 ---
 
-<Layout title={title} description={description} type="website">
+<Layout title={title} description={description}>
   <JsonLD type="WebPage" data={blogListSchema} />
   
   <main class="max-w-7xl mx-auto px-4 py-12">
@@ -92,7 +92,7 @@ const blogListSchema = {
     <div id="posts-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
       {sortedPosts.map(post => (
         <article class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300">
-          <a href={`/blog/${post.slug}`} class="block h-full">
+          <a href={`/blog/${post.slug}/`} class="block h-full">
             <div class="relative aspect-video overflow-hidden">
               {post.data.image ? (
                 <img
