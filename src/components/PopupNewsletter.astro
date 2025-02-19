@@ -124,7 +124,7 @@
             id="email"
             name="email"
             required
-            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
             class="w-full px-4 py-3 bg-white rounded-lg text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 peer"
             placeholder="tu@email.com"
           />
@@ -490,10 +490,8 @@
     // Limpiar mensajes de error cuando el input es válido
     input.addEventListener("input", () => {
       const errorSpan = input.nextElementSibling as HTMLSpanElement;
-      if (input.checkValidity()) {
-        errorSpan.textContent = "";
-        input.title = "";
-      }
+      errorSpan.textContent = "";
+      input.title = "";
     });
   });
 </script>

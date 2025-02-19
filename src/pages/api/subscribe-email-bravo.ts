@@ -1,5 +1,5 @@
 // src/pages/api/subscribe-email-bravo.ts
-import type { APIRoute } from 'astro';
+import type { APIRoute } from "astro";
 
 const BREVO_API_KEY = import.meta.env.BREVO_API_KEY;
 const BREVO_API_URL = 'https://api.brevo.com/v3/contacts';
@@ -44,7 +44,26 @@ export const POST: APIRoute = async ({ request }) => {
       })
     });
 
-    const contactData = await contactResponse.json();
+    // Añadimos logs para debug
+    console.log('Status:', contactResponse.status);
+    console.log('Status Text:', contactResponse.statusText);
+    
+    const responseText = await contactResponse.text();
+    console.log('Response Text:', responseText);
+
+    let contactData;
+    try {
+        contactData = responseText ? JSON.parse(responseText) : {};
+    } catch (parseError) {
+        console.error('Error parsing response:', parseError);
+        return new Response(
+            JSON.stringify({ 
+                error: 'Error en la respuesta del servidor',
+                details: responseText
+            }), 
+            { status: 500, headers: { 'Content-Type': 'application/json' } }
+        );
+    }
 
     // 2. Si el contacto se registró o ya existía, enviamos el email
     if (contactResponse.ok || contactData.code === 'duplicate_parameter') {
@@ -59,7 +78,7 @@ export const POST: APIRoute = async ({ request }) => {
         body: JSON.stringify({
           sender: {
             name: "Nexito",
-            email: "no-reply@nexito.es"
+            email: "info@nexito.es"
           },
           to: [{
             email: email,
