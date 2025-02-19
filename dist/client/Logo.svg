@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120">
+  <!-- Gradient definition -->
+  <defs>
+    <linearGradient id="modernGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2563eb"/>
+      <stop offset="100%" style="stop-color:#3b82f6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Main text with modern tech feel -->
+  <text x="20" y="85" 
+        font-family="Arial, sans-serif" 
+        font-weight="800" 
+        font-size="80" 
+        fill="url(#modernGradient)"
+        letter-spacing="2">
+    NEXITO
+  </text>
+
+  <!-- Decorative tech element -->
+  <path d="M380 40 L390 40 L390 80 L380 80" 
+        stroke="url(#modernGradient)" 
+        stroke-width="3" 
+        fill="none"/>
+
+  <!-- Additional tech dots -->
+  <circle cx="385" cy="30" r="3" fill="#3b82f6"/>
+  <circle cx="385" cy="90" r="3" fill="#2563eb"/>
+</svg>

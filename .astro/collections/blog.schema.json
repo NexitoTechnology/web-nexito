@@ -1,0 +1,132 @@
+{
+  "$ref": "#/definitions/blog",
+  "definitions": {
+    "blog": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "date": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "description": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "imageAlt": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "categoria": {
+          "type": "string"
+        },
+        "lastModified": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "readingTime": {
+          "type": "number"
+        },
+        "dificultad": {
+          "type": "string",
+          "enum": [
+            "Básico",
+            "Intermedio",
+            "Avanzado"
+          ]
+        },
+        "audiencia": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "metaTitle": {
+          "type": "string"
+        },
+        "metaDescription": {
+          "type": "string"
+        },
+        "ogImage": {
+          "type": "string"
+        },
+        "isPublished": {
+          "type": "boolean",
+          "default": true
+        },
+        "featured": {
+          "type": "boolean",
+          "default": false
+        },
+        "author": {
+          "type": "string",
+          "default": "Nexito Technology"
+        },
+        "articulosRelacionados": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "serie": {
+          "type": "string"
+        },
+        "ordenEnSerie": {
+          "type": "number"
+        },
+        "requisitoPrevio": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tiempoImplementacion": {
+          "type": "string"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "date",
+        "description"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

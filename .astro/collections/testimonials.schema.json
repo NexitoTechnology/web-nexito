@@ -1,0 +1,76 @@
+{
+  "$ref": "#/definitions/testimonials",
+  "definitions": {
+    "testimonials": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        },
+        "quote": {
+          "type": "string"
+        },
+        "metrics": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "value",
+              "label"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "order": {
+          "type": "number"
+        },
+        "image": {
+          "type": "string"
+        },
+        "companyLogo": {
+          "type": "string"
+        },
+        "linkedIn": {
+          "type": "string"
+        },
+        "featured": {
+          "type": "boolean",
+          "default": false
+        },
+        "projectType": {
+          "type": "string"
+        },
+        "industry": {
+          "type": "string"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "role",
+        "company",
+        "quote",
+        "metrics",
+        "order"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

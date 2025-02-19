@@ -43,6 +43,7 @@ export default defineConfig({
         'aviso-legal',
         'politica-de-cookies',
         'politica-de-privacidad',
+        'consultoria-gratuita',
       ].some((path) => page.includes(path)),
     }),
   ]

@@ -6,6 +6,7 @@ Allow: /
 Disallow: /aviso-legal/
 Disallow: /politica-de-privacidad/
 Disallow: /politica-de-cookies/
+Disallow: /consultoria-gratuita/
 
 Sitemap: ${sitemapURL.href}
 `;
