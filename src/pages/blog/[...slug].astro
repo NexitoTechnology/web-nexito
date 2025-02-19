@@ -115,7 +115,7 @@ const automatizacionData: PageData = {
     title: "¿Listo para automatizar tu negocio?",
     description: "Agenda una consultoría gratuita y descubre el potencial de la automatización",
     buttonText: "Reserva tu Consultoría Gratis",
-    buttonLink: "https://cal.com/nexito/30min",
+    buttonLink: "https://nexito.tech/consultoria-gratuita/",
     features: ["Sin compromiso", "100% Confidencial", "Gratis"]
   }
 }
@@ -124,9 +124,7 @@ const automatizacionData: PageData = {
 <Layout 
   title={post.data.metaTitle || `${post.data.title} | Blog Nexito Technology`}
   description={post.data.metaDescription || post.data.description}
-  image={post.data.ogImage || post.data.image}
-  type="article"
->
+  image={post.data.ogImage || post.data.image}>
   <JsonLD type="Article" data={articleSchema} />
   
   <main class="w-full max-w-none mx-auto px-4 py-12 md:max-w-3/4 lg:max-w-9/12 xl:max-w-4/5">
@@ -273,7 +271,7 @@ const automatizacionData: PageData = {
               <div class="grid md:grid-cols-3 gap-8">
                 {relatedPosts.map(relatedPost => (
                   <a 
-                    href={`/blog/${relatedPost.slug}`}
+                    href={`/blog/${relatedPost.slug}/`}
                     class="group block"
                   >
                     <article>
