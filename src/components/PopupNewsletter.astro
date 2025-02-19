@@ -221,7 +221,7 @@
         </p>
         <p class="text-sm">
           Para asegurarte de recibir nuestros próximos emails, añade
-          <span class="text-white font-medium">no-reply@nexito.es</span>
+          <span class="text-white font-medium">info@nexito.es</span>
           a tus contactos.
         </p>
       </div>
@@ -431,7 +431,11 @@
             email,
             attributes: {
               NOMBRE: name,
-              SMS: phone ? `+34${phone}` : undefined,
+              SMS: phone
+                ? phone.startsWith("+34")
+                  ? phone
+                  : `+34${phone}`
+                : undefined,
             },
           }),
         });
@@ -439,33 +443,16 @@
         const data = await response.json();
 
         if (response.ok) {
-          if (data.status === "duplicate") {
-            // Usuario ya suscrito
-            showSuccess();
-          } else {
-            // Nueva suscripción exitosa
-            showSuccess();
-          }
+          // Simplificamos el manejo de la respuesta
+          showSuccess();
         } else {
-          let errorMessage = "Hubo un error al procesar tu suscripción.";
-
-          // Manejar diferentes tipos de errores
-          if (data.error === "invalid_parameter") {
-            errorMessage = "Por favor, verifica los datos introducidos.";
-          } else if (data.error === "missing_parameter") {
-            errorMessage = "Por favor, completa todos los campos requeridos.";
-          } else if (response.status === 429) {
-            errorMessage =
-              "Demasiadas solicitudes. Por favor, espera un momento.";
-          }
-
+          let errorMessage =
+            data.error || "Hubo un error al procesar tu suscripción.";
           showError(errorMessage);
         }
       } catch (error) {
         console.error("Error:", error);
-        showError(
-          "Error de conexión. Por favor, verifica tu conexión a internet e intenta de nuevo."
-        );
+        showError("Error de conexión. Por favor, intenta de nuevo.");
       } finally {
         isSubmitting = false;
         hideLoading(submitButton);
