@@ -8,7 +8,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  //trailingSlash: 'always',
+  trailingSlash: 'always',
   site: "https://nexito.tech",
   output: "server",
   adapter: vercel({
