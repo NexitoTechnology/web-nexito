@@ -26,7 +26,7 @@ const {
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const siteURL = "https://nexito.tech";
+const siteURL = "https://nexito.tech/";
 ---
 
 <!doctype html>
@@ -58,7 +58,7 @@ const siteURL = "https://nexito.tech";
     <title>{title}</title>
 
     <!-- SEO mejorado -->
-    <link rel="canonical" href={canonicalURL} />
+    <link rel="canonical" href={canonicalURL.toString().endsWith('/') ? canonicalURL : `${canonicalURL}/`} />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="author" content="Nexito Technology" />
     <meta name="generator" content={Astro.generator} />
