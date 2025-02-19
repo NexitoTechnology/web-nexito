@@ -78,7 +78,7 @@ export const POST: APIRoute = async ({ request }) => {
         body: JSON.stringify({
           sender: {
             name: "Nexito",
-            email: "info@nexito.es"
+            email: "info@nexito.tech"
           },
           to: [{
             email: email,
