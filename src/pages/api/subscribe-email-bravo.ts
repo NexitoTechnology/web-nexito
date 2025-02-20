@@ -101,47 +101,47 @@ export const POST: APIRoute = async ({ request }) => {
 <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f5f5f5;">
   <div style="max-width: 600px; margin: 0 auto; background-color: white; padding: 20px;">
     <!-- Header con logo -->
-<div style="text-align: center; padding: 20px;">
-  <img src="https://nexito.tech/Logo.png" alt="Nexito Technology" style="max-width: 300px; height: auto;">
-</div>
+    <div style="text-align: center; padding: 20px;">
+      <img src="https://nexito.tech/Logo.png" alt="Nexito Technology" style="max-width: 300px; height: auto;">
+    </div>
 
     <!-- Contenido principal -->
     <div style="padding: 20px; background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); color: white; border-radius: 8px; margin-bottom: 20px;">
-      <h1 style="margin: 0; font-size: 24px; color: white;">¡Bienvenido/a a la innovación, ${name}! 🚀</h1>
+      <h1 style="margin: 0; font-size: 24px; color: white;">¡Bienvenido/a al futuro de tu negocio, ${name}! 🚀</h1>
       <p style="font-size: 16px; line-height: 1.5; margin-top: 15px;">
-        ¡Qué alegría tenerte con nosotros! Has dado el primer paso hacia la transformación digital de tu empresa, y queremos agradecerte tu confianza con un regalo muy especial.
+        ¡Felicidades por dar el primer paso hacia la automatización de tu negocio! Has tomado una decisión que transformará la manera en que trabajas, y queremos agradecerte tu confianza con este valioso recurso.
       </p>
     </div>
 
     <!-- Sección de descarga -->
     <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
-      <h2 style="color: #1e3a8a; font-size: 20px; margin-top: 0;">Tu viaje hacia la automatización comienza aquí 🎯</h2>
+      <h2 style="color: #1e3a8a; font-size: 20px; margin-top: 0;">Tu camino hacia un negocio más eficiente empieza aquí 🎯</h2>
       <p style="color: #475569; line-height: 1.5;">
-        Hemos condensado años de experiencia y conocimiento en este eBook exclusivo. No es solo una guía, es tu compañero en el camino hacia la eficiencia operativa.
+        En "Negocios en Automático: Crece Más, Trabaja Menos" encontrarás las claves para transformar tu negocio en una máquina bien engrasada que funciona sin necesidad de tu constante supervisión.
       </p>
       <div style="text-align: center; margin: 25px 0;">
         <a href="https://nexito.tech/download-ebook-index/" 
            style="background-color: #2563eb; color: white; padding: 15px 30px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block; transition: background-color 0.3s;">
-           ¡Quiero empezar ya! 📚
+           Descargar mi eBook 📚
         </a>
       </div>
     </div>
 
     <!-- Características del eBook -->
     <div style="margin-bottom: 20px;">
-      <h3 style="color: #1e3a8a; font-size: 18px;">Lo que te espera en esta aventura:</h3>
+      <h3 style="color: #1e3a8a; font-size: 18px;">Lo que descubrirás en este eBook:</h3>
       <ul style="color: #475569; padding-left: 20px; line-height: 1.6;">
-        <li>🔄 +500 procesos que revolucionarán tu día a día</li>
-        <li>💡 Historias reales de empresas que ya dieron el salto</li>
-        <li>🎯 Templates que podrás implementar hoy mismo</li>
-        <li>🚀 Guías paso a paso para no perderte nada</li>
+        <li>⚡ Estrategias probadas de automatización empresarial</li>
+        <li>🎯 Sistemas paso a paso para reducir el trabajo manual</li>
+        <li>💡 Casos de éxito y ejemplos prácticos</li>
+        <li>🔄 Herramientas y recursos listos para implementar</li>
       </ul>
     </div>
 
     <!-- Mensaje personal -->
     <div style="background-color: #f0f9ff; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
       <p style="color: #1e3a8a; line-height: 1.6; margin: 0;">
-        "<em>La automatización no es el futuro, es el presente. Y ahora tú formas parte de él. Estamos aquí para acompañarte en cada paso del camino.</em>"
+        "<em>El secreto del éxito empresarial no está en trabajar más horas, sino en trabajar de forma más inteligente. Este eBook te mostrará cómo hacerlo realidad en tu negocio.</em>"
       </p>
       <p style="color: #1e3a8a; text-align: right; margin: 10px 0 0; font-weight: bold;">
         - El equipo de Nexito Technology
@@ -151,7 +151,7 @@ export const POST: APIRoute = async ({ request }) => {
     <!-- Contacto -->
     <div style="border-top: 1px solid #e2e8f0; padding-top: 20px; margin-top: 20px;">
       <p style="color: #64748b; font-size: 14px; line-height: 1.5; margin-bottom: 10px;">
-        ¿Dudas? ¿Ideas? ¿Ganas de compartir tu experiencia? Estamos a solo un mensaje de distancia:
+        ¿Tienes preguntas sobre la implementación? ¿Quieres compartir tus avances? Estamos aquí para ayudarte:
       </p>
       <ul style="list-style: none; padding: 0; margin: 0;">
         <li style="color: #64748b; font-size: 14px; margin-bottom: 5px;">
@@ -166,7 +166,7 @@ export const POST: APIRoute = async ({ request }) => {
     <!-- Footer -->
     <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e2e8f0;">
       <p style="color: #94a3b8; font-size: 12px;">
-        ©  ${new Date().getFullYear()} Nexito Technology. Todos los derechos reservados.
+        © ${new Date().getFullYear()} Nexito Technology. Todos los derechos reservados.
       </p>
       <p style="color: #94a3b8; font-size: 12px;">
         C/ Lira 8, N36, 04648 Almería, España

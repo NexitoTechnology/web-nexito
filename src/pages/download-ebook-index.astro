@@ -1,21 +1,90 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import BenefitsSection from '../components/BenefitsSection.astro';
+import CTASection from '../components/CTASection.astro';
+import PopupNewsletter from '../components/PopupNewsletter.astro';
+
+const pageTitle = "Negocios en Automático: Ebook Gratuito sobre Automatización Empresarial | Nexito Tech";
+const pageDescription = "Descubre cómo hacer crecer tu negocio mientras reduces tus horas de trabajo. Aprende estrategias probadas de automatización, herramientas y casos de éxito reales que transformarán la manera en que operas tu empresa.";
+
+// Script para la descarga automática
+const downloadScript = `
+  window.onload = function() {
+    setTimeout(function() {
+      const link = document.createElement('a');
+      link.href = '/ebook-negocios-automaticos.pdf';
+      link.download = 'Negocios-en-Automatico-Nexito-Tech.pdf';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }, 2000);
+  }
+`;
 ---
 
-<html>
-  <head>
-    <title>Descarga tu eBook</title>
-  </head>
-  <body>
-    <div class="max-w-2xl mx-auto py-16 px-4">
-      <h1 class="text-3xl font-bold mb-6">¡Gracias por suscribirte!</h1>
-      <p class="mb-8">Haz clic en el botón de abajo para descargar tu eBook.</p>
+<Layout title={pageTitle} description={pageDescription}>
+  <!-- Hero Section Personalizada -->
+  <section class="relative py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+          ¡Tu eBook está en camino! 🚀
+        </h1>
+        <p class="text-xl text-blue-200 mb-8">
+          La descarga comenzará automáticamente en unos segundos...
+        </p>
+        <div class="animate-bounce">
+          <svg class="w-10 h-10 mx-auto text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de Próximos Pasos -->
+  <section class="py-16 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">
+        Mientras se descarga tu eBook...
+      </h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-blue-50 p-6 rounded-lg">
+          <div class="text-blue-600 mb-4 text-2xl">📱</div>
+          <h3 class="text-xl font-semibold mb-2">Guárdalo en tu dispositivo</h3>
+          <p class="text-gray-600">Descarga el PDF en todos tus dispositivos para tenerlo siempre a mano.</p>
+        </div>
+        <div class="bg-blue-50 p-6 rounded-lg">
+          <div class="text-blue-600 mb-4 text-2xl">📖</div>
+          <h3 class="text-xl font-semibold mb-2">Comienza por el principio</h3>
+          <p class="text-gray-600">Te recomendamos empezar por el capítulo 1 para sentar las bases.</p>
+        </div>
+        <div class="bg-blue-50 p-6 rounded-lg">
+          <div class="text-blue-600 mb-4 text-2xl">✍️</div>
+          <h3 class="text-xl font-semibold mb-2">Toma notas</h3>
+          <p class="text-gray-600">Marca las estrategias que más te interesen para implementarlas después.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section Personalizada -->
+  <section class="bg-gray-50 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl font-bold text-gray-900 mb-8">¿Necesitas ayuda para implementar estas estrategias?</h2>
+      <p class="text-xl text-gray-600 mb-8">
+        Nuestro equipo de expertos está listo para ayudarte a automatizar tu negocio
+      </p>
       <a 
-        href="/ruta-a-tu-ebook.pdf" 
-        class="inline-block bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700"
-        download
+        href="https://nexito.tech/consultoria-gratuita/" 
+        class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition-colors"
       >
-        Descargar eBook
+        Agenda una llamada gratuita
       </a>
     </div>
-  </body>
-</html>
+  </section>
+
+  <!-- Script de descarga -->
+  <script set:html={downloadScript} />
+</Layout>
