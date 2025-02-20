@@ -180,6 +180,7 @@ export const POST: APIRoute = async ({ request }) => {
             opens: true,
             clicks: true,
             unsubscribe: true,
+            updateEnabled: true
           },
         }),
       });
