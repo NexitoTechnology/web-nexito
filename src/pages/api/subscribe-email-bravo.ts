@@ -101,9 +101,9 @@ export const POST: APIRoute = async ({ request }) => {
 <body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f5f5f5;">
   <div style="max-width: 600px; margin: 0 auto; background-color: white; padding: 20px;">
     <!-- Header con logo -->
-    <div style="text-align: center; padding: 20px;">
-      <img src="https://nexito.tech/Logo.svg" alt="Nexito Technology" style="max-width: 200px; height: auto;">
-    </div>
+<div style="text-align: center; padding: 20px;">
+  <img src="https://nexito.tech/Logo.png" alt="Nexito Technology" style="max-width: 300px; height: auto;">
+</div>
 
     <!-- Contenido principal -->
     <div style="padding: 20px; background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); color: white; border-radius: 8px; margin-bottom: 20px;">
