@@ -1,9 +1,6 @@
 // src/pages/api/subscribe-email-bravo.ts
 import type { APIRoute } from "astro";
 
-import fs from 'fs/promises';
-import path from 'path';
-
 const BREVO_API_KEY = import.meta.env.BREVO_API_KEY;
 const BREVO_API_URL = "https://api.brevo.com/v3/contacts";
 const BREVO_EMAIL_URL = "https://api.brevo.com/v3/smtp/email";

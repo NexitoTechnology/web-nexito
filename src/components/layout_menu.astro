@@ -114,6 +114,12 @@ const menuData = {
           </a>
 
           <a href="/contacto/"
+          onclick="window.dataLayer.push({
+            'event': 'button_contact_menu',
+            'eventCategory': 'engagement',
+            'eventAction': 'click',
+            'eventLabel': 'free_call_30min'
+          })" 
             class="inline-flex items-center justify-center px-5 py-2.5 font-medium text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-200"
             aria-label="Contactar con nosotros"
           >
@@ -199,6 +205,12 @@ const menuData = {
       </a>
       
       <a href="/contacto/"
+      onclick="window.dataLayer.push({
+        'event': 'button_contact_menu',
+        'eventCategory': 'engagement',
+        'eventAction': 'click',
+        'eventLabel': 'free_call_30min'
+      })" 
         class="block text-center bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-3 rounded-lg font-medium hover:shadow-lg transition-shadow"
         role="menuitem"
       >

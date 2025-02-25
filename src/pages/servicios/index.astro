@@ -1,10 +1,10 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import ServicesSection from '../../components/ServicesSection.astro';
-import Testimonials from '../../components/Testimonials.astro';
-import CTASection from '../../components/CTASection.astro';
-import ProcessSection from '../../components/ProcessSection.astro';
-import FAQ_Services from '../../components/FAQ_Services.astro';
+import ServicesSection from '../../components/index_services_section.astro';
+import Testimonials from '../../components/testimonials_section.astro';
+import CTASection from '../../components/index_cta_section.astro';
+import ProcessSection from '../../components/index_process_section.astro';
+import FAQ_Services from '../../components/faq_section.astro';
 
 interface FAQItem {
   question: string;
@@ -96,6 +96,12 @@ const benefitsContent = [
         <div class="flex flex-wrap justify-center gap-4">
           <a 
             href="https://nexito.tech/consultoria-gratuita/"
+            onclick="window.dataLayer.push({
+              'event': 'schedule_call_services_index',
+              'eventCategory': 'engagement',
+              'eventAction': 'click',
+              'eventLabel': 'free_call_30min'
+            })"
             class="inline-flex items-center justify-center px-8 py-4 text-base font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition-colors duration-200"
           >
             Consulta Gratuita

@@ -1,6 +1,6 @@
-import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_D2lW42M0.mjs';
+import { c as createComponent, r as renderComponent, b as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_CpFO4I6n.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_pGFWBYzd.mjs';
+import { $ as $$Layout } from '../chunks/Layout_C1l__usd.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$AvisoLegal = createComponent(($$result, $$props, $$slots) => {
@@ -8,7 +8,7 @@ const $$AvisoLegal = createComponent(($$result, $$props, $$slots) => {
     title: "Aviso Legal | Nexito Technology",
     description: "Descubre nuestra informaci\xF3n legal y t\xE9rminos de uso de nuestro sitio web."
   };
-  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": avisoLegalData.title, "description": avisoLegalData.description, "type": "website" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<section class="py-16 bg-white shadow-inner rounded-lg"> <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"> <h1 class="text-4xl font-bold mb-6 text-center text-gray-800">
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": avisoLegalData.title, "description": avisoLegalData.description }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<section class="py-16 bg-white shadow-inner rounded-lg"> <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"> <h1 class="text-4xl font-bold mb-6 text-center text-gray-800">
 Aviso Legal
 </h1> <p class="text-lg mb-4 text-gray-700">
 Este es el aviso legal de Nexito Technology. En esta página, encontrarás

@@ -11,6 +11,7 @@ import FaqCtaServices from "../../components/FaqCta_Services.astro";
 import Divider from "../../components/Divider_Services.astro";
 import ContactServices from "../../components/Contact_Services.astro";
 import JsonLD from "../../components/JsonLD.astro";
+import Testimonials from '../../components/Testimonials.astro';
 
 // Interfaces
 interface Feature {
@@ -151,21 +152,21 @@ const biData: PageData = {
         title: "Análisis Financiero Avanzado",
         description: "Optimización de gestión financiera y reducción de riesgos con BI predictivo",
         image: "/images/finance-bi.webp",
-        link: "/blog/caso-exito-business-intelligence-eficiencia-operativa",
+        link: "/blog/caso-exito-business-intelligence-eficiencia-operativa/",
         linkText: "Ver caso completo"
       },
       {
         title: "Marketing Data-Driven",
         description: "Optimización de ROI en campañas y análisis profundo del comportamiento del cliente",
         image: "/images/marketing-bi.webp",
-        link: "/blog/caso-exito-business-intelligence-eficiencia-operativa",
+        link: "/blog/caso-exito-business-intelligence-eficiencia-operativa/",
         linkText: "Ver caso completo"
       },
       {
         title: "Eficiencia Operativa",
         description: "Mejora significativa en productividad y optimización de recursos empresariales",
         image: "/images/operations-bi.webp",
-        link: "/blog/caso-exito-business-intelligence-eficiencia-operativa",
+        link: "/blog/caso-exito-business-intelligence-eficiencia-operativa/",
         linkText: "Ver caso completo"
       }
     ],
@@ -305,6 +306,11 @@ const serviceSchema = {
   <Divider />
 
   <UseCases {...biData.useCases} />
+
+  <Divider />
+
+  <!-- Testimonios Específicos -->
+  <Testimonials />
 
   <Divider />
 

@@ -1,7 +1,7 @@
-import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead, g as addAttribute } from '../chunks/astro/server_D2lW42M0.mjs';
+import { c as createComponent, r as renderComponent, b as renderTemplate, m as maybeRenderHead, g as addAttribute } from '../chunks/astro/server_CpFO4I6n.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_pGFWBYzd.mjs';
-import { $ as $$JsonLD } from '../chunks/ClientRouter_nhIQMViw.mjs';
+import { $ as $$Layout } from '../chunks/Layout_C1l__usd.mjs';
+import { $ as $$JsonLD } from '../chunks/ClientRouter_CuotEUus.mjs';
 /* empty css                                    */
 export { renderers } from '../renderers.mjs';
 
@@ -110,7 +110,7 @@ const $$Nosotros = createComponent(($$result, $$props, $$slots) => {
       title: "Construyamos Juntos el Futuro Digital",
       description: "Descubre c\xF3mo nuestras soluciones pueden transformar tu negocio y prepararlo para los desaf\xEDos del ma\xF1ana.",
       buttonText: "Agenda una Consultor\xEDa Gratuita",
-      buttonLink: "https://cal.com/nexito/30min"
+      buttonLink: "https://nexito.tech/consultoria-gratuita/"
     }
   };
   const aboutSchema = {

@@ -1,9 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import HeroSection from '../components/HeroSection.astro';
-import BenefitsSection from '../components/BenefitsSection.astro';
-import CTASection from '../components/CTASection.astro';
-import PopupNewsletter from '../components/PopupNewsletter.astro';
+import HeroSection from '../components/index_hero_section.astro';
+import BenefitsSection from '../components/index_benefits_section.astro';
+import CTASection from '../components/index_cta_section.astro';
+import PopupNewsletter from '../components/popup_newsletter.astro';
 
 const pageTitle = "Negocios en Automático: Ebook Gratuito sobre Automatización Empresarial | Nexito Tech";
 const pageDescription = "Descubre cómo hacer crecer tu negocio mientras reduces tus horas de trabajo. Aprende estrategias probadas de automatización, herramientas y casos de éxito reales que transformarán la manera en que operas tu empresa.";
@@ -77,7 +77,13 @@ const downloadScript = `
         Nuestro equipo de expertos está listo para ayudarte a automatizar tu negocio
       </p>
       <a 
-        href="https://nexito.tech/consultoria-gratuita/" 
+        href="https://nexito.tech/consultoria-gratuita/"
+        onclick="window.dataLayer.push({
+          'event': 'schedule_call_download_ebook',
+          'eventCategory': 'engagement',
+          'eventAction': 'click',
+          'eventLabel': 'free_call_30min'
+        })" 
         class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 transition-colors"
       >
         Agenda una llamada gratuita

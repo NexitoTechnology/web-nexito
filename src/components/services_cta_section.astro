@@ -19,7 +19,15 @@ const { title, description, buttonText, buttonLink, features = [] } = Astro.prop
   </p>
 
   <a
-    href= "https://nexito.tech/consultoria-gratuita/" target="_blank" rel="noopener noreferrer"
+    href= "https://nexito.tech/consultoria-gratuita/" target="_blank"
+    onclick="window.dataLayer.push({
+      'event': 'schedule_call_services_cta_section',
+      'eventCategory': 'engagement',
+      'eventAction': 'click',
+      'eventLabel': 'free_call_30min'
+    })"
+    
+    rel="noopener noreferrer"
     class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-blue-800 bg-white rounded-xl shadow-lg hover:bg-blue-50 transform hover:scale-[1.02] transition-all duration-200 group"
   >
     <span>{buttonText}</span>

@@ -79,7 +79,12 @@ const heroSchema = {
 
     <!-- CTAs -->
     <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 animate-fade-in">
-      <a href="https://nexito.tech/consultoria-gratuita/" target="_blank" rel="noopener noreferrer" class="group relative inline-flex items-center justify-center px-8 py-4 text-lg md:text-xl font-bold text-blue-900 bg-white rounded-xl shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-200">
+      <a href="https://nexito.tech/consultoria-gratuita/" target="_blank" onclick="window.dataLayer.push({
+        'event': 'schedule_call_index_hero_section',
+        'eventCategory': 'engagement',
+        'eventAction': 'click',
+        'eventLabel': 'free_call_30min'
+      })"rel="noopener noreferrer" class="group relative inline-flex items-center justify-center px-8 py-4 text-lg md:text-xl font-bold text-blue-900 bg-white rounded-xl shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-200">
         <span class="relative flex items-center">
           <span>Agenda tu Consultoría Gratuita</span>
           <span class="ml-2 bg-blue-100 rounded-lg px-2 py-1 text-sm font-normal">30min</span>

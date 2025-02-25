@@ -1,6 +1,6 @@
-import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_D2lW42M0.mjs';
+import { c as createComponent, r as renderComponent, b as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_CpFO4I6n.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_pGFWBYzd.mjs';
+import { $ as $$Layout } from '../chunks/Layout_C1l__usd.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$PoliticaDePrivacidad = createComponent(($$result, $$props, $$slots) => {
@@ -8,7 +8,7 @@ const $$PoliticaDePrivacidad = createComponent(($$result, $$props, $$slots) => {
     title: "Pol\xEDtica de Privacidad | Nexito Technology",
     description: "Descubre c\xF3mo protegemos y manejamos tus datos personales en nuestro sitio web."
   };
-  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": politicaDePrivacidadData.title, "description": politicaDePrivacidadData.description, "type": "website" }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<section class="py-16 bg-white shadow-inner rounded-lg"> <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"> <h1 class="text-4xl font-bold mb-6 text-center text-gray-800">
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": politicaDePrivacidadData.title, "description": politicaDePrivacidadData.description }, { "default": ($$result2) => renderTemplate` ${maybeRenderHead()}<section class="py-16 bg-white shadow-inner rounded-lg"> <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8"> <h1 class="text-4xl font-bold mb-6 text-center text-gray-800">
 Política de Privacidad
 </h1> <p class="text-lg mb-4 text-gray-700">
 De conformidad con lo dispuesto en el Reglamento General (UE) Sobre Protección de Datos, mediante la aceptación de la presente Política de Privacidad, como USUARIO, prestas el consentimiento informado, expreso, libre e inequívoco para que los datos personales que proporciones a través de la página web <a href="https://nexito.tech/" class="text-blue-500">https://nexito.tech/</a> (en adelante SITIO WEB) sean incluidos en un fichero de “CLIENTES Y/O PROVEEDORES” y “USUARIOS WEB”.

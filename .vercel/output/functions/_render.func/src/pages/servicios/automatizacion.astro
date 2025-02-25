@@ -11,6 +11,7 @@ import FaqCtaServices from "../../components/FaqCta_Services.astro";
 import Divider from "../../components/Divider_Services.astro";
 import ContactServices from "../../components/Contact_Services.astro";
 import JsonLD from "../../components/JsonLD.astro";
+import Testimonials from '../../components/Testimonials.astro';
 
 // Interfaces
 interface Feature {
@@ -156,21 +157,21 @@ const automatizacionData: PageData = {
         title: "Gestión Documental",
         description: "Automatización del procesamiento de documentos",
         image: "/images/finance-automation.webp",
-        link: "/blog/caso-exito-automatizacion-documental", // Opcional
+        link: "/blog/caso-exito-automatizacion-documental/", // Opcional
         linkText: "Ver caso completo" // Opcional
       },
       {
         title: "Procesos de Ventas",
         description: "Optimización del ciclo de ventas completo",
         image: "/images/hr-automation.webp",
-        link: "/blog/caso-exito-optimizacion-integral-ciclo-ventas", // linkText es opcional, usará el valor por defecto
+        link: "/blog/caso-exito-optimizacion-integral-ciclo-ventas/", // linkText es opcional, usará el valor por defecto
         linkText: "Ver caso completo"
       },
       {
         title: "Servicio al Cliente",
         description: "Automatización de atención y soporte",
         image: "/images/customer-service-automation.webp",
-        link: "/blog/automatizacion-atencion-cliente-caso-exito",
+        link: "/blog/automatizacion-atencion-cliente-caso-exito/",
         linkText: "Ver caso completo"
       }
     ],
@@ -256,7 +257,7 @@ const automatizacionData: PageData = {
     title: "¿Listo para automatizar tu negocio?",
     description: "Agenda una consultoría gratuita y descubre el potencial de la automatización",
     buttonText: "Reserva tu Consultoría Gratis",
-    buttonLink: "https://cal.com/nexito/30min",
+    buttonLink: "https://nexito.tech/consultoria-gratuita/",
     features: ["Sin compromiso", "100% Confidencial", "Gratis"]
   },
 
@@ -264,7 +265,7 @@ const automatizacionData: PageData = {
     title: "¿Tienes más preguntas?",
     description: "Estamos aquí para ayudarte",
     btnText: "Agenda una llamada gratuita",
-    btnLink: "https://cal.com/nexito/30min"
+    btnLink: "https://nexito.tech/consultoria-gratuita/"
   }
 };
 
@@ -301,6 +302,11 @@ const serviceSchema = {
   <Divider />
 
   <UseCases {...automatizacionData.useCases} />
+
+  <Divider />
+
+  <!-- Testimonios Específicos -->
+  <Testimonials />
 
   <Divider />
 

@@ -4,20 +4,49 @@ import ServicesSection from '../../components/ServicesSection.astro';
 import Testimonials from '../../components/Testimonials.astro';
 import CTASection from '../../components/CTASection.astro';
 import ProcessSection from '../../components/ProcessSection.astro';
+import FAQ_Services from '../../components/FAQ_Services.astro';
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+interface homeFAQs { 
+  title: string;
+  description: string;
+  tag: string;
+  faqItems: FAQItem[]; 
+};
+
+const homeFAQs = {
+  title: "Preguntas Frecuentes",
+  description: "Resolvemos tus dudas sobre nuestros servicios de automatización e Inteligencia Artificial",
+  tag: "FAQ",
+  faqItems: [
+    {
+      question: "¿Qué servicios ofrece Nexito Technology?",
+      answer: "Ofrecemos servicios especializados en automatización de procesos, desarrollo de soluciones con Inteligencia Artificial, consultoría tecnológica, implementación de Business Intelligence, Power BI y servicios SAP. Nuestro objetivo es transformar y optimizar los procesos empresariales mediante tecnología avanzada."
+    },
+    {
+      question: "¿Cómo puedo saber si mi empresa necesita automatización?",
+      answer: "Si tu empresa dedica mucho tiempo a tareas repetitivas, maneja grandes volúmenes de datos manualmente, o busca mejorar la eficiencia operativa, probablemente te beneficiarías de la automatización. Ofrecemos una consulta inicial gratuita para evaluar tus necesidades específicas."
+    },
+    {
+      question: "¿Cuánto tiempo lleva implementar una solución de automatización?",
+      answer: "El tiempo de implementación varía según la complejidad del proyecto y las necesidades específicas de tu empresa. Típicamente, los proyectos pueden llevar desde algunas semanas para automatizaciones simples hasta varios meses para transformaciones más completas. Siempre proporcionamos un cronograma detallado al inicio del proyecto."
+    },
+    {
+      question: "¿Qué soporte ofrecéis después de la implementación?",
+      answer: "Proporcionamos soporte técnico continuo, mantenimiento y actualizaciones para todas nuestras soluciones. Además, ofrecemos formación para tu equipo y asistencia permanente para asegurar que obtienes el máximo beneficio de nuestras implementaciones."
+    },
+    {
+      question: "¿Trabajáis con empresas de cualquier tamaño?",
+      answer: "Sí, adaptamos nuestras soluciones a empresas de todos los tamaños. Desde startups hasta grandes corporaciones, desarrollamos soluciones escalables que se ajustan a tus necesidades y presupuesto específicos."
+    }
+  ]
+};
 
 const pageTitle = "Servicios y Soluciones Tecnológicas | Nexito Tech";
 const pageDescription = "Descubre nuestros servicios de automatización inteligente, IA y consultoría tecnológica. Soluciones personalizadas y escalables para optimizar tu negocio.";
-
-// Esquema de datos específico para la página de servicios
-const schemaData = {
-  "@type": "ServicePage",
-  "name": pageTitle,
-  "description": pageDescription,
-  "provider": {
-    "@type": "Organization",
-    "name": "Nexito Technology"
-  }
-};
 
 // Contenido extra para la página de servicios
 const heroContent = {
@@ -46,7 +75,7 @@ const benefitsContent = [
 ];
 ---
 
-<Layout title={pageTitle} description={pageDescription} type="service" schemaData={schemaData}>
+<Layout title={pageTitle} description={pageDescription}>
   <!-- Hero Section Mejorada -->
   <section class="relative py-20 lg:py-32 overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-white"></div>
@@ -66,7 +95,7 @@ const benefitsContent = [
         </p>
         <div class="flex flex-wrap justify-center gap-4">
           <a 
-            href="https://cal.com/nexito/30min"
+            href="https://nexito.tech/consultoria-gratuita/"
             class="inline-flex items-center justify-center px-8 py-4 text-base font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition-colors duration-200"
           >
             Consulta Gratuita
@@ -105,37 +134,9 @@ const benefitsContent = [
   <!-- Testimonios Específicos -->
   <Testimonials />
 
-  <!-- FAQ Section -->
-  <section class="py-16 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold text-gray-900">Preguntas Frecuentes</h2>
-        <p class="text-xl text-gray-600 mt-4">Todo lo que necesitas saber sobre nuestros servicios</p>
-      </div>
-      <div class="max-w-3xl mx-auto space-y-6">
-        {[
-          {
-            q: "¿Cómo empiezo con vuestros servicios?",
-            a: "El proceso comienza con una consultoría gratuita donde evaluamos tus necesidades específicas y recomendamos las mejores soluciones para tu caso."
-          },
-          {
-            q: "¿Qué soporte ofrecéis después de la implementación?",
-            a: "Proporcionamos soporte continuo, mantenimiento y actualizaciones para asegurar que tu solución funcione óptimamente."
-          },
-          {
-            q: "¿Cuánto tiempo toma implementar una solución?",
-            a: "Los tiempos varían según el proyecto, pero típicamente desde 2-4 semanas para soluciones básicas hasta 2-3 meses para implementaciones más complejas."
-          }
-        ].map((faq) => (
-          <div class="bg-white rounded-xl p-6 shadow-sm">
-            <h3 class="text-lg font-semibold text-gray-900 mb-2">{faq.q}</h3>
-            <p class="text-gray-600">{faq.a}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Final -->
+    <!-- CTA Final -->
   <CTASection />
+
+  <!-- FAQ Section -->
+  <FAQ_Services { ...homeFAQs } />
 </Layout>

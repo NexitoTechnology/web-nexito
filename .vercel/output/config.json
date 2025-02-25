@@ -12,15 +12,15 @@
 			"handle": "filesystem"
 		},
 		{
-			"src": "^\\/_server-islands\\/([^/]+?)\\/?$",
-			"dest": "_render"
-		},
-		{
 			"src": "^\\/_image\\/?$",
 			"dest": "_render"
 		},
 		{
-			"src": "^\\/api\\/subscribe\\/?$",
+			"src": "^\\/api\\/robots\\.txt\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/api\\/subscribe-email-bravo\\/?$",
 			"dest": "_render"
 		},
 		{
@@ -32,11 +32,15 @@
 			"dest": "_render"
 		},
 		{
+			"src": "^\\/consultoria-gratuita\\/?$",
+			"dest": "_render"
+		},
+		{
 			"src": "^\\/contacto\\/?$",
 			"dest": "_render"
 		},
 		{
-			"src": "^\\/download-ebook\\/?$",
+			"src": "^\\/download-ebook-index\\/?$",
 			"dest": "_render"
 		},
 		{
@@ -53,10 +57,6 @@
 		},
 		{
 			"src": "^\\/politica-de-privacidad\\/?$",
-			"dest": "_render"
-		},
-		{
-			"src": "^\\/robots\\.txt\\/?$",
 			"dest": "_render"
 		},
 		{

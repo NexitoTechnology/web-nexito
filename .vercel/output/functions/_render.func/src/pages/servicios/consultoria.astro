@@ -11,6 +11,7 @@ import FaqCtaServices from "../../components/FaqCta_Services.astro";
 import Divider from "../../components/Divider_Services.astro";
 import ContactServices from "../../components/Contact_Services.astro";
 import JsonLD from "../../components/JsonLD.astro";
+import Testimonials from '../../components/Testimonials.astro';
 
 // Interfaces
 interface Feature {
@@ -151,21 +152,21 @@ const consultoriaData: PageData = {
         title: "Sector Financiero",
         description: "Digitalización completa de procesos financieros y optimización de risk management",
         image: "/images/finance-consulting.webp",
-        link: "/blog/caso-exito-consultoria-tech-industria-retail",
+        link: "/blog/caso-exito-consultoria-tech-industria-retail/",
         linkText: "Ver caso completo"
       },
       {
         title: "Sector Salud",
         description: "Implementación de telemedicina y sistemas integrados de gestión hospitalaria",
         image: "/images/health-consulting.webp",
-        link: "/blog/caso-exito-consultoria-tech-industria-retail",
+        link: "/blog/caso-exito-consultoria-tech-industria-retail/",
         linkText: "Ver caso completo"
       },
       {
         title: "Sector Retail",
         description: "Transformación omnicanal y optimización de experiencia del cliente",
         image: "/images/retail-consulting.webp",
-        link: "/blog/caso-exito-consultoria-tech-industria-retail",
+        link: "/blog/caso-exito-consultoria-tech-industria-retail/",
         linkText: "Ver caso completo"
       }
     ],
@@ -300,6 +301,11 @@ const serviceSchema = {
   <Divider />
 
   <UseCases {...consultoriaData.useCases} />
+
+  <Divider />
+
+  <!-- Testimonios Específicos -->
+  <Testimonials />
 
   <Divider />
 

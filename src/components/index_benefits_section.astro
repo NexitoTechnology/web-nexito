@@ -56,7 +56,13 @@ const benefits = [
         <span class="px-4 py-2">
           <span class="text-blue-900 font-medium">¿Quieres conocer más beneficios?</span>
         </span>
-        <a href="https://nexito.tech/consultoria-gratuita/" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"> Agenda una demo </a>
+        <a href="https://nexito.tech/consultoria-gratuita/" target="_blank"
+        onclick="window.dataLayer.push({
+          'event': 'schedule_call_index_benefits_section',
+          'eventCategory': 'engagement',
+          'eventAction': 'click',
+          'eventLabel': 'free_call_30min'
+        })" rel="noopener noreferrer" class="px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"> Agenda una demo </a>
       </div>
     </div>
   </div>

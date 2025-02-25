@@ -1,9 +1,10 @@
-import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../../chunks/astro/server_D2lW42M0.mjs';
+import { c as createComponent, r as renderComponent, b as renderTemplate, m as maybeRenderHead } from '../../chunks/astro/server_CpFO4I6n.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../../chunks/Layout_pGFWBYzd.mjs';
-import { $ as $$HeroServices, a as $$DividerServices, b as $$FeaturesServices, c as $$UseCasesServices, d as $$BenefitsServices, e as $$ProcessServices, f as $$FAQServices, g as $$FaqCtaServices } from '../../chunks/Divider_Services_DrdDBDmQ.mjs';
-import { $ as $$CTASectionServices, a as $$ContactServices } from '../../chunks/Contact_Services_C5lPsn0y.mjs';
-import { $ as $$JsonLD } from '../../chunks/ClientRouter_nhIQMViw.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_C1l__usd.mjs';
+import { $ as $$HeroServices, a as $$DividerServices, b as $$FeaturesServices, c as $$UseCasesServices, d as $$BenefitsServices, e as $$ProcessServices, f as $$FaqCtaServices } from '../../chunks/Divider_Services_CPFVqPsn.mjs';
+import { $ as $$Testimonials, a as $$FAQServices } from '../../chunks/Testimonials_DTDVrmjy.mjs';
+import { $ as $$CTASectionServices, a as $$ContactServices } from '../../chunks/Contact_Services_CdUkXY7i.mjs';
+import { $ as $$JsonLD } from '../../chunks/ClientRouter_CuotEUus.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const $$Ia = createComponent(($$result, $$props, $$slots) => {
@@ -54,21 +55,21 @@ const $$Ia = createComponent(($$result, $$props, $$slots) => {
           title: "IA en Finanzas",
           description: "Sistemas avanzados de detecci\xF3n de fraude y an\xE1lisis predictivo de riesgos",
           image: "/images/finance-ai.webp",
-          link: "/blog/caso-exito-ia-industria-retail",
+          link: "/blog/caso-exito-ia-industria-retail/",
           linkText: "Ver caso completo"
         },
         {
           title: "IA en Salud",
           description: "Diagn\xF3stico asistido y medicina personalizada basada en datos",
           image: "/images/health-ai.webp",
-          link: "/blog/caso-exito-ia-industria-retail",
+          link: "/blog/caso-exito-ia-industria-retail/",
           linkText: "Ver caso completo"
         },
         {
           title: "IA en Retail",
           description: "Personalizaci\xF3n avanzada y optimizaci\xF3n inteligente de inventario",
           image: "/images/retail-ai.webp",
-          link: "/blog/caso-exito-ia-industria-retail",
+          link: "/blog/caso-exito-ia-industria-retail/",
           linkText: "Ver caso completo"
         }
       ],
@@ -175,7 +176,7 @@ const $$Ia = createComponent(($$result, $$props, $$slots) => {
       }
     }
   };
-  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": iaData.title, "description": iaData.description }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "JsonLD", $$JsonLD, { "type": "Service", "data": serviceSchema })} ${renderComponent($$result2, "Hero", $$HeroServices, { ...iaData.hero })} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${renderComponent($$result2, "Features", $$FeaturesServices, { ...iaData.features })} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${renderComponent($$result2, "UseCases", $$UseCasesServices, { ...iaData.useCases })} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${renderComponent($$result2, "Benefits", $$BenefitsServices, { ...iaData.benefits })} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${maybeRenderHead()}<section class="py-12 md:py-16"> <div class="max-w-7xl mx-auto px-4 sm:px-6"> ${renderComponent($$result2, "CTASection", $$CTASectionServices, { ...iaData.cta })} </div> </section> ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${renderComponent($$result2, "Process", $$ProcessServices, { ...iaData.process })} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${renderComponent($$result2, "FAQ", $$FAQServices, { ...iaData.faq })} ${renderComponent($$result2, "FaqCtaServices", $$FaqCtaServices, {})} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${renderComponent($$result2, "ContactServices", $$ContactServices, {})} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ` })}`;
+  return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": iaData.title, "description": iaData.description }, { "default": ($$result2) => renderTemplate` ${renderComponent($$result2, "JsonLD", $$JsonLD, { "type": "Service", "data": serviceSchema })} ${renderComponent($$result2, "Hero", $$HeroServices, { ...iaData.hero })} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${renderComponent($$result2, "Features", $$FeaturesServices, { ...iaData.features })} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${renderComponent($$result2, "UseCases", $$UseCasesServices, { ...iaData.useCases })} ${renderComponent($$result2, "Divider", $$DividerServices, {})}  ${renderComponent($$result2, "Testimonials", $$Testimonials, {})} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${renderComponent($$result2, "Benefits", $$BenefitsServices, { ...iaData.benefits })} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${maybeRenderHead()}<section class="py-12 md:py-16"> <div class="max-w-7xl mx-auto px-4 sm:px-6"> ${renderComponent($$result2, "CTASection", $$CTASectionServices, { ...iaData.cta })} </div> </section> ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${renderComponent($$result2, "Process", $$ProcessServices, { ...iaData.process })} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${renderComponent($$result2, "FAQ", $$FAQServices, { ...iaData.faq })} ${renderComponent($$result2, "FaqCtaServices", $$FaqCtaServices, {})} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ${renderComponent($$result2, "ContactServices", $$ContactServices, {})} ${renderComponent($$result2, "Divider", $$DividerServices, {})} ` })}`;
 }, "C:/ProyectosProgramacion/web-nexito-vercel/src/pages/servicios/ia.astro", void 0);
 
 const $$file = "C:/ProyectosProgramacion/web-nexito-vercel/src/pages/servicios/ia.astro";

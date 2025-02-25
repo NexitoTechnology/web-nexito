@@ -11,6 +11,7 @@ import FaqCtaServices from "../../components/FaqCta_Services.astro";
 import Divider from "../../components/Divider_Services.astro";
 import ContactServices from "../../components/Contact_Services.astro";
 import JsonLD from "../../components/JsonLD.astro";
+import Testimonials from '../../components/Testimonials.astro';
 
 // Interfaces
 interface Feature {
@@ -151,21 +152,21 @@ const sapData: PageData = {
         title: "SAP Finance",
         description: "Gestión financiera end-to-end y optimización de procesos contables",
         image: "/images/finance-sap.webp",
-        link: "/blog/caso-exito-sap-finance",
+        link: "/blog/caso-exito-sap-finance/",
         linkText: "Ver caso completo"
       },
       {
         title: "SAP Manufacturing",
         description: "Optimización integral de producción y cadena de suministro",
         image: "/images/manufacturing-sap.webp",
-        link: "/blog/caso-exito-sap-finance",
+        link: "/blog/caso-exito-sap-finance/",
         linkText: "Ver caso completo"
       },
       {
         title: "SAP Retail",
         description: "Gestión omnicanal y optimización de inventario en tiempo real",
         image: "/images/retail-sap.webp",
-        link: "/blog/caso-exito-sap-finance",
+        link: "/blog/caso-exito-sap-finance/",
         linkText: "Ver caso completo"
       }
     ],
@@ -300,6 +301,11 @@ const serviceSchema = {
   <Divider />
 
   <UseCases {...sapData.useCases} />
+
+  <Divider />
+
+  <!-- Testimonios Específicos -->
+  <Testimonials />
 
   <Divider />
 

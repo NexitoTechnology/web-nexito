@@ -17,6 +17,12 @@
     <button
       id="close-popup"
       class="absolute right-4 bg-white hover:bg-gray-500 rounded-full p-1.5 transition-all shadow-lg"
+      onclick="window.dataLayer.push({
+        'event': 'popup_close_button',
+        'eventCategory': 'engagement',
+        'eventAction': 'click',
+        'eventLabel': 'free_call_30min'
+      })" 
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -150,6 +156,12 @@
         <button
           type="submit"
           id="submit-button"
+          onclick="window.dataLayer.push({
+            'event': 'popup_download_button',
+            'eventCategory': 'engagement',
+            'eventAction': 'click',
+            'eventLabel': 'free_call_30min'
+          })"
           class="w-full bg-white text-blue-900 font-bold py-3 px-4 rounded-lg hover:bg-gray-50 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <span>Descargar eBook Gratis</span>

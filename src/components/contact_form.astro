@@ -130,6 +130,12 @@ import Schema from "./JsonLD.astro";
         <!-- Botón submit -->
         <button
           type="submit"
+          onclick="window.dataLayer.push({
+            'event': 'send_form_contact',
+            'eventCategory': 'engagement',
+            'eventAction': 'click',
+            'eventLabel': 'free_call_30min'
+          })"
           class="w-full bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-500/20 text-white px-6 py-4 rounded-xl font-medium text-sm md:text-base transition-all duration-200 flex items-center justify-center gap-2 shadow-lg shadow-blue-500/20"
         >
           <span>Enviar mensaje</span>
