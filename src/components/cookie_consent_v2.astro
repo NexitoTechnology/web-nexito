@@ -1,0 +1,621 @@
+---
+// CookieConsent.astro
+
+// Puedes personalizar estos textos fácilmente
+const texts = {
+  title: "Este sitio web usa cookies",
+  description: "Usamos cookies para personalizar contenido y anuncios, para proporcionar funciones de redes sociales y para analizar nuestro tráfico. También compartimos información sobre el uso de nuestro sitio con nuestros socios de redes sociales, publicidad y análisis, quienes pueden combinarla con otra información que les haya proporcionado o que hayan recopilado de su uso de sus servicios.",
+  acceptAll: "Permitir todo",
+  acceptNecessary: "Rechazar",
+  acceptSelection: "Permitir selección",
+  savePreferences: "Guardar preferencias",
+  privacySettings: "Configuración de privacidad",
+  tabs: {
+    consent: "Consentimiento",
+    details: "Detalles",
+    about: "Acerca de"
+  },
+  cookieTypes: {
+    necessary: {
+      title: "Necesarias",
+      description: "Las cookies necesarias son absolutamente esenciales para que el sitio web funcione correctamente."
+    },
+    preferences: {
+      title: "Preferencias",
+      description: "Las cookies de preferencias permiten recordar información que cambia la forma en que se comporta o se ve el sitio web."
+    },
+    statistics: {
+      title: "Estadísticas",
+      description: "Las cookies estadísticas ayudan a los propietarios de sitios web a comprender cómo interactúan los visitantes con los sitios al recopilar y reportar información de forma anónima."
+    },
+    marketing: {
+      title: "Marketing",
+      description: "Las cookies de marketing se utilizan para rastrear a los visitantes en los sitios web con el fin de mostrar anuncios relevantes y atractivos."
+    }
+  }
+};
+
+// Configuración de GTM
+const gtmId = "GTM-WQS3F67G"; // Reemplaza esto con tu ID real de GTM
+---
+
+<script define:vars={{ texts, gtmId }}>
+  class CookieConsent extends HTMLElement {
+    constructor() {
+      super();
+      this.consentShown = false;
+      this.consentGiven = false;
+      this.activeTab = 'consent';
+      
+      // Comprobar si ya existe consentimiento
+      this.checkExistingConsent();
+      
+      // Si no hay consentimiento previo, mostrar el banner
+      if (!this.consentGiven && !this.consentShown) {
+        setTimeout(() => this.showConsentBanner(), 1000);
+      }
+
+      // Configurar manejadores de eventos para todos los elementos
+      this.setupEventListeners();
+    }
+    
+    // Configura todos los manejadores de eventos tan pronto como el componente se conecta al DOM
+    setupEventListeners() {
+      // Esperar a que el DOM esté completamente cargado
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", () => this.bindEvents());
+      } else {
+        // Si el DOM ya está cargado
+        this.bindEvents();
+      }
+    }
+    
+    // Vincula todos los manejadores de eventos
+    bindEvents() {
+      // Enlace de configuración de privacidad
+      const privacyLinks = document.querySelectorAll('.privacy-settings-link');
+      privacyLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          this.showConsentBanner();
+        });
+      });
+      
+      // Botón de permitir todo
+      const acceptAllBtn = this.querySelector('.accept-all-btn');
+      if (acceptAllBtn) {
+        acceptAllBtn.addEventListener('click', () => {
+          console.log('Botón permitir todo pulsado');
+          // Marcar todas las casillas como seleccionadas
+          const checkboxes = this.querySelectorAll('.cookie-toggle:not(#necessary-checkbox):not([disabled])');
+          checkboxes.forEach(checkbox => {
+            checkbox.checked = true;
+          });
+          this.giveConsent('all');
+        });
+      }
+      
+      // Botón de rechazar
+      const denyBtn = this.querySelector('.deny-btn');
+      if (denyBtn) {
+        denyBtn.addEventListener('click', () => {
+          console.log('Botón rechazar pulsado');
+          // Desmarcar todas las casillas excepto las necesarias
+          const checkboxes = this.querySelectorAll('.cookie-toggle:not(#necessary-checkbox):not([disabled])');
+          checkboxes.forEach(checkbox => {
+            checkbox.checked = false;
+          });
+          this.giveConsent('necessary');
+        });
+      }
+      
+      // Botón de permitir selección
+      const acceptSelectionBtn = this.querySelector('.accept-selection-btn');
+      if (acceptSelectionBtn) {
+        acceptSelectionBtn.addEventListener('click', () => {
+          console.log('Botón permitir selección pulsado');
+          // Obtener el estado de cada tipo de cookie
+          const preferencesEnabled = this.querySelector('#preferences-checkbox').checked;
+          const statisticsEnabled = this.querySelector('#statistics-checkbox').checked;
+          const marketingEnabled = this.querySelector('#marketing-checkbox').checked;
+          const unclassifiedEnabled = this.querySelector('#unclassified-detail-checkbox') ? 
+                                     this.querySelector('#unclassified-detail-checkbox').checked : false;
+          
+          // Definir el tipo de consentimiento basado en las selecciones
+          let consentType = 'custom';
+          if (preferencesEnabled && statisticsEnabled && marketingEnabled && 
+              (unclassifiedEnabled || !this.querySelector('#unclassified-detail-checkbox'))) {
+            consentType = 'all';
+          } else if (!preferencesEnabled && !statisticsEnabled && !marketingEnabled && 
+                    (!unclassifiedEnabled || !this.querySelector('#unclassified-detail-checkbox'))) {
+            consentType = 'necessary';
+          }
+          
+          // Guardar consentimiento con detalle de selecciones
+          this.giveConsent(consentType, {
+            preferences: preferencesEnabled,
+            statistics: statisticsEnabled, 
+            marketing: marketingEnabled,
+            unclassified: unclassifiedEnabled
+          });
+        });
+      }
+      
+      // Pestañas de navegación
+      const tabButtons = this.querySelectorAll('.tab-btn');
+      tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const tabName = button.getAttribute('data-tab');
+          this.switchTab(tabName);
+        });
+      });
+      
+      // Sincronizar los toggles entre pestañas
+      const consentToggles = {
+        'preferences': ['#preferences-checkbox', '#preferences-detail-checkbox'],
+        'statistics': ['#statistics-checkbox', '#statistics-detail-checkbox'],
+        'marketing': ['#marketing-checkbox', '#marketing-detail-checkbox'],
+        'unclassified': ['#unclassified-checkbox', '#unclassified-detail-checkbox']
+      };
+      
+      // Añadir evento de cambio a todos los toggles
+      Object.values(consentToggles).flat().forEach(selector => {
+        const toggle = this.querySelector(selector);
+        if (toggle) {
+          toggle.addEventListener('change', (e) => {
+            const category = Object.keys(consentToggles).find(key => 
+              consentToggles[key].includes(selector)
+            );
+            
+            if (category) {
+              // Sincronizar el estado con el otro toggle de la misma categoría
+              consentToggles[category].forEach(otherSelector => {
+                const otherToggle = this.querySelector(otherSelector);
+                if (otherToggle && otherToggle !== e.target) {
+                  otherToggle.checked = e.target.checked;
+                }
+              });
+            }
+          });
+        }
+      });
+    }
+    
+    // Cambiar entre pestañas
+    switchTab(tabName) {
+      console.log(`Cambiando a pestaña: ${tabName}`);
+      // Desactivar todas las pestañas
+      const tabs = this.querySelectorAll('.cookie-tab');
+      tabs.forEach(tab => {
+        tab.classList.add('hidden');
+      });
+      
+      // Desactivar todos los botones de pestaña
+      const tabButtons = this.querySelectorAll('.tab-btn');
+      tabButtons.forEach(button => {
+        button.classList.remove('active-tab');
+      });
+      
+      // Activar la pestaña seleccionada
+      const selectedTab = this.querySelector(`.tab-${tabName}`);
+      if (selectedTab) {
+        selectedTab.classList.remove('hidden');
+      }
+      
+      // Activar el botón de la pestaña seleccionada
+      const selectedButton = this.querySelector(`.tab-btn[data-tab="${tabName}"]`);
+      if (selectedButton) {
+        selectedButton.classList.add('active-tab');
+      }
+      
+      this.activeTab = tabName;
+    }
+    
+    checkExistingConsent() {
+      const consentCookie = this.getCookie('user_consent');
+      if (consentCookie) {
+        this.consentGiven = true;
+        this.consentShown = true;
+        // Si hay consentimiento, inicializar GTM
+        this.initializeGTM(JSON.parse(consentCookie));
+      }
+    }
+    
+    getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) {
+        const cookiePart = parts.pop();
+        return cookiePart ? cookiePart.split(';').shift() || null : null;
+      }
+      return null;
+    }
+    
+    showConsentBanner() {
+      const banner = this.querySelector('.consent-banner');
+      if (banner) {
+        banner.classList.remove('hidden');
+        this.switchTab('consent'); // Asegurarse de que la pestaña de consentimiento está activa
+        this.consentShown = true;
+      }
+    }
+    
+    hideConsentBanner() {
+      const banner = this.querySelector('.consent-banner');
+      if (banner) {
+        banner.classList.add('hidden');
+      }
+    }
+    
+    giveConsent(consentType, selections = {}) {
+      console.log(`Dando consentimiento tipo: ${consentType}`, selections);
+      
+      // Valores predeterminados para selecciones
+      const defaultSelections = {
+        preferences: consentType === 'all',
+        statistics: consentType === 'all',
+        marketing: consentType === 'all'
+      };
+      
+      // Combinar valores predeterminados con selecciones proporcionadas
+      const finalSelections = {...defaultSelections, ...selections};
+      
+      // Objeto de consentimiento
+      const consentData = {
+        type: consentType,
+        selections: finalSelections,
+        timestamp: new Date().toISOString()
+      };
+      
+      // Guardar en cookie (expira en 6 meses)
+      const sixMonthsFromNow = new Date();
+      sixMonthsFromNow.setMonth(sixMonthsFromNow.getMonth() + 6);
+      document.cookie = `user_consent=${JSON.stringify(consentData)}; expires=${sixMonthsFromNow.toUTCString()}; path=/; SameSite=Lax`;
+      
+      // Inicializar GTM con los niveles de consentimiento adecuados
+      this.initializeGTM(consentData);
+      
+      // Cerrar el banner
+      this.hideConsentBanner();
+      this.consentGiven = true;
+      
+      console.log('Consentimiento guardado correctamente');
+    }
+    
+    initializeGTM(consentData) {
+      // Configurar dataLayer para GTM con el consentimiento adecuado
+      window.dataLayer = window.dataLayer || [];
+      
+      // Configurar las variables de consentimiento para GTM según las elecciones del usuario
+      const gtmConsent = {
+        ad_storage: consentData.selections.marketing ? 'granted' : 'denied',
+        analytics_storage: consentData.selections.statistics ? 'granted' : 'denied',
+        functionality_storage: consentData.selections.preferences ? 'granted' : 'denied',
+        personalization_storage: consentData.selections.preferences ? 'granted' : 'denied',
+        security_storage: 'granted' // Siempre permitido por seguridad
+      };
+      
+      // Enviar evento de consentimiento a GTM para activar el disparador correspondiente
+      window.dataLayer.push({
+        event: 'consent_update',
+        consent: gtmConsent
+      });
+      
+      console.log('GTM inicializado con consentimiento:', gtmConsent);
+      
+      // Inicializar GTM si aún no se ha hecho
+      if (!window.google_tag_manager) {
+        console.log('Cargando script de GTM');
+        // Insertar el código de GTM con configuración de consentimiento predeterminada
+        (function(w, d, s, l, i) {
+          // Inicializar dataLayer con configuración de consentimiento por defecto
+          w[l] = w[l] || [];
+          w[l].push({
+            'consent': {
+              'ad_storage': 'denied',
+              'analytics_storage': 'denied',
+              'functionality_storage': 'denied',
+              'personalization_storage': 'denied',
+              'security_storage': 'granted'
+            },
+            'event': 'default_consent'
+          });
+          
+          // Código estándar de GTM
+          w[l].push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+          const f = d.getElementsByTagName(s)[0];
+          const j = d.createElement(s);
+          const dl = l !== 'dataLayer' ? '&l=' + l : '';
+          j.async = true;
+          j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+          if (f && f.parentNode) {
+            f.parentNode.insertBefore(j, f);
+          }
+        })(window, document, 'script', 'dataLayer', gtmId);
+      }
+    }
+    
+    connectedCallback() {
+      console.log('Componente de consentimiento conectado al DOM');
+    }
+  }
+  
+  // Registrar el componente
+  customElements.define('cookie-consent', CookieConsent);
+</script>
+
+<cookie-consent>
+  <!-- Notificación de consentimiento de cookies estilo Cookiebot -->
+  <div class="consent-banner hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div class="w-full max-w-4xl bg-black text-white rounded shadow-xl border border-gray-700">
+      <!-- Cabecera con logo -->
+      <div class="flex justify-between items-center p-4 border-b border-gray-700">
+        <div class="text-lg font-semibold">TU LOGO</div>
+      </div>
+      
+      <!-- Navegación por pestañas -->
+      <div class="border-b border-gray-700">
+        <div class="flex">
+          <button type="button" class="tab-btn active-tab px-6 py-3 text-center focus:outline-none" data-tab="consent">
+            {texts.tabs.consent}
+          </button>
+          <button type="button" class="tab-btn px-6 py-3 text-center focus:outline-none" data-tab="details">
+            {texts.tabs.details}
+          </button>
+          <button type="button" class="tab-btn px-6 py-3 text-center focus:outline-none" data-tab="about">
+            {texts.tabs.about}
+          </button>
+        </div>
+      </div>
+      
+      <!-- Contenido de la pestaña de consentimiento -->
+      <div class="tab-consent cookie-tab p-6">
+        <h3 class="text-xl font-semibold mb-4">{texts.title}</h3>
+        <p class="mb-6 text-gray-300">{texts.description}</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+          <!-- Toggle Necesarias -->
+          <div class="bg-gray-800 p-4 rounded">
+            <div class="flex justify-between items-center mb-2">
+              <span class="font-medium">{texts.cookieTypes.necessary.title}</span>
+              <label class="toggle-switch">
+                <input id="necessary-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox" checked disabled>
+                <span class="toggle-slider toggle-active"></span>
+              </label>
+            </div>
+          </div>
+          
+          <!-- Toggle Preferencias -->
+          <div class="bg-gray-800 p-4 rounded">
+            <div class="flex justify-between items-center mb-2">
+              <span class="font-medium">{texts.cookieTypes.preferences.title}</span>
+              <label class="toggle-switch">
+                <input id="preferences-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          
+          <!-- Toggle Estadísticas -->
+          <div class="bg-gray-800 p-4 rounded">
+            <div class="flex justify-between items-center mb-2">
+              <span class="font-medium">{texts.cookieTypes.statistics.title}</span>
+              <label class="toggle-switch">
+                <input id="statistics-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+          
+          <!-- Toggle Marketing -->
+          <div class="bg-gray-800 p-4 rounded">
+            <div class="flex justify-between items-center mb-2">
+              <span class="font-medium">{texts.cookieTypes.marketing.title}</span>
+              <label class="toggle-switch">
+                <input id="marketing-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Botones de acción -->
+        <div class="flex flex-wrap gap-3">
+          <button type="button" class="deny-btn flex-1 min-w-[120px] bg-gray-700 border border-gray-600 text-white py-2 px-4 rounded hover:bg-gray-600 transition duration-150 font-medium">
+            {texts.acceptNecessary}
+          </button>
+          <button type="button" class="accept-selection-btn flex-1 min-w-[120px] bg-gray-700 border border-gray-600 text-white py-2 px-4 rounded hover:bg-gray-600 transition duration-150 font-medium">
+            {texts.acceptSelection}
+          </button>
+          <button type="button" class="accept-all-btn flex-1 min-w-[120px] bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-150 font-medium">
+            {texts.acceptAll}
+          </button>
+        </div>
+      </div>
+      
+      <!-- Contenido de la pestaña de detalles -->
+      <div class="tab-details cookie-tab p-6 hidden">
+        <!-- Sección Necesarias -->
+        <div class="mb-6 border-b border-gray-700 pb-4">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center">
+              <button type="button" class="mr-2 text-gray-400 focus:outline-none" aria-label="Expandir">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </button>
+              <span class="font-medium">{texts.cookieTypes.necessary.title}</span>
+            </div>
+            <label class="toggle-switch">
+              <input id="necessary-detail-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox" checked disabled>
+              <span class="toggle-slider toggle-active"></span>
+            </label>
+          </div>
+          <p class="text-gray-300 mb-4 pl-7">{texts.cookieTypes.necessary.description}</p>
+        </div>
+        
+        <!-- Sección Preferencias -->
+        <div class="mb-6 border-b border-gray-700 pb-4">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center">
+              <button type="button" class="mr-2 text-gray-400 focus:outline-none" aria-label="Expandir">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </button>
+              <span class="font-medium">{texts.cookieTypes.preferences.title}</span>
+            </div>
+            <label class="toggle-switch">
+              <input id="preferences-detail-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="text-gray-300 mb-4 pl-7">{texts.cookieTypes.preferences.description}</p>
+        </div>
+        
+        <!-- Sección Estadística -->
+        <div class="mb-6 border-b border-gray-700 pb-4">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center">
+              <button type="button" class="mr-2 text-gray-400 focus:outline-none" aria-label="Expandir">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </button>
+              <span class="font-medium">{texts.cookieTypes.statistics.title}</span>
+            </div>
+            <label class="toggle-switch">
+              <input id="statistics-detail-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="text-gray-300 mb-4 pl-7">{texts.cookieTypes.statistics.description}</p>
+        </div>
+        
+        <!-- Sección Marketing -->
+        <div class="mb-6 border-b border-gray-700 pb-4">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center">
+              <button type="button" class="mr-2 text-gray-400 focus:outline-none" aria-label="Expandir">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </button>
+              <span class="font-medium">{texts.cookieTypes.marketing.title}</span>
+            </div>
+            <label class="toggle-switch">
+              <input id="marketing-detail-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          <p class="text-gray-300 mb-4 pl-7">{texts.cookieTypes.marketing.description}</p>
+        </div>
+        
+        <!-- Sección No Clasificados -->
+        <div class="mb-6">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center">
+              <button type="button" class="mr-2 text-gray-400 focus:outline-none" aria-label="Expandir">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </button>
+              <span class="font-medium">No clasificados</span>
+            </div>
+            
+          </div>
+          <p class="text-gray-300 mb-4 pl-7">Las cookies no clasificadas son cookies para las que todavía estamos en proceso de clasificar, junto con los proveedores de cookies individuales.</p>
+        </div>
+      </div>
+      
+      <!-- Contenido de la pestaña de acerca de -->
+      <div class="tab-about cookie-tab p-6 hidden">
+        <h3 class="text-xl font-semibold mb-4">Acerca de las cookies</h3>
+        <p class="mb-4 text-gray-300">Las cookies son pequeños archivos de texto que se almacenan en su ordenador cuando visita un sitio web. Utilizamos cookies para diversos fines y para mejorar su experiencia online en nuestro sitio web.</p>
+        <p class="mb-4 text-gray-300">Puede cambiar sus preferencias y rechazar que algunos tipos de cookies sean almacenadas mientras navega por nuestro sitio web. También puede eliminar cualquier cookie ya almacenada en su ordenador, pero tenga en cuenta que eliminar cookies puede impedirle utilizar partes de nuestro sitio web.</p>
+        <p class="text-gray-300">Para obtener más información sobre nuestra política de cookies, visite nuestra página de <a href="#" class="text-blue-400 hover:underline">Política de Privacidad</a>.</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Enlace discreto para configuración de privacidad -->
+  <div class="privacy-settings-container fixed bottom-4 left-4 z-40">
+    <a href="#" class="privacy-settings-link flex items-center justify-center bg-black rounded-full w-10 h-10 shadow-md hover:shadow-lg transition duration-150">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="white">
+        <path d="M10 2a5 5 0 00-5 5v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2H7V7a3 3 0 015.905-.75 1 1 0 001.937-.5A5.002 5.002 0 0010 2z" />
+      </svg>
+    </a>
+  </div>
+</cookie-consent>
+
+<style>
+  .hidden {
+    display: none;
+  }
+  
+  .active-tab {
+    color: white;
+    border-bottom: 2px solid #3182ce;
+  }
+  
+  /* Estilo para los interruptores de cookies */
+  .toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+  }
+  
+  .toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #444;
+    border-radius: 24px;
+    transition: .4s;
+  }
+  
+  .toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: .4s;
+  }
+  
+  input:checked + .toggle-slider {
+    background-color: #3182ce;
+  }
+  
+  input:checked + .toggle-slider:before {
+    transform: translateX(20px);
+  }
+  
+  /* Estilo para el toggle de necesarias (siempre activo) */
+  .toggle-active {
+    background-color: #3182ce;
+  }
+  
+  .toggle-active:before {
+    transform: translateX(20px);
+  }
+  
+  .toggle-disabled {
+    background-color: #444;
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  /* Deshabilitar el toggle de necesarias */
+  input:disabled + .toggle-slider {
+    opacity: 0.9;
+    cursor: not-allowed;
+  }
+</style>

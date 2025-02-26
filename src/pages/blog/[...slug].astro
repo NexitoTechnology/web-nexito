@@ -24,7 +24,8 @@ interface BlogSchema {
   ogImage?: string;
   isPublished: boolean;
   featured: boolean;
-  author: string;
+  author: string; // Nombre del autor
+  authorUrl?: string; // URL del perfil del autor
   articulosRelacionados?: string[];
   serie?: string;
   ordenEnSerie?: number;
@@ -72,38 +73,45 @@ const seriesPosts = post.data.serie
       .sort((a, b) => (a.data.ordenEnSerie || 0) - (b.data.ordenEnSerie || 0))
   : [];
 
+// Preparar imágenes en diferentes tamaños si existe imagen
+const imageUrls = post.data.ogImage || post.data.image
+  ? [
+      new URL(post.data.ogImage || post.data.image || "", Astro.site).toString()
+    ]
+  : [];
+
+// Construir el schema mejorado para el artículo según las directrices de Google
 const articleSchema = {
-  "@type": "BlogPosting",
-  headline: post.data.metaTitle || post.data.title,
-  description: post.data.metaDescription || post.data.description,
-  datePublished: post.data.date.toISOString(),
+  "@context": "https://schema.org",
+  "@type": "BlogPosting", // Tipo específico de artículo
+  headline: post.data.title, // Título del artículo (conciso)
+  description: post.data.description, // Descripción
+  image: imageUrls, // Array con las imágenes del artículo
+  datePublished: post.data.date.toISOString(), // Fecha de publicación original
   dateModified: post.data.lastModified
     ? post.data.lastModified.toISOString()
-    : post.data.date.toISOString(),
-  image:
-    post.data.ogImage || post.data.image
-      ? new URL(
-          post.data.ogImage || post.data.image || "",
-          Astro.site
-        ).toString()
-      : undefined,
+    : post.data.date.toISOString(), // Fecha de última modificación
   author: {
-    "@type": "Organization",
-    name: post.data.author,
+    "@type": "Person", // Especificando que el autor es una persona
+    name: post.data.author, // Nombre del autor
+    url: post.data.authorUrl || `https://nexito.tech/equipo/${post.data.author.toLowerCase().replace(/\s+/g, '-')}/` // URL del perfil del autor
   },
   publisher: {
     "@type": "Organization",
     name: "Nexito Technology",
     logo: {
       "@type": "ImageObject",
-      url: new URL("/Logo.svg", Astro.site).toString(),
-    },
+      url: new URL("/Logo.svg", Astro.site).toString()
+    }
   },
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": new URL(Astro.url.pathname, Astro.site).toString(),
+    "@id": new URL(Astro.url.pathname, Astro.site).toString()
   },
+  keywords: post.data.tags, // Palabras clave del artículo
+  wordCount: post.data.readingTime ? post.data.readingTime * 200 : undefined // Estimación del conteo de palabras basado en tiempo de lectura
 };
+
 interface PageData {
   cta: {
     title: string;
