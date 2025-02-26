@@ -1,8 +1,8 @@
-import { c as createComponent, r as renderComponent, b as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_CpFO4I6n.mjs';
+import { c as createComponent, r as renderComponent, b as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_BHlgMJLG.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_C1l__usd.mjs';
-import { $ as $$ServicesSection, a as $$ProcessSection, b as $$CTASection } from '../chunks/ProcessSection_BUNKY4yN.mjs';
-import { $ as $$Testimonials, a as $$FAQServices } from '../chunks/Testimonials_DTDVrmjy.mjs';
+import { $ as $$Layout } from '../chunks/Layout_B6qnvoAv.mjs';
+import { $ as $$IndexServicesSection, a as $$IndexProcessSection, b as $$IndexCtaSection } from '../chunks/index_process_section_B7nRN92a.mjs';
+import { $ as $$TestimonialsSection, a as $$FaqSection } from '../chunks/testimonials_section_Behd7ylQ.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$Index = createComponent(($$result, $$props, $$slots) => {
@@ -60,11 +60,16 @@ const $$Index = createComponent(($$result, $$props, $$slots) => {
   ];
   return renderTemplate`${renderComponent($$result, "Layout", $$Layout, { "title": pageTitle, "description": pageDescription }, { "default": ($$result2) => renderTemplate`  ${maybeRenderHead()}<section class="relative py-20 lg:py-32 overflow-hidden"> <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-white"></div> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative"> <div class="text-center max-w-3xl mx-auto"> <span class="inline-block px-4 py-1.5 mb-4 text-sm font-medium text-blue-600 bg-blue-100 rounded-full">
 Servicios Profesionales
-</span> <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6"> ${heroContent.title} <span class="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800"> ${heroContent.subtitle} </span> </h1> <p class="text-xl text-gray-600 mb-8"> ${heroContent.description} </p> <div class="flex flex-wrap justify-center gap-4"> <a href="https://nexito.tech/consultoria-gratuita/" class="inline-flex items-center justify-center px-8 py-4 text-base font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition-colors duration-200">
+</span> <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6"> ${heroContent.title} <span class="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800"> ${heroContent.subtitle} </span> </h1> <p class="text-xl text-gray-600 mb-8"> ${heroContent.description} </p> <div class="flex flex-wrap justify-center gap-4"> <a href="https://nexito.tech/consultoria-gratuita/" onclick="window.dataLayer.push({
+              'event': 'schedule_call_services_index',
+              'eventCategory': 'engagement',
+              'eventAction': 'click',
+              'eventLabel': 'free_call_30min'
+            })" class="inline-flex items-center justify-center px-8 py-4 text-base font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-xl transition-colors duration-200">
 Consulta Gratuita
 </a> <a href="#servicios" class="inline-flex items-center justify-center px-8 py-4 text-base font-medium text-blue-600 bg-white border-2 border-blue-600 hover:bg-blue-50 rounded-xl transition-colors duration-200">
 Ver Servicios
-</a> </div> </div> </div> </section>  <section class="py-16 bg-white"> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"> ${benefitsContent.map((benefit) => renderTemplate`<div class="bg-gray-50 p-6 rounded-xl"> <h3 class="text-xl font-semibold text-gray-900 mb-2">${benefit.title}</h3> <p class="text-gray-600">${benefit.description}</p> </div>`)} </div> </div> </section>  ${renderComponent($$result2, "ServicesSection", $$ServicesSection, {})}  ${renderComponent($$result2, "ProcessSection", $$ProcessSection, {})}  ${renderComponent($$result2, "Testimonials", $$Testimonials, {})}  ${renderComponent($$result2, "CTASection", $$CTASection, {})}  ${renderComponent($$result2, "FAQ_Services", $$FAQServices, { ...homeFAQs })} ` })}`;
+</a> </div> </div> </div> </section>  <section class="py-16 bg-white"> <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"> <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"> ${benefitsContent.map((benefit) => renderTemplate`<div class="bg-gray-50 p-6 rounded-xl"> <h3 class="text-xl font-semibold text-gray-900 mb-2">${benefit.title}</h3> <p class="text-gray-600">${benefit.description}</p> </div>`)} </div> </div> </section>  ${renderComponent($$result2, "ServicesSection", $$IndexServicesSection, {})}  ${renderComponent($$result2, "ProcessSection", $$IndexProcessSection, {})}  ${renderComponent($$result2, "Testimonials", $$TestimonialsSection, {})}  ${renderComponent($$result2, "CTASection", $$IndexCtaSection, {})}  ${renderComponent($$result2, "FAQ_Services", $$FaqSection, { ...homeFAQs })} ` })}`;
 }, "C:/ProyectosProgramacion/web-nexito-vercel/src/pages/servicios/index.astro", void 0);
 
 const $$file = "C:/ProyectosProgramacion/web-nexito-vercel/src/pages/servicios/index.astro";

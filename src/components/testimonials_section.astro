@@ -1,4 +1,6 @@
 ---
+// src/components/testimonials_section.astro
+
 import { getCollection, type CollectionEntry } from 'astro:content';
 import JsonLD from './JsonLD.astro';
 
@@ -11,6 +13,10 @@ interface Metric {
   value: string;
   label: string;
 }
+
+// Asegurar que siempre haya al menos 1 testimonio para los counts
+const reviewCount = sortedTestimonials.length || 1;
+const ratingCount = sortedTestimonials.length || 1;
 
 // Schema correcto para los testimonios
 const testimonialSchema = {
@@ -47,8 +53,8 @@ const testimonialSchema = {
     "ratingValue": "5",
     "bestRating": "5",
     "worstRating": "1",
-    "ratingCount": sortedTestimonials.length,
-    "reviewCount": sortedTestimonials.length
+    "ratingCount": ratingCount,
+    "reviewCount": reviewCount
   }
 };
 ---

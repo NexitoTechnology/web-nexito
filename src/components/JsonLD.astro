@@ -1,7 +1,8 @@
 ---
+// src/components/JsonLD.astro
 interface Props {
   type: 'Organization' | 'WebSite' | 'WebPage' | 'Article' | 'Service' | 
-        'AboutPage' | 'ContactPage' | 'FAQPage' | 'Product'; // Cambiado Review por Product
+        'AboutPage' | 'ContactPage' | 'FAQPage' | 'Product';
   data: Record<string, any>;
 }
 const props = Astro.props;
@@ -168,29 +169,35 @@ const faqSchema = {
   "description": "Encuentra respuestas a las preguntas más frecuentes sobre nuestros servicios de automatización e IA"
 };
 
-// Schema base para testimonios
+// Schema base para producto con reseñas
 const reviewSchema = {
   "@context": "https://schema.org",
-  "@type": "Product", // Cambiado a Product
+  "@type": "Product",
   "name": "Nexito Technology Services",
   "description": "Servicios de automatización e inteligencia artificial para empresas",
   "brand": {
     "@type": "Brand",
     "name": "Nexito Technology"
   },
-  "review": [], // Aquí irán las reseñas individuales
+  "review": [],
   "aggregateRating": {
     "@type": "AggregateRating",
     "ratingValue": "5",
     "bestRating": "5",
     "worstRating": "1",
-    "ratingCount": 0, // Se actualiza con el número real de reseñas
-    "reviewCount": 0  // Se actualiza con el número real de reseñas
+    "ratingCount": 1, // Valor mínimo por defecto
+    "reviewCount": 1  // Valor mínimo por defecto
   }
 };
 
 // Función para obtener el schema según el tipo
 const getSchema = (type: Props['type'], data: Props['data']) => {
+  // Asegúrate de que ratingCount y reviewCount sean siempre positivos
+  if (type === 'Product' && data.aggregateRating) {
+    data.aggregateRating.ratingCount = Math.max(1, data.aggregateRating.ratingCount || 0);
+    data.aggregateRating.reviewCount = Math.max(1, data.aggregateRating.reviewCount || 0);
+  }
+
   switch(type) {
     case 'Organization':
       return { ...organizationSchema, ...data };
@@ -208,7 +215,7 @@ const getSchema = (type: Props['type'], data: Props['data']) => {
       return { ...contactPageSchema, ...data };
     case 'FAQPage':
       return { ...faqSchema, ...data };
-      case 'Product': // Cambiado de Review a Product
+    case 'Product':
       return { ...reviewSchema, ...data };
     default:
       return {};

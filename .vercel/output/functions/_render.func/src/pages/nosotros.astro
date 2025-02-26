@@ -300,6 +300,12 @@ const aboutSchema = {
       </p>
       <a
         href={pageData.cta.buttonLink}
+        onclick="window.dataLayer.push({
+          'event': 'schedule_call_nosotros',
+          'eventCategory': 'engagement',
+          'eventAction': 'click',
+          'eventLabel': 'free_call_30min'
+        })" 
         class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-blue-800 bg-white rounded-xl shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-200"
       >
         <span>{pageData.cta.buttonText}</span>
