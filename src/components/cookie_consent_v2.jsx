@@ -36,7 +36,7 @@ const texts = {
 };
 
 // ID de GTM - Reemplazar con el ID real
-const gtmId = "GTM-XXXXXX";
+const gtmId = "GTM-WQS3F67G";
 
 export default function CookieConsent() {
   const [activeTab, setActiveTab] = useState('consent');
@@ -56,7 +56,7 @@ export default function CookieConsent() {
       // Si no hay consentimiento previo, mostrar el banner después de un pequeño retraso
       const timer = setTimeout(() => {
         setShowBanner(true);
-      }, 1000);
+      }, 4000);
       
       return () => clearTimeout(timer);
     } else {
@@ -233,7 +233,7 @@ export default function CookieConsent() {
         <div className="w-full max-w-4xl bg-black text-white rounded shadow-xl border border-gray-700">
           {/* Cabecera con logo */}
           <div className="flex justify-between items-center p-4 border-b border-gray-700">
-            <div className="text-lg font-semibold">TU LOGO</div>
+            <div className="text-lg font-semibold">NEXITO TECHNOLOGY</div>
           </div>
           
           {/* Navegación por pestañas */}

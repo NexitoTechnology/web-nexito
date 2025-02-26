@@ -52,7 +52,8 @@ const gtmId = "GTM-WQS3F67G"; // Reemplaza esto con tu ID real de GTM
       
       // Si no hay consentimiento previo, mostrar el banner
       if (!this.consentGiven && !this.consentShown) {
-        setTimeout(() => this.showConsentBanner(), 1000);
+        //setTimeout(() => this.showConsentBanner(), 1000);
+        document.addEventListener("click", () => this.showConsentBanner(), { once: true });
       }
 
       // Configurar manejadores de eventos para todos los elementos
@@ -350,7 +351,7 @@ const gtmId = "GTM-WQS3F67G"; // Reemplaza esto con tu ID real de GTM
     <div class="w-full max-w-4xl bg-black text-white rounded shadow-xl border border-gray-700">
       <!-- Cabecera con logo -->
       <div class="flex justify-between items-center p-4 border-b border-gray-700">
-        <div class="text-lg font-semibold">TU LOGO</div>
+        <img src="/LogoFooter.svg" alt="Logo Nexito" class="h-10">
       </div>
       
       <!-- Navegación por pestañas -->
@@ -390,7 +391,7 @@ const gtmId = "GTM-WQS3F67G"; // Reemplaza esto con tu ID real de GTM
             <div class="flex justify-between items-center mb-2">
               <span class="font-medium">{texts.cookieTypes.preferences.title}</span>
               <label class="toggle-switch">
-                <input id="preferences-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox">
+                <input id="preferences-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox" checked>
                 <span class="toggle-slider"></span>
               </label>
             </div>
@@ -401,7 +402,7 @@ const gtmId = "GTM-WQS3F67G"; // Reemplaza esto con tu ID real de GTM
             <div class="flex justify-between items-center mb-2">
               <span class="font-medium">{texts.cookieTypes.statistics.title}</span>
               <label class="toggle-switch">
-                <input id="statistics-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox">
+                <input id="statistics-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox" checked>
                 <span class="toggle-slider"></span>
               </label>
             </div>
@@ -412,7 +413,7 @@ const gtmId = "GTM-WQS3F67G"; // Reemplaza esto con tu ID real de GTM
             <div class="flex justify-between items-center mb-2">
               <span class="font-medium">{texts.cookieTypes.marketing.title}</span>
               <label class="toggle-switch">
-                <input id="marketing-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox">
+                <input id="marketing-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox" checked>
                 <span class="toggle-slider"></span>
               </label>
             </div>

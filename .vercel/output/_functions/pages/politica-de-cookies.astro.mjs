@@ -1,6 +1,6 @@
 import { c as createComponent, r as renderComponent, b as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_BHlgMJLG.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_poVgQfmX.mjs';
+import { $ as $$Layout } from '../chunks/Layout_B-hpLPf_.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$PoliticaDeCookies = createComponent(($$result, $$props, $$slots) => {

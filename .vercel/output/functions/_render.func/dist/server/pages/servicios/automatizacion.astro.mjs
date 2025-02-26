@@ -1,10 +1,10 @@
 import { c as createComponent, r as renderComponent, b as renderTemplate, m as maybeRenderHead } from '../../chunks/astro/server_BHlgMJLG.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../../chunks/Layout_poVgQfmX.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_B-hpLPf_.mjs';
 import { $ as $$ServicesHeroSection, a as $$ServicesDividerSection, b as $$SevicesFeaturesSection, c as $$ServicesUseCasesSection, d as $$ServicesBenefitsSection, e as $$ServicesProcessSection, f as $$SercivesFaqCtaSection } from '../../chunks/services_divider_section_CgF33WJt.mjs';
-import { $ as $$TestimonialsSection, a as $$FaqSection } from '../../chunks/testimonials_section_CFQUkYd5.mjs';
-import { $ as $$ServicesCtaSection, a as $$ServicesContactSection } from '../../chunks/services_contact_section_BohI_gn1.mjs';
-import { $ as $$JsonLD } from '../../chunks/ClientRouter_a6kLtKrH.mjs';
+import { $ as $$TestimonialsSection, a as $$FaqSection } from '../../chunks/testimonials_section_CFi6QyIh.mjs';
+import { $ as $$ServicesCtaSection, a as $$ServicesContactSection } from '../../chunks/services_contact_section_AAMdoZ0z.mjs';
+import { $ as $$JsonLD } from '../../chunks/ClientRouter_M5qoWx1f.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const $$Automatizacion = createComponent(($$result, $$props, $$slots) => {
