@@ -1,6 +1,6 @@
 import { renderers } from './renderers.mjs';
-import { c as createExports } from './chunks/entrypoint_BUayPcv-.mjs';
-import { manifest } from './manifest_CBvblz2Z.mjs';
+import { c as createExports } from './chunks/entrypoint_mGqoLWL6.mjs';
+import { manifest } from './manifest_CReVwcU2.mjs';
 
 const serverIslandMap = new Map();;
 
@@ -24,7 +24,8 @@ const _page16 = () => import('./pages/servicios/ia.astro.mjs');
 const _page17 = () => import('./pages/servicios/power-bi.astro.mjs');
 const _page18 = () => import('./pages/servicios/sap.astro.mjs');
 const _page19 = () => import('./pages/servicios.astro.mjs');
-const _page20 = () => import('./pages/index.astro.mjs');
+const _page20 = () => import('./pages/terminos-y-condiciones.astro.mjs');
+const _page21 = () => import('./pages/index.astro.mjs');
 const pageMap = new Map([
     ["node_modules/astro/dist/assets/endpoint/generic.js", _page0],
     ["src/pages/api/robots.txt.ts", _page1],
@@ -46,7 +47,8 @@ const pageMap = new Map([
     ["src/pages/servicios/power-bi.astro", _page17],
     ["src/pages/servicios/sap.astro", _page18],
     ["src/pages/servicios/index.astro", _page19],
-    ["src/pages/index.astro", _page20]
+    ["src/pages/terminos-y-condiciones.astro", _page20],
+    ["src/pages/index.astro", _page21]
 ]);
 
 const _manifest = Object.assign(manifest, {
@@ -56,7 +58,7 @@ const _manifest = Object.assign(manifest, {
     middleware: () => import('./_noop-middleware.mjs')
 });
 const _args = {
-    "middlewareSecret": "25f05809-fe5f-4d9e-84f0-b16d9778604a",
+    "middlewareSecret": "a81877aa-4772-4148-a376-4cda12af9bbf",
     "skewProtection": false
 };
 const _exports = createExports(_manifest, _args);

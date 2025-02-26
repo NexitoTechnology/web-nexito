@@ -3,7 +3,7 @@ import Menu from "../components/layout_menu.astro";
 import Footer from "../components/layout_footer.astro";
 import JsonLD from "../components/JsonLD.astro";
 import CookieConsent from "../components/cookie_consent_v2.astro";
-//import CookieConsent  from '../components/cookie_consent_v2.jsx';
+import ButtonCallWhastapp  from '../components/floating_button_call_whatsapp.astro';
 import { ClientRouter } from "astro:transitions";
 import "/globals.css";
 
@@ -218,5 +218,6 @@ const siteURL = "https://nexito.tech";
     <Footer />
     <!-- Componente de consentimiento con client:idle para mejorar el rendimiento -->
     <CookieConsent />
+    <ButtonCallWhastapp />
   </body>
 </html>
