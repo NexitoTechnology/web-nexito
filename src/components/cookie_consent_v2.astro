@@ -35,11 +35,6 @@ const texts = {
   }
 };
 
-let showBanner: boolean = false;
-
-function setShowBanner(value: boolean) {
-  showBanner = value;
-}
 // Configuración de GTM
 const gtmId = "GTM-WQS3F67G"; // Reemplaza esto con tu ID real de GTM
 ---
@@ -539,22 +534,18 @@ const gtmId = "GTM-WQS3F67G"; // Reemplaza esto con tu ID real de GTM
         <h3 class="text-xl font-semibold mb-4">Acerca de las cookies</h3>
         <p class="mb-4 text-gray-300">Las cookies son pequeños archivos de texto que se almacenan en su ordenador cuando visita un sitio web. Utilizamos cookies para diversos fines y para mejorar su experiencia online en nuestro sitio web.</p>
         <p class="mb-4 text-gray-300">Puede cambiar sus preferencias y rechazar que algunos tipos de cookies sean almacenadas mientras navega por nuestro sitio web. También puede eliminar cualquier cookie ya almacenada en su ordenador, pero tenga en cuenta que eliminar cookies puede impedirle utilizar partes de nuestro sitio web.</p>
-        <p class="text-gray-300">Para obtener más información sobre nuestra política de cookies, visite nuestra página de <a href="#" class="text-blue-400 hover:underline">Política de Privacidad</a>.</p>
+        <p class="text-gray-300">Para obtener más información sobre nuestra política de cookies, visite nuestra página de <a href="politica-de-privacidad" class="text-blue-400 hover:underline">Política de Privacidad</a>.</p>
       </div>
     </div>
   </div>
   
   <!-- Enlace discreto para configuración de privacidad -->
   <div class="privacy-settings-container fixed bottom-4 left-4 z-40">
-    <a href="#" 
-   class="privacy-settings-link flex hidden:flex items-center justify-center bg-black rounded-full w-10 h-10 shadow-md hover:shadow-lg transition duration-150"
-   set:html={`onclick="event.preventDefault(); setShowBanner(true);"`}
-   aria-label="Abrir configuración de cookies">
-  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="white">
-    <path d="M10 2a5 5 0 00-5 5v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2H7V7a3 3 0 015.905-.75 1 1 0 001.937-.5A5.002 5.002 0 0010 2z" />
-  </svg>
-  <span class="sr-only">Abrir configuración de cookies</span>
-</a>
+    <a href="#" class="privacy-settings-link flex items-center justify-center bg-black rounded-full w-10 h-10 shadow-md hover:shadow-lg transition duration-150">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="white">
+        <path d="M10 2a5 5 0 00-5 5v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2H7V7a3 3 0 015.905-.75 1 1 0 001.937-.5A5.002 5.002 0 0010 2z" />
+      </svg>
+    </a>
   </div>
 </cookie-consent>
 
