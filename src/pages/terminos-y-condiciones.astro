@@ -1,0 +1,135 @@
+---
+import Layout from "../layouts/Layout.astro";
+interface PageData {
+  title: string;
+  description: string;
+}
+
+// Datos de la página para la Política de Privacidad
+const politicaDePrivacidadData: PageData = {
+  title: "Terminos y Condiciones | Nexito Technology",
+  description: "Descubre los terminos y condiciones en nuestro sitio web.",
+};
+---
+
+<Layout
+  title={politicaDePrivacidadData.title}
+  description={politicaDePrivacidadData.description}
+>
+  <section class="py-16 bg-white shadow-inner rounded-lg">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-bold mb-6 text-center text-gray-800">
+        Términos y Condiciones de Uso
+      </h1>
+
+      <h2 class="text-2xl font-semibold mb-4 text-gray-800">1. Introducción</h2>
+      <p class="text-lg mb-4 text-gray-700">
+        Esta página web es propiedad y está operada por <strong
+          >Nexito Technology</strong
+        >. Estos Términos establecen los términos y condiciones bajo los cuales
+        puedes usar nuestra página web y nuestros servicios. Al acceder o usar
+        la página web, aceptas haber leído, entendido y aceptado estar sujeto a
+        estos Términos.
+      </p>
+
+      <h2 class="text-2xl font-semibold mb-4 text-gray-800">
+        2. Información Relevante
+      </h2>
+      <p class="text-lg mb-4 text-gray-700">
+        Para adquirir un producto o servicio, puede ser necesario registrarse
+        con datos personales fidedignos. El usuario es responsable de mantener
+        la confidencialidad de su cuenta y contraseña.
+      </p>
+
+      <h2 class="text-2xl font-semibold mb-4 text-gray-800">3. Licencia</h2>
+      <p class="text-lg mb-4 text-gray-700">
+        Nexito Technology concede a los usuarios una licencia para
+        utilizar los servicios según los términos aquí establecidos.
+      </p>
+
+      <h2 class="text-2xl font-semibold mb-4 text-gray-800">
+        4. Uso No Autorizado
+      </h2>
+      <p class="text-lg mb-4 text-gray-700">
+        No está permitido redistribuir, revender o modificar nuestros productos
+        o servicios sin autorización previa.
+      </p>
+
+      <h2 class="text-2xl font-semibold mb-4 text-gray-800">5. Propiedad</h2>
+      <p class="text-lg mb-4 text-gray-700">
+        Todo el contenido y los productos disponibles en esta página son
+        propiedad de sus respectivos titulares.
+      </p>
+
+      <h2 class="text-2xl font-semibold mb-4 text-gray-800">
+        6. Política de Reembolsos y Garantía
+      </h2>
+      <p class="text-lg mb-4 text-gray-700">
+        Al tratarse de un servicio digital, no se realizan reembolsos después
+        del pago, salvo excepciones donde la descripción no coincida con el
+        servicio ofrecido. Puedes ejercer tu derecho de desistimiento dentro de
+        los 14 días naturales desde la suscripción.
+      </p>
+
+      <h2 class="text-2xl font-semibold mb-4 text-gray-800">
+        7. Cancelación de Cuenta
+      </h2>
+      <p class="text-lg mb-4 text-gray-700">
+        Podemos suspender o cancelar tu cuenta sin previo aviso si incumples
+        estos términos. Puedes solicitar la cancelación en cualquier momento.
+      </p>
+
+      <h2 class="text-2xl font-semibold mb-4 text-gray-800">
+        8. Limitación de Responsabilidad
+      </h2>
+      <p class="text-lg mb-4 text-gray-700">
+        Nexito Technology no será responsable por daños
+        indirectos, punitivos, incidentales, especiales, consecuentes o
+        ejemplares derivados del uso del servicio.
+      </p>
+
+      <h2 class="text-2xl font-semibold mb-4 text-gray-800">
+        9. Modificaciones a los Términos
+      </h2>
+      <p class="text-lg mb-4 text-gray-700">
+        Nos reservamos el derecho de modificar estos términos en cualquier
+        momento. Si realizamos cambios importantes, te lo notificaremos con un
+        mes de antelación.
+      </p>
+
+      <h2 class="text-2xl font-semibold mb-4 text-gray-800">
+        10. Legislación y Resolución de Disputas
+      </h2>
+      <p class="text-lg mb-4 text-gray-700">
+        Estos términos se rigen por las leyes de <strong
+          >España</strong
+        > y cualquier disputa se resolverá en los tribunales de <strong
+          >Almería</strong
+        >.
+      </p>
+
+      <h2 class="text-2xl font-semibold mb-4 text-gray-800">11. Privacidad</h2>
+      <p class="text-lg mb-4 text-gray-700">
+        Garantizamos la seguridad de los datos personales. La suscripción a
+        boletines es voluntaria y puedes darte de baja en cualquier momento.
+      </p>
+
+      <p class="text-lg mb-4 text-gray-700">
+        Para más información, revisa nuestra
+        <a href="/politica-de-privacidad" class="text-blue-500"
+          >Política de Privacidad</a
+        > y
+        <a href="/politica-de-cookies" class="text-blue-500"
+          >Política de Cookies</a
+        >.
+      </p>
+
+      <p class="text-lg mb-4 text-gray-700">
+        <strong>Si tienes preguntas, contáctanos en:</strong>
+        <a href="mailto:info@nexito.tech" class="text-blue-500"
+          >info@nexito.tech</a
+        >
+      </p>
+    </div>
+  </section>
+</Layout>

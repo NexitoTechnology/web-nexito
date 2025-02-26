@@ -47,6 +47,7 @@ export default defineConfig({
         'politica-de-privacidad',
         'consultoria-gratuita',
         'download-ebook-index',
+        'politica-de-privacidad',
       ].some((path) => page.includes(path)),
     }),
   ]
