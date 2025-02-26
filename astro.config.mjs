@@ -5,6 +5,7 @@ import vercel from "@astrojs/vercel";
 import compress from 'astro-compress';
 import robotsTxt from 'astro-robots-txt';
 import sitemap from '@astrojs/sitemap';
+import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
@@ -21,6 +22,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   integrations: [
+    react(),
     robotsTxt(),
     compress({
       CSS: true,

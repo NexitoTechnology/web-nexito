@@ -1,10 +1,10 @@
 import { c as createComponent, m as maybeRenderHead, r as renderComponent, b as renderTemplate, g as addAttribute, a as renderScript } from '../chunks/astro/server_BHlgMJLG.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_B6qnvoAv.mjs';
-import { $ as $$JsonLD } from '../chunks/ClientRouter_BY__ljaW.mjs';
+import { $ as $$Layout } from '../chunks/Layout_poVgQfmX.mjs';
+import { $ as $$JsonLD } from '../chunks/ClientRouter_a6kLtKrH.mjs';
 /* empty css                                 */
 import { $ as $$IndexServicesSection, a as $$IndexProcessSection, b as $$IndexCtaSection } from '../chunks/index_process_section_B7nRN92a.mjs';
-import { $ as $$TestimonialsSection, a as $$FaqSection } from '../chunks/testimonials_section_Behd7ylQ.mjs';
+import { $ as $$TestimonialsSection, a as $$FaqSection } from '../chunks/testimonials_section_CFQUkYd5.mjs';
 import 'clsx';
 export { renderers } from '../renderers.mjs';
 
