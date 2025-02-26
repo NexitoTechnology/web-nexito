@@ -4,7 +4,7 @@
 
 <div
   id="popup-overlay"
-  class="invisible opacity-0 transition-all duration-300 fixed inset-0 z-40 flex items-center justify-center overflow-y-auto py-4"
+  class="invisible opacity-0 transition-all duration-300 fixed inset-0 z-40 flex items-center justify-center overflow-y-auto"
 >
   <div class="absolute inset-0 bg-slate-800/85 backdrop-blur-md"></div>
 
@@ -274,8 +274,57 @@
   </div>
 </div>
 
+<style>
+  /* Ajuste específico para móviles para el popup */
+  @media (max-width: 768px) {
+    /* Posicionamiento teniendo en cuenta menú superior e inferior */
+    #popup-overlay {
+      align-items: flex-start;
+      padding-top: 70px; /* Espacio para el menú superior */
+      padding-bottom: 100px; /* Espacio para botones inferiores */
+    }
+    
+    #popup-content {
+      margin-top: 1rem !important; 
+      margin-bottom: 100px !important;
+      max-height: calc(100vh - 180px) !important; /* Altura ajustada para que no se salga de la pantalla */
+      overflow-y: auto !important; /* Scroll interno en el popup */
+    }
+    
+    /* Ajustar tamaño de elementos dentro del popup para móvil */
+    #popup-content h2 {
+      font-size: 1.5rem; /* Título más pequeño en móvil */
+    }
+    
+    #popup-content .space-y-2 {
+      margin-bottom: 1rem; /* Menos espacio entre secciones */
+    }
+  }
+
+  /* Animación para el error message */
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-in;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+</style>
+
 <script>
-  // El script se mantiene igual
+  // Detectar altura del menú superior para ajustar el popup
+  document.addEventListener('DOMContentLoaded', function() {
+    const header = document.querySelector('header');
+    const popupOverlay = document.getElementById('popup-overlay');
+    
+    if (header && popupOverlay && window.innerWidth <= 768) {
+      const headerHeight = header.offsetHeight;
+      popupOverlay.style.paddingTop = `${headerHeight + 20}px`;
+    }
+  });
+
+  // El resto del script se mantiene igual
   let isSubmitting = false;
   let submitAttempts = 0;
   const MAX_ATTEMPTS = 3;

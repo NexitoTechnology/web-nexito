@@ -1,10 +1,10 @@
 import { c as createComponent, r as renderComponent, b as renderTemplate, m as maybeRenderHead } from '../../chunks/astro/server_Chp2LETn.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../../chunks/Layout_Di92oz3H.mjs';
+import { $ as $$Layout } from '../../chunks/Layout_DC6V1zk0.mjs';
 import { $ as $$ServicesHeroSection, a as $$ServicesDividerSection, b as $$SevicesFeaturesSection, c as $$ServicesUseCasesSection, d as $$ServicesBenefitsSection, e as $$ServicesProcessSection, f as $$SercivesFaqCtaSection } from '../../chunks/services_divider_section_BgIGxkTz.mjs';
-import { $ as $$TestimonialsSection, a as $$FaqSection } from '../../chunks/testimonials_section_pzqLsyS-.mjs';
-import { $ as $$ServicesCtaSection, a as $$ServicesContactSection } from '../../chunks/services_contact_section_tD5mUURG.mjs';
-import { $ as $$JsonLD } from '../../chunks/ClientRouter_BoSfKJ7P.mjs';
+import { $ as $$TestimonialsSection, a as $$FaqSection } from '../../chunks/testimonials_section_Dh2KR8wz.mjs';
+import { $ as $$ServicesCtaSection, a as $$ServicesContactSection } from '../../chunks/services_contact_section_DnItkhD-.mjs';
+import { $ as $$JsonLD } from '../../chunks/ClientRouter_DU15POOI.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const $$PowerBi = createComponent(($$result, $$props, $$slots) => {

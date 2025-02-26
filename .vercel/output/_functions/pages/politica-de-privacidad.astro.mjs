@@ -1,6 +1,6 @@
 import { c as createComponent, r as renderComponent, b as renderTemplate, m as maybeRenderHead } from '../chunks/astro/server_Chp2LETn.mjs';
 import 'kleur/colors';
-import { $ as $$Layout } from '../chunks/Layout_Di92oz3H.mjs';
+import { $ as $$Layout } from '../chunks/Layout_DC6V1zk0.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$PoliticaDePrivacidad = createComponent(($$result, $$props, $$slots) => {

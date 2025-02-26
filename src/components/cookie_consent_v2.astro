@@ -347,280 +347,315 @@ const gtmId = "GTM-WQS3F67G"; // Reemplaza esto con tu ID real de GTM
 
 <cookie-consent>
   <!-- Notificación de consentimiento de cookies estilo Cookiebot -->
-  <div class="consent-banner hidden fixed inset-0 z-50 flex items-center justify-center p-4">
-    <div class="w-full max-w-4xl bg-black text-white rounded shadow-xl border border-gray-700">
+  <div class="consent-banner hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
+    <div class="w-full max-w-4xl bg-black text-white rounded shadow-xl border border-gray-700 max-h-[90vh] flex flex-col">
       <!-- Cabecera con logo -->
-      <div class="flex justify-between items-center p-4 border-b border-gray-700">
-        <img src="/LogoFooter.svg" alt="Logo Nexito" class="h-10">
+      <div class="flex justify-between items-center p-3 sm:p-4 border-b border-gray-700">
+        <img src="/LogoFooter.svg" alt="Logo Nexito" class="h-6 sm:h-10">
       </div>
       
-      <!-- Navegación por pestañas -->
-      <div class="border-b border-gray-700">
-        <div class="flex">
-          <button type="button" class="tab-btn active-tab px-6 py-3 text-center focus:outline-none" data-tab="consent">
+      <!-- Navegación por pestañas (scrollable en móvil) -->
+      <div class="border-b border-gray-700 overflow-x-auto">
+        <div class="flex min-w-max">
+          <button type="button" class="tab-btn active-tab px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base text-center focus:outline-none whitespace-nowrap" data-tab="consent">
             {texts.tabs.consent}
           </button>
-          <button type="button" class="tab-btn px-6 py-3 text-center focus:outline-none" data-tab="details">
+          <button type="button" class="tab-btn px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base text-center focus:outline-none whitespace-nowrap" data-tab="details">
             {texts.tabs.details}
           </button>
-          <button type="button" class="tab-btn px-6 py-3 text-center focus:outline-none" data-tab="about">
+          <button type="button" class="tab-btn px-4 sm:px-6 py-2 sm:py-3 text-sm sm:text-base text-center focus:outline-none whitespace-nowrap" data-tab="about">
             {texts.tabs.about}
           </button>
         </div>
       </div>
       
-      <!-- Contenido de la pestaña de consentimiento -->
-      <div class="tab-consent cookie-tab p-6">
-        <h3 class="text-xl font-semibold mb-4">{texts.title}</h3>
-        <p class="mb-6 text-gray-300">{texts.description}</p>
+      <!-- Área de contenido con scroll -->
+      <div class="overflow-y-auto flex-grow">
+        <!-- Contenido de la pestaña de consentimiento -->
+        <div class="tab-consent cookie-tab p-4 sm:p-6">
+          <h3 class="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">{texts.title}</h3>
+          <p class="mb-4 sm:mb-6 text-gray-300 text-sm sm:text-base">{texts.description}</p>
+          
+          <!-- Toggles en grid responsivo -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-4 sm:mb-6">
+            <!-- Toggle Necesarias -->
+            <div class="bg-gray-800 p-3 sm:p-4 rounded">
+              <div class="flex justify-between items-center mb-1 sm:mb-2">
+                <span class="font-medium text-sm sm:text-base">{texts.cookieTypes.necessary.title}</span>
+                <label class="toggle-switch">
+                  <input id="necessary-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox" checked disabled>
+                  <span class="toggle-slider toggle-active"></span>
+                </label>
+              </div>
+            </div>
+            
+            <!-- Toggle Preferencias -->
+            <div class="bg-gray-800 p-3 sm:p-4 rounded">
+              <div class="flex justify-between items-center mb-1 sm:mb-2">
+                <span class="font-medium text-sm sm:text-base">{texts.cookieTypes.preferences.title}</span>
+                <label class="toggle-switch">
+                  <input id="preferences-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+            
+            <!-- Toggle Estadísticas -->
+            <div class="bg-gray-800 p-3 sm:p-4 rounded">
+              <div class="flex justify-between items-center mb-1 sm:mb-2">
+                <span class="font-medium text-sm sm:text-base">{texts.cookieTypes.statistics.title}</span>
+                <label class="toggle-switch">
+                  <input id="statistics-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+            
+            <!-- Toggle Marketing -->
+            <div class="bg-gray-800 p-3 sm:p-4 rounded">
+              <div class="flex justify-between items-center mb-1 sm:mb-2">
+                <span class="font-medium text-sm sm:text-base">{texts.cookieTypes.marketing.title}</span>
+                <label class="toggle-switch">
+                  <input id="marketing-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-          <!-- Toggle Necesarias -->
-          <div class="bg-gray-800 p-4 rounded">
-            <div class="flex justify-between items-center mb-2">
-              <span class="font-medium">{texts.cookieTypes.necessary.title}</span>
+        <!-- Contenido de la pestaña de detalles -->
+        <div class="tab-details cookie-tab p-4 sm:p-6 hidden">
+          <!-- Sección Necesarias -->
+          <div class="mb-4 sm:mb-6 border-b border-gray-700 pb-3 sm:pb-4">
+            <div class="flex items-center justify-between mb-2 sm:mb-3">
+              <div class="flex items-center">
+                <button type="button" class="mr-2 text-gray-400 focus:outline-none" aria-label="Expandir">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </button>
+                <span class="font-medium text-sm sm:text-base">{texts.cookieTypes.necessary.title}</span>
+              </div>
               <label class="toggle-switch">
-                <input id="necessary-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox" checked disabled>
+                <input id="necessary-detail-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox" checked disabled>
                 <span class="toggle-slider toggle-active"></span>
               </label>
             </div>
+            <p class="text-gray-300 mb-2 sm:mb-4 pl-6 sm:pl-7 text-xs sm:text-sm">{texts.cookieTypes.necessary.description}</p>
           </div>
           
-          <!-- Toggle Preferencias -->
-          <div class="bg-gray-800 p-4 rounded">
-            <div class="flex justify-between items-center mb-2">
-              <span class="font-medium">{texts.cookieTypes.preferences.title}</span>
+          <!-- Sección Preferencias -->
+          <div class="mb-4 sm:mb-6 border-b border-gray-700 pb-3 sm:pb-4">
+            <div class="flex items-center justify-between mb-2 sm:mb-3">
+              <div class="flex items-center">
+                <button type="button" class="mr-2 text-gray-400 focus:outline-none" aria-label="Expandir">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </button>
+                <span class="font-medium text-sm sm:text-base">{texts.cookieTypes.preferences.title}</span>
+              </div>
               <label class="toggle-switch">
-                <input id="preferences-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox" checked>
+                <input id="preferences-detail-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox">
                 <span class="toggle-slider"></span>
               </label>
             </div>
+            <p class="text-gray-300 mb-2 sm:mb-4 pl-6 sm:pl-7 text-xs sm:text-sm">{texts.cookieTypes.preferences.description}</p>
           </div>
           
-          <!-- Toggle Estadísticas -->
-          <div class="bg-gray-800 p-4 rounded">
-            <div class="flex justify-between items-center mb-2">
-              <span class="font-medium">{texts.cookieTypes.statistics.title}</span>
+          <!-- Sección Estadística -->
+          <div class="mb-4 sm:mb-6 border-b border-gray-700 pb-3 sm:pb-4">
+            <div class="flex items-center justify-between mb-2 sm:mb-3">
+              <div class="flex items-center">
+                <button type="button" class="mr-2 text-gray-400 focus:outline-none" aria-label="Expandir">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </button>
+                <span class="font-medium text-sm sm:text-base">{texts.cookieTypes.statistics.title}</span>
+              </div>
               <label class="toggle-switch">
-                <input id="statistics-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox" checked>
+                <input id="statistics-detail-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox">
                 <span class="toggle-slider"></span>
               </label>
             </div>
+            <p class="text-gray-300 mb-2 sm:mb-4 pl-6 sm:pl-7 text-xs sm:text-sm">{texts.cookieTypes.statistics.description}</p>
           </div>
           
-          <!-- Toggle Marketing -->
-          <div class="bg-gray-800 p-4 rounded">
-            <div class="flex justify-between items-center mb-2">
-              <span class="font-medium">{texts.cookieTypes.marketing.title}</span>
+          <!-- Sección Marketing -->
+          <div class="mb-4 sm:mb-6 border-b border-gray-700 pb-3 sm:pb-4">
+            <div class="flex items-center justify-between mb-2 sm:mb-3">
+              <div class="flex items-center">
+                <button type="button" class="mr-2 text-gray-400 focus:outline-none" aria-label="Expandir">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </button>
+                <span class="font-medium text-sm sm:text-base">{texts.cookieTypes.marketing.title}</span>
+              </div>
               <label class="toggle-switch">
-                <input id="marketing-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox" checked>
+                <input id="marketing-detail-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox">
                 <span class="toggle-slider"></span>
               </label>
             </div>
+            <p class="text-gray-300 mb-2 sm:mb-4 pl-6 sm:pl-7 text-xs sm:text-sm">{texts.cookieTypes.marketing.description}</p>
+          </div>
+          
+          <!-- Sección No Clasificados -->
+          <div class="mb-4 sm:mb-6">
+            <div class="flex items-center justify-between mb-2 sm:mb-3">
+              <div class="flex items-center">
+                <button type="button" class="mr-2 text-gray-400 focus:outline-none" aria-label="Expandir">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </button>
+                <span class="font-medium text-sm sm:text-base">No clasificados</span>
+              </div>
+            </div>
+            <p class="text-gray-300 mb-2 sm:mb-4 pl-6 sm:pl-7 text-xs sm:text-sm">Las cookies no clasificadas son cookies para las que todavía estamos en proceso de clasificar, junto con los proveedores de cookies individuales.</p>
           </div>
         </div>
         
-        <!-- Botones de acción -->
-        <div class="flex flex-wrap gap-3">
-          <button type="button" class="deny-btn flex-1 min-w-[120px] bg-gray-700 border border-gray-600 text-white py-2 px-4 rounded hover:bg-gray-600 transition duration-150 font-medium">
-            {texts.acceptNecessary}
-          </button>
-          <button type="button" class="accept-selection-btn flex-1 min-w-[120px] bg-gray-700 border border-gray-600 text-white py-2 px-4 rounded hover:bg-gray-600 transition duration-150 font-medium">
-            {texts.acceptSelection}
-          </button>
-          <button type="button" class="accept-all-btn flex-1 min-w-[120px] bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition duration-150 font-medium">
+        <!-- Contenido de la pestaña de acerca de -->
+        <div class="tab-about cookie-tab p-4 sm:p-6 hidden">
+          <h3 class="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">Acerca de las cookies</h3>
+          <p class="mb-3 sm:mb-4 text-gray-300 text-xs sm:text-sm">Las cookies son pequeños archivos de texto que se almacenan en su ordenador cuando visita un sitio web. Utilizamos cookies para diversos fines y para mejorar su experiencia online en nuestro sitio web.</p>
+          <p class="mb-3 sm:mb-4 text-gray-300 text-xs sm:text-sm">Puede cambiar sus preferencias y rechazar que algunos tipos de cookies sean almacenadas mientras navega por nuestro sitio web. También puede eliminar cualquier cookie ya almacenada en su ordenador, pero tenga en cuenta que eliminar cookies puede impedirle utilizar partes de nuestro sitio web.</p>
+          <p class="text-gray-300 text-xs sm:text-sm">Para obtener más información sobre nuestra política de cookies, visite nuestra página de <a href="politica-de-privacidad" class="text-blue-400 hover:underline">Política de Privacidad</a>.</p>
+        </div>
+      </div>
+      
+      <!-- Botones de acción (fijos en la parte inferior) -->
+      <div class="border-t border-gray-700 p-4 flex flex-wrap gap-2 sm:gap-3 bg-black sticky bottom-0">
+        <button type="button" class="deny-btn flex-1 min-w-[100px] bg-gray-700 border border-gray-600 text-white py-2 px-3 sm:px-4 rounded text-sm sm:text-base hover:bg-gray-600 transition duration-150 font-medium">
+          {texts.acceptNecessary}
+        </button>
+        <button type="button" class="accept-selection-btn flex-1 min-w-[100px] bg-gray-700 border border-gray-600 text-white py-2 px-3 sm:px-4 rounded text-sm sm:text-base hover:bg-gray-600 transition duration-150 font-medium">
+          {texts.acceptSelection}
+        </button>
+        <button type="button" class="accept-all-btn flex-1 min-w-[100px] bg-blue-600 text-white py-2 px-3 sm:px-4 rounded text-sm sm:text-base hover:bg-blue-700 transition duration-150 font-medium">
             {texts.acceptAll}
           </button>
-        </div>
-      </div>
-      
-      <!-- Contenido de la pestaña de detalles -->
-      <div class="tab-details cookie-tab p-6 hidden">
-        <!-- Sección Necesarias -->
-        <div class="mb-6 border-b border-gray-700 pb-4">
-          <div class="flex items-center justify-between mb-3">
-            <div class="flex items-center">
-              <button type="button" class="mr-2 text-gray-400 focus:outline-none" aria-label="Expandir">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
-              </button>
-              <span class="font-medium">{texts.cookieTypes.necessary.title}</span>
-            </div>
-            <label class="toggle-switch">
-              <input id="necessary-detail-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox" checked disabled>
-              <span class="toggle-slider toggle-active"></span>
-            </label>
-          </div>
-          <p class="text-gray-300 mb-4 pl-7">{texts.cookieTypes.necessary.description}</p>
-        </div>
-        
-        <!-- Sección Preferencias -->
-        <div class="mb-6 border-b border-gray-700 pb-4">
-          <div class="flex items-center justify-between mb-3">
-            <div class="flex items-center">
-              <button type="button" class="mr-2 text-gray-400 focus:outline-none" aria-label="Expandir">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
-              </button>
-              <span class="font-medium">{texts.cookieTypes.preferences.title}</span>
-            </div>
-            <label class="toggle-switch">
-              <input id="preferences-detail-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox">
-              <span class="toggle-slider"></span>
-            </label>
-          </div>
-          <p class="text-gray-300 mb-4 pl-7">{texts.cookieTypes.preferences.description}</p>
-        </div>
-        
-        <!-- Sección Estadística -->
-        <div class="mb-6 border-b border-gray-700 pb-4">
-          <div class="flex items-center justify-between mb-3">
-            <div class="flex items-center">
-              <button type="button" class="mr-2 text-gray-400 focus:outline-none" aria-label="Expandir">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
-              </button>
-              <span class="font-medium">{texts.cookieTypes.statistics.title}</span>
-            </div>
-            <label class="toggle-switch">
-              <input id="statistics-detail-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox">
-              <span class="toggle-slider"></span>
-            </label>
-          </div>
-          <p class="text-gray-300 mb-4 pl-7">{texts.cookieTypes.statistics.description}</p>
-        </div>
-        
-        <!-- Sección Marketing -->
-        <div class="mb-6 border-b border-gray-700 pb-4">
-          <div class="flex items-center justify-between mb-3">
-            <div class="flex items-center">
-              <button type="button" class="mr-2 text-gray-400 focus:outline-none" aria-label="Expandir">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
-              </button>
-              <span class="font-medium">{texts.cookieTypes.marketing.title}</span>
-            </div>
-            <label class="toggle-switch">
-              <input id="marketing-detail-checkbox" class="cookie-toggle opacity-0 absolute w-0 h-0" type="checkbox">
-              <span class="toggle-slider"></span>
-            </label>
-          </div>
-          <p class="text-gray-300 mb-4 pl-7">{texts.cookieTypes.marketing.description}</p>
-        </div>
-        
-        <!-- Sección No Clasificados -->
-        <div class="mb-6">
-          <div class="flex items-center justify-between mb-3">
-            <div class="flex items-center">
-              <button type="button" class="mr-2 text-gray-400 focus:outline-none" aria-label="Expandir">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
-              </button>
-              <span class="font-medium">No clasificados</span>
+                </div>
+              </div>
             </div>
             
-          </div>
-          <p class="text-gray-300 mb-4 pl-7">Las cookies no clasificadas son cookies para las que todavía estamos en proceso de clasificar, junto con los proveedores de cookies individuales.</p>
-        </div>
-      </div>
-      
-      <!-- Contenido de la pestaña de acerca de -->
-      <div class="tab-about cookie-tab p-6 hidden">
-        <h3 class="text-xl font-semibold mb-4">Acerca de las cookies</h3>
-        <p class="mb-4 text-gray-300">Las cookies son pequeños archivos de texto que se almacenan en su ordenador cuando visita un sitio web. Utilizamos cookies para diversos fines y para mejorar su experiencia online en nuestro sitio web.</p>
-        <p class="mb-4 text-gray-300">Puede cambiar sus preferencias y rechazar que algunos tipos de cookies sean almacenadas mientras navega por nuestro sitio web. También puede eliminar cualquier cookie ya almacenada en su ordenador, pero tenga en cuenta que eliminar cookies puede impedirle utilizar partes de nuestro sitio web.</p>
-        <p class="text-gray-300">Para obtener más información sobre nuestra política de cookies, visite nuestra página de <a href="politica-de-privacidad" class="text-blue-400 hover:underline">Política de Privacidad</a>.</p>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Enlace discreto para configuración de privacidad -->
-<div class="privacy-settings-container fixed bottom-20 left-4 z-40">
-    <a 
-      href="/politica-de-privacidad" 
-      class="privacy-settings-link flex items-center justify-center bg-black rounded-full w-10 h-10 shadow-md hover:shadow-lg transition duration-150"
-      aria-label="Configuración de privacidad"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="white" aria-hidden="true">
-        <path d="M10 2a5 5 0 00-5 5v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2H7V7a3 3 0 015.905-.75 1 1 0 001.937-.5A5.002 5.002 0 0010 2z" />
-      </svg>
-    </a>
-  </div>
-</cookie-consent>
-
-<style>
-  .hidden {
-    display: none;
-  }
-  
-  .active-tab {
-    color: white;
-    border-bottom: 2px solid #3182ce;
-  }
-  
-  /* Estilo para los interruptores de cookies */
-  .toggle-switch {
-    position: relative;
-    display: inline-block;
-    width: 44px;
-    height: 24px;
-  }
-  
-  .toggle-slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #444;
-    border-radius: 24px;
-    transition: .4s;
-  }
-  
-  .toggle-slider:before {
-    position: absolute;
-    content: "";
-    height: 18px;
-    width: 18px;
-    left: 3px;
-    bottom: 3px;
-    background-color: white;
-    border-radius: 50%;
-    transition: .4s;
-  }
-  
-  input:checked + .toggle-slider {
-    background-color: #3182ce;
-  }
-  
-  input:checked + .toggle-slider:before {
-    transform: translateX(20px);
-  }
-  
-  /* Estilo para el toggle de necesarias (siempre activo) */
-  .toggle-active {
-    background-color: #3182ce;
-  }
-  
-  .toggle-active:before {
-    transform: translateX(20px);
-  }
-  
-  .toggle-disabled {
-    background-color: #444;
-    opacity: 0.7;
-    cursor: not-allowed;
-  }
-  
-  /* Deshabilitar el toggle de necesarias */
-  input:disabled + .toggle-slider {
-    opacity: 0.9;
-    cursor: not-allowed;
-  }
-</style>
+            <!-- Enlace discreto para configuración de privacidad -->
+            <div class="privacy-settings-container fixed bottom-24 left-4 z-40">
+              <a 
+                href="#" 
+                class="privacy-settings-link flex items-center justify-center bg-black rounded-full w-10 h-10 shadow-md hover:shadow-lg transition duration-150"
+                aria-label="Configuración de privacidad"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="white" aria-hidden="true">
+                  <path d="M10 2a5 5 0 00-5 5v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2H7V7a3 3 0 015.905-.75 1 1 0 001.937-.5A5.002 5.002 0 0010 2z" />
+                </svg>
+              </a>
+            </div>
+          </cookie-consent>
+          
+          <style>
+            .hidden {
+              display: none;
+            }
+            
+            .active-tab {
+              color: white;
+              border-bottom: 2px solid #3182ce;
+            }
+            
+            /* Estilo para los interruptores de cookies */
+            .toggle-switch {
+              position: relative;
+              display: inline-block;
+              width: 44px;
+              height: 24px;
+            }
+            
+            .toggle-slider {
+              position: absolute;
+              cursor: pointer;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background-color: #444;
+              border-radius: 24px;
+              transition: .4s;
+            }
+            
+            .toggle-slider:before {
+              position: absolute;
+              content: "";
+              height: 18px;
+              width: 18px;
+              left: 3px;
+              bottom: 3px;
+              background-color: white;
+              border-radius: 50%;
+              transition: .4s;
+            }
+            
+            input:checked + .toggle-slider {
+              background-color: #3182ce;
+            }
+            
+            input:checked + .toggle-slider:before {
+              transform: translateX(20px);
+            }
+            
+            /* Estilo para el toggle de necesarias (siempre activo) */
+            .toggle-active {
+              background-color: #3182ce;
+            }
+            
+            .toggle-active:before {
+              transform: translateX(20px);
+            }
+            
+            .toggle-disabled {
+              background-color: #444;
+              opacity: 0.7;
+              cursor: not-allowed;
+            }
+            
+            /* Deshabilitar el toggle de necesarias */
+            input:disabled + .toggle-slider {
+              opacity: 0.9;
+              cursor: not-allowed;
+            }
+            
+            /* Ajustes específicos para móvil */
+            @media (max-width: 640px) {
+              /* Ajusta tamaño de toggles en móvil */
+              .toggle-switch {
+                width: 36px;
+                height: 20px;
+              }
+              
+              .toggle-slider:before {
+                height: 14px;
+                width: 14px;
+              }
+              
+              input:checked + .toggle-slider:before {
+                transform: translateX(16px);
+              }
+              
+              .toggle-active:before {
+                transform: translateX(16px);
+              }
+              
+              /* Evita que el modal quede detrás de botones flotantes */
+              .privacy-settings-container {
+                bottom: 5rem; /* Ajustar según la altura de tus botones flotantes */
+              }
+              
+              /* Asegura que el banner de cookies esté por encima de otros elementos */
+              .consent-banner {
+                padding-bottom: 6rem;
+              }
+            }
+          </style>
