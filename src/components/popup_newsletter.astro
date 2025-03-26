@@ -4,19 +4,19 @@
 
 <div
   id="popup-overlay"
-  class="invisible opacity-0 transition-all duration-300 fixed inset-0 z-40 flex items-center justify-center overflow-y-auto"
+  class="invisible opacity-0 transition-all duration-300 fixed inset-0 z-40 flex items-center justify-center"
 >
   <div class="absolute inset-0 bg-slate-800/85 backdrop-blur-md"></div>
 
   <div
     id="popup-content"
     style="border: 12px solid rgba(255, 255, 255, 0.733);"
-    class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 w-full max-w-[500px] rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] transform transition-all p-6 sm:p-8 mx-4 my-auto"
+    class="relative bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 w-full max-w-[500px] rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] transform transition-all p-4 sm:p-8 mx-4 my-auto"
   >
     <!-- Close button -->
     <button
       id="close-popup"
-      class="absolute right-4 top-4 bg-white hover:bg-gray-500 rounded-full p-1.5 transition-all shadow-lg"
+      class="absolute right-3 top-3 bg-white hover:bg-gray-500 rounded-full p-1.5 transition-all shadow-lg"
       onclick="window.dataLayer.push({
         'event': 'popup_close_button',
         'eventCategory': 'engagement',
@@ -42,27 +42,27 @@
     <!-- Form Content -->
     <div id="form-content">
       <!-- Badge -->
-      <div class="inline-flex items-center mb-4 sm:mb-6">
+      <div class="inline-flex items-center mb-3">
         <span
-          class="text-sm font-medium bg-blue-600/30 text-blue-200 px-3 py-1 rounded-full border border-blue-500/30"
+          class="text-xs sm:text-sm font-medium bg-blue-600/30 text-blue-200 px-2 sm:px-3 py-1 rounded-full border border-blue-500/30"
         >
           📚 eBook Gratuito
         </span>
       </div>
 
-      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-2">
+      <h2 class="text-xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">
         Negocios en Automático:
         <span class="text-blue-200 block">Crece Más, Trabaja Menos</span>
       </h2>
 
-      <p class="text-blue-200 mb-4 sm:mb-6 text-sm sm:text-base">
+      <p class="text-blue-200 mb-3 sm:mb-6 text-xs sm:text-base">
         Descubre cómo hacer crecer tu negocio mientras reduces tus horas de trabajo con automatización inteligente
       </p>
 
-      <div class="space-y-2 sm:space-y-3 mb-6 sm:mb-8">
-        <div class="flex items-center gap-2 text-blue-200 text-sm sm:text-base">
+      <div class="space-y-1 sm:space-y-3 mb-3 sm:mb-8">
+        <div class="flex items-center gap-1 sm:gap-2 text-blue-200 text-xs sm:text-base">
           <svg
-            class="w-5 h-5 text-blue-400 shrink-0"
+            class="w-4 h-4 sm:w-5 sm:h-5 text-blue-400 shrink-0"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -75,9 +75,9 @@
           </svg>
           Estrategias probadas de automatización empresarial
         </div>
-        <div class="flex items-center gap-2 text-blue-200 text-sm sm:text-base">
+        <div class="flex items-center gap-1 sm:gap-2 text-blue-200 text-xs sm:text-base">
           <svg
-            class="w-5 h-5 text-blue-400 shrink-0"
+            class="w-4 h-4 sm:w-5 sm:h-5 text-blue-400 shrink-0"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -90,9 +90,9 @@
           </svg>
           Herramientas y sistemas paso a paso
         </div>
-        <div class="flex items-center gap-2 text-blue-200 text-sm sm:text-base">
+        <div class="flex items-center gap-1 sm:gap-2 text-blue-200 text-xs sm:text-base">
           <svg
-            class="w-5 h-5 text-blue-400 shrink-0"
+            class="w-4 h-4 sm:w-5 sm:h-5 text-blue-400 shrink-0"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -107,7 +107,7 @@
         </div>
       </div>
 
-      <form id="newsletter-form" class="space-y-3 sm:space-y-4">
+      <form id="newsletter-form" class="space-y-2 sm:space-y-4">
         <div class="relative">
           <input
             type="text"
@@ -115,11 +115,11 @@
             name="name"
             required
             minlength="2"
-            class="w-full px-4 py-2 sm:py-3 bg-white rounded-lg text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 peer text-sm sm:text-base"
+            class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-white rounded-lg text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 peer text-xs sm:text-base"
             placeholder="Tu nombre"
           />
           <span
-            class="absolute right-3 top-2 sm:top-3 text-red-500 opacity-0 transition-opacity peer-invalid:opacity-100 text-sm"
+            class="absolute right-3 top-2 sm:top-3 text-red-500 opacity-0 transition-opacity peer-invalid:opacity-100 text-xs"
           ></span>
         </div>
 
@@ -130,11 +130,11 @@
             name="email"
             required
             pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
-            class="w-full px-4 py-2 sm:py-3 bg-white rounded-lg text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 peer text-sm sm:text-base"
+            class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-white rounded-lg text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 peer text-xs sm:text-base"
             placeholder="tu@email.com"
           />
           <span
-            class="absolute right-3 top-2 sm:top-3 text-red-500 opacity-0 transition-opacity peer-invalid:opacity-100 text-sm"
+            class="absolute right-3 top-2 sm:top-3 text-red-500 opacity-0 transition-opacity peer-invalid:opacity-100 text-xs"
           ></span>
         </div>
 
@@ -144,11 +144,11 @@
             id="phone"
             name="phone"
             pattern="[0-9]{9}"
-            class="w-full px-4 py-2 sm:py-3 bg-white rounded-lg text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 peer text-sm sm:text-base"
+            class="w-full px-3 sm:px-4 py-2 sm:py-3 bg-white rounded-lg text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 peer text-xs sm:text-base"
             placeholder="Teléfono (opcional)"
           />
           <span
-            class="absolute right-3 top-2 sm:top-3 text-red-500 opacity-0 transition-opacity peer-invalid:opacity-100 text-sm"
+            class="absolute right-3 top-2 sm:top-3 text-red-500 opacity-0 transition-opacity peer-invalid:opacity-100 text-xs"
           ></span>
         </div>
 
@@ -161,11 +161,11 @@
             'eventAction': 'click',
             'eventLabel': 'free_call_30min'
           })"
-          class="w-full bg-white text-blue-900 font-bold py-2 sm:py-3 px-4 rounded-lg hover:bg-gray-50 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
+          class="w-full bg-white text-blue-900 font-bold py-2 sm:py-3 px-3 sm:px-4 rounded-lg hover:bg-gray-50 transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed text-xs sm:text-base"
         >
           <span>Descargar eBook Gratis</span>
           <svg
-            class="w-5 h-5"
+            class="w-4 h-4 sm:w-5 sm:h-5"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -178,7 +178,7 @@
           </svg>
           <!-- Loading spinner (hidden by default) -->
           <svg
-            class="hidden animate-spin h-5 w-5 text-blue-900"
+            class="hidden animate-spin h-4 w-4 sm:h-5 sm:w-5 text-blue-900"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -198,11 +198,11 @@
           </svg>
         </button>
 
-        <div class="text-center space-y-1 sm:space-y-2">
-          <p class="text-xs sm:text-sm text-blue-200">
+        <div class="text-center">
+          <p class="text-xs text-blue-200">
             🔒 Tu información está segura con nosotros
           </p>
-          <p class="text-xs text-blue-200/80">
+          <p class="text-[10px] sm:text-xs text-blue-200/80 mt-1">
             Al enviar este formulario, aceptas recibir comunicaciones comerciales y confirmas que has leído y aceptas nuestra <a href="/politica-de-privacidad" class="underline hover:text-white">Política de Privacidad</a> y <a href="/termiinos-y-condiciones" class="underline hover:text-white">Términos y Condiciones</a>.
           </p>
         </div>
@@ -212,7 +212,7 @@
     <!-- Success Message -->
     <div id="success-message" class="hidden text-center">
       <svg
-        class="w-12 h-12 sm:w-16 sm:h-16 text-green-400 mx-auto mb-4"
+        class="w-10 h-10 sm:w-16 sm:h-16 text-green-400 mx-auto mb-2 sm:mb-4"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -223,16 +223,16 @@
           stroke-width="2"
           d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
       </svg>
-      <h3 class="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-4">
+      <h3 class="text-lg sm:text-2xl font-bold text-white mb-2 sm:mb-4">
         ¡Gracias por suscribirte!
       </h3>
-      <div class="text-blue-200 space-y-2 sm:space-y-4 mb-4 sm:mb-6 text-sm sm:text-base">
+      <div class="text-blue-200 space-y-1 sm:space-y-4 mb-3 sm:mb-6 text-xs sm:text-base">
         <p>Te hemos enviado un email con el enlace de descarga del eBook.</p>
-        <p class="text-xs sm:text-sm">
+        <p class="text-[10px] sm:text-sm">
           👉 Si no lo encuentras en tu bandeja de entrada, revisa tu carpeta de
           spam o promociones.
         </p>
-        <p class="text-xs sm:text-sm">
+        <p class="text-[10px] sm:text-sm">
           Para asegurarte de recibir nuestros próximos emails, añade
           <span class="text-white font-medium">info@nexito.tech</span>
           a tus contactos.
@@ -240,7 +240,7 @@
       </div>
       <button
         id="close-success"
-        class="bg-white text-blue-900 font-bold py-2 sm:py-3 px-4 sm:px-6 rounded-lg hover:bg-gray-50 transition-colors text-sm sm:text-base"
+        class="bg-white text-blue-900 font-bold py-2 sm:py-3 px-4 sm:px-6 rounded-lg hover:bg-gray-50 transition-colors text-xs sm:text-base"
       >
         Cerrar
       </button>
@@ -249,7 +249,7 @@
     <!-- Error Message -->
     <div id="error-message" class="hidden text-center animate-fade-in">
       <svg
-        class="w-12 h-12 sm:w-16 sm:h-16 text-red-400 mx-auto mb-4"
+        class="w-10 h-10 sm:w-16 sm:h-16 text-red-400 mx-auto mb-2 sm:mb-4"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -260,13 +260,13 @@
           stroke-width="2"
           d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
       </svg>
-      <h3 class="text-xl sm:text-2xl font-bold text-white mb-2 sm:mb-4">Algo salió mal</h3>
-      <p id="error-text" class="text-blue-200 mb-4 sm:mb-6 text-sm sm:text-base">
+      <h3 class="text-lg sm:text-2xl font-bold text-white mb-2 sm:mb-4">Algo salió mal</h3>
+      <p id="error-text" class="text-blue-200 mb-3 sm:mb-6 text-xs sm:text-base">
         Hubo un error al procesar tu suscripción. Por favor, intenta de nuevo.
       </p>
       <button
         id="close-error"
-        class="bg-white text-blue-900 font-bold py-2 sm:py-3 px-4 sm:px-6 rounded-lg hover:bg-gray-50 transition-colors text-sm sm:text-base"
+        class="bg-white text-blue-900 font-bold py-2 sm:py-3 px-4 sm:px-6 rounded-lg hover:bg-gray-50 transition-colors text-xs sm:text-base"
       >
         Intentar de nuevo
       </button>
@@ -275,29 +275,52 @@
 </div>
 
 <style>
-  /* Ajuste específico para móviles para el popup */
+  /* Estilos adaptados para móvil */
+  #popup-overlay {
+    overflow-y: auto; /* Movemos el scroll al overlay para que el popup se adapte */
+  }
+  
+  #popup-content {
+    transform: scale(1); /* Aseguramos que no haya transformación inicial */
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  
+  /* Ajustes específicos para móviles */
   @media (max-width: 768px) {
-    /* Posicionamiento teniendo en cuenta menú superior e inferior */
+    /* Posicionamiento teniendo en cuenta barras de navegación */
     #popup-overlay {
-      align-items: flex-start;
-      padding-top: 70px; /* Espacio para el menú superior */
-      padding-bottom: 100px; /* Espacio para botones inferiores */
+      align-items: center; /* Centramos verticalmente */
+      padding-top: 0;
+      padding-bottom: 0;
     }
     
     #popup-content {
-      margin-top: 1rem !important; 
-      margin-bottom: 100px !important;
-      max-height: calc(100vh - 180px) !important; /* Altura ajustada para que no se salga de la pantalla */
-      overflow-y: auto !important; /* Scroll interno en el popup */
+      border-width: 8px !important; /* Borde más delgado en móvil */
+      margin: auto !important; /* Centramos correctamente */
+      max-height: none !important; /* Eliminamos altura máxima para que se adapte */
     }
     
-    /* Ajustar tamaño de elementos dentro del popup para móvil */
-    #popup-content h2 {
-      font-size: 1.5rem; /* Título más pequeño en móvil */
+    /* Asegurar que el popup está centrado y visible entre las barras */
+    .visible #popup-content {
+      position: relative;
+      margin: 70px auto 80px !important; /* Margen para las barras de navegación */
+    }
+  }
+  
+  /* Animación específica para dispositivos móviles pequeños */
+  @media (max-height: 700px) and (max-width: 768px) {
+    #popup-content {
+      padding: 1rem !important;
     }
     
-    #popup-content .space-y-2 {
-      margin-bottom: 1rem; /* Menos espacio entre secciones */
+    #popup-content .space-y-1 > div {
+      margin-top: 0.25rem;
+    }
+    
+    #form-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
     }
   }
 
@@ -313,15 +336,52 @@
 </style>
 
 <script>
+  // Función para ajustar el contenido del popup a la pantalla
+  function adjustPopupHeight() {
+    const popupContent = document.getElementById('popup-content');
+    const popupOverlay = document.getElementById('popup-overlay');
+    
+    if (!popupContent || !popupOverlay) return;
+    
+    // En móviles, calculamos el espacio disponible real
+    if (window.innerWidth <= 768) {
+      const viewportHeight = window.innerHeight;
+      
+      // Estimamos altura de las barras de navegación
+      const topNavHeight = 60; // Estimación de altura de barra superior
+      const bottomNavHeight = 70; // Estimación de altura de barra inferior
+      
+      // Calculamos el espacio disponible
+      const availableHeight = viewportHeight - topNavHeight - bottomNavHeight - 20;
+      
+      // Si el contenido es mayor que el espacio disponible, aplicamos un escalado
+      const contentHeight = popupContent.offsetHeight;
+      
+      if (contentHeight > availableHeight) {
+        // Aplicamos un escalado para que quepa en la pantalla
+        const scale = Math.min(0.95, availableHeight / contentHeight);
+        
+        popupContent.style.transform = `scale(${scale})`;
+        popupContent.style.transformOrigin = 'center center';
+      } else {
+        popupContent.style.transform = 'none';
+      }
+    } else {
+      // En desktop restablecemos
+      popupContent.style.transform = 'none';
+    }
+  }
+
   // Detectar altura del menú superior para ajustar el popup
   document.addEventListener('DOMContentLoaded', function() {
     const header = document.querySelector('header');
     const popupOverlay = document.getElementById('popup-overlay');
     
-    if (header && popupOverlay && window.innerWidth <= 768) {
-      const headerHeight = header.offsetHeight;
-      popupOverlay.style.paddingTop = `${headerHeight + 20}px`;
-    }
+    // Ajustamos la altura inicialmente
+    adjustPopupHeight();
+    
+    // Y lo hacemos cada vez que cambie el tamaño de la ventana
+    window.addEventListener('resize', adjustPopupHeight);
   });
 
   // El resto del script se mantiene igual
@@ -375,6 +435,9 @@
     if (formContent && successMessage) {
       formContent.classList.add("hidden");
       successMessage.classList.remove("hidden");
+      
+      // Volvemos a ajustar el tamaño después de cambiar el contenido
+      setTimeout(adjustPopupHeight, 10);
     }
   }
 
@@ -386,6 +449,9 @@
       formContent.classList.add("hidden");
       errorMessage.classList.remove("hidden");
       errorText.textContent = message;
+      
+      // Volvemos a ajustar el tamaño después de cambiar el contenido
+      setTimeout(adjustPopupHeight, 10);
     }
   }
 
@@ -395,6 +461,9 @@
     if (popup) {
       popup.classList.remove("invisible", "opacity-0");
       popup.classList.add("visible", "opacity-100");
+      
+      // Ajustamos el tamaño al mostrarlo
+      setTimeout(adjustPopupHeight, 100);
     }
   }, 5000);
 
@@ -417,6 +486,9 @@
     if (formContent && errorMessage) {
       errorMessage.classList.add("hidden");
       formContent.classList.remove("hidden");
+      
+      // Volvemos a ajustar el tamaño
+      setTimeout(adjustPopupHeight, 10);
     }
   });
 
