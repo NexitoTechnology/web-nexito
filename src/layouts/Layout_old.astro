@@ -1,0 +1,237 @@
+---
+import Menu from "../components/layout_menu.astro";
+import Footer from "../components/layout_footer.astro";
+import JsonLD from "../components/JsonLD.astro";
+import CookieConsent from "../components/cookie_consent_v2.astro";
+import ButtonCallWhastapp  from '../components/floating_button_call_whatsapp.astro';
+import { ClientRouter } from "astro:transitions";
+import "/globals.css";
+
+declare global {
+  interface Window {
+    dataLayer: any[];
+    [key: string]: any;
+  }
+}
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = "Nexito Technology | Automatización Inteligente y Soluciones IA",
+  description = "Transformamos empresas mediante automatización de procesos e Inteligencia Artificial. Soluciones personalizadas para impulsar la eficiencia de tu negocio.",
+  image = "/icon-512x512.png",
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const siteURL = "https://nexito.tech";
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <!-- Microsoft Clarity 
+    <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "qfy84b8qf6");
+    </script>-->
+    <!-- Google Tag Manager -->
+    <script is:inline define:vars={{ gtmId: "GTM-WQS3F67G" }}>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0];
+        var j = d.createElement(s);
+        var dl = l != "dataLayer" ? "&l=" + l : "";
+        j.setAttribute("async", "true");
+        j.setAttribute(
+          "src",
+          "https://www.googletagmanager.com/gtm.js?id=" + i + dl
+        );
+        if (f && f.parentNode) {
+          f.parentNode.insertBefore(j, f);
+        }
+      })(window, document, "script", "dataLayer", gtmId);
+    </script>
+
+    <!-- Metadatos básicos -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+
+    <!-- SEO mejorado -->
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).toString().replace(/\/?$/, '/')} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="author" content="Nexito Technology" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://nexito.tech/icon-512x512.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Nexito Technology" />
+    <meta property="og:image:alt" content={title} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, siteURL)} />
+    <meta name="twitter:image:alt" content={title} />
+
+    <!-- Favicon y manifest -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png">
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <!-- JSON-LD Schema -->
+    <JsonLD
+  type="Organization"
+  data={{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Nexito Technology",
+    "url": "https://nexito.tech",
+    "logo": "https://nexito.tech/Logo.svg",
+    "image": "https://nexito.tech/icon-512x512.png",
+    "description": "Transformamos empresas mediante automatización de procesos e Inteligencia Artificial",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle Lira 8, N36",
+      "postalCode": "04648",
+      "addressLocality": "Almería",
+      "addressRegion": "Almería",
+      "addressCountry": {
+        "@type": "Country",
+        "name": "ES"
+      }
+    },
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "telephone": "+34 950 79 45 43",
+        "email": "info@nexito.tech",
+        "areaServed": {
+          "@type": "Country",
+          "name": "ES"
+        },
+        "availableLanguage": ["Spanish", "English"]
+      }
+    ],
+    "sameAs": [],
+    "knowsAbout": [
+      "Inteligencia Artificial",
+      "Automatización de Procesos",
+      "Business Intelligence",
+      "Consultoría Tecnológica",
+      "Power BI",
+      "SAP"
+    ],
+    "areaServed": {
+      "@type": "Country",
+      "name": "ES"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Servicios de Nexito Technology",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Automatización de Procesos",
+            "description": "Automatización inteligente de procesos empresariales"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Inteligencia Artificial",
+            "description": "Soluciones de IA personalizadas para empresas"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Business Intelligence",
+            "description": "Análisis de datos y business intelligence"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Consultoría Tecnológica",
+            "description": "Servicios de consultoría tecnológica"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Power BI",
+            "description": "Implementación y desarrollo en Power BI"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "SAP",
+            "description": "Servicios y soluciones SAP"
+          }
+        }
+      ]
+    }
+  }}
+/>
+    <!-- Fuente optimizada -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link 
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" 
+  rel="stylesheet"
+/>
+    <!-- Astro View Transitions -->
+    <ClientRouter />
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-WQS3F67G"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe></noscript
+    >
+    <Menu />
+    <!-- Main content -->
+    <div class="overflow-x-hidden">
+      <main id="main-content" class="flex-grow w-full px-4 mx-auto">
+        <slot />
+      </main>
+    </div>
+    <Footer />
+    <!-- Componente de consentimiento con client:idle para mejorar el rendimiento -->
+    <CookieConsent />
+    <ButtonCallWhastapp />
+  </body>
+</html>
