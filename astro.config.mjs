@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
-import vercel from "@astrojs/vercel";
+import node from '@astrojs/node';
 import compress from 'astro-compress';
 import robotsTxt from 'astro-robots-txt';
 import sitemap from '@astrojs/sitemap';
@@ -12,12 +12,7 @@ export default defineConfig({
   //trailingSlash: 'always',
   site: "https://nexito.tech",
   output: "server",
-  adapter: vercel({
-    webAnalytics: {
-      enabled: true,
-    },
-    maxDuration: 8,
-  }),
+  adapter: node({ mode: "standalone" }),
   vite: {
     plugins: [tailwindcss()],
   },
@@ -33,7 +28,6 @@ export default defineConfig({
     sitemap({
       changefreq: 'weekly',
       priority: 0.7,
-      lastmod: new Date(),
       i18n: {
         defaultLocale: 'es',
         locales: {
@@ -47,7 +41,6 @@ export default defineConfig({
         'politica-de-privacidad',
         'consultoria-gratuita',
         'download-ebook-index',
-        'politica-de-privacidad',
       ].some((path) => page.includes(path)),
     }),
   ]

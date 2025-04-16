@@ -24,11 +24,21 @@ jobs:
       - name: 🛠️ Build project
         run: npm run build
 
-      - name: 🚀 Deploy to VPS via SSH
+      - name: 📤 Deploy full dist folder to VPS (for SSR)
         uses: appleboy/scp-action@v0.1.4
         with:
           host: 82.165.58.203
           username: root
           key: ${{ secrets.VPS_SSH_KEY }}
-          source: "dist/client/*"
-          target: "/var/www/nexito/dist/client"
+          source: "dist/*"
+          target: "/var/www/nexito/dist"
+
+      - name: 🔁 Restart PM2 (or launch if not running)
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: 82.165.58.203
+          username: root
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            pm2 restart nexito || pm2 start /var/www/nexito/dist/server/entry.mjs --name nexito
+            pm2 save
