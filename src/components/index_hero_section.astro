@@ -102,8 +102,15 @@ const heroSchema = {
       </p>
       <div class="flex flex-wrap justify-center items-center gap-x-16 gap-y-12">
         {heroData.trustedCompanies.map(brand => (
-          <div class="w-[150px] h-[40px] flex items-center justify-center">
-  <img src={`/images/${brand}.svg`} alt={brand} class="h-full w-auto" loading="lazy" />
+          <div class="flex items-center justify-center">
+  <img 
+    src={`/images/${brand}.svg`} 
+    alt={brand}
+    width="120"
+    height="40"
+    loading="lazy"
+    class="h-full w-auto"
+  />
 </div>
         ))}
       </div>
