@@ -1,6 +1,7 @@
 ---
 import Menu from "../components/layout_menu.astro";
 import GTM from "../components/GTM.astro";
+import Clarity from "../components/Clarity.astro";
 import Footer from "../components/layout_footer.astro";
 import JsonLD from "../components/JsonLD.astro";
 import CookieConsent from "../components/cookie_consent_v2.astro";
@@ -236,14 +237,6 @@ const siteURL = "https://nexito.tech";
     <!-- Componente de consentimiento con client:idle para mejorar el rendimiento -->
     <CookieConsent />
     <ButtonCallWhastapp />
-    <script is:inline>
-      window.addEventListener("load", function () {
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "qfy84b8qf6");
-      });
-    </script>
+    <Clarity />
   </body>
 </html>
