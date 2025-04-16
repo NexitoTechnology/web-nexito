@@ -1,7 +1,3 @@
----
-const gtmId = "GTM-WQS3F67G";
----
-
 <script is:inline>
     window.addEventListener('load', function () {
       (function (w, d, s, l, i) {
@@ -11,8 +7,8 @@ const gtmId = "GTM-WQS3F67G";
         var j = d.createElement(s);
         var dl = l != "dataLayer" ? "&l=" + l : "";
         j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=GTM-WQS3F67G" + dl;
         f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", gtmId);
+      })(window, document, "script", "dataLayer", "GTM-WQS3F67G");
     });
   </script>
