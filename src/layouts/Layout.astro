@@ -37,19 +37,28 @@ const siteURL = "https://nexito.tech";
    <link rel="preconnect" href="https://www.googletagmanager.com" />
    <link rel="preconnect" href="https://www.clarity.ms" />
 
-   <!-- Google Tag Manager (Web Worker via Partytown) -->
-   <script type="text/partytown">
-     (function(w,d,s,l,i){
-       w[l]=w[l]||[];
-       w[l].push({ 'gtm.start': new Date().getTime(), event:'gtm.js' });
-       var f=d.getElementsByTagName(s)[0],
-           j=d.createElement(s),
-           dl=l!='dataLayer'? '&l='+l : '';
-       j.async=true;
-       j.src='https://www.googletagmanager.com/gtm.js?id=GTM-WQS3F67G'+dl;
-       f.parentNode.insertBefore(j,f);
-     })(window, document, 'script', 'dataLayer', 'GTM-WQS3F67G');
-   </script>
+   <!-- GTM diferido en hilo principal -->
+   <script is:inline>
+    (function scheduleGTM(){
+      const loadGTM = () => {
+        (function(w,d,s,l,i){
+          w[l]=w[l]||[];
+          w[l].push({ 'gtm.start': new Date().getTime(), event:'gtm.js' });
+          const f=d.getElementsByTagName(s)[0];
+          const j=d.createElement(s);
+          const dl = l!='dataLayer'? '&l='+l : '';
+          j.async = true;
+          j.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-WQS3F67G'+dl;
+          f.parentNode.insertBefore(j,f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WQS3F67G');
+      };
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadGTM);
+      } else {
+        window.addEventListener('load', loadGTM);
+      }
+    })();
+  </script>
     <!-- Microsoft Clarity -->
     <script type="text/javascript">
       (function(c,l,a,r,i,t,y){
