@@ -34,33 +34,41 @@ const siteURL = "https://nexito.tech";
 <html lang="es" class="scroll-smooth">
   <head>
    <!-- Preconnect -->
-   <link rel="preconnect" href="https://nexito.tech" />
+   <!-- Preconnect para rendimiento -->
+<link rel="preconnect" href="https://nexito.tech" />
+<link rel="preconnect" href="https://www.googletagmanager.com" />
+<link rel="preconnect" href="https://www.clarity.ms" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-   <!-- GTM en Worker (vía proxy) -->
-   <script type="text/partytown">
-     (function(w,d,s,l,i){
-       w[l]=w[l]||[];
-       w[l].push({ 'gtm.start': new Date().getTime(), event:'gtm.js' });
-       var f = d.getElementsByTagName(s)[0],
-           j = d.createElement(s),
-           dl = l!='dataLayer'? '&l='+l : '';
-       j.async = true;
-       j.src = '/_gtm/gtm.js?id=GTM-WQS3F67G'+dl;
-       f.parentNode.insertBefore(j,f);
-     })(window, document, 'script', 'dataLayer', 'GTM-WQS3F67G');
-   </script>
 
-   <!-- Clarity en Worker (vía proxy) -->
-   <script type="text/partytown">
-     (function(c,l,a,r,i){
-       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-       var t = l.getElementsByTagName(r)[0];
-       var s = l.createElement(r);
-       s.async = true;
-       s.src = '/_clarity/tag/qfy84b8qf6';
-       t.parentNode.insertBefore(s, t);
-     })(window, document, 'clarity', 'script', 'qfy84b8qf6');
-   </script>
+   <!-- Google Tag Manager en Web Worker via proxy -->
+<script type="text/partytown">
+  (function(w,d,s,l,i){
+    w[l]=w[l]||[];
+    w[l].push({ 'gtm.start': new Date().getTime(), event:'gtm.js' });
+    const f = d.getElementsByTagName(s)[0];
+    const j = d.createElement(s);
+    const dl = l !== 'dataLayer' ? '&l=' + l : '';
+    j.async = true;
+    // Proxy en tu dominio
+    j.src = '/_gtm/gtm.js?id=' + i + dl;
+    f.parentNode.insertBefore(j,f);
+  })(window, document, 'script', 'dataLayer', 'GTM-WQS3F67G');
+</script>
+
+<!-- Microsoft Clarity en Web Worker via proxy -->
+<script type="text/partytown">
+  (function(c,l,a,r,i){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    const t = l.getElementsByTagName(r)[0];
+    const s = l.createElement(r);
+    s.async = true;
+    // Proxy en tu dominio
+    s.src = '/_clarity/tag/' + i;
+    t.parentNode.insertBefore(s, t);
+  })(window, document, 'clarity', 'script', 'qfy84b8qf6');
+</script>
     <!-- Microsoft Clarity 
     <script type="text/javascript">
       (function(c,l,a,r,i,t,y){
