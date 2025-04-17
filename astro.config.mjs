@@ -1,5 +1,7 @@
+// astro.config.mjs
 // @ts-check
 import { defineConfig } from "astro/config";
+import partytown from '@astrojs/partytown';
 import tailwindcss from "@tailwindcss/vite";
 import node from '@astrojs/node';
 import compress from 'astro-compress';
@@ -7,9 +9,7 @@ import robotsTxt from 'astro-robots-txt';
 import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 
-// https://astro.build/config
 export default defineConfig({
-  //trailingSlash: 'always',
   site: "https://nexito.tech",
   output: "server",
   adapter: node({ mode: "standalone" }),
@@ -17,6 +17,12 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   integrations: [
+    partytown({
+      config: {
+        // ② reenvía dataLayer.push al hilo principal
+        forward: ['dataLayer.push'],
+      },
+    }),        // ← aquí
     react(),
     robotsTxt(),
     compress({
@@ -43,5 +49,5 @@ export default defineConfig({
         'download-ebook-index',
       ].some((path) => page.includes(path)),
     }),
-  ]
+  ],
 });

@@ -1,7 +1,5 @@
 ---
 import Menu from "../components/layout_menu.astro";
-import GtmAstro from '../components/GTM.astro';
-import ClarityAstro from '../components/Clarity.astro';
 import Footer from "../components/layout_footer.astro";
 import JsonLD from "../components/JsonLD.astro";
 import CookieConsent from "../components/cookie_consent_v2.astro";
@@ -36,8 +34,39 @@ const siteURL = "https://nexito.tech";
 <html lang="es" class="scroll-smooth">
   <head>
     <!-- Preconnect para GTM & Clarity -->
+  <!-- Preconnect para GTM y Clarity -->
   <link rel="preconnect" href="https://www.googletagmanager.com" />
   <link rel="preconnect" href="https://www.clarity.ms" />
+
+
+  <!-- GTM en Worker -->
+  <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://www.clarity.ms" />
+
+    <!-- GTM en Web Worker via Partytown -->
+    <script type="text/partytown">
+      (function(w,d,s,l,i){
+        w[l]=w[l]||[];
+        w[l].push({ 'gtm.start': new Date().getTime(), event:'gtm.js' });
+        var f = d.getElementsByTagName(s)[0];
+        var j = d.createElement(s);
+        var dl = l!='dataLayer'? '&l='+l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-WQS3F67G'+dl;
+        f.parentNode.insertBefore(j,f);
+      })(window, document, 'script', 'dataLayer', 'GTM-WQS3F67G');
+    </script>
+
+    <!-- Clarity en Web Worker via Partytown -->
+    <script type="text/partytown">
+      (function(c,l,a,r,i){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        var t = l.createElement(r);
+        t.async = 1;
+        t.src = 'https://www.clarity.ms/tag/qfy84b8qf6';
+        l.getElementsByTagName(r)[0].parentNode.insertBefore(t, l.getElementsByTagName(r)[0]);
+      })(window, document, 'clarity', 'script', 'qfy84b8qf6');
+    </script>
     <!-- Microsoft Clarity 
     <script type="text/javascript">
       (function(c,l,a,r,i,t,y){
@@ -219,14 +248,14 @@ const siteURL = "https://nexito.tech";
     <ClientRouter />
   </head>
   <body>
-    <!-- Google Tag Manager (noscript)
+    <!-- Google Tag Manager (noscript)-->
     <noscript
       ><iframe
         src="https://www.googletagmanager.com/ns.html?id=GTM-WQS3F67G"
         height="0"
         width="0"
         style="display:none;visibility:hidden"></iframe></noscript
-    >-->
+    >
     <Menu />
     <!-- Main content -->
     <div class="overflow-x-hidden">
@@ -238,7 +267,5 @@ const siteURL = "https://nexito.tech";
     <!-- Componente de consentimiento con client:idle para mejorar el rendimiento -->
     <CookieConsent />
     <ButtonCallWhastapp />
-    <GtmAstro gtmId="GTM-WQS3F67G" client:idle />
-    <ClarityAstro clarityId="qfy84b8qf6" client:idle />
   </body>
 </html>
