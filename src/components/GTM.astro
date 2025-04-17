@@ -1,5 +1,10 @@
+---
+// src/components/GtmAstro.astro
+const { gtmId } = Astro.props;
+---
 <script is:inline>
-    window.addEventListener('load', function () {
+  (function scheduleGTM() {
+    const loadGTM = () => {
       (function (w, d, s, l, i) {
         w[l] = w[l] || [];
         w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
@@ -7,8 +12,24 @@
         var j = d.createElement(s);
         var dl = l != "dataLayer" ? "&l=" + l : "";
         j.async = true;
-        j.src = "https://www.googletagmanager.com/gtm.js?id=GTM-WQS3F67G" + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, "script", "dataLayer", "GTM-WQS3F67G");
-    });
-  </script>
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        if (f && f.parentNode) f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", gtmId);
+    };
+
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(loadGTM);
+    } else {
+      window.addEventListener("load", loadGTM);
+    }
+  })();
+</script>
+
+<noscript>
+  <iframe
+    src={"https://www.googletagmanager.com/ns.html?id=" + gtmId}
+    height="0"
+    width="0"
+    style="display:none;visibility:hidden"
+  ></iframe>
+</noscript>

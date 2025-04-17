@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@astrojs/node": "^9.2.0",
+    "@astrojs/partytown": "^2.1.4",
     "@astrojs/react": "^4.2.0",
     "@astrojs/sitemap": "^3.2.1",
     "@tailwindcss/vite": "^4.0.6",
