@@ -18,9 +18,7 @@ export default defineConfig({
   },
   integrations: [
     partytown({
-      config: {
-        // ② reenvía dataLayer.push al hilo principal
-        forward: ['dataLayer.push'],
+      config: { forward: ['dataLayer.push', 'clarity', 'gtag']
       },
     }),        // ← aquí
     react(),
