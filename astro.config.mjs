@@ -41,14 +41,14 @@ export default defineConfig({
       },
       filter: (page) =>
         ![
-          '/aviso-legal',
-          '/politica-de-cookies',
-          '/politica-de-privacidad',
-          '/consultoria-gratuita',
-          '/download-ebook-index',
-          '/landing'
+          'aviso-legal',
+          'politica-de-cookies',
+          'politica-de-privacidad',
+          'consultoria-gratuita',
+          'download-ebook-index',
+          'landing'
         ].includes(page) &&
-        !page.startsWith('/landing'),
+        !page.startsWith('landing'),
     }),
   ],
 });
