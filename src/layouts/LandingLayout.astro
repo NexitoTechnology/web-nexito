@@ -1,0 +1,100 @@
+---
+// src/layouts/LandingLayout.astro
+// No importamos ningún CSS aquí, usaremos el de la raíz
+// que ya tienes configurado con Tailwind
+
+import './globals.css'; // O la ruta correcta a tu archivo principal de CSS
+
+// Define las Props que acepta este layout
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonicalURL?: string;
+  noIndex?: boolean; // Nueva prop para controlar indexación
+  structuredData?: Record<string, any>; // Para datos estructurados JSON-LD
+}
+
+// Extrae las props con valores por defecto
+const {
+  title,
+  description,
+  image = '/images/default-og.jpg',
+  canonicalURL = Astro.url.href,
+  noIndex = false, // Por defecto, permitir indexación
+  structuredData,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <!-- Importar fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO básico -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Control de indexación -->
+    {noIndex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.url)} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.url)} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Datos estructurados JSON-LD si se proporcionan -->
+    {
+      structuredData && (
+        <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+      )
+    }
+
+    <!-- Google Tag Manager -->
+    <!-- End Google Tag Manager -->
+
+    <!-- Espacio para scripts adicionales de análisis -->
+    <slot name="head" />
+  </head>
+  <body class="min-h-screen bg-white text-gray-900">
+    <!-- Google Tag Manager (noscript) -->
+
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Aquí podrías incluir un componente de header/navbar si lo necesitas -->
+    <!-- <Header /> -->
+
+    <main>
+      <!-- El contenido de la página será insertado aquí -->
+      <slot />
+    </main>
+
+    <!-- Aquí podrías incluir un componente de footer si lo necesitas -->
+    <!-- <Footer /> -->
+
+    <!-- Espacio para scripts adicionales al final del body -->
+    <slot name="footer-scripts" />
+  </body>
+</html>

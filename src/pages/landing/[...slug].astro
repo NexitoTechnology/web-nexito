@@ -1,0 +1,399 @@
+---
+// src/pages/landing/[...slug].astro
+import { getCollection } from 'astro:content';
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import Testimonials from '../../components/landing/testimonial.astro';
+
+// Configuración de rutas estáticas
+export async function getStaticPaths() {
+  try {
+    const landingEntries = await getCollection('landing');
+
+    return landingEntries.map((entry) => ({
+      params: { slug: entry.slug },
+      props: { entry },
+    }));
+  } catch (error) {
+    console.error('Error al obtener colección de landing pages:', error);
+
+    return [
+      {
+        params: { slug: 'error' },
+        props: {
+          entry: null,
+          errorMessage: 'No se pudieron cargar las páginas de landing',
+        },
+      },
+    ];
+  }
+}
+
+export const prerender = true; // Añade esta línea
+
+// Definición de variables principales
+const { entry } = Astro.props;
+
+// Forma actual de extraer los datos
+const shouldNotIndex = true;
+const pageTitle = entry?.data?.title || 'Título por defecto';
+const pageDescription = entry?.data?.description || 'Descripción por defecto';
+const heroHeadline = entry?.data?.heroHeadline || '';
+const heroSubheadline = entry?.data?.heroSubheadline || 'Descripción por defecto';
+const heroButtonURL = entry?.data?.heroButtonURL;
+const heroButtonText = entry?.data?.heroButtonText;
+const heroImageUrl = entry?.data?.heroImage?.url;
+const heroImageAlt = entry?.data?.heroImage?.alt;
+const benefitsSection = entry?.data?.benefitsSection;
+
+// MODIFICAR ESTAS LÍNEAS para usar correctamente los testimonios
+// Datos de testimonios
+const testimonialTitle =
+  entry?.data?.testimonialsSection?.title || 'Lo que dicen nuestros clientes';
+const testimonials = entry?.data?.testimonialsSection?.testimonials || [];
+
+// CTA para sección de testimonios
+const testimonialCTA = entry?.data?.testimonialsSection?.cta || {
+  title: '¿Quieres resultados como estos en tu clínica?',
+  description:
+    'Más de 100 clínicas ya han automatizado su atención al paciente. La configuración toma menos de 48 horas.',
+  primaryButtonText: 'Quiero mi chatbot ahora',
+  primaryButtonURL: '#contacto',
+  secondaryButtonText: 'Ver demostración',
+  secondaryButtonURL: '#demo',
+};
+
+const finalCTA = entry?.data?.finalCTA;
+
+// Logos de clientes
+const clientLogos = ['Adidas', 'Staples', 'The New York Times', 'Gymshark', 'Pepsi', 'Budweiser'];
+---
+
+<LandingLayout title={pageTitle} description={pageDescription} noIndex={shouldNotIndex}>
+  <style>
+    /* Estilos base que ya tenías */
+    .hero-custom-shape {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      background: white;
+      border-radius: 100% 100% 0 0 / 100px;
+    }
+
+    h1.hero-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      font-size: 3.2rem;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    p.hero-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 1.5rem;
+      line-height: 1.6;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Estilos responsive para la imagen */
+    .hero-image {
+      max-width: 100%;
+      height: auto;
+      width: 600px;
+    }
+
+    /* Contenedor de la imagen con márgenes */
+    .hero-image-container {
+      padding: 15px;
+      margin: 10px;
+    }
+
+    /* NUEVOS ESTILOS PARA H2, H3 Y TEXTOS */
+
+    /* Estilos para h2 - títulos de sección */
+    h2.section-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 2.4rem;
+      letter-spacing: -0.02em;
+      line-height: 1.3;
+      margin-bottom: 1.2rem;
+      position: relative;
+      color: #263238;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Efecto subrayado opcional para h2 */
+    h2.section-title.underlined::after {
+      content: '';
+      position: absolute;
+      bottom: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(to right, #10b981, #059669);
+      border-radius: 2px;
+      bottom: -18px; /* Mantener la línea en la misma posición relativa al texto */
+    }
+
+    h2.section-title.underlined {
+      margin-bottom: 3.5rem; /* Aumentar el margen inferior total del h2 */
+    }
+
+    /* Variante de h2 alineado a la izquierda */
+    h2.section-title.left-aligned::after {
+      left: 0;
+      transform: none;
+    }
+
+    /* Estilos para h3 - subtítulos */
+    h3.subsection-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      font-size: 1.4rem;
+      letter-spacing: -0.01em;
+      line-height: 1.4;
+      margin-bottom: 1rem;
+      color: #374151;
+    }
+
+    /* Variante con acento de color */
+    h3.subsection-title.accented {
+      position: relative;
+      display: inline-block;
+      padding-left: 1rem;
+    }
+
+    h3.subsection-title.accented::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10%;
+      height: 80%;
+      width: 4px;
+      background-color: #10b981;
+      border-radius: 2px;
+    }
+
+    /* Estilos para párrafos de contenido */
+    p.content-text {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 1.2rem;
+      line-height: 1.7;
+      color: #4b5563;
+      margin-bottom: 1.2rem;
+    }
+
+    /* Variante para texto destacado */
+    p.content-text.highlighted {
+      font-weight: 500;
+      color: #111827;
+    }
+
+    /* Clase para citas o testimonios */
+    p.testimonial-text {
+      font-family: 'Inter', sans-serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      line-height: 1.7;
+      color: #4b5563;
+      position: relative;
+      padding: 0 1.5rem;
+    }
+
+    p.testimonial-text::before,
+    p.testimonial-text::after {
+      content: '"';
+      font-family: 'Georgia', serif;
+      font-size: 2rem;
+      line-height: 0;
+      position: absolute;
+      color: #10b981;
+    }
+
+    p.testimonial-text::before {
+      left: 0;
+      top: 1rem;
+    }
+
+    p.testimonial-text::after {
+      right: 0;
+      bottom: 0;
+    }
+
+    /* Estilos para listas */
+    ul.feature-list {
+      list-style: none;
+      padding-left: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    ul.feature-list li {
+      position: relative;
+      font-family: 'Inter', sans-serif;
+      padding-left: 1.5rem;
+      margin-bottom: 0.75rem;
+      line-height: 1.6;
+    }
+
+    ul.feature-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #10b981;
+      font-weight: bold;
+    }
+
+    /* Efecto de gradiente para textos especiales */
+    .gradient-text {
+      background: linear-gradient(90deg, #10b981, #0891b2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      display: inline-block;
+    }
+
+    /* Media query para dispositivos móviles */
+    @media (max-width: 640px) {
+      h1.hero-title {
+        font-size: 2rem;
+      }
+
+      p.hero-subtitle {
+        font-size: 1.1rem;
+      }
+
+      h2.section-title {
+        font-size: 1.8rem;
+      }
+
+      h3.subsection-title {
+        font-size: 1.4rem;
+      }
+
+      p.content-text,
+      p.testimonial-text {
+        font-size: 1rem;
+      }
+
+      /* Ajuste de márgenes para móviles */
+      .hero-image-container {
+        padding: 10px;
+        margin: 5px;
+      }
+    }
+  </style>
+
+  <!-- Hero Section -->
+  <section class="bg-emerald-700 text-white relative overflow-hidden">
+    <!--Logo Cabecera -->
+    <div class="w-full flex justify-center pt-6">
+      <img src="/LogoFooter.svg" alt="Logo Nexito" class="h-10 sm:h-4 md:h-10" />
+    </div>
+    <div class="container mx-auto px-6 pt-8 pb-0 text-center">
+      <h1 class="hero-title">{heroHeadline}</h1>
+      <p class="hero-subtitle">{heroSubheadline}</p>
+
+      <div class="flex flex-col sm:flex-row gap-2 my-6 w-full max-w-2xl mx-auto">
+        <input
+          type="email"
+          placeholder="Dirección de correo electrónico"
+          class="flex-grow px-3 py-2 text-sm rounded border border-gray-300 bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-400"
+          required
+        />
+        <a
+          href={heroButtonURL}
+          class="px-4 py-2 text-sm bg-gray-900 text-white font-semibold rounded hover:bg-black transition-colors duration-200 text-center whitespace-nowrap"
+        >
+          {heroButtonText}
+        </a>
+      </div>
+
+      <!-- Curva personalizada simple -->
+      <div class="hero-custom-shape"></div>
+
+      <!-- Imagen hero (solo si existe) -->
+      <div class="w-full flex justify-center" style="position: relative; z-index: 10; margin: 0;">
+        <div class="hero-image-container">
+          <img src={heroImageUrl} alt={heroImageAlt} class="hero-image" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Beneficios -->
+    <section class="bg-white pb-8 pt-8">
+      <div class="container mx-auto px-6 max-w-6xl">
+        <h2 class="section-title underlined text-center mb-12">
+          {benefitsSection?.title || 'Beneficios del servicio'}
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 text-center">
+          {
+            benefitsSection?.benefits?.map((benefit) => (
+              <div class="flex flex-col items-center px-4">
+                <div class="w-16 h-16 text-emerald-600 flex justify-center items-center mb-4">
+                  <Fragment set:html={benefit.icon} />
+                </div>
+                <h3 class="subsection-title text-lg mb-2">{benefit.title}</h3>
+                <p class="content-text text-sm">{benefit.text}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Logos de Clientes 
+  <section class="bg-white border-t border-gray-100 py-12">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 md:gap-x-12 lg:gap-x-16">
+        {clientLogos.map((logo) => (
+          <span class="text-gray-400 hover:text-gray-600 transition duration-300 font-medium">
+            {logo}
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>-->
+
+    <!-- Video del ChatBot -->
+
+    <!-- Sección de Testimonial -->
+    <!-- Sección de Testimonial -->
+    <Testimonials title={testimonialTitle} testimonials={testimonials} cta={testimonialCTA} />
+
+    <!-- Mini Caso de Uso -->
+
+    <!--Preguntas Frecuentes -->
+
+    <!-- Llamada Final a la Acción -->
+    <section class="bg-white py-16 text-center border-t border-gray-100">
+      <div class="container mx-auto px-6">
+        <h2 class="text-2xl md:text-3xl font-bold mb-4">
+          {finalCTA?.headline || '¿Listo para empezar?'}
+        </h2>
+        <p class="text-gray-800 text-lg mb-6">
+          {
+            finalCTA?.text ||
+              'Shopify es mejor que cualquier otra plataforma con la que hayamos trabajado, y vaya que hemos probado.'
+          }
+        </p>
+        <button
+          class="bg-[#008060] text-white font-bold py-4 px-10 rounded hover:opacity-90 transition"
+        >
+          {finalCTA?.buttonText || 'Comenzar'}
+        </button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+  </section></LandingLayout
+>
