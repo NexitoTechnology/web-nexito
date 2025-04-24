@@ -1,4 +1,3 @@
-
 // astro.config.mjs
 // @ts-check
 import { defineConfig } from "astro/config";
@@ -41,22 +40,36 @@ export default defineConfig({
         },
       },
       filter: (page) => {
-        const excludedRoutes = [
-          '/aviso-legal',
-          '/politica-de-cookies',
-          '/politica-de-privacidad',
-          '/consultoria-gratuita',
-          '/download-ebook-index',
-          '/landing'
+        // Log the page URL to understand what format we're receiving
+        console.log(`Checking page: ${page}`);
+        
+        // These are the routes we want to exclude
+        const excludedPaths = [
+          'aviso-legal',
+          'politica-de-cookies',
+          'politica-de-privacidad',
+          'consultoria-gratuita',
+          'download-ebook-index',
+          'landing'
         ];
         
-        // Check if page URL ends with any of the excluded routes
-        for (const route of excludedRoutes) {
-          if (page.endsWith(route)) return false;
+        // Parse the URL to get just the pathname
+        const url = new URL(page);
+        const pathname = url.pathname;
+        
+        // Check if the pathname contains any excluded path
+        for (const path of excludedPaths) {
+          if (pathname.includes(`/${path}`)) {
+            console.log(`Excluding: ${page}`);
+            return false;
+          }
         }
         
-        // Check for pages that start with '/landing'
-        if (page.includes('/landing')) return false;
+        // Additional check for pages that have 'landing' anywhere in the path
+        if (pathname.includes('/landing')) {
+          console.log(`Excluding landing page: ${page}`);
+          return false;
+        }
         
         return true;
       },
