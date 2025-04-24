@@ -50,6 +50,7 @@ export default defineConfig({
           'politica-de-privacidad',
           'consultoria-gratuita',
           'download-ebook-index',
+          'terminos-y-condiciones',
           'landing'
         ];
         
