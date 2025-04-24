@@ -1,3 +1,4 @@
+
 // astro.config.mjs
 // @ts-check
 import { defineConfig } from "astro/config";
@@ -20,7 +21,7 @@ export default defineConfig({
     partytown({
       config: { forward: ['dataLayer.push', 'clarity', 'gtag']
       },
-    }),        // ← aquí
+    }),
     react(),
     robotsTxt(),
     compress({
@@ -39,16 +40,26 @@ export default defineConfig({
           en: 'en-US',
         },
       },
-      filter: (page) =>
-        ![
-          'aviso-legal',
-          'politica-de-cookies',
-          'politica-de-privacidad',
-          'consultoria-gratuita',
-          'download-ebook-index',
-          'landing'
-        ].includes(page) &&
-        !page.startsWith('landing'),
+      filter: (page) => {
+        const excludedRoutes = [
+          '/aviso-legal',
+          '/politica-de-cookies',
+          '/politica-de-privacidad',
+          '/consultoria-gratuita',
+          '/download-ebook-index',
+          '/landing'
+        ];
+        
+        // Check if page URL ends with any of the excluded routes
+        for (const route of excludedRoutes) {
+          if (page.endsWith(route)) return false;
+        }
+        
+        // Check for pages that start with '/landing'
+        if (page.includes('/landing')) return false;
+        
+        return true;
+      },
     }),
   ],
 });
