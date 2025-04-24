@@ -51,7 +51,6 @@ export default defineConfig({
           'consultoria-gratuita',
           'download-ebook-index',
           'terminos-y-condiciones',
-          'servicios',
           'landing'
         ];
         
