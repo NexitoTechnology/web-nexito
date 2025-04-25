@@ -1,11 +1,11 @@
 ---
-import Menu from "../components/layout_menu.astro";
-import Footer from "../components/layout_footer.astro";
-import JsonLD from "../components/JsonLD.astro";
-import CookieConsent from "../components/cookie_consent_v2.astro";
-import ButtonCallWhastapp  from '../components/floating_button_call_whatsapp.astro';
-import { ClientRouter } from "astro:transitions";
-import "/globals.css";
+import Menu from '../components/layout_menu.astro';
+import Footer from '../components/layout_footer.astro';
+import JsonLD from '../components/JsonLD.astro';
+import CookieConsent from '../components/cookie_consent_v2.astro';
+import ButtonCallWhastapp from '../components/floating_button_call_whatsapp.astro';
+import { ClientRouter } from 'astro:transitions';
+import '/globals.css';
 
 declare global {
   interface Window {
@@ -21,43 +21,45 @@ interface Props {
 }
 
 const {
-  title = "Nexito Technology | Automatización Inteligente y Soluciones IA",
-  description = "Transformamos empresas mediante automatización de procesos e Inteligencia Artificial. Soluciones personalizadas para impulsar la eficiencia de tu negocio.",
-  image = "/icon-512x512.png",
+  title = 'Nexito Technology | Automatización Inteligente y Soluciones IA',
+  description = 'Transformamos empresas mediante automatización de procesos e Inteligencia Artificial. Soluciones personalizadas para impulsar la eficiencia de tu negocio.',
+  image = '/icon-512x512.png',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const siteURL = "https://nexito.tech";
+const siteURL = 'https://nexito.tech';
 ---
 
 <!doctype html>
 <html lang="es" class="scroll-smooth">
   <head>
-   <!-- Preconnect -->
-   <!-- Preconnect para rendimiento -->
-<link rel="preconnect" href="https://nexito.tech" />
-<link rel="preconnect" href="https://www.googletagmanager.com" />
-<link rel="preconnect" href="https://www.clarity.ms" />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Preconnect -->
+    <!-- Preconnect para rendimiento -->
+    <link rel="preconnect" href="https://nexito.tech" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" />
+    <link rel="preconnect" href="https://www.clarity.ms" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
+    <!-- Google Tag Manager en Web Worker via proxy -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
 
-   <!-- Google Tag Manager en Web Worker via proxy -->
-<script type="text/partytown">
-  (function(w,d,s,l,i){
-    w[l]=w[l]||[];
-    w[l].push({ 'gtm.start': new Date().getTime(), event:'gtm.js' });
-    const f = d.getElementsByTagName(s)[0];
-    const j = d.createElement(s);
-    const dl = l !== 'dataLayer' ? '&l=' + l : '';
-    j.async = true;
-    // Proxy en tu dominio
-    j.src = '/_gtm/gtm.js?id=' + i + dl;
-    f.parentNode.insertBefore(j,f);
-  })(window, document, 'script', 'dataLayer', 'GTM-WQS3F67G');
-</script>
+        const f = d.getElementsByTagName(s)[0];
+        const j = d.createElement('script') as HTMLScriptElement;
+        const dl = l !== 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://gtm.nexito.tech/gtm.js?id=' + i + dl;
 
-<!-- Microsoft Clarity en Web Worker via proxy -->
+        if (f.parentNode) {
+          f.parentNode.insertBefore(j, f);
+        }
+      })(window, document, 'script', 'dataLayer', 'GTM-WQS3F67G');
+    </script>
+
+    <!-- Microsoft Clarity en Web Worker via proxy 
 <script type="text/partytown">
   (function(c,l,a,r,i){
     c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -68,7 +70,7 @@ const siteURL = "https://nexito.tech";
     s.src = '/_clarity/tag/' + i;
     t.parentNode.insertBefore(s, t);
   })(window, document, 'clarity', 'script', 'qfy84b8qf6');
-</script>
+</script>-->
     <!-- Microsoft Clarity 
     <script type="text/javascript">
       (function(c,l,a,r,i,t,y){
@@ -103,7 +105,10 @@ const siteURL = "https://nexito.tech";
     <title>{title}</title>
 
     <!-- SEO mejorado -->
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).toString().replace(/\/?$/, '/')} />
+    <link
+      rel="canonical"
+      href={new URL(Astro.url.pathname, Astro.site).toString().replace(/\/?$/, '/')}
+    />
     <meta name="robots" content="index, follow, max-image-preview:large" />
     <meta name="author" content="Nexito Technology" />
     <meta name="generator" content={Astro.generator} />
@@ -127,138 +132,134 @@ const siteURL = "https://nexito.tech";
     <meta name="twitter:image:alt" content={title} />
 
     <!-- Favicon y manifest -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png" />
     <link rel="manifest" href="/manifest.json" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
     <!-- JSON-LD Schema -->
     <JsonLD
-  type="Organization"
-  data={{
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Nexito Technology",
-    "url": "https://nexito.tech",
-    "logo": "https://nexito.tech/Logo.svg",
-    "image": "https://nexito.tech/icon-512x512.png",
-    "description": "Transformamos empresas mediante automatización de procesos e Inteligencia Artificial",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Calle Lira 8, N36",
-      "postalCode": "04648",
-      "addressLocality": "Almería",
-      "addressRegion": "Almería",
-      "addressCountry": {
-        "@type": "Country",
-        "name": "ES"
-      }
-    },
-    "contactPoint": [
-      {
-        "@type": "ContactPoint",
-        "contactType": "customer service",
-        "telephone": "+34 950 79 45 43",
-        "email": "info@nexito.tech",
-        "areaServed": {
-          "@type": "Country",
-          "name": "ES"
+      type="Organization"
+      data={{
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'Nexito Technology',
+        url: 'https://nexito.tech',
+        logo: 'https://nexito.tech/Logo.svg',
+        image: 'https://nexito.tech/icon-512x512.png',
+        description:
+          'Transformamos empresas mediante automatización de procesos e Inteligencia Artificial',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: 'Calle Lira 8, N36',
+          postalCode: '04648',
+          addressLocality: 'Almería',
+          addressRegion: 'Almería',
+          addressCountry: {
+            '@type': 'Country',
+            name: 'ES',
+          },
         },
-        "availableLanguage": ["Spanish", "English"]
-      }
-    ],
-    "sameAs": [],
-    "knowsAbout": [
-      "Inteligencia Artificial",
-      "Automatización de Procesos",
-      "Business Intelligence",
-      "Consultoría Tecnológica",
-      "Power BI",
-      "SAP"
-    ],
-    "areaServed": {
-      "@type": "Country",
-      "name": "ES"
-    },
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Servicios de Nexito Technology",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Automatización de Procesos",
-            "description": "Automatización inteligente de procesos empresariales"
-          }
+        contactPoint: [
+          {
+            '@type': 'ContactPoint',
+            contactType: 'customer service',
+            telephone: '+34 950 79 45 43',
+            email: 'info@nexito.tech',
+            areaServed: {
+              '@type': 'Country',
+              name: 'ES',
+            },
+            availableLanguage: ['Spanish', 'English'],
+          },
+        ],
+        sameAs: [],
+        knowsAbout: [
+          'Inteligencia Artificial',
+          'Automatización de Procesos',
+          'Business Intelligence',
+          'Consultoría Tecnológica',
+          'Power BI',
+          'SAP',
+        ],
+        areaServed: {
+          '@type': 'Country',
+          name: 'ES',
         },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Inteligencia Artificial",
-            "description": "Soluciones de IA personalizadas para empresas"
-          }
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: 'Servicios de Nexito Technology',
+          itemListElement: [
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Automatización de Procesos',
+                description: 'Automatización inteligente de procesos empresariales',
+              },
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Inteligencia Artificial',
+                description: 'Soluciones de IA personalizadas para empresas',
+              },
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Business Intelligence',
+                description: 'Análisis de datos y business intelligence',
+              },
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Consultoría Tecnológica',
+                description: 'Servicios de consultoría tecnológica',
+              },
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'Power BI',
+                description: 'Implementación y desarrollo en Power BI',
+              },
+            },
+            {
+              '@type': 'Offer',
+              itemOffered: {
+                '@type': 'Service',
+                name: 'SAP',
+                description: 'Servicios y soluciones SAP',
+              },
+            },
+          ],
         },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Business Intelligence",
-            "description": "Análisis de datos y business intelligence"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Consultoría Tecnológica",
-            "description": "Servicios de consultoría tecnológica"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Power BI",
-            "description": "Implementación y desarrollo en Power BI"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "SAP",
-            "description": "Servicios y soluciones SAP"
-          }
-        }
-      ]
-    }
-  }}
-/>
+      }}
+    />
     <!-- Fuente optimizada -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link 
-  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" 
-  rel="stylesheet"
-/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
     <!-- Astro View Transitions -->
     <ClientRouter />
   </head>
   <body>
-     <!-- Google Tag Manager (noscript fallback) -->
-     <noscript>
-      <iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-WQS3F67G"
-        height="0"
-        width="0"
-        style="display:none;visibility:hidden"
-      ></iframe>
-    </noscript>
+    <!-- Google Tag Manager (noscript fallback) -->
+    <noscript>
+      <iframe src="https://nexito.tech/metrics/ns.html?id=GTM-WQS3F67G" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+      </noscript>
     <Menu />
     <!-- Main content -->
     <div class="overflow-x-hidden">
