@@ -44,16 +44,15 @@ const siteURL = 'https://nexito.tech';
     <!-- Google Tag Manager -->
     <script>
       window.addEventListener('load', function () {
-        (function(w,d,s,l,i){
-          w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
-          const f = d.getElementsByTagName(s)[0];
-          const j = d.createElement(s);
+        (function (w, d, s, l, i) {
+          w[l] = w[l] || [];
+          w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+          const f = d.getElementsByTagName(s)[0] as HTMLScriptElement; // Cambiar a HTMLScriptElement
+          const j = d.createElement(s) as HTMLScriptElement; // Cambiar a HTMLScriptElement
           const dl = l !== 'dataLayer' ? '&l=' + l : '';
-          j.setAttribute('async', '');
-          j.setAttribute('src', 'https://www.googletagmanager.com/gtm.js?id=' + i + dl);
-          if (f && f.parentNode) {
-            f.parentNode.insertBefore(j, f);
-          }
+          j.async = true; // Ahora TypeScript no lanzará el error
+          j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+          f.parentNode?.insertBefore(j, f); // Usamos el operador "?" para manejar el posible valor null
         })(window, document, 'script', 'dataLayer', 'GTM-WQS3F67G');
       });
     </script>
@@ -67,7 +66,7 @@ const siteURL = 'https://nexito.tech';
           y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
       })(window, document, "clarity", "script", "qfy84b8qf6");
     </script>-->
-    
+
     <!-- Metadatos básicos -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -216,25 +215,40 @@ const siteURL = 'https://nexito.tech';
       }}
     />
     <!-- Fuente optimizada -->
+    <!-- Preload de fuentes Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="preload"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-      rel="stylesheet"
+      as="style"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      />
+    </noscript>
     <!-- Astro View Transitions -->
     <ClientRouter />
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe
+    <noscript>
+      <iframe
         src="https://www.googletagmanager.com/ns.html?id=GTM-WQS3F67G"
         height="0"
         width="0"
         style="display:none;visibility:hidden"></iframe>
     </noscript>
     <!-- End Google Tag Manager (noscript) -->
-    
+
     <Menu />
     <!-- Main content -->
     <div class="overflow-x-hidden">
