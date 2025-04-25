@@ -1,18 +1,18 @@
 ---
 title: "Chatbot para Clínicas"
 description: "Automatiza citas, responde dudas frecuentes y mejora tu atención con un chatbot inteligente para clínicas."
-heroHeadline: "Tu clínica en piloto automático con un chatbot inteligente"
-heroSubheadline: "Agenda citas, responde pacientes y mejora la experiencia sin levantar un dedo"
-heroButtonText: "Quiero mi chatbot"
+heroHeadline: "Automatiza la atención y gestiona citas sin esfuerzo con un chatbot inteligente para tu clínica"
+heroSubheadline: "Agenda citas, responde preguntas de pacientes y optimiza tu clínica automáticamente, sin esfuerzo"
+heroButtonText: "¡Comienza ahora!"
 heroButtonURL: "#contacto"
 heroImage:
   url: "/images/chatbot-para-clinicas.png"
   alt: "Chatbot para clínicas en acción"
 
 benefitsSection:
-  title: "¿Por qué tu clínica necesita un chatbot?"
+  title: "Los 3 principales beneficios de un chatbot para tu clínica"
   benefits:
-    - title: "Atiende 24/7 sin saturar a tu equipo"
+    - title: "Atiende pacientes 24/7 sin saturar a tu equipo"
       text: "Tu asistente responde dudas, agenda citas y filtra pacientes incluso fuera del horario laboral."
       icon: |
         <svg xmlns="http://www.w3.org/2000/svg" class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
@@ -20,14 +20,12 @@ benefitsSection:
           <polyline points="12 6 12 12 16 14"/>
         </svg>
 
-
     - title: "Reduce llamadas y mensajes repetitivos"
       text: "Automatiza respuestas a las preguntas más comunes y evita perder tiempo en cada contacto."
       icon: |
         <svg xmlns="http://www.w3.org/2000/svg" class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10z"/>
         </svg>
-
 
     - title: "Mejora la experiencia del paciente"
       text: "Respuestas instantáneas, disponibilidad en WhatsApp, y una imagen moderna de tu clínica."
@@ -60,7 +58,7 @@ testimonialsSection:
       text: Nos quitó el 70% de las llamadas. El equipo puede enfocarse en lo importante.
     - name: Carlos M.
       role: Gerente de centro médico
-      text: Nos quitó el 70% de las llamadas. El equipo puede enfocarse en lo importante.  
+      text: Nos quitó el 70% de las llamadas. El equipo puede enfocarse en lo importante.
   cta:
     title: "¿Quieres resultados como estos en tu clínica?"
     description: "Más de 100 clínicas ya han automatizado su atención al paciente. La configuración toma menos de 48 horas."
