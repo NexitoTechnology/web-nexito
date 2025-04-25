@@ -41,36 +41,24 @@ const siteURL = 'https://nexito.tech';
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Google Tag Manager en Web Worker via proxy -->
+    <!-- Google Tag Manager -->
     <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-
-        const f = d.getElementsByTagName(s)[0];
-        const j = d.createElement('script') as HTMLScriptElement;
-        const dl = l !== 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src = 'https://gtm.nexito.tech/gtm.js?id=' + i + dl;
-
-        if (f.parentNode) {
-          f.parentNode.insertBefore(j, f);
-        }
-      })(window, document, 'script', 'dataLayer', 'GTM-WQS3F67G');
+      window.addEventListener('load', function () {
+        (function(w,d,s,l,i){
+          w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+          const f = d.getElementsByTagName(s)[0];
+          const j = d.createElement(s);
+          const dl = l !== 'dataLayer' ? '&l=' + l : '';
+          j.setAttribute('async', '');
+          j.setAttribute('src', 'https://gtm.nexito.tech/gtm.js?id=' + i + dl);
+          if (f && f.parentNode) {
+            f.parentNode.insertBefore(j, f);
+          }
+        })(window, document, 'script', 'dataLayer', 'GTM-WQS3F67G');
+      });
     </script>
+    <!-- End Google Tag Manager -->
 
-    <!-- Microsoft Clarity en Web Worker via proxy 
-<script type="text/partytown">
-  (function(c,l,a,r,i){
-    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-    const t = l.getElementsByTagName(r)[0];
-    const s = l.createElement(r);
-    s.async = true;
-    // Proxy en tu dominio
-    s.src = '/_clarity/tag/' + i;
-    t.parentNode.insertBefore(s, t);
-  })(window, document, 'clarity', 'script', 'qfy84b8qf6');
-</script>-->
     <!-- Microsoft Clarity 
     <script type="text/javascript">
       (function(c,l,a,r,i,t,y){
@@ -79,25 +67,7 @@ const siteURL = 'https://nexito.tech';
           y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
       })(window, document, "clarity", "script", "qfy84b8qf6");
     </script>-->
-    <!-- Google Tag Manager 
-    <script is:inline define:vars={{ gtmId: "GTM-WQS3F67G" }}>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-        var f = d.getElementsByTagName(s)[0];
-        var j = d.createElement(s);
-        var dl = l != "dataLayer" ? "&l=" + l : "";
-        j.setAttribute("async", "true");
-        j.setAttribute(
-          "src",
-          "https://www.googletagmanager.com/gtm.js?id=" + i + dl
-        );
-        if (f && f.parentNode) {
-          f.parentNode.insertBefore(j, f);
-        }
-      })(window, document, "script", "dataLayer", gtmId);
-    </script>-->
-
+    
     <!-- Metadatos básicos -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -256,10 +226,15 @@ const siteURL = 'https://nexito.tech';
     <ClientRouter />
   </head>
   <body>
-    <!-- Google Tag Manager (noscript fallback) -->
-    <noscript>
-      <iframe src="https://nexito.tech/metrics/ns.html?id=GTM-WQS3F67G" height="0" width="0" style="display:none;visibility:hidden"></iframe>
-      </noscript>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-WQS3F67G"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
     <Menu />
     <!-- Main content -->
     <div class="overflow-x-hidden">

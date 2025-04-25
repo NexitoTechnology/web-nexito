@@ -11,8 +11,8 @@ import react from '@astrojs/react';
 
 export default defineConfig({
   site: "https://nexito.tech",
-  output: "server",
-  adapter: node({ mode: "standalone" }),
+  output: "static",
+  //adapter: node({ mode: "standalone" }),
   vite: {
     plugins: [tailwindcss()],
   },
