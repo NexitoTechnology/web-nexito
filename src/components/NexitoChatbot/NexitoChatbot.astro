@@ -1,0 +1,446 @@
+---
+// NexitoChatbot.astro
+// Props para configurar el chatbot
+interface Props {
+  collection: string;
+  apiUrl: string;
+  apiKey?: string;
+  title?: string;
+  welcomeMessage?: string;
+  primaryColor?: string;
+  position?: 'bottom-right' | 'bottom-left';
+  avatar?: string;
+}
+
+const {
+  collection = 'chatbot_nexito',
+  apiUrl = 'http://api.nexito.tech/api/query',
+  apiKey="f8b7e4d5c6a3b2910f8e7d6c5b4a3210f8e7d6c5b4a32109",
+  title = 'Nexito Assistant',
+  welcomeMessage = '¡Hola! ¿En qué puedo ayudarte hoy?',
+  primaryColor = '#4f46e5',
+  position = 'bottom-right',
+  avatar = '',
+} = Astro.props;
+
+// Generar un ID de sesión único para esta conversación
+const sessionId = crypto.randomUUID();
+---
+
+<div 
+  class="nexito-chatbot" 
+  data-position={position}
+>
+  <button 
+    class="chat-toggle flex items-center justify-center w-14 h-14 rounded-full shadow-lg text-white transition-all duration-200 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2"
+    style={`background-color: ${primaryColor}`}
+    aria-label="Abrir chat"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle">
+      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+    </svg>
+  </button>
+  
+  <div 
+    class="chat-window hidden flex-col h-[450px] w-[350px] bg-white rounded-lg shadow-2xl overflow-hidden transform transition-transform duration-300"
+    style={`--primary-color: ${primaryColor}`}
+  >
+    <div 
+      class="chat-header flex justify-between items-center p-4"
+      style={`background-color: ${primaryColor}`}
+    >
+      <div class="flex items-center">
+        {avatar && (
+          <img src={avatar} alt="Logo" class="w-6 h-6 rounded-full mr-2" />
+        )}
+        <h3 class="text-white font-medium">{title}</h3>
+      </div>
+      <button class="close-button text-white text-2xl focus:outline-none" aria-label="Cerrar chat">
+        &times;
+      </button>
+    </div>
+    
+    <div class="chat-messages flex-1 overflow-y-auto p-4 space-y-3">
+      <div class="message bot flex">
+        <div class="message-content bg-gray-100 text-gray-800 rounded-lg py-2 px-4 max-w-[80%]">
+          {welcomeMessage}
+        </div>
+      </div>
+      <!-- Los mensajes se añadirán aquí dinámicamente -->
+    </div>
+    
+    <form class="chat-input-form flex border-t border-gray-200 p-3">
+      <input 
+        type="text" 
+        placeholder="Escribe tu mensaje..." 
+        aria-label="Mensaje" 
+        class="chat-input flex-1 border border-gray-300 rounded-l-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-opacity-50"
+        style={`focus:ring-color: ${primaryColor}`}
+      />
+      <button 
+        type="submit" 
+        class="send-button px-4 rounded-r-lg flex items-center justify-center"
+        style={`background-color: ${primaryColor}`}
+        aria-label="Enviar"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+    </form>
+  </div>
+</div>
+
+<script define:vars={{ apiUrl, apiKey, collection, sessionId }}>
+  // Cliente para comunicarse con la API
+  class ChatbotClient {
+    constructor(apiUrl, apiKey, collection, sessionId) {
+      this.apiUrl = apiUrl;
+      this.apiKey = apiKey;
+      this.collection = collection;
+      this.sessionId = sessionId;
+      
+      // Intentar cargar conversaciones anteriores del localStorage
+      this.loadConversationFromStorage();
+    }
+    
+    // Cargar conversación del localStorage si existe
+    loadConversationFromStorage() {
+      try {
+        const storageKey = `nexito_chat_${this.collection}_${this.sessionId}`;
+        const savedChat = localStorage.getItem(storageKey);
+        
+        if (savedChat) {
+          return JSON.parse(savedChat);
+        }
+      } catch (error) {
+        console.error('Error cargando chat del almacenamiento:', error);
+      }
+      
+      return null;
+    }
+    
+    // Guardar conversación en localStorage
+    saveConversationToStorage(messages) {
+      try {
+        const storageKey = `nexito_chat_${this.collection}_${this.sessionId}`;
+        localStorage.setItem(storageKey, JSON.stringify(messages));
+      } catch (error) {
+        console.error('Error guardando chat en almacenamiento:', error);
+      }
+    }
+    
+    async sendMessage(question) {
+      try {
+        const response = await fetch(this.apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-API-Key': this.apiKey
+          },
+          body: JSON.stringify({
+            question,
+            session_id: this.sessionId,
+            collection_name: this.collection,
+            k: 8
+          })
+        });
+        
+        if (!response.ok) {
+          throw new Error('Error en la respuesta del servidor');
+        }
+        
+        return await response.json();
+      } catch (error) {
+        console.error('Error enviando mensaje:', error);
+        return {
+          answer: "Lo siento, ha ocurrido un error al procesar tu mensaje. Por favor, intenta de nuevo más tarde."
+        };
+      }
+    }
+  }
+  
+  // Función para analizar y formatear markdown simple
+  function formatMessage(text) {
+    // Convertir saltos de línea
+    text = text.replace(/\n/g, '<br>');
+    
+    // Formateo básico: negritas, cursivas, listas
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    text = text.replace(/\*(.*?)\*/g, '<em>$1</em>');
+    
+    // Convertir listas
+    const listPattern = /^- (.*)$/gm;
+    if (text.match(listPattern)) {
+      let listContent = '';
+      let isInList = false;
+      
+      const lines = text.split('<br>');
+      
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        const listMatch = line.match(/^- (.*)$/);
+        
+        if (listMatch) {
+          if (!isInList) {
+            listContent += '<ul class="list-disc pl-5 my-2">';
+            isInList = true;
+          }
+          listContent += `<li>${listMatch[1]}</li>`;
+        } else {
+          if (isInList) {
+            listContent += '</ul>';
+            isInList = false;
+          }
+          listContent += line + (i < lines.length - 1 ? '<br>' : '');
+        }
+      }
+      
+      if (isInList) {
+        listContent += '</ul>';
+      }
+      
+      text = listContent;
+    }
+    
+    return text;
+  }
+  
+  // Inicializar cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', () => {
+    const chatbotElement = document.querySelector('.nexito-chatbot');
+    const toggleButton = chatbotElement.querySelector('.chat-toggle');
+    const chatWindow = chatbotElement.querySelector('.chat-window');
+    const closeButton = chatbotElement.querySelector('.close-button');
+    const messageContainer = chatbotElement.querySelector('.chat-messages');
+    const inputForm = chatbotElement.querySelector('.chat-input-form');
+    const inputField = chatbotElement.querySelector('.chat-input');
+    
+    // Crear instancia del cliente
+    const client = new ChatbotClient(apiUrl, apiKey, collection, sessionId);
+    
+    // Comprobar si hay conversación guardada
+    const savedConversation = client.loadConversationFromStorage();
+    if (savedConversation && savedConversation.length > 0) {
+      savedConversation.forEach(msg => {
+        addMessage(msg.content, msg.isUser);
+      });
+    }
+    
+    // Funciones para gestionar la UI
+    function toggleChat() {
+      chatWindow.classList.toggle('hidden');
+      chatWindow.classList.toggle('flex');
+      
+      if (!chatWindow.classList.contains('hidden')) {
+        inputField.focus();
+        // Scroll al final
+        messageContainer.scrollTop = messageContainer.scrollHeight;
+      }
+    }
+    
+    function addMessage(content, isUser = false) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${isUser ? 'user' : 'bot'} flex ${isUser ? 'justify-end' : ''}`;
+      
+      const contentDiv = document.createElement('div');
+      contentDiv.className = `message-content ${isUser ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-800'} rounded-lg py-2 px-4 max-w-[80%]`;
+      
+      // Formatear contenido si es del bot
+      if (!isUser) {
+        contentDiv.innerHTML = formatMessage(content);
+      } else {
+        contentDiv.textContent = content;
+      }
+      
+      messageDiv.appendChild(contentDiv);
+      messageContainer.appendChild(messageDiv);
+      
+      // Scroll al final
+      messageContainer.scrollTop = messageContainer.scrollHeight;
+      
+      // Guardar en el almacenamiento local
+      saveMessageToStorage(content, isUser);
+    }
+    
+    function saveMessageToStorage(content, isUser) {
+      try {
+        const storageKey = `nexito_chat_${collection}_${sessionId}`;
+        let messages = [];
+        
+        const savedChat = localStorage.getItem(storageKey);
+        if (savedChat) {
+          messages = JSON.parse(savedChat);
+        }
+        
+        messages.push({
+          content,
+          isUser,
+          timestamp: new Date().toISOString()
+        });
+        
+        // Limitar a los últimos 50 mensajes para no sobrecargar el localStorage
+        if (messages.length > 50) {
+          messages = messages.slice(messages.length - 50);
+        }
+        
+        localStorage.setItem(storageKey, JSON.stringify(messages));
+      } catch (error) {
+        console.error('Error guardando mensaje:', error);
+      }
+    }
+    
+    function addTypingIndicator() {
+      const typingDiv = document.createElement('div');
+      typingDiv.className = 'message bot flex typing-indicator';
+      
+      const contentDiv = document.createElement('div');
+      contentDiv.className = 'message-content bg-gray-100 text-gray-800 rounded-lg py-2 px-4';
+      contentDiv.innerHTML = '<div class="dot-pulse"><div class="dot-pulse__dot"></div></div>';
+      
+      typingDiv.appendChild(contentDiv);
+      messageContainer.appendChild(typingDiv);
+      
+      // Scroll al final
+      messageContainer.scrollTop = messageContainer.scrollHeight;
+      
+      return typingDiv;
+    }
+    
+    function removeTypingIndicator(indicator) {
+      if (indicator && indicator.parentNode) {
+        messageContainer.removeChild(indicator);
+      }
+    }
+    
+    async function handleSubmit(e) {
+      e.preventDefault();
+      const message = inputField.value.trim();
+      if (!message) return;
+      
+      // Añadir mensaje del usuario
+      addMessage(message, true);
+      inputField.value = '';
+      
+      // Añadir indicador de "escribiendo..."
+      const typingIndicator = addTypingIndicator();
+      
+      try {
+        // Obtener respuesta
+        const response = await client.sendMessage(message);
+        
+        // Eliminar indicador de escribiendo
+        removeTypingIndicator(typingIndicator);
+        
+        // Añadir respuesta del bot
+        if (response && response.answer) {
+          addMessage(response.answer);
+          
+          // Si hay sugerencias de seguimiento, mostrarlas
+          if (response.suggested_followup && response.suggested_followup.length > 0) {
+            setTimeout(() => {
+              const suggestionsDiv = document.createElement('div');
+              suggestionsDiv.className = 'suggestions my-2 flex flex-wrap gap-2';
+              
+              response.suggested_followup.forEach(suggestion => {
+                const suggestionButton = document.createElement('button');
+                suggestionButton.className = 'suggestion bg-gray-200 text-sm text-gray-700 rounded-full px-3 py-1 hover:bg-gray-300 transition-colors';
+                suggestionButton.textContent = suggestion;
+                
+                suggestionButton.addEventListener('click', () => {
+                  inputField.value = suggestion;
+                  inputForm.dispatchEvent(new Event('submit'));
+                });
+                
+                suggestionsDiv.appendChild(suggestionButton);
+              });
+              
+              messageContainer.appendChild(suggestionsDiv);
+              messageContainer.scrollTop = messageContainer.scrollHeight;
+            }, 500);
+          }
+        } else {
+          throw new Error('Respuesta inválida');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        removeTypingIndicator(typingIndicator);
+        addMessage("Lo siento, ha ocurrido un error al procesar tu mensaje. Por favor, intenta de nuevo más tarde.");
+      }
+    }
+    
+    // Event listeners
+    toggleButton.addEventListener('click', toggleChat);
+    closeButton.addEventListener('click', toggleChat);
+    inputForm.addEventListener('submit', handleSubmit);
+    
+    // Cerrar el chat si se hace clic fuera de él
+    document.addEventListener('click', (e) => {
+      if (!chatWindow.classList.contains('hidden') && 
+          !chatbotElement.contains(e.target)) {
+        toggleChat();
+      }
+    });
+    
+    // Permitir cerrar con la tecla ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !chatWindow.classList.contains('hidden')) {
+        toggleChat();
+      }
+    });
+  });
+</script>
+
+<style>
+  .nexito-chatbot {
+    position: fixed;
+    z-index: 9999;
+  }
+  
+  .nexito-chatbot[data-position="bottom-right"] {
+    right: 20px;
+    bottom: 20px;
+  }
+  
+  .nexito-chatbot[data-position="bottom-left"] {
+    left: 20px;
+    bottom: 20px;
+  }
+  
+  /* Estilos para el indicador de escritura */
+  .dot-pulse {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    height: 20px;
+  }
+  
+  .dot-pulse__dot {
+    width: 8px;
+    height: 8px;
+    background-color: #999;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+    margin: 0 4px;
+  }
+  
+  .dot-pulse__dot:nth-child(2) {
+    animation-delay: 0.3s;
+  }
+  
+  .dot-pulse__dot:nth-child(3) {
+    animation-delay: 0.6s;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(0.8);
+      opacity: 0.6;
+    }
+    50% {
+      transform: scale(1.2);
+      opacity: 1;
+    }
+  }
+</style>

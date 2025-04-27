@@ -3,6 +3,7 @@
 import { getCollection } from 'astro:content';
 import LandingLayout from '../../layouts/LandingLayout.astro';
 import Testimonials from '../../components/landing/testimonial.astro';
+import NexitoChatbot from '../../components/NexitoChatbot/NexitoChatbot.astro';
 
 // Configuración de rutas estáticas
 export async function getStaticPaths() {
@@ -280,7 +281,6 @@ const clientLogos = ['Adidas', 'Staples', 'The New York Times', 'Gymshark', 'Pep
 </style>
 
   <!-- Hero Section -->
-  <!-- Hero Section -->
   <section class="bg-emerald-700 text-white relative overflow-hidden">
     <!-- Logo Cabecera -->
     <div class="w-full flex justify-center pt-6">
@@ -356,6 +356,17 @@ const clientLogos = ['Adidas', 'Staples', 'The New York Times', 'Gymshark', 'Pep
       </div>
     </div>
   </section>
+
+  <!-- Chatbot embebido configurado para responder preguntas sobre planes y precios -->
+  <NexitoChatbot 
+  collection="chatbot_nexito"
+  apiUrl = 'http://api.nexito.tech/api/query'
+  apiKey="f8b7e4d5c6a3b2910f8e7d6c5b4a3210f8e7d6c5b4a32109"
+  title="Asistente de Ventas"
+  welcomeMessage="¡Hola! Soy el asistente Nexito. Puedo ayudarte con información sobre nuestros planes, precios y características. ¿En qué puedo ayudarte hoy?"
+  primaryColor="#3B82F6" 
+  position="bottom-right"
+  avatar="/images/nexito-logo.png"/>
 
   <!-- Logos de Clientes 
   <section class="bg-white border-t border-gray-100 py-12">
