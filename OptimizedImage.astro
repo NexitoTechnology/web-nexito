@@ -1,0 +1,129 @@
+---
+// OptimizedImage.astro - Componente para optimizar imágenes con carga diferida
+import { Image } from 'astro:assets';
+
+/**
+ * Componente para optimizar imágenes
+ * 
+ * Mejora el performance con:
+ * - Carga diferida (lazy loading)
+ * - Dimensiones exactas para evitar CLS
+ * - Formato WebP por defecto
+ * - Tamaños optimizados para diferentes viewports
+ */
+
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  format?: 'webp' | 'avif' | 'png' | 'jpeg' | 'jpg';
+  quality?: number;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  decoding?: 'async' | 'sync' | 'auto';
+  densities?: (number | `${number}x`)[];
+  sizes?: string;
+  fetchpriority?: 'high' | 'low' | 'auto';
+  pictureClass?: string;
+  isAboveTheFold?: boolean;
+}
+
+const {
+  src,
+  alt,
+  width = 800,
+  height = 600,
+  format = 'webp',
+  quality = 80,
+  class: className = '',
+  loading = 'lazy',
+  decoding = 'async',
+  densities = ['1x', '2x'],
+  sizes = '(max-width: 768px) 100vw, 50vw',
+  fetchpriority = 'auto',
+  pictureClass = '',
+  isAboveTheFold = false
+} = Astro.props;
+
+// Determinar si la imagen es remota o local
+const isRemote = src.startsWith('http') || src.startsWith('//');
+
+// Determinar parámetros de carga según posición en la página
+const loadingStrategy = isAboveTheFold ? 'eager' : loading;
+const priorityStrategy = isAboveTheFold ? 'high' : fetchpriority;
+
+// Atributos para la imagen
+const imgAttributes = {
+  src,
+  alt,
+  width,
+  height,
+  loading: loadingStrategy,
+  decoding,
+  fetchpriority: priorityStrategy,
+  class: className,
+  style: `aspect-ratio: ${width}/${height};`
+};
+
+// Generar ID único para LQIP (Low Quality Image Placeholder)
+const id = `img-${Math.random().toString(36).substring(2, 9)}`;
+
+// Función para normalizar clase CSS
+const normalizeClass = (cls: string) => cls.trim().replace(/\s+/g, ' ');
+---
+
+{isRemote ? (
+  /* Imágenes remotas con formato original */
+  <picture class={pictureClass}>
+    <img 
+      {...imgAttributes}
+      loading={loadingStrategy}
+      decoding={decoding}
+      fetchpriority={priorityStrategy}
+      onload="this.classList.add('loaded')"
+    />
+    <noscript>
+      <img
+        src={src}
+        alt={alt}
+        width={width}
+        height={height}
+        class={className}
+      />
+    </noscript>
+  </picture>
+) : (
+  /* Imágenes locales con optimización de formato */
+  <Image
+    src={src}
+    alt={alt}
+    width={width}
+    height={height}
+    format={format}
+    quality={quality}
+    loading={loadingStrategy}
+    decoding={decoding}
+    densities={densities}
+    sizes={sizes}
+    fetchpriority={priorityStrategy}
+    class={normalizeClass(`${className} opacity-0 transition-opacity duration-500`)}
+    onload="this.classList.remove('opacity-0')"
+  />
+)}
+
+<style is:global>
+  /* Estilos para el efecto de desvanecimiento */
+  img {
+    transition: opacity 0.3s ease-in-out;
+  }
+  img:not([loading]) {
+    opacity: 1;
+  }
+  img[loading="lazy"] {
+    opacity: 0;
+  }
+  img.loaded {
+    opacity: 1;
+  }
+</style>

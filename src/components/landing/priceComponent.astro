@@ -1,0 +1,366 @@
+---
+// src/components/landing/priceComponent.astro
+// Recibe los datos de precios como props
+const { pricingData } = Astro.props;
+
+// Valores por defecto para asegurar que el componente no falle si faltan datos
+const {
+  title = "Planes y Precios",
+  subtitle = "Elige el plan que mejor se adapte a tus necesidades",
+  description = "Todos los módulos requieren el Chatbot Básico obligatorio. Precios sin IVA (21%).",
+  showPricingToggle = true,
+  pricingToggleLabel1 = "Pago Único + Mensual",
+  pricingToggleLabel2 = "Solo Mensual",
+  baseModuleTitle = "Chatbot Básico (Obligatorio)",
+  baseModuleDescription = "Instalación y configuración esencial del chatbot.",
+  baseModuleOneTimePrice = 700,
+  baseModuleMonthlyPrice = 49,
+  modules = [],
+  packages = [],
+  additionalServices = [],
+  notesTitle = "Información importante",
+  notes = [],
+  ctaButtonText = "Consulta tu plan personalizado",
+  ctaButtonURL = "#contacto"
+} = pricingData || {};
+
+interface Module {
+  id: string;
+  title: string;
+  description: string;
+  oneTimePrice?: number;
+  monthlyPrice?: number;
+  idealFor?: string[];
+  isHighlighted?: boolean;
+  icon?: string;
+}
+
+interface Package {
+  title: string;
+  description: string;
+  modules: string[];
+  oneTimePrice?: number;
+  monthlyPrice?: number;
+  mostPopular?: boolean;
+  idealFor?: string;
+}
+
+interface Service {
+  title: string;
+  description?: string;
+  price: number;
+  priceLabel?: string;
+}
+
+interface ServiceCategory {
+  category: string;
+  services: Service[];
+}
+---
+
+<section id="precios" class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4 max-w-7xl">
+    <!-- Encabezado de la sección -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900">{title}</h2>
+      <p class="text-xl text-gray-600 mb-6">{subtitle}</p>
+      <p class="max-w-3xl mx-auto text-gray-500">{description}</p>
+    </div>
+
+    <!-- Toggle de modalidad de pago -->
+    {showPricingToggle && (
+      <div class="flex justify-center mb-12">
+        <div class="bg-gray-200 p-1 rounded-lg inline-flex">
+          <button 
+            id="oneTimePricing" 
+            class="px-4 py-2 rounded-md font-medium text-sm active-pricing-btn"
+          >
+            {pricingToggleLabel1}
+          </button>
+          <button 
+            id="monthlyPricing" 
+            class="px-4 py-2 rounded-md font-medium text-sm"
+          >
+            {pricingToggleLabel2}
+          </button>
+        </div>
+      </div>
+    )}
+
+    <!-- Módulo Base (Obligatorio) -->
+    <div class="bg-white rounded-lg shadow-md p-6 mb-10 border-l-4 border-emerald-500 max-w-4xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-start gap-6">
+        <div class="flex-1">
+          <h3 class="text-xl font-bold text-gray-900 mb-2">{baseModuleTitle}</h3>
+          <p class="text-gray-600 mb-4">{baseModuleDescription}</p>
+          <div class="inline-flex items-center bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full text-sm font-medium">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            Obligatorio para todos los módulos
+          </div>
+        </div>
+        <div class="flex flex-col items-end">
+          <div class="pricing-one-time">
+            <div class="flex items-baseline">
+              <span class="text-3xl font-bold text-gray-900">{baseModuleOneTimePrice}€</span>
+              <span class="text-gray-500 ml-1">pago único</span>
+            </div>
+            <p class="text-sm text-gray-500">+ servicios mensuales</p>
+          </div>
+          <div class="pricing-monthly hidden">
+            <div class="flex items-baseline">
+              <span class="text-3xl font-bold text-gray-900">{baseModuleMonthlyPrice}€</span>
+              <span class="text-gray-500 ml-1">/mes</span>
+            </div>
+            <p class="text-sm text-gray-500">todo incluido</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Paquetes Recomendados -->
+    {packages && packages.length > 0 && (
+      <div class="mb-16">
+        <h3 class="text-2xl font-bold text-center mb-8 text-gray-800">Paquetes Recomendados para Clínicas</h3>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {packages.map((pkg: Package) => (
+            <div class={`bg-white rounded-xl shadow-lg overflow-hidden relative ${pkg.mostPopular ? 'border-2 border-emerald-500 transform scale-105 z-10' : ''}`}>
+              {pkg.mostPopular && (
+                <div class="absolute top-0 right-0 bg-emerald-500 text-white font-bold py-1 px-3 rounded-bl-lg text-sm">
+                  Más popular
+                </div>
+              )}
+              
+              <div class="p-6">
+                <h4 class="text-xl font-bold mb-2 text-gray-900">{pkg.title}</h4>
+                <p class="text-gray-600 mb-4">{pkg.description}</p>
+                
+                <div class="pricing-one-time">
+                  <div class="flex items-baseline mb-1">
+                    <span class="text-4xl font-bold text-gray-900">{pkg.oneTimePrice}€</span>
+                    <span class="text-gray-500 ml-1">pago único</span>
+                  </div>
+                  <p class="text-sm text-gray-500 mb-4">+ {Math.round((pkg.oneTimePrice ?? 0) * 0.07)}€/mes (mantenimiento)</p>
+                </div>
+                
+                <div class="pricing-monthly hidden">
+                  <div class="flex items-baseline mb-4">
+                    <span class="text-4xl font-bold text-gray-900">{pkg.monthlyPrice}€</span>
+                    <span class="text-gray-500 ml-1">/mes</span>
+                  </div>
+                </div>
+                
+                <div class="border-t border-gray-200 pt-4 mt-2">
+                  <p class="font-medium text-gray-700 mb-2">Ideal para: <span class="font-normal text-gray-600">{pkg.idealFor}</span></p>
+                  
+                  <h5 class="font-medium text-gray-700 mb-2">Incluye:</h5>
+                  <ul class="space-y-2 mb-6">
+                    <li class="flex items-start">
+                      <svg class="h-5 w-5 text-emerald-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                      </svg>
+                      <span>Chatbot Básico (obligatorio)</span>
+                    </li>
+                    
+                    {pkg.modules.map((moduleId: string) => {
+                      const moduleInfo = modules.find((m: Module) => m.id === moduleId);
+                      return moduleInfo && (
+                        <li class="flex items-start">
+                          <svg class="h-5 w-5 text-emerald-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                          </svg>
+                          <span>{moduleInfo.title}</span>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </div>
+              
+              <div class="px-6 pb-6">
+                <a href={ctaButtonURL} class="block w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-lg text-center transition-colors duration-300">
+                  Solicitar información
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Módulos Individuales -->
+    {modules && modules.length > 0 && (
+      <div class="mb-16">
+        <h3 class="text-2xl font-bold text-center mb-8 text-gray-800">Módulos Adicionales</h3>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {modules.map((module: Module) => (
+            <div class={`bg-white rounded-lg shadow-md overflow-hidden ${module.isHighlighted ? 'border-2 border-emerald-500' : 'border border-gray-200'}`}>
+              {module.isHighlighted && (
+                <div class="bg-emerald-500 text-white py-1 px-4 text-sm font-bold text-center">
+                  Recomendado para clínicas
+                </div>
+              )}
+              
+              <div class="p-6">
+                <h4 class="text-lg font-bold mb-2 text-gray-900">{module.title}</h4>
+                <p class="text-gray-600 mb-4 text-sm h-12">{module.description}</p>
+                
+                <div class="flex justify-between items-end mb-4">
+                  <div class="pricing-one-time">
+                    <div class="flex items-baseline">
+                      <span class="text-2xl font-bold text-gray-900">{module.oneTimePrice}€</span>
+                      <span class="text-xs text-gray-500 ml-1">pago único</span>
+                    </div>
+                  </div>
+                  
+                  <div class="pricing-monthly hidden">
+                    <div class="flex items-baseline">
+                      <span class="text-2xl font-bold text-gray-900">{module.monthlyPrice}€</span>
+                      <span class="text-xs text-gray-500 ml-1">/mes</span>
+                    </div>
+                  </div>
+                </div>
+                
+                {module.idealFor && module.idealFor.length > 0 && (
+                  <div class="mt-4 pt-4 border-t border-gray-200">
+                    <h5 class="text-sm font-medium text-gray-700 mb-2">Ideal para:</h5>
+                    <ul class="space-y-1">
+                        {module.idealFor.map((item: string) => (
+                        <li class="flex items-start text-xs text-gray-600">
+                          <svg class="h-4 w-4 text-emerald-500 mr-1 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                          </svg>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+              
+              <div class="px-6 pb-6 mt-2">
+                <div class="text-xs text-center text-gray-500 mb-2">Requiere Chatbot Básico</div>
+                <a href={ctaButtonURL} class="block w-full py-2 px-4 bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium rounded-lg text-center text-sm transition-colors duration-300">
+                  Añadir a mi plan
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Servicios Adicionales (Solo para Pago Único) -->
+    {additionalServices && additionalServices.length > 0 && (
+      <div class="pricing-one-time mb-16">
+        <h3 class="text-2xl font-bold text-center mb-8 text-gray-800">Servicios Adicionales</h3>
+        <p class="text-center text-gray-500 mb-8">Estos servicios son necesarios si eliges la modalidad de Pago Único</p>
+        
+        <div class="grid gap-8">
+            {additionalServices.map((category: ServiceCategory) => (
+            <div>
+              <h4 class="font-bold text-lg text-gray-800 mb-4">{category.category}</h4>
+              <div class="bg-white rounded-lg overflow-hidden shadow-md">
+                <table class="min-w-full divide-y divide-gray-200">
+                  <thead class="bg-gray-50">
+                    <tr>
+                      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Servicio
+                      </th>
+                      <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Descripción
+                      </th>
+                      <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Precio
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="bg-white divide-y divide-gray-200">
+                    {category.services.map((service: Service) => (
+                      <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                          {service.title}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {service.description}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                          <span class="font-bold text-gray-900">{service.price}€</span>
+                          <span class="text-gray-500">{service.priceLabel}</span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    )}
+
+    <!-- Notas importantes -->
+    {notes && notes.length > 0 && (
+      <div class="bg-amber-50 border border-amber-200 rounded-lg p-6 mb-12 max-w-4xl mx-auto">
+        <h3 class="font-bold text-lg text-amber-800 mb-4">{notesTitle}</h3>
+        <ul class="space-y-2">
+            {notes.map((note: string) => (
+            <li class="flex items-start">
+              <svg class="h-5 w-5 text-amber-500 mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <span class="text-amber-800">{note}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    <!-- CTA final -->
+    <div class="text-center">
+      <a href={ctaButtonURL} class="inline-block py-3 px-8 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-lg transition-colors duration-300 shadow-md">
+        {ctaButtonText}
+      </a>
+      <p class="mt-4 text-gray-500">Sin compromiso • Presupuesto personalizado • Implementación en 48h</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Script para el toggle de precios
+  document.addEventListener('DOMContentLoaded', () => {
+    const oneTimeBtn = document.getElementById('oneTimePricing');
+    const monthlyBtn = document.getElementById('monthlyPricing');
+    const oneTimePrices = document.querySelectorAll('.pricing-one-time');
+    const monthlyPrices = document.querySelectorAll('.pricing-monthly');
+    
+    if (oneTimeBtn && monthlyBtn) {
+      oneTimeBtn.addEventListener('click', () => {
+        oneTimeBtn.classList.add('active-pricing-btn');
+        monthlyBtn.classList.remove('active-pricing-btn');
+        
+        oneTimePrices.forEach(el => el.classList.remove('hidden'));
+        monthlyPrices.forEach(el => el.classList.add('hidden'));
+      });
+      
+      monthlyBtn.addEventListener('click', () => {
+        monthlyBtn.classList.add('active-pricing-btn');
+        oneTimeBtn.classList.remove('active-pricing-btn');
+        
+        monthlyPrices.forEach(el => el.classList.remove('hidden'));
+        oneTimePrices.forEach(el => el.classList.add('hidden'));
+      });
+    }
+  });
+</script>
+
+<style>
+  .active-pricing-btn {
+    background-color: white;
+    color: #065f46;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+</style>

@@ -4,6 +4,8 @@ import { getCollection } from 'astro:content';
 import LandingLayout from '../../layouts/LandingLayout.astro';
 import Testimonials from '../../components/landing/testimonial.astro';
 import NexitoChatbot from '../../components/NexitoChatbot/NexitoChatbot.astro';
+import PriceComponent from '../../components/landing/priceComponent.astro';
+import type { LandingPageData } from '../../types/landing';
 
 // Configuración de rutas estáticas
 export async function getStaticPaths() {
@@ -67,6 +69,13 @@ const finalCTA = entry?.data?.finalCTA;
 
 // Logos de clientes
 const clientLogos = ['Adidas', 'Staples', 'The New York Times', 'Gymshark', 'Pepsi', 'Budweiser'];
+
+
+// Luego, al inicio de tu componente:
+const pageData = entry?.data as LandingPageData;
+
+// Y usar pageData en lugar de entry.data
+{pageData?.heroEmailPlaceholder || "Dirección de correo electrónico"}
 ---
 
 <LandingLayout title={pageTitle} description={pageDescription} noIndex={shouldNotIndex}>
@@ -164,8 +173,6 @@ const clientLogos = ['Adidas', 'Staples', 'The New York Times', 'Gymshark', 'Pep
       position: relative;
       color: #374151;
     }
-
-
 
     /* Estilos para párrafos de contenido */
     p.content-text {
@@ -265,7 +272,7 @@ const clientLogos = ['Adidas', 'Staples', 'The New York Times', 'Gymshark', 'Pep
         font-size: 1.4rem;
       }
 
-      p.content-text{
+      p.content-text {
         font-size: 1rem;
       }
       p.testimonial-text {
@@ -278,7 +285,7 @@ const clientLogos = ['Adidas', 'Staples', 'The New York Times', 'Gymshark', 'Pep
         margin: 5px;
       }
     }
-</style>
+  </style>
 
   <!-- Hero Section -->
   <section class="bg-emerald-700 text-white relative overflow-hidden">
@@ -296,7 +303,7 @@ const clientLogos = ['Adidas', 'Staples', 'The New York Times', 'Gymshark', 'Pep
       <div class="flex flex-col sm:flex-row gap-3 my-6 w-full max-w-2xl mx-auto">
         <input
           type="email"
-          placeholder="Dirección de correo electrónico"
+          placeholder={(entry?.data as any).heroEmailPlaceholder || "Dirección de correo electrónico"}
           class="flex-grow w-full px-5 py-3 text-lg rounded-lg border-2 border-emerald-500/30 bg-white text-gray-800 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-amber-400 transition-all duration-300 shadow-sm text-center"
           required
         />
@@ -310,18 +317,17 @@ const clientLogos = ['Adidas', 'Staples', 'The New York Times', 'Gymshark', 'Pep
 
       <!-- Botón de Agendar Cita -->
       <a
-        href="https://calendly.com/tu_usuario/consulta-gratuita"
+        href={entry?.data?.calendlyURL || 'https://calendly.com/tu_usuario/consulta-gratuita'}
         class="inline-block px-12 py-3 bg-amber-500 text-white font-bold rounded-lg hover:bg-amber-600 transition-colors duration-300 text-xl shadow-lg mt-4 mb-8 relative min-w-[320px] border-2 border-amber-600"
         id="agendar-cita-btn"
       >
-        Agenda tu cita ahora
+        {entry?.data?.heroAppointmentButtonText || 'Agenda tu cita ahora'}
         <span
           class="absolute -top-3 -right-3 bg-white text-amber-700 text-xs font-bold px-2 py-1 rounded-full transform rotate-12 shadow-md border border-amber-300"
         >
-          GRATIS
+          {entry?.data?.heroAppointmentTagText || 'GRATIS'}
         </span>
       </a>
-
       <!-- Curva personalizada simple -->
       <div class="hero-custom-shape"></div>
 
@@ -357,16 +363,23 @@ const clientLogos = ['Adidas', 'Staples', 'The New York Times', 'Gymshark', 'Pep
     </div>
   </section>
 
+  <!-- Sección de Precios -->
+  {entry?.data?.pricingSection && <PriceComponent pricingData={entry.data.pricingSection} />}
+
   <!-- Chatbot embebido configurado para responder preguntas sobre planes y precios -->
-  <NexitoChatbot 
-  collection="chatbot_nexito"
-  apiUrl = 'https://api.nexito.tech/api/query'
-  apiKey="f8b7e4d5c6a3b2910f8e7d6c5b4a3210f8e7d6c5b4a32109"
-  title="Asistente de Ventas"
-  welcomeMessage="¡Hola! Soy el asistente Nexito. Puedo ayudarte con información sobre nuestros planes, precios y características. ¿En qué puedo ayudarte hoy?"
-  primaryColor="#3B82F6" 
-  position="bottom-right"
-  avatar="/images/nexito-logo.png"/>
+  <!-- Chatbot embebido configurado para responder preguntas sobre planes y precios -->
+  <NexitoChatbot
+    collection={entry?.data?.chatbotConfig?.collection || 'chatbot_nexito'}
+    apiUrl={entry?.data?.chatbotConfig?.apiUrl || 'https://api.nexito.tech/api/query'}
+    apiKey={entry?.data?.chatbotConfig?.apiKey ||
+      'f8b7e4d5c6a3b2910f8e7d6c5b4a3210f8e7d6c5b4a32109'}
+    title={entry?.data?.chatbotConfig?.title || 'Asistente de Ventas'}
+    welcomeMessage={entry?.data?.chatbotConfig?.welcomeMessage ||
+      '¡Hola! Soy el asistente Nexito. Puedo ayudarte con información sobre nuestros planes, precios y características. ¿En qué puedo ayudarte hoy?'}
+    primaryColor={entry?.data?.chatbotConfig?.primaryColor || '#3B82F6'}
+    position={(pageData?.chatbotConfig as any)?.position || "bottom-right"}
+    avatar={entry?.data?.chatbotConfig?.avatar || '/images/nexito-logo.png'}
+  />
 
   <!-- Logos de Clientes 
   <section class="bg-white border-t border-gray-100 py-12">
@@ -387,9 +400,14 @@ const clientLogos = ['Adidas', 'Staples', 'The New York Times', 'Gymshark', 'Pep
     <div class="container mx-auto px-6">
       <!-- Encabezado de la sección -->
       <div class="text-center mb-12">
-        <h2 class="section-title underlined">Así funciona en tu clínica</h2>
+        <h2 class="section-title underlined">
+          {entry?.data?.demoSection?.title || 'Así funciona en tu clínica'}
+        </h2>
         <p class="content-text">
-          Implementación sencilla, rápida y efectiva sin necesidad de conocimientos técnicos
+          {
+            entry?.data?.demoSection?.subtitle ||
+              'Implementación sencilla, rápida y efectiva sin necesidad de conocimientos técnicos'
+          }
         </p>
       </div>
 
@@ -400,7 +418,8 @@ const clientLogos = ['Adidas', 'Staples', 'The New York Times', 'Gymshark', 'Pep
           <div class="relative pb-[80%] h-0">
             <iframe
               class="absolute top-0 left-0 w-full h-full"
-              src="https://www.youtube.com/embed/gpY75NkQoGI"
+              src={entry?.data?.demoSection?.videoURL ||
+                'https://www.youtube.com/embed/gpY75NkQoGI'}
               title="Cómo funciona el chatbot en tu clínica"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -413,231 +432,186 @@ const clientLogos = ['Adidas', 'Staples', 'The New York Times', 'Gymshark', 'Pep
 
         <!-- Texto explicativo con iconos -->
         <div class="w-full lg:w-2/5 space-y-6">
-          <h3 class="subsection-title accented">Un proceso simple que transforma tu clínica</h3>
+          <h3 class="subsection-title accented">
+            {
+              entry?.data?.demoSection?.processTitle ||
+                'Un proceso simple que transforma tu clínica'
+            }
+          </h3>
 
-          <!-- Paso 1 -->
-          <div class="flex gap-4 items-start">
-            <div class="bg-emerald-100 p-3 rounded-full text-emerald-700">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-                ></path>
-              </svg>
-            </div>
-            <div>
-              <h4 class="font-bold text-gray-800">Responde dudas automáticamente</h4>
-              <p class="content-text">
-                El chatbot atiende consultas frecuentes de pacientes las 24 horas, liberando tiempo
-                de tu personal.
-              </p>
-            </div>
-          </div>
-
-          <!-- Paso 2 -->
-          <div class="flex gap-4 items-start">
-            <div class="bg-emerald-100 p-3 rounded-full text-emerald-700">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                ></path>
-              </svg>
-            </div>
-            <div>
-              <h4 class="font-bold text-gray-800">Gestiona citas eficientemente</h4>
-              <p class="content-text">
-                Permite a los pacientes programar, reprogramar o cancelar citas sin intervención
-                humana.
-              </p>
-            </div>
-          </div>
-
-          <!-- Paso 3 -->
-          <div class="flex gap-4 items-start">
-            <div class="bg-emerald-100 p-3 rounded-full text-emerald-700">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z"
-                ></path>
-              </svg>
-            </div>
-            <div>
-              <h4 class="font-bold text-gray-800">Filtra y cualifica pacientes</h4>
-              <p class="content-text">
-                Identifica las necesidades de cada paciente y los dirige al profesional adecuado en
-                tu clínica.
-              </p>
-            </div>
-          </div>
+          {/* Generar los pasos dinámicamente */}
+          {
+            (
+              entry?.data?.demoSection?.steps || [
+                {
+                  title: 'Responde dudas automáticamente',
+                  text: 'El chatbot atiende consultas frecuentes de pacientes las 24 horas, liberando tiempo de tu personal.',
+                },
+                {
+                  title: 'Gestiona citas eficientemente',
+                  text: 'Permite a los pacientes programar, reprogramar o cancelar citas sin intervención humana.',
+                },
+                {
+                  title: 'Filtra y cualifica pacientes',
+                  text: 'Identifica las necesidades de cada paciente y los dirige al profesional adecuado en tu clínica.',
+                },
+              ]
+            ).map((step, index) => (
+              <div class="flex gap-4 items-start">
+                <div class="bg-emerald-100 p-3 rounded-full text-emerald-700">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-bold text-gray-800">{step.title}</h4>
+                  <p class="content-text">{step.text}</p>
+                </div>
+              </div>
+            ))
+          }
         </div>
       </div>
 
       <!-- CTA -->
       <div class="mt-12 text-center">
         <a
-          href="https://calendly.com/tu_usuario/consulta-gratuita"
+          href={entry?.data?.calendlyURL || 'https://calendly.com/tu_usuario/consulta-gratuita'}
           class="inline-block px-14 py-4 bg-emerald-600 text-white font-bold rounded-lg hover:bg-emerald-700 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 text-xl shadow-md border border-transparent hover:border-emerald-400"
         >
-          Ver una demostración personalizada
+          {entry?.data?.demoSection?.ctaButtonText || 'Ver una demostración personalizada'}
         </a>
-        <p class="mt-4 text-gray-600">Sin compromiso • Configuración en menos de 48 horas</p>
+        <p class="mt-4 text-gray-600">
+          {
+            entry?.data?.demoSection?.ctaSubtext ||
+              'Sin compromiso • Configuración en menos de 48 horas'
+          }
+        </p>
       </div>
     </div>
   </section>
 
   <!-- Sección de Testimonial -->
-  <Testimonials title={testimonialTitle} testimonials={testimonials} cta={testimonialCTA} />
+  <Testimonials 
+  title={testimonialTitle} 
+  testimonials={testimonials} 
+  cta={testimonialCTA as any} 
+/>
 
-<!-- Sección de Casos de Éxito -->
+  <!-- Sección de Casos de Éxito -->
+  <!-- Sección de Casos de Éxito -->
 <section class="py-16 bg-white">
   <div class="container mx-auto px-6">
     <!-- Encabezado de la sección -->
     <div class="text-center mb-12">
-      <h2 class="section-title underlined">Casos de éxito: Cómo nuestro chatbot transforma clínicas</h2>
+      <h2 class="section-title underlined">{entry?.data?.successCasesSection?.title || "Casos de éxito: Cómo nuestro chatbot transforma clínicas"}</h2>
     </div>
 
     <!-- Contenedor de tarjetas -->
     <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-      <!-- Caso de éxito 1 -->
-      <div class="bg-gray-50 rounded-xl shadow-md overflow-hidden h-full">
-        <div class="relative">
-          <img 
-            src="/images/clinica-estetica.jpg" 
-            alt="Clínica de estética utilizando el chatbot" 
-            class="w-full h-48 object-cover"
-            onerror="this.src='https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'; this.onerror=null;"
-          />
-          <div class="absolute top-4 left-4 bg-emerald-600 text-white text-sm font-bold px-3 py-1 rounded-full">
-            Caso Real
-          </div>
-        </div>
-        
-        <div class="p-6">
-          <h3 class="subsection-title accented">Clínica de Estética</h3>
-          
-          <p class="content-text highlighted my-4">
-            "Aumento del 80% en citas automatizadas"
-          </p>
-          
-          <p class="content-text">
-            Una clínica de estética recibía más de 40 llamadas diarias. Gracias a nuestro chatbot, ahora el <span class="font-semibold">80% de las citas</span> se gestionan automáticamente, reduciendo tiempos de espera y mejorando la satisfacción del paciente.
-          </p>
-          
-          <!-- Resultados con viñetas -->
-          <div class="my-6">
-            <h4 class="font-bold text-gray-800 mb-2">Resultados:</h4>
-            <ul class="feature-list">
-              <li>80% de citas gestionadas automáticamente</li>
-              <li>Reducción del 70% de llamadas repetitivas</li>
-              <li>Mejora en la satisfacción del paciente</li>
-            </ul>
-          </div>
-          
-          <!-- Testimonio -->
-          <div class="mt-6 border-t border-gray-200 pt-4">
-            <p class="testimonial-text mb-4">
-              El chatbot nos ha permitido liberar tiempo y mejorar la experiencia del paciente. ¡Estamos encantados!
-            </p>
-            <div class="flex items-center">
-              <div class="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 font-bold">
-                CM
-              </div>
-              <div class="ml-3">
-                <p class="font-bold text-gray-800">Carlos M.</p>
-                <p class="text-sm text-gray-600">Gerente de la clínica</p>
-              </div>
+      {/* Generar los casos dinámicamente */}
+      {(entry?.data?.successCasesSection?.cases || [
+        {
+          type: "Clínica de Estética",
+          headline: "Aumento del 80% en citas automatizadas",
+          description: "Una clínica de estética recibía más de 40 llamadas diarias. Gracias a nuestro chatbot, ahora el 80% de las citas se gestionan automáticamente, reduciendo tiempos de espera y mejorando la satisfacción del paciente.",
+          results: [
+            "80% de citas gestionadas automáticamente",
+            "Reducción del 70% de llamadas repetitivas",
+            "Mejora en la satisfacción del paciente"
+          ],
+          testimonial: "El chatbot nos ha permitido liberar tiempo y mejorar la experiencia del paciente. ¡Estamos encantados!",
+          author: "Carlos M.",
+          role: "Gerente de la clínica"
+        },
+        {
+          type: "Clínica Dental",
+          headline: "Reducción del 65% en tiempo de administración",
+          description: "Una clínica dental necesitaba optimizar la gestión de consultas y recordatorios. Con nuestro chatbot, el personal administrativo redujo un 65% el tiempo dedicado a estas tareas, pudiendo enfocarse en mejorar otros aspectos del servicio.",
+          results: [
+            "65% menos tiempo en tareas administrativas",
+            "Reducción del 50% en citas perdidas",
+            "Aumento del 35% en valoraciones positivas"
+          ],
+          testimonial: "Nuestros pacientes valoran poder gestionar sus citas por WhatsApp a cualquier hora. El chatbot ha sido una inversión que se amortizó en apenas 3 meses.",
+          author: "Laura P.",
+          role: "Directora Clínica Dental"
+        }
+      ]).map((caso, index) => (
+        <div class="bg-gray-50 rounded-xl shadow-md overflow-hidden h-full">
+          <div class="relative">
+            <img 
+              src={caso.image || `/images/${caso.type.toLowerCase().replace(' ', '-')}.jpg`}
+              alt={`${caso.type} utilizando el chatbot`} 
+              class="w-full h-48 object-cover"
+              onerror="this.src='https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'; this.onerror=null;"
+            />
+            <div class="absolute top-4 left-4 bg-emerald-600 text-white text-sm font-bold px-3 py-1 rounded-full">
+              Caso Real
             </div>
           </div>
-        </div>
-      </div>
-
-      <!-- Caso de éxito 2 -->
-      <div class="bg-gray-50 rounded-xl shadow-md overflow-hidden h-full">
-        <div class="relative">
-          <img 
-            src="/images/clinica-dental.jpg" 
-            alt="Clínica dental utilizando el chatbot" 
-            class="w-full h-48 object-cover"
-            onerror="this.src='https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'; this.onerror=null;"
-          />
-          <div class="absolute top-4 left-4 bg-emerald-600 text-white text-sm font-bold px-3 py-1 rounded-full">
-            Caso Real
-          </div>
-        </div>
-        
-        <div class="p-6">
-          <h3 class="subsection-title accented">Clínica Dental</h3>
           
-          <p class="content-text highlighted my-4">
-            "Reducción del 65% en tiempo de administración"
-          </p>
-          
-          <p class="content-text">
-            Una clínica dental necesitaba optimizar la gestión de consultas y recordatorios. Con nuestro chatbot, el personal administrativo <span class="font-semibold">redujo un 65% el tiempo</span> dedicado a estas tareas, pudiendo enfocarse en mejorar otros aspectos del servicio.
-          </p>
-          
-          <!-- Resultados con viñetas -->
-          <div class="my-6">
-            <h4 class="font-bold text-gray-800 mb-2">Resultados:</h4>
-            <ul class="feature-list">
-              <li>65% menos tiempo en tareas administrativas</li>
-              <li>Reducción del 50% en citas perdidas</li>
-              <li>Aumento del 35% en valoraciones positivas</li>
-            </ul>
-          </div>
-          
-          <!-- Testimonio -->
-          <div class="mt-6 border-t border-gray-200 pt-4">
-            <p class="testimonial-text mb-4">
-              Nuestros pacientes valoran poder gestionar sus citas por WhatsApp a cualquier hora. El chatbot ha sido una inversión que se amortizó en apenas 3 meses.
+          <div class="p-6">
+            <h3 class="subsection-title accented">{caso.type}</h3>
+            
+            <p class="content-text highlighted my-4">
+              "{caso.headline}"
             </p>
-            <div class="flex items-center">
-              <div class="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 font-bold">
-                LP
-              </div>
-              <div class="ml-3">
-                <p class="font-bold text-gray-800">Laura P.</p>
-                <p class="text-sm text-gray-600">Directora Clínica Dental</p>
-              </div>
+            
+            <p class="content-text">
+              {caso.description}
+            </p>
+            
+            <!-- Resultados con viñetas -->
+            <div class="my-6">
+              <h4 class="font-bold text-gray-800 mb-2">Resultados:</h4>
+              <ul class="feature-list">
+                {caso.results.map(resultado => (
+                  <li>{resultado}</li>
+                ))}
+              </ul>
             </div>
+            
+            <!-- Testimonio -->
+            {caso.testimonial && (
+              <div class="mt-6 border-t border-gray-200 pt-4">
+                <p class="testimonial-text mb-4">
+                  {caso.testimonial}
+                </p>
+                <div class="flex items-center">
+                  <div class="w-10 h-10 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 font-bold">
+                    {caso.author && caso.author.split(' ').map(name => name[0]).join('')}
+                  </div>
+                  <div class="ml-3">
+                    <p class="font-bold text-gray-800">{caso.author || ""}</p>
+                    <p class="text-sm text-gray-600">{caso.role || ""}</p>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
-      </div>
+      ))}
     </div>
 
     <!-- CTA -->
     <div class="mt-12 text-center">
       <a 
-        href="https://calendly.com/tu_usuario/consulta-gratuita" 
+        href={entry?.data?.successCasesSection?.ctaButtonURL || "#contacto"} 
         class="inline-block px-8 py-4 bg-emerald-600 text-white font-bold rounded-lg hover:bg-emerald-700 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 text-lg shadow-md border border-transparent hover:border-emerald-400"
       >
-        Descubre cómo podemos ayudarte
+        {entry?.data?.successCasesSection?.ctaButtonText || "Descubre cómo podemos ayudarte"}
         <span class="ml-2 text-emerald-200">→</span>
       </a>
     </div>
@@ -646,6 +620,7 @@ const clientLogos = ['Adidas', 'Staples', 'The New York Times', 'Gymshark', 'Pep
 
   <!--Preguntas Frecuentes -->
   <!-- Sección de Preguntas Frecuentes (FAQs) con diseño moderno -->
+ <!-- Sección de Preguntas Frecuentes (FAQs) con diseño moderno -->
 <section class="py-16 bg-gray-50 overflow-hidden relative">
   <!-- Elementos decorativos de fondo -->
   <div class="absolute top-0 right-0 -mt-10 -mr-20 w-64 h-64 rounded-full bg-emerald-100 opacity-50"></div>
@@ -654,153 +629,69 @@ const clientLogos = ['Adidas', 'Staples', 'The New York Times', 'Gymshark', 'Pep
   <div class="container mx-auto px-6 relative z-10">
     <!-- Encabezado de la sección -->
     <div class="text-center mb-14">
-      <h2 class="section-title underlined">Resuelve tus dudas sobre nuestro chatbot</h2>
+      <h2 class="section-title underlined">{entry?.data?.faqSection?.title || "Preguntas frecuentes"}</h2>
       <p class="content-text max-w-3xl mx-auto">
-        Todo lo que necesitas saber antes de transformar la comunicación en tu clínica
+        {entry?.data?.faqSection?.subtitle || "Todo lo que necesitas saber antes de transformar la comunicación en tu clínica"}
       </p>
     </div>
 
     <!-- Grid de tarjetas de FAQ con diseño moderno -->
     <div class="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-      <!-- FAQ 1 -->
-      <div class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-emerald-500 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-        <div class="flex items-start">
-          <div class="flex-shrink-0 mr-4">
-            <div class="h-10 w-10 rounded-full bg-emerald-100 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
+      {/* FAQs dinámicas */}
+      {entry?.data?.faqSection?.faqs.map((faq, index) => (
+        <div class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-emerald-500 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+          <div class="flex items-start">
+            <div class="flex-shrink-0 mr-4">
+              <div class="h-10 w-10 rounded-full bg-emerald-100 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
             </div>
-          </div>
-          <div>
-            <h3 class="font-bold text-gray-800 text-lg mb-2">¿Puedo integrar el chatbot con WhatsApp de mi clínica?</h3>
-            <p class="content-text mb-0">
-              Sí, el chatbot se integra directamente con WhatsApp Business, permitiendo gestionar citas y responder preguntas automáticamente sin necesidad de aplicaciones adicionales.
-            </p>
+            <div>
+              <h3 class="font-bold text-gray-800 text-lg mb-2">{faq.question}</h3>
+              <p class="content-text mb-0">
+                {faq.answer}
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      ))}
+    </div>
 
-      <!-- FAQ 2 -->
-      <div class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-emerald-500 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-        <div class="flex items-start">
-          <div class="flex-shrink-0 mr-4">
-            <div class="h-10 w-10 rounded-full bg-emerald-100 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-              </svg>
-            </div>
-          </div>
-          <div>
-            <h3 class="font-bold text-gray-800 text-lg mb-2">¿Necesito conocimientos técnicos para configurarlo?</h3>
-            <p class="content-text mb-0">
-              No es necesario. Nosotros nos encargamos de toda la configuración y personalización para tu clínica. ¡Todo listo en menos de 48 horas!
+   
+
+      <!-- Elemento extra con estadística -->
+      <div
+        class="mt-12 max-w-4xl mx-auto bg-gradient-to-r from-emerald-600 to-emerald-700 rounded-xl overflow-hidden shadow-lg"
+      >
+        <div class="flex flex-col md:flex-row items-center">
+          <div class="w-full md:w-1/3 p-8 flex flex-col items-center justify-center text-white">
+            <span class="text-6xl font-bold mb-2">97%</span>
+            <p class="text-emerald-100 text-center">
+              de preguntas resueltas por el chatbot sin intervención humana
             </p>
           </div>
-        </div>
-      </div>
-
-      <!-- FAQ 3 -->
-      <div class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-emerald-500 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-        <div class="flex items-start">
-          <div class="flex-shrink-0 mr-4">
-            <div class="h-10 w-10 rounded-full bg-emerald-100 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-            </div>
-          </div>
-          <div>
-            <h3 class="font-bold text-gray-800 text-lg mb-2">¿Se conecta con mi sistema de agendamiento?</h3>
-            <p class="content-text mb-0">
-              Sí, conectamos el chatbot con tu sistema de agendamiento actual (Google Calendar, Outlook u otros), para que las citas se registren automáticamente sin duplicidades.
+          <div class="w-full md:w-2/3 bg-white p-8">
+            <p class="content-text highlighted mb-4">
+              ¿Tienes más preguntas específicas sobre tu caso?
             </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- FAQ 4 -->
-      <div class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-emerald-500 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-        <div class="flex items-start">
-          <div class="flex-shrink-0 mr-4">
-            <div class="h-10 w-10 rounded-full bg-emerald-100 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-            </div>
-          </div>
-          <div>
-            <h3 class="font-bold text-gray-800 text-lg mb-2">¿Es seguro para los datos de los pacientes?</h3>
-            <p class="content-text mb-0">
-              Completamente. Cumplimos con todas las normativas de privacidad y protección de datos (RGPD). La información está protegida y solo se usa para gestionar citas.
+            <p class="content-text mb-6">
+              Agenda una demostración personalizada y te mostraremos cómo nuestro chatbot puede
+              adaptarse exactamente a las necesidades de tu clínica.
             </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- FAQ 5 -->
-      <div class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-emerald-500 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-        <div class="flex items-start">
-          <div class="flex-shrink-0 mr-4">
-            <div class="h-10 w-10 rounded-full bg-emerald-100 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-          </div>
-          <div>
-            <h3 class="font-bold text-gray-800 text-lg mb-2">¿Cuánto tiempo tarda la implementación?</h3>
-            <p class="content-text mb-0">
-              La implementación completa toma entre 24 y 48 horas, incluyendo configuración, personalización e integración con tus sistemas existentes.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- FAQ 6 -->
-      <div class="bg-white rounded-xl p-6 shadow-lg border-l-4 border-emerald-500 transform transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-        <div class="flex items-start">
-          <div class="flex-shrink-0 mr-4">
-            <div class="h-10 w-10 rounded-full bg-emerald-100 flex items-center justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-          </div>
-          <div>
-            <h3 class="font-bold text-gray-800 text-lg mb-2">¿Qué pasa si el chatbot no puede responder?</h3>
-            <p class="content-text mb-0">
-              Si el chatbot no puede resolver una consulta, derivará la conversación automáticamente a un miembro de tu equipo y aprenderá para futuras interacciones.
-            </p>
+            <a
+              href="https://calendly.com/tu_usuario/consulta-gratuita"
+              class="inline-block px-6 py-3 bg-emerald-600 text-white font-bold rounded-lg hover:bg-emerald-700 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 text-lg shadow-md border border-transparent hover:border-emerald-400"
+            >
+              Agenda una demostración gratuita
+              <span class="ml-2 text-emerald-200">→</span>
+            </a>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- Elemento extra con estadística -->
-    <div class="mt-12 max-w-4xl mx-auto bg-gradient-to-r from-emerald-600 to-emerald-700 rounded-xl overflow-hidden shadow-lg">
-      <div class="flex flex-col md:flex-row items-center">
-        <div class="w-full md:w-1/3 p-8 flex flex-col items-center justify-center text-white">
-          <span class="text-6xl font-bold mb-2">97%</span>
-          <p class="text-emerald-100 text-center">de preguntas resueltas por el chatbot sin intervención humana</p>
-        </div>
-        <div class="w-full md:w-2/3 bg-white p-8">
-          <p class="content-text highlighted mb-4">¿Tienes más preguntas específicas sobre tu caso?</p>
-          <p class="content-text mb-6">Agenda una demostración personalizada y te mostraremos cómo nuestro chatbot puede adaptarse exactamente a las necesidades de tu clínica.</p>
-          <a 
-            href="https://calendly.com/tu_usuario/consulta-gratuita" 
-            class="inline-block px-6 py-3 bg-emerald-600 text-white font-bold rounded-lg hover:bg-emerald-700 hover:-translate-y-1 hover:shadow-lg transition-all duration-300 text-lg shadow-md border border-transparent hover:border-emerald-400"
-          >
-            Agenda una demostración gratuita
-            <span class="ml-2 text-emerald-200">→</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-  <!-- Llamada Final a la Acción -->
+  </section>
 
   <!-- Footer -->
 </LandingLayout>

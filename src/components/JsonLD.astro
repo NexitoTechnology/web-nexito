@@ -1,11 +1,62 @@
 ---
-// src/components/JsonLD.astro
+// src/components/JsonLD.astro - Optimizado para SEO
 interface Props {
   type: 'Organization' | 'WebSite' | 'WebPage' | 'Article' | 'Service' | 
-        'AboutPage' | 'ContactPage' | 'FAQPage' | 'Product';
+        'AboutPage' | 'ContactPage' | 'FAQPage' | 'Product' | 'BreadcrumbList' |
+        'CollectionPage' | 'Person' | 'ImageObject' | 'Event';
   data: Record<string, any>;
 }
 const props = Astro.props;
+
+// Validación básica para evitar errores
+const validateSchema = (type: Props['type'], data: Props['data']) => {
+  // Asegurar que hay al menos un @type válido
+  if (!data['@type']) {
+    data['@type'] = type;
+  }
+  
+  // Asegurar que existe el contexto
+  if (!data['@context']) {
+    data['@context'] = 'https://schema.org';
+  }
+  
+  // Validaciones específicas por tipo
+  switch(type) {
+    case 'Product':
+      // Validar valoraciones y reseñas
+      if (data.aggregateRating) {
+        data.aggregateRating.ratingCount = Math.max(1, data.aggregateRating.ratingCount || 0);
+        data.aggregateRating.reviewCount = Math.max(1, data.aggregateRating.reviewCount || 0);
+      }
+      break;
+      
+    case 'Article':
+      // Asegurar fechas en formato ISO
+      if (data.datePublished && !(data.datePublished instanceof String) && data.datePublished.toISOString) {
+        data.datePublished = data.datePublished.toISOString();
+      }
+      if (data.dateModified && !(data.dateModified instanceof String) && data.dateModified.toISOString) {
+        data.dateModified = data.dateModified.toISOString();
+      }
+      break;
+      
+    case 'FAQPage':
+      // Asegurar estructura correcta
+      if (data.mainEntity && !Array.isArray(data.mainEntity)) {
+        data.mainEntity = [data.mainEntity];
+      }
+      break;
+      
+    case 'BreadcrumbList':
+      // Asegurar itemListElement
+      if (data.itemListElement && !Array.isArray(data.itemListElement)) {
+        data.itemListElement = [data.itemListElement];
+      }
+      break;
+  }
+  
+  return data;
+};
 
 // Schema base para la organización
 const organizationSchema = {
@@ -13,8 +64,18 @@ const organizationSchema = {
   "@type": "Organization",
   "name": "Nexito Technology",
   "url": "https://nexito.tech",
-  "logo": "https://nexito.tech/Logo.svg",
-  "image": "https://nexito.tech/icon-512x512.png",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://nexito.tech/Logo.svg",
+    "width": "180",
+    "height": "60"
+  },
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://nexito.tech/icon-512x512.png",
+    "width": "512",
+    "height": "512"
+  },
   "description": "Transformamos empresas a través de la automatización inteligente y soluciones de IA personalizadas.",
   "address": {
     "@type": "PostalAddress",
@@ -30,7 +91,7 @@ const organizationSchema = {
   "contactPoint": [{
     "@type": "ContactPoint",
     "contactType": "customer service",
-    "telephone": "+34 950 79 45 43",
+    "telephone": "+34950794543",
     "email": "info@nexito.tech",
     "areaServed": {
       "@type": "Country",
@@ -46,7 +107,7 @@ const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "name": "Nexito Technology",
-  "url": "https://nexito.technology",
+  "url": "https://nexito.tech",
   "description": "Transformamos empresas mediante automatización de procesos e Inteligencia Artificial",
   "potentialAction": {
     "@type": "SearchAction",
@@ -66,6 +127,16 @@ const webPageSchema = {
     "@type": "WebSite",
     "name": "Nexito Technology",
     "url": "https://nexito.tech"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nexito Technology",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://nexito.tech/Logo.svg",
+      "width": "180",
+      "height": "60"
+    }
   }
 };
 
@@ -75,11 +146,19 @@ const aboutPageSchema = {
   "@type": "AboutPage",
   "name": "Acerca de Nexito Technology",
   "description": "",
-  "url": "https://nexito.tech/about",
+  "url": "https://nexito.tech/nosotros/",
   "isPartOf": {
     "@type": "WebSite",
     "name": "Nexito Technology",
     "url": "https://nexito.tech"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nexito Technology",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://nexito.tech/Logo.svg"
+    }
   }
 };
 
@@ -89,7 +168,7 @@ const articleSchema = {
   "@type": "Article",
   "headline": "",
   "description": "",
-  "image": "",
+  "image": [],
   "datePublished": "",
   "dateModified": "",
   "author": {
@@ -102,7 +181,9 @@ const articleSchema = {
     "name": "Nexito Technology",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://nexito.tech/Logo.svg"
+      "url": "https://nexito.tech/Logo.svg",
+      "width": "180",
+      "height": "60"
     }
   },
   "mainEntityOfPage": {
@@ -126,18 +207,13 @@ const serviceSchema = {
   },
   "areaServed": {
     "@type": "Country",
-    "name": "México"
+    "name": "ES"
   },
   "offers": {
     "@type": "Offer",
     "availability": "https://schema.org/InStock",
     "price": "",
-    "priceCurrency": "MXN"
-  },
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "",
-    "itemListElement": []
+    "priceCurrency": "EUR"
   }
 };
 
@@ -147,14 +223,15 @@ const contactPageSchema = {
   "@type": "ContactPage",
   "name": "Contacto Nexito Technology",
   "description": "Contacta con nuestro equipo",
-  "url": "https://nexito.tech/contact",
+  "url": "https://nexito.tech/contacto/",
   "mainEntity": {
     "@type": "Organization",
     "name": "Nexito Technology",
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "customer service",
-      "email": "soporte@nexito.tech"
+      "email": "info@nexito.tech",
+      "telephone": "+34950794543"
     }
   }
 };
@@ -170,7 +247,7 @@ const faqSchema = {
 };
 
 // Schema base para producto con reseñas
-const reviewSchema = {
+const productSchema = {
   "@context": "https://schema.org",
   "@type": "Product",
   "name": "Nexito Technology Services",
@@ -190,39 +267,83 @@ const reviewSchema = {
   }
 };
 
+// Schema base para BreadcrumbList
+const breadcrumbListSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": []
+};
+
+// Schema base para CollectionPage (listados)
+const collectionPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "",
+  "description": "",
+  "url": "",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Nexito Technology",
+    "url": "https://nexito.tech"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Nexito Technology"
+  },
+  "hasPart": []
+};
+
 // Función para obtener el schema según el tipo
 const getSchema = (type: Props['type'], data: Props['data']) => {
-  // Asegúrate de que ratingCount y reviewCount sean siempre positivos
-  if (type === 'Product' && data.aggregateRating) {
-    data.aggregateRating.ratingCount = Math.max(1, data.aggregateRating.ratingCount || 0);
-    data.aggregateRating.reviewCount = Math.max(1, data.aggregateRating.reviewCount || 0);
-  }
-
+  let baseSchema;
+  
   switch(type) {
     case 'Organization':
-      return { ...organizationSchema, ...data };
+      baseSchema = { ...organizationSchema };
+      break;
     case 'WebSite':
-      return { ...websiteSchema, ...data };
+      baseSchema = { ...websiteSchema };
+      break;
     case 'WebPage':
-      return { ...webPageSchema, ...data };
+      baseSchema = { ...webPageSchema };
+      break;
     case 'AboutPage':
-      return { ...aboutPageSchema, ...data };
+      baseSchema = { ...aboutPageSchema };
+      break;
     case 'Article':
-      return { ...articleSchema, ...data };
+      baseSchema = { ...articleSchema };
+      break;
     case 'Service':
-      return { ...serviceSchema, ...data };
+      baseSchema = { ...serviceSchema };
+      break;
     case 'ContactPage':
-      return { ...contactPageSchema, ...data };
+      baseSchema = { ...contactPageSchema };
+      break;
     case 'FAQPage':
-      return { ...faqSchema, ...data };
+      baseSchema = { ...faqSchema };
+      break;
     case 'Product':
-      return { ...reviewSchema, ...data };
+      baseSchema = { ...productSchema };
+      break;
+    case 'BreadcrumbList':
+      baseSchema = { ...breadcrumbListSchema };
+      break;
+    case 'CollectionPage':
+      baseSchema = { ...collectionPageSchema };
+      break;
     default:
-      return {};
+      baseSchema = { "@context": "https://schema.org" };
+      break;
   }
+  
+  // Combina el esquema base con los datos proporcionados
+  const mergedSchema = { ...baseSchema, ...data };
+  
+  // Validar el schema antes de devolverlo
+  return validateSchema(type, mergedSchema);
 };
 
 const schema = getSchema(props.type, props.data);
 ---
 
-<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+<script type="application/ld+json" set:html={JSON.stringify(schema, null, 0)} />

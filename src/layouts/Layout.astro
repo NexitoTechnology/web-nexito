@@ -4,92 +4,67 @@ import Footer from '../components/layout_footer.astro';
 import JsonLD from '../components/JsonLD.astro';
 import CookieConsent from '../components/cookie_consent_v2.astro';
 import ButtonCallWhastapp from '../components/floating_button_call_whatsapp.astro';
-import { ClientRouter } from 'astro:transitions';
+import { ViewTransitions } from 'astro:transitions';
 import '/globals.css';
-
-declare global {
-  interface Window {
-    dataLayer: any[];
-    [key: string]: any;
-  }
-}
 
 interface Props {
   title?: string;
   description?: string;
   image?: string;
+  canonicalURL?: string;
+  noIndex?: boolean;
+  type?: 'website' | 'article' | 'product' | 'service';
 }
 
 const {
   title = 'Nexito Technology | Automatización Inteligente y Soluciones IA',
   description = 'Transformamos empresas mediante automatización de procesos e Inteligencia Artificial. Soluciones personalizadas para impulsar la eficiencia de tu negocio.',
   image = '/icon-512x512.png',
+  canonicalURL = new URL(Astro.url.pathname, Astro.site).toString().replace(/\/?$/, '/'),
+  noIndex = false,
+  type = 'website'
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const siteURL = 'https://nexito.tech';
 ---
 
 <!doctype html>
 <html lang="es" class="scroll-smooth">
   <head>
-    <!-- Preconnect -->
-    <!-- Preconnect para rendimiento -->
+    <!-- Preconexiones para rendimiento -->
     <link rel="preconnect" href="https://nexito.tech" />
-    <link rel="preconnect" href="https://www.googletagmanager.com" />
-    <link rel="preconnect" href="https://www.clarity.ms" />
+    <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <!-- Google Tag Manager
-    <script>
-      window.addEventListener('load', function () {
-        (function (w, d, s, l, i) {
-          w[l] = w[l] || [];
-          w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-          const f = d.getElementsByTagName(s)[0] as HTMLScriptElement; // Cambiar a HTMLScriptElement
-          const j = d.createElement(s) as HTMLScriptElement; // Cambiar a HTMLScriptElement
-          const dl = l !== 'dataLayer' ? '&l=' + l : '';
-          j.async = true; // Ahora TypeScript no lanzará el error
-          j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-          f.parentNode?.insertBefore(j, f); // Usamos el operador "?" para manejar el posible valor null
-        })(window, document, 'script', 'dataLayer', 'GTM-WQS3F67G');
-      });
-    </script>-->
-    <!-- End Google Tag Manager -->
-
-    <!-- Microsoft Clarity 
-    <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "qfy84b8qf6");
-    </script>-->
-
+    
     <!-- Metadatos básicos -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="format-detection" content="telephone=no" />
     <title>{title}</title>
 
-    <!-- SEO mejorado -->
-    <link
-      rel="canonical"
-      href={new URL(Astro.url.pathname, Astro.site).toString().replace(/\/?$/, '/')}
-    />
-    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <!-- Control de indexación -->
+    {noIndex 
+      ? <meta name="robots" content="noindex, nofollow" />
+      : <meta name="robots" content="index, follow, max-image-preview:large" />
+    }
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Metadatos adicionales -->
     <meta name="author" content="Nexito Technology" />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="https://nexito.tech/icon-512x512.png" />
+    <meta property="og:image" content={new URL(image, siteURL).toString()} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:url" content={canonicalURL} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
     <meta property="og:site_name" content="Nexito Technology" />
     <meta property="og:image:alt" content={title} />
 
@@ -97,7 +72,7 @@ const siteURL = 'https://nexito.tech';
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={new URL(image, siteURL)} />
+    <meta name="twitter:image" content={new URL(image, siteURL).toString()} />
     <meta name="twitter:image:alt" content={title} />
 
     <!-- Favicon y manifest -->
@@ -105,11 +80,11 @@ const siteURL = 'https://nexito.tech';
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.json" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
-    <!-- JSON-LD Schema -->
+    <!-- JSON-LD Schema predeterminado para Organization -->
     <JsonLD
       type="Organization"
       data={{
@@ -117,7 +92,12 @@ const siteURL = 'https://nexito.tech';
         '@type': 'Organization',
         name: 'Nexito Technology',
         url: 'https://nexito.tech',
-        logo: 'https://nexito.tech/Logo.svg',
+        logo: {
+          '@type': 'ImageObject',
+          url: 'https://nexito.tech/Logo.svg',
+          width: '180',
+          height: '60'
+        },
         image: 'https://nexito.tech/icon-512x512.png',
         description:
           'Transformamos empresas mediante automatización de procesos e Inteligencia Artificial',
@@ -127,23 +107,17 @@ const siteURL = 'https://nexito.tech';
           postalCode: '04648',
           addressLocality: 'Almería',
           addressRegion: 'Almería',
-          addressCountry: {
-            '@type': 'Country',
-            name: 'ES',
-          },
+          addressCountry: 'ES'
         },
         contactPoint: [
           {
             '@type': 'ContactPoint',
             contactType: 'customer service',
-            telephone: '+34 950 79 45 43',
+            telephone: '+34950794543',
             email: 'info@nexito.tech',
-            areaServed: {
-              '@type': 'Country',
-              name: 'ES',
-            },
-            availableLanguage: ['Spanish', 'English'],
-          },
+            areaServed: 'ES',
+            availableLanguage: ['Spanish', 'English']
+          }
         ],
         sameAs: [],
         knowsAbout: [
@@ -152,91 +126,29 @@ const siteURL = 'https://nexito.tech';
           'Business Intelligence',
           'Consultoría Tecnológica',
           'Power BI',
-          'SAP',
-        ],
-        areaServed: {
-          '@type': 'Country',
-          name: 'ES',
-        },
-        hasOfferCatalog: {
-          '@type': 'OfferCatalog',
-          name: 'Servicios de Nexito Technology',
-          itemListElement: [
-            {
-              '@type': 'Offer',
-              itemOffered: {
-                '@type': 'Service',
-                name: 'Automatización de Procesos',
-                description: 'Automatización inteligente de procesos empresariales',
-              },
-            },
-            {
-              '@type': 'Offer',
-              itemOffered: {
-                '@type': 'Service',
-                name: 'Inteligencia Artificial',
-                description: 'Soluciones de IA personalizadas para empresas',
-              },
-            },
-            {
-              '@type': 'Offer',
-              itemOffered: {
-                '@type': 'Service',
-                name: 'Business Intelligence',
-                description: 'Análisis de datos y business intelligence',
-              },
-            },
-            {
-              '@type': 'Offer',
-              itemOffered: {
-                '@type': 'Service',
-                name: 'Consultoría Tecnológica',
-                description: 'Servicios de consultoría tecnológica',
-              },
-            },
-            {
-              '@type': 'Offer',
-              itemOffered: {
-                '@type': 'Service',
-                name: 'Power BI',
-                description: 'Implementación y desarrollo en Power BI',
-              },
-            },
-            {
-              '@type': 'Offer',
-              itemOffered: {
-                '@type': 'Service',
-                name: 'SAP',
-                description: 'Servicios y soluciones SAP',
-              },
-            },
-          ],
-        },
+          'SAP'
+        ]
       }}
     />
-    <!-- Fuente optimizada -->
-    <!-- Preload de fuentes Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Fuentes optimizadas -->
     <link
       rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       as="style"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-      media="print"
-      onload="this.media='all'"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
     <noscript>
       <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
       />
     </noscript>
-    <!-- Astro View Transitions -->
-    <ClientRouter />
+
+    <!-- Astro View Transitions para mejorar navegación -->
+    <ViewTransitions fallback="swap" />
+
+    <slot name="head" />
   </head>
   <body>
     <!-- Google Tag Manager (noscript) 
@@ -246,19 +158,47 @@ const siteURL = 'https://nexito.tech';
         height="0"
         width="0"
         style="display:none;visibility:hidden"></iframe>
-    </noscript>-->
-    <!-- End Google Tag Manager (noscript) -->
+    </noscript>
+     End Google Tag Manager (noscript) -->
 
     <Menu />
+    
     <!-- Main content -->
     <div class="overflow-x-hidden">
       <main id="main-content" class="flex-grow w-full px-4 mx-auto">
         <slot />
       </main>
     </div>
+    
     <Footer />
-    <!-- Componente de consentimiento con client:idle para mejorar el rendimiento -->
+    
+    <!-- Componentes de interacción -->
     <CookieConsent />
     <ButtonCallWhastapp />
+    
+    <!-- Google Tag Manager 
+    <script>
+      window.addEventListener('load', function () {
+        if(!window.dataLayer) {
+          window.dataLayer = [];
+        }
+        
+        setTimeout(() => {
+          (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+            const f = d.getElementsByTagName(s)[0];
+            const j = d.createElement(s); 
+            const dl = l !== 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode?.insertBefore(j, f);
+          })(window, document, 'script', 'dataLayer', 'GTM-WQS3F67G');
+        }, 4000); // Retrasar carga para mejorar métricas iniciales
+      });
+    </script>
+        End Google Tag Manager -->
+
+    <slot name="end-body-scripts" />
   </body>
 </html>

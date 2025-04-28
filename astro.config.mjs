@@ -1,9 +1,7 @@
 // astro.config.mjs
-// @ts-check
 import { defineConfig } from "astro/config";
 import partytown from '@astrojs/partytown';
-import tailwindcss from "@tailwindcss/vite";
-import node from '@astrojs/node';
+import tailwind from "@tailwindcss/vite";
 import compress from 'astro-compress';
 import robotsTxt from 'astro-robots-txt';
 import sitemap from '@astrojs/sitemap';
@@ -12,68 +10,142 @@ import react from '@astrojs/react';
 export default defineConfig({
   site: "https://nexito.tech",
   output: "static",
-  //adapter: node({ mode: "standalone" }),
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [tailwind()],
+    build: {
+      cssMinify: true,
+      minify: true,
+      cssCodeSplit: true,
+      chunkSizeWarningLimit: 1000,
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            // Definir chunks manualmente para optimizar la carga
+            'vendor': ['react', 'react-dom'],
+            'ui': [
+              // Incluir componentes de UI comunes
+              './src/components/JsonLD.astro',
+              './src/components/layout_menu.astro',
+              './src/components/layout_footer.astro'
+            ],
+          }
+        }
+      }
+    },
+    ssr: {
+      // Optimización para SSR
+      noExternal: ['tailwindcss'],
+    },
+    // Optimizaciones adicionales
+    optimizeDeps: {
+      include: ['react', 'react-dom'],
+      exclude: []
+    }
   },
   integrations: [
+    // Mover scripts de terceros a Web Workers
     partytown({
-      config: { forward: ['dataLayer.push', 'clarity', 'gtag']
+      config: { 
+        forward: ['dataLayer.push', 'clarity', 'gtag'],
+        // La nueva opción de debug puede ayudarte durante el desarrollo
+        debug: false
       },
     }),
+    // Soporte para React cuando sea necesario
     react(),
-    robotsTxt(),
+    
+    // Generar robots.txt optimizado
+    robotsTxt({
+      policy: [
+        {
+          userAgent: '*',
+          allow: '/',
+          disallow: [
+            '/aviso-legal/',
+            '/politica-de-cookies/',
+            '/politica-de-privacidad/',
+            '/consultoria-gratuita/',
+            '/download-ebook-index/',
+            '/terminos-y-condiciones/',
+            '/landing/'
+          ],
+          crawlDelay: 10
+        }
+      ],
+      sitemap: true
+    }),
+    
+    // Comprimir HTML, CSS, JS, imágenes
     compress({
       CSS: true,
-      HTML: true,
-      JavaScript: true,
-      SVG: true,
+      HTML: {
+        removeAttributeQuotes: false, // Mantener comillas para mejor compatibilidad
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        collapseWhitespace: true,
+        minifyJS: true,
+        minifyCSS: true
+      },
+      JavaScript: {
+        compress: {
+          drop_console: false, // Mantener console en producción para posibles diagnósticos
+          drop_debugger: true
+        }
+      },
+      Image: {
+        quality: 80, // Buen equilibrio entre calidad y tamaño
+      },
+      SVG: true
     }),
+    
+    // Generador de sitemap mejorado
     sitemap({
       changefreq: 'weekly',
       priority: 0.7,
+      lastmod: new Date(),
       i18n: {
         defaultLocale: 'es',
         locales: {
-          es: 'es-ES',
-          en: 'en-US',
+          es: 'es-ES'
         },
       },
+      // Filtros mejorados para excluir páginas no indexables
       filter: (page) => {
-        // Log the page URL to understand what format we're receiving
-        console.log(`Checking page: ${page}`);
-        
-        // These are the routes we want to exclude
-        const excludedPaths = [
-          'aviso-legal',
-          'politica-de-cookies',
-          'politica-de-privacidad',
-          'consultoria-gratuita',
-          'download-ebook-index',
-          'terminos-y-condiciones',
-          'landing'
+        const excludedPatterns = [
+          /\/aviso-legal\/?$/,
+          /\/politica-de-cookies\/?$/,
+          /\/politica-de-privacidad\/?$/,
+          /\/consultoria-gratuita\/?$/,
+          /\/download-ebook-index\/?$/,
+          /\/terminos-y-condiciones\/?$/,
+          /\/landing\//
         ];
         
-        // Parse the URL to get just the pathname
-        const url = new URL(page);
-        const pathname = url.pathname;
-        
-        // Check if the pathname contains any excluded path
-        for (const path of excludedPaths) {
-          if (pathname.includes(`/${path}`)) {
-            console.log(`Excluding: ${page}`);
-            return false;
-          }
-        }
-        
-        // Additional check for pages that have 'landing' anywhere in the path
-        if (pathname.includes('/landing')) {
-          console.log(`Excluding landing page: ${page}`);
-          return false;
-        }
-        
-        return true;
+        // Evaluar con expresiones regulares para mayor precisión
+        return !excludedPatterns.some(pattern => pattern.test(page));
       },
+      // Customización adicional del sitemap
+      customPages: [
+        'https://nexito.tech/servicios/power-bi/',
+        'https://nexito.tech/servicios/automatizacion/',
+        'https://nexito.tech/servicios/ia/',
+        'https://nexito.tech/servicios/consultoria/',
+        'https://nexito.tech/servicios/sap/',
+        'https://nexito.tech/servicios/bi/'
+      ]
     }),
   ],
+  
+  // Opciones de construcción
+  build: {
+    format: 'file',
+    assets: '_assets'
+  },
+  
+  // Configuración de caché para desarrollo
+  server: {
+    host: true
+  }
 });
