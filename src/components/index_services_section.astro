@@ -1,5 +1,6 @@
 ---
 import JsonLD from './JsonLD.astro';
+import LazySection from '../components/LazySection.astro';
 
 // Definir la estructura de tipos para mejorar el mantenimiento
 interface ServiceCTA {
@@ -123,7 +124,7 @@ const services: Service[] = [
   }
 ];
 ---
-
+<LazySection animation="fade-in">
 <section id="servicios" class="relative py-24 overflow-hidden">
   <!-- Fondo con gradiente y efecto de grid -->
   <div class="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 opacity-5"></div>
@@ -207,3 +208,4 @@ const services: Service[] = [
     </div>
   </div>
 </section>
+</LazySection>

@@ -1,0 +1,50 @@
+User-agent: *
+Allow: /
+Disallow: /aviso-legal/
+Disallow: /politica-de-cookies/
+Disallow: /politica-de-privacidad/
+Disallow: /consultoria-gratuita/
+Disallow: /download-ebook-index/
+Disallow: /terminos-y-condiciones/
+Disallow: /landing/
+Disallow: /images_new/
+Disallow: /api/
+Disallow: /*.js$
+Disallow: /*.css$
+
+# Sitemap
+Sitemap: https://nexito.tech/sitemap-index.xml
+
+# Tiempo entre solicitudes
+Crawl-delay: 10
+
+# Instrucciones específicas para bots
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 5
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 10
+
+# Bloquear bots agresivos
+User-agent: PetalBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: Baiduspider
+Disallow: /
+
+User-agent: YandexBot
+Disallow: /

@@ -1,13 +1,13 @@
 ---
-import Menu from "../components/layout_menu.astro";
-import Footer from "../components/layout_footer.astro";
-import JsonLD from "../components/JsonLD.astro";
-import CookieConsent from "../components/cookie_consent_v2.astro";
+import Menu from '../components/layout_menu.astro';
+import Footer from '../components/layout_footer.astro';
+import JsonLD from '../components/JsonLD.astro';
+import CookieConsent from '../components/cookie_consent_v2.astro';
 // import  CookieConsent  from '../components/cookie_consent_v2.jsx';
-import { ClientRouter } from "astro:transitions";
-import "/globals.css";
-import GTM from "../components/GTM.astro";
-import Clarity from "../components/Clarity.astro";
+import { ClientRouter } from 'astro:transitions';
+import '/globals.css';
+import GTM from '../components/GTM.astro';
+import Clarity from '../components/Clarity.astro';
 
 declare global {
   interface Window {
@@ -24,13 +24,13 @@ interface Props {
 }
 
 const {
-  title = "Nexito Technology | Automatización Inteligente y Soluciones IA",
-  description = "Transformamos empresas mediante automatización de procesos e Inteligencia Artificial. Soluciones personalizadas para impulsar la eficiencia de tu negocio.",
-  image = "/icon-512x512.png",
+  title = 'Nexito Technology | Automatización Inteligente y Soluciones IA',
+  description = 'Transformamos empresas mediante automatización de procesos e Inteligencia Artificial. Soluciones personalizadas para impulsar la eficiencia de tu negocio.',
+  image = '/icon-512x512.png',
   canonicalURL = new URL(Astro.url.pathname, Astro.site), // Ya no necesitamos declararlo después
 } = Astro.props;
 
-const siteURL = "https://nexito.tech/";
+const siteURL = 'https://nexito.tech/';
 ---
 
 <!doctype html>
@@ -70,11 +70,11 @@ const siteURL = "https://nexito.tech/";
     <meta name="twitter:image:alt" content={title} />
 
     <!-- Favicon y manifest -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico">
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180x180.png" />
     <link rel="manifest" href="/manifest.json" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
@@ -82,94 +82,93 @@ const siteURL = "https://nexito.tech/";
     <JsonLD
       type="Organization"
       data={{
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        name: "Nexito Technology",
-        url: "https://nexito.tech",
-        logo: "https://nexito.tech/Logo.svg",
-        image: "https://nexito.tech/icon-512x512.png",
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'Nexito Technology',
+        url: 'https://nexito.tech',
+        logo: 'https://nexito.tech/Logo.svg',
+        image: 'https://nexito.tech/icon-512x512.png',
         description:
-          "Transformamos empresas mediante automatización de procesos e Inteligencia Artificial",
+          'Transformamos empresas mediante automatización de procesos e Inteligencia Artificial',
         address: {
-          "@type": "PostalAddress",
-          streetAddress: "Calle Lira 8, N36",
-          postalCode: "04648",
-          addressLocality: "Almería",
-          addressRegion: "Almería",
-          addressCountry: "ES",
+          '@type': 'PostalAddress',
+          streetAddress: 'Calle Lira 8, N36',
+          postalCode: '04648',
+          addressLocality: 'Almería',
+          addressRegion: 'Almería',
+          addressCountry: 'ES',
         },
         contactPoint: [
           {
-            "@type": "ContactPoint",
-            contactType: "customer service",
-            email: "info@nexito.tech",
-            availableLanguage: ["Spanish", "English"],
+            '@type': 'ContactPoint',
+            contactType: 'customer service',
+            email: 'info@nexito.tech',
+            availableLanguage: ['Spanish', 'English'],
           },
         ],
         sameAs: [],
         knowsAbout: [
-          "Inteligencia Artificial",
-          "Automatización de Procesos",
-          "Business Intelligence",
-          "Consultoría Tecnológica",
-          "Power BI",
-          "SAP",
+          'Inteligencia Artificial',
+          'Automatización de Procesos',
+          'Business Intelligence',
+          'Consultoría Tecnológica',
+          'Power BI',
+          'SAP',
         ],
         areaServed: {
-          "@type": "Country",
-          name: "España",
+          '@type': 'Country',
+          name: 'España',
         },
         hasOfferCatalog: {
-          "@type": "OfferCatalog",
-          name: "Servicios de Nexito Technology",
+          '@type': 'OfferCatalog',
+          name: 'Servicios de Nexito Technology',
           itemListElement: [
             {
-              "@type": "Offer",
+              '@type': 'Offer',
               itemOffered: {
-                "@type": "Service",
-                name: "Automatización de Procesos",
-                description:
-                  "Automatización inteligente de procesos empresariales",
+                '@type': 'Service',
+                name: 'Automatización de Procesos',
+                description: 'Automatización inteligente de procesos empresariales',
               },
             },
             {
-              "@type": "Offer",
+              '@type': 'Offer',
               itemOffered: {
-                "@type": "Service",
-                name: "Inteligencia Artificial",
-                description: "Soluciones de IA personalizadas para empresas",
+                '@type': 'Service',
+                name: 'Inteligencia Artificial',
+                description: 'Soluciones de IA personalizadas para empresas',
               },
             },
             {
-              "@type": "Offer",
+              '@type': 'Offer',
               itemOffered: {
-                "@type": "Service",
-                name: "Business Intelligence",
-                description: "Análisis de datos y business intelligence",
+                '@type': 'Service',
+                name: 'Business Intelligence',
+                description: 'Análisis de datos y business intelligence',
               },
             },
             {
-              "@type": "Offer",
+              '@type': 'Offer',
               itemOffered: {
-                "@type": "Service",
-                name: "Consultoría Tecnológica",
-                description: "Servicios de consultoría tecnológica",
+                '@type': 'Service',
+                name: 'Consultoría Tecnológica',
+                description: 'Servicios de consultoría tecnológica',
               },
             },
             {
-              "@type": "Offer",
+              '@type': 'Offer',
               itemOffered: {
-                "@type": "Service",
-                name: "Power BI",
-                description: "Implementación y desarrollo en Power BI",
+                '@type': 'Service',
+                name: 'Power BI',
+                description: 'Implementación y desarrollo en Power BI',
               },
             },
             {
-              "@type": "Offer",
+              '@type': 'Offer',
               itemOffered: {
-                "@type": "Service",
-                name: "SAP",
-                description: "Servicios y soluciones SAP",
+                '@type': 'Service',
+                name: 'SAP',
+                description: 'Servicios y soluciones SAP',
               },
             },
           ],
@@ -184,15 +183,15 @@ const siteURL = "https://nexito.tech/";
     <Menu />
     <!-- Main content -->
     <div class="overflow-x-hidden"></div>
-    <main
-      id="main-content"
-      class="flex-grow w-full px-4 md:w-4/5 lg:w-3/4 xl:w-2/3 mx-auto"
-    >
+    <main id="main-content" class="flex-grow w-full px-4 md:w-4/5 lg:w-3/4 xl:w-2/3 mx-auto">
       <slot />
     </main>
 
     <Footer />
     <!-- Componente de consentimiento con client:idle para mejorar el rendimiento -->
     <CookieConsent />
+
+    <!-- Optimizador de scripts -->
+    <script src="/scripts/optimizeScripts.js" type="module"></script>
   </body>
 </html>

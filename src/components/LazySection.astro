@@ -1,0 +1,151 @@
+---
+/**
+ * LazySection.astro
+ * 
+ * Componente para cargar contenido pesado de forma diferida mediante
+ * Intersection Observer. Mejora significativamente las métricas de
+ * rendimiento al cargar secciones solo cuando están cerca de entrar
+ * en el viewport.
+ * 
+ * @author Nexito Technology
+ */
+
+ interface Props {
+  threshold?: number;
+  margin?: string;
+  id?: string;
+  class?: string;
+  animation?: 'fade-in' | 'slide-up' | 'none';
+  delay?: number; // ms
+  loadEagerly?: boolean;
+}
+
+const {
+  threshold = 0.1,
+  margin = '200px',
+  id,
+  class: className = '',
+  animation = 'fade-in',
+  delay = 0,
+  loadEagerly = false,
+} = Astro.props;
+
+// Generar ID único si no se proporciona
+const sectionId = id || `lazy-section-${Math.random().toString(36).substring(2, 9)}`;
+
+// Definir clases de animación
+const animationClass = animation === 'none' 
+  ? '' 
+  : animation === 'fade-in'
+    ? 'opacity-0 transition-opacity duration-500 ease-in'
+    : 'opacity-0 translate-y-4 transition-all duration-500 ease-out';
+
+// Si loadEagerly es true, cargar el contenido inmediatamente pero mantener animación
+const lazyLoad = !loadEagerly;
+---
+
+<div 
+  id={sectionId}
+  class:list={[
+    className,
+    animationClass,
+    'lazy-section'
+  ]}
+  data-lazy-load={lazyLoad.toString()}
+  data-animation={animation}
+  data-delay={delay.toString()}
+>
+  {loadEagerly && <slot />}
+</div>
+
+<script define:vars={{ sectionId, threshold, margin, lazyLoad, delay }}>
+  // Ejecutar solo en el navegador
+  document.addEventListener('DOMContentLoaded', () => {
+    const section = document.getElementById(sectionId);
+    
+    if (!section || section.dataset.lazyLoad !== 'true') return;
+    
+    // Crear un nuevo contenedor para el contenido cargado
+    const contentSlot = document.createElement('div');
+    contentSlot.className = 'lazy-content-slot';
+    
+    // Configurar el Intersection Observer
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Desconectar el observer después de la intersección
+            observer.disconnect();
+            
+            // Cargar el contenido con el delay especificado
+            setTimeout(() => {
+              // Señalar que el contenido se está cargando
+              section.dataset.loading = 'true';
+              
+              // Simular un poco de tiempo para la carga del contenido (solo desarrollo)
+              if (window.location.hostname === 'localhost' || 
+                  window.location.hostname === '127.0.0.1') {
+                setTimeout(() => {
+                  // Inyectar slot y aplicar animación
+                  injectContent();
+                }, 100);
+              } else {
+                // En producción, cargar inmediatamente
+                injectContent();
+              }
+            }, parseInt(delay) || 0);
+          }
+        });
+      },
+      { 
+        threshold: parseFloat(threshold),
+        rootMargin: margin
+      }
+    );
+    
+    // Función para inyectar el contenido y animar
+    const injectContent = () => {
+      // Cargar contenido mediante JavaScript
+      const slotContent = document.createRange().createContextualFragment('<slot />');
+      section.appendChild(slotContent);
+      
+      // Ejecutar animación después de un pequeño retraso para asegurar que el DOM está actualizado
+      requestAnimationFrame(() => {
+        // Eliminar clases de animación inicial
+        if (section.dataset.animation === 'fade-in') {
+          section.classList.remove('opacity-0');
+          section.classList.add('opacity-100');
+        } else if (section.dataset.animation === 'slide-up') {
+          section.classList.remove('opacity-0', 'translate-y-4');
+          section.classList.add('opacity-100', 'translate-y-0');
+        }
+        
+        // Marcar como cargado
+        section.dataset.loaded = 'true';
+        delete section.dataset.loading;
+      });
+    };
+    
+    // Comenzar observación
+    observer.observe(section);
+  });
+</script>
+
+<style>
+  .lazy-section {
+    min-height: 10px;
+  }
+  
+  .lazy-section[data-animation="fade-in"] {
+    transition: opacity 0.5s ease-in;
+  }
+  
+  .lazy-section[data-animation="slide-up"] {
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+  
+  .lazy-section[data-loaded="true"] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>

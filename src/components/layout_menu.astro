@@ -1,4 +1,6 @@
 ---
+import OptimizedImage from '../components/OptimizedImage.astro';
+
 // Datos estructurados del menú
 const menuData = {
   logo: {
@@ -26,13 +28,14 @@ const menuData = {
         class="flex-shrink-0 transform hover:scale-105 transition-transform duration-200" 
         aria-label="Ir a la página principal"
       >
-        <img
+        <OptimizedImage 
           src={menuData.logo.src}
           alt={menuData.logo.alt}
           loading={menuData.logo.loading}
-          width="144"
-          height="104"
+          width={144}
+          height={104}
           class="w-auto h-8 md:h-10"
+          isAboveTheFold={true}
         />
       </a>
 
