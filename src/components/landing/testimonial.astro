@@ -1,6 +1,6 @@
 ---
 // Testimonials.astro
-
+import '../../styles/shared.css';
 // En tu archivo testimonial.astro
 interface Testimonial {
   name: string;
@@ -28,224 +28,126 @@ const { title, testimonials, cta } = Astro.props;
 ---
 
 <style>
-  /* Estilos base que ya tenías */
-  .hero-custom-shape {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100px;
-    background: white;
-    border-radius: 100% 100% 0 0 / 100px;
+  /* Estilos específicos del carrusel de testimonios */
+  
+  /* Estilo para la tarjeta activa */
+  .testimonial-card.active {
+    border-color: #10b981;
+    border-width: 2px;
   }
-
-  h1.hero-title {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    font-size: 3.2rem;
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  /* Contenedor del carrusel */
+  .testimonials-wrapper {
+    overflow: hidden;
   }
-
-  p.hero-subtitle {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 1.5rem;
-    line-height: 1.6;
-    max-width: 800px;
-    margin: 0 auto;
+  
+  .testimonials-container {
+    display: flex;
+    transition-property: transform;
+    transition-duration: 500ms;
+    transition-timing-function: ease-in-out;
   }
-
-  /* Estilos responsive para la imagen */
-  .hero-image {
-    max-width: 100%;
-    height: auto;
-    width: 600px;
-  }
-
-  /* Contenedor de la imagen con márgenes */
-  .hero-image-container {
-    padding: 15px;
-    margin: 10px;
-  }
-
-  /* NUEVOS ESTILOS PARA H2, H3 Y TEXTOS */
-
-  /* Estilos para h2 - títulos de sección */
-  h2.section-title {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-size: 2.4rem;
-    letter-spacing: -0.02em;
-    line-height: 1.3;
-    margin-bottom: 1.2rem;
-    position: relative;
-    color: #263238;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  }
-
-  /* Efecto subrayado opcional para h2 */
-  h2.section-title.underlined::after {
-    content: '';
-    position: absolute;
-    bottom: -18px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 4px;
-    background: linear-gradient(to right, #10b981, #059669);
-    border-radius: 2px;
-    bottom: -18px; /* Mantener la línea en la misma posición relativa al texto */
-  }
-
-  h2.section-title.underlined {
-    margin-bottom: 3.5rem; /* Aumentar el margen inferior total del h2 */
-  }
-
-  /* Variante de h2 alineado a la izquierda */
-  h2.section-title.left-aligned::after {
-    left: 0;
-    transform: none;
-  }
-
-  /* Estilos para h3 - subtítulos */
-  h3.subsection-title {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 400;
-    font-size: 1.4rem;
-    letter-spacing: -0.01em;
-    line-height: 1.4;
-    margin-bottom: 1rem;
-    color: #374151;
-  }
-
-  /* Variante con acento de color */
-  h3.subsection-title.accented {
-    position: relative;
-    display: inline-block;
+  
+  /* Estilos para los slides */
+  .testimonial-slide {
+    flex-shrink: 0;
     padding-left: 1rem;
+    padding-right: 1rem;
   }
-
-  h3.subsection-title.accented::before {
-    content: '';
+  
+  /* Estilos para las tarjetas de testimonios */
+  .testimonial-card {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    border: 1px solid #f3f4f6;
+    height: 100%;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  
+  .testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Estilos para los botones de navegación */
+  .testimonial-prev,
+  .testimonial-next {
     position: absolute;
-    left: 0;
-    top: 10%;
-    height: 80%;
-    width: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: white;
+    border-radius: 9999px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: background-color 0.2s;
+  }
+  
+  .testimonial-prev:hover,
+  .testimonial-next:hover {
+    background-color: #f3f4f6;
+  }
+  
+  .testimonial-prev {
+    left: 1rem;
+  }
+  
+  .testimonial-next {
+    right: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .testimonial-prev,
+    .testimonial-next {
+      display: none;
+    }
+  }
+  
+  /* Indicadores de posición */
+  .testimonial-indicators {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    gap: 0.75rem;
+  }
+  
+  .testimonial-indicator {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 9999px;
+    background-color: #d1d5db;
+    transition: background-color 0.2s;
+  }
+  
+  .testimonial-indicator:hover,
+  .testimonial-indicator.active {
     background-color: #10b981;
-    border-radius: 2px;
   }
-
-  /* Estilos para párrafos de contenido */
-  p.content-text {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 1.3rem;
-    line-height: 1.7;
-    color: #4b5563;
-    margin-bottom: 1.2rem;
+  
+  /* Barra de progreso para móvil */
+  .progress-container {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
   }
-
-  /* Variante para texto destacado */
-  p.content-text.highlighted {
-    font-weight: 500;
-    color: #111827;
+  
+  .progress-bar {
+    height: 0.25rem;
+    border-radius: 9999px;
+    transition-property: all;
+    transition-duration: 300ms;
   }
-
-  /* Clase para citas o testimonios */
-  .testimonial-text {
-    font-family: 'Inter', sans-serif;
-    font-style: italic;
-    font-size: 1.25rem;
-    line-height: 1.7;
-    color: #4b5563;
-    padding: 0; /* Eliminar el padding que dejaba espacio para las comillas */
-    text-align: center;
-    margin-bottom: 1.5rem;
-  }
-
-  /* Eliminar las comillas que se generan con pseudo-elementos */
-  .testimonial-text::before,
-  .testimonial-text::after {
-    content: none; /* Esto elimina las comillas */
-  }
-
-  .testimonial-author {
-    font-weight: 600;
-    font-size: 1.2rem;
-    color: #111827;
-  }
-
-  .testimonial-role {
-    font-size: 1rem;
-    color: #6b7280;
-    margin-top: 0.25rem;
-  }
-
-  /* Estilos para listas */
-  ul.feature-list {
-    list-style: none;
-    padding-left: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  ul.feature-list li {
-    position: relative;
-    font-family: 'Inter', sans-serif;
-    padding-left: 1.5rem;
-    margin-bottom: 0.75rem;
-    line-height: 1.6;
-  }
-
-  ul.feature-list li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: #10b981;
-    font-weight: bold;
-  }
-
-  /* Efecto de gradiente para textos especiales */
-  .gradient-text {
-    background: linear-gradient(90deg, #10b981, #0891b2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-    display: inline-block;
-  }
-
-  /* Media query para dispositivos móviles */
-  @media (max-width: 640px) {
-    h1.hero-title {
-      font-size: 2rem;
-    }
-
-    p.hero-subtitle {
-      font-size: 1.1rem;
-    }
-
-    h2.section-title {
-      font-size: 1.8rem;
-    }
-
-    h3.subsection-title {
-      font-size: 1.4rem;
-    }
-
-    p.content-text,
-    p.testimonial-text {
-      font-size: 1.2rem;
-    }
-
-    /* Ajuste de márgenes para móviles */
-    .hero-image-container {
-      padding: 10px;
-      margin: 5px;
-    }
+  
+  /* Estilos para el CTA dentro de testimonials */
+  .testimonials-slider .bg-emerald-50 {
+    border-radius: 0.5rem;
+    margin-top: 4rem;
   }
 </style>
 

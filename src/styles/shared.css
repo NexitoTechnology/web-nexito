@@ -1,0 +1,210 @@
+/* src/styles/shared.css */
+
+/* Estilos para el hero section */
+.hero-custom-shape {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: white;
+    border-radius: 100% 100% 0 0 / 100px;
+  }
+  
+  h1.hero-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    font-size: 3.2rem;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  p.hero-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  /* Estilos para la imagen del hero */
+  .hero-image {
+    max-width: 100%;
+    height: auto;
+    width: 600px;
+  }
+  
+  .hero-image-container {
+    padding: 15px;
+    margin: 10px;
+  }
+  
+  /* Estilos para h2 - títulos de sección */
+  h2.section-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 2.4rem;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+    margin-bottom: 1.2rem;
+    position: relative;
+    color: #263238;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Efecto subrayado para h2 */
+  h2.section-title.underlined::after {
+    content: '';
+    position: absolute;
+    bottom: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(to right, #10b981, #059669);
+    border-radius: 2px;
+  }
+  
+  h2.section-title.underlined {
+    margin-bottom: 3.5rem;
+  }
+  
+  /* Variante de h2 alineado a la izquierda */
+  h2.section-title.left-aligned::after {
+    left: 0;
+    transform: none;
+  }
+  
+  /* Estilos para h3 - subtítulos */
+  h3.subsection-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 1.4rem;
+    letter-spacing: -0.01em;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+    color: #374151;
+  }
+  
+  /* Variante con acento de color */
+  h3.subsection-title.accented {
+    position: relative;
+    display: inline-block;
+    padding-left: 1rem;
+  }
+  
+  h3.subsection-title.accented::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10%;
+    height: 80%;
+    width: 4px;
+    background-color: #10b981;
+    border-radius: 2px;
+  }
+  
+  /* Estilos para párrafos de contenido */
+  p.content-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 1.3rem;
+    line-height: 1.7;
+    color: #4b5563;
+    margin-bottom: 1.2rem;
+  }
+  
+  /* Variante para texto destacado */
+  p.content-text.highlighted {
+    font-weight: 500;
+    color: #111827;
+  }
+  
+  /* Clase para citas o testimonios */
+  .testimonial-text {
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: #4b5563;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .testimonial-author {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #111827;
+  }
+  
+  .testimonial-role {
+    font-size: 1rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+  }
+  
+  /* Estilos para listas de características */
+  ul.feature-list {
+    list-style: none;
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  ul.feature-list li {
+    position: relative;
+    font-family: 'Inter', sans-serif;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+  }
+  
+  ul.feature-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #10b981;
+    font-weight: bold;
+  }
+  
+  /* Efecto de gradiente para textos especiales */
+  .gradient-text {
+    background: linear-gradient(90deg, #10b981, #0891b2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    display: inline-block;
+  }
+  
+  /* Media query para dispositivos móviles */
+  @media (max-width: 640px) {
+    h1.hero-title {
+      font-size: 2rem;
+    }
+  
+    p.hero-subtitle {
+      font-size: 1.1rem;
+    }
+  
+    h2.section-title {
+      font-size: 1.8rem;
+    }
+  
+    h3.subsection-title {
+      font-size: 1.4rem;
+    }
+  
+    p.content-text,
+    .testimonial-text {
+      font-size: 1.2rem;
+    }
+  
+    /* Ajuste de márgenes para móviles */
+    .hero-image-container {
+      padding: 10px;
+      margin: 5px;
+    }
+  }
