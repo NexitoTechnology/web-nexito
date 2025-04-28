@@ -1,9 +1,9 @@
 // astro.config.mjs
 import { defineConfig } from 'astro/config';
-import partytown from '@astrojs/partytown';
+//import partytown from '@astrojs/partytown';
 import tailwind from '@tailwindcss/vite';
 import compress from 'astro-compress';
-import robotsTxt from 'astro-robots-txt';
+//import robotsTxt from 'astro-robots-txt';
 import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
 
@@ -44,13 +44,12 @@ export default defineConfig({
   },
   integrations: [
     // Mover scripts de terceros a Web Workers
-    partytown({
-      config: {
-        forward: ['dataLayer.push', 'clarity', 'gtag'],
-        // La nueva opción de debug puede ayudarte durante el desarrollo
-        debug: false,
-      },
-    }),
+    // partytown({
+    //   config: {
+    //     forward: ['dataLayer.push', 'clarity', 'gtag'],
+    //     debug: false,
+    //   },
+    // }),
     // Soporte para React cuando sea necesario
     react(),
 

@@ -6,8 +6,6 @@ import CookieConsent from '../components/cookie_consent_v2.astro';
 // import  CookieConsent  from '../components/cookie_consent_v2.jsx';
 import { ClientRouter } from 'astro:transitions';
 import '/globals.css';
-import GTM from '../components/GTM.astro';
-import Clarity from '../components/Clarity.astro';
 
 declare global {
   interface Window {
@@ -36,9 +34,6 @@ const siteURL = 'https://nexito.tech/';
 <!doctype html>
 <html lang="es" class="scroll-smooth">
   <head>
-    <Clarity />
-    <GTM />
-
     <!-- Metadatos básicos -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
