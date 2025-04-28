@@ -1,95 +1,121 @@
 ---
 import JsonLD from './JsonLD.astro';
+import OptimizedImage from '../components/OptimizedImage.astro';
 
 // Datos estructurados para reutilización y schema
 const heroData = {
-  title: "Automatización Inteligente y Análisis de Datos",
-  description: "Optimiza procesos y toma mejores decisiones con automatización RPA y dashboards en Power BI",
+  title: 'Automatización Inteligente y Análisis de Datos',
+  description:
+    'Optimiza procesos y toma mejores decisiones con automatización RPA y dashboards en Power BI',
   stats: [
     {
-      value: "+500",
-      label: "Procesos Automatizados"
+      value: '+500',
+      label: 'Procesos Automatizados',
     },
     {
-      value: "+1000",
-      label: "Dashboards Creados"
+      value: '+1000',
+      label: 'Dashboards Creados',
     },
     {
-      value: "+50",
-      label: "Empresas Confían en Nosotros"
-    }
+      value: '+50',
+      label: 'Empresas Confían en Nosotros',
+    },
   ],
-  trustedCompanies: ['Empresa1', 'Empresa2', 'Empresa3', 'Empresa4', 'Empresa5', 'Empresa6']
+  trustedCompanies: ['Empresa1', 'Empresa2', 'Empresa3', 'Empresa4', 'Empresa5', 'Empresa6'],
 };
 
 // Schema para el hero section
 const heroSchema = {
-  "@type": "WebPageElement",
-  "name": heroData.title,
-  "description": heroData.description,
-  "mainEntity": {
-    "@type": "Service",
-    "provider": {
-      "@type": "Organization",
-      "name": "Nexito Technology"
+  '@type': 'WebPageElement',
+  name: heroData.title,
+  description: heroData.description,
+  mainEntity: {
+    '@type': 'Service',
+    provider: {
+      '@type': 'Organization',
+      name: 'Nexito Technology',
     },
-    "offers": {
-      "@type": "Offer",
-      "description": "Consultoría Gratuita de 15 minutos"
-    }
-  }
+    offers: {
+      '@type': 'Offer',
+      description: 'Consultoría Gratuita de 15 minutos',
+    },
+  },
 };
 ---
 
-<section 
+<section
   class="relative min-h-[calc(100vh-4rem)] flex items-center py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900"
   style="will-change: transform; backface-visibility: hidden;"
 >
   <JsonLD type="WebPage" data={heroSchema} />
 
   <div class="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px] pointer-events-none"></div>
-  
+
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
     <div class="inline-block mb-8">
-      <span class="inline-flex items-center px-4 py-1.5 rounded-full border border-blue-300/30 bg-blue-400/10 text-blue-200 text-sm font-medium backdrop-blur-sm">
+      <span
+        class="inline-flex items-center px-4 py-1.5 rounded-full border border-blue-300/30 bg-blue-400/10 text-blue-200 text-sm font-medium backdrop-blur-sm"
+      >
         🚀 Transforma tu empresa con tecnología inteligente
       </span>
     </div>
 
-    <h1 class="font-extrabold lg:text-7xl mb-6 md:text-6xl text-4xl text-white tracking-tight min-h-[6rem]" data-priority="high">
-    {heroData.title}
-    <span class="bg-clip-text bg-gradient-to-r text-transparent block from-blue-200 mt-2 to-white">
-      Para Tu Empresa
-    </span>
-  </h1>
-    
-  <p class="text-xl md:text-2xl text-blue-100 mb-12 max-w-3xl mx-auto [text-wrap:balance]">
-    {heroData.description}
-  </p>
+    <h1
+      class="font-extrabold lg:text-7xl mb-6 md:text-6xl text-4xl text-white tracking-tight min-h-[6rem]"
+      data-priority="high"
+    >
+      {heroData.title}
+      <span
+        class="bg-clip-text bg-gradient-to-r text-transparent block from-blue-200 mt-2 to-white"
+      >
+        Para Tu Empresa
+      </span>
+    </h1>
+
+    <p class="text-xl md:text-2xl text-blue-100 mb-12 max-w-3xl mx-auto [text-wrap:balance]">
+      {heroData.description}
+    </p>
 
     <!-- Estadísticas -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 opacity-100">
-      {heroData.stats.map(stat => (
-        <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-          <div class="text-3xl font-bold text-white mb-2">{stat.value}</div>
-          <div class="text-blue-200">{stat.label}</div>
-        </div>
-      ))}
+      {
+        heroData.stats.map((stat) => (
+          <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+            <div class="text-3xl font-bold text-white mb-2">{stat.value}</div>
+            <div class="text-blue-200">{stat.label}</div>
+          </div>
+        ))
+      }
     </div>
 
     <!-- CTAs -->
     <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16 animate-fade-in">
-      <a href="https://nexito.tech/consultoria-gratuita/" target="_blank" onclick="window.dataLayer.push({
+      <a
+        href="https://nexito.tech/consultoria-gratuita/"
+        target="_blank"
+        onclick="window.dataLayer.push({
         'event': 'schedule_call_index_hero_section',
         'eventCategory': 'engagement',
         'eventAction': 'click',
         'eventLabel': 'free_call_30min'
-      })"rel="noopener noreferrer" class="group relative inline-flex items-center justify-center px-8 py-4 text-lg md:text-xl font-bold text-blue-900 bg-white rounded-xl shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-200">
+      })"
+        rel="noopener noreferrer"
+        class="group relative inline-flex items-center justify-center px-8 py-4 text-lg md:text-xl font-bold text-blue-900 bg-white rounded-xl shadow-xl hover:shadow-2xl transform hover:scale-[1.02] transition-all duration-200"
+      >
         <span class="relative flex items-center">
           <span>Agenda tu Consultoría Gratuita</span>
           <span class="ml-2 bg-blue-100 rounded-lg px-2 py-1 text-sm font-normal">30min</span>
-          <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          <svg
+            class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
           </svg>
         </span>
       </a>
@@ -97,30 +123,30 @@ const heroSchema = {
 
     <!-- Elementos de confianza -->
     <div class="pt-8 border-t border-white/10 animate-fade-in">
-      <p class="text-blue-200 text-sm mb-6">
-        Empresas que confían en nosotros
-      </p>
+      <p class="text-blue-200 text-sm mb-6">Empresas que confían en nosotros</p>
       <div class="flex flex-wrap justify-center items-center gap-x-16 gap-y-12">
-        {heroData.trustedCompanies.map(brand => (
-          <div class="flex items-center justify-center">
-  <img 
-    src={`/images/${brand}.svg`} 
-    alt={brand}
-    width="120"
-    height="40"
-    loading="lazy"
-    class="h-full w-auto"
-  />
-</div>
-        ))}
+        {
+          heroData.trustedCompanies.map((brand) => (
+            <div class="flex items-center justify-center">
+              <OptimizedImage
+                src={`/images/${brand}.svg`}
+                alt={brand}
+                width={120}
+                height={40}
+                isAboveTheFold={true}
+                class="h-full w-auto"
+              />
+            </div>
+          ))
+        }
       </div>
     </div>
 
-  <!-- Indicador de scroll -->
-  <!--<div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <!-- Indicador de scroll -->
+    <!--<div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
     <svg class="w-6 h-6 text-blue-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
     </svg>
   </div>-->
+  </div>
 </section>
-

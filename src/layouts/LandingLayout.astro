@@ -77,6 +77,29 @@ const {
 
     <!-- Espacio para scripts adicionales de análisis -->
     <slot name="head" />
+    <!-- Google Tag Manager -->
+    <script>
+      window.addEventListener('load', function () {
+        if (!window.dataLayer) {
+          window.dataLayer = [];
+        }
+
+        setTimeout(() => {
+          (function (w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+            const f = d.getElementsByTagName(s)[0];
+            const j = d.createElement(s);
+            const dl = l !== 'dataLayer' ? '&l=' + l : '';
+            // @ts-ignore
+            j.async = true;
+            // @ts-ignore
+            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+            f.parentNode?.insertBefore(j, f);
+          })(window, document, 'script', 'dataLayer', 'GTM-WQS3F67G');
+        }, 4000); // Retrasar carga para mejorar métricas iniciales
+      });
+    </script>
   </head>
   <body class="min-h-screen bg-white text-gray-900">
     <!-- Google Tag Manager (noscript) -->
@@ -98,5 +121,14 @@ const {
     <slot name="footer-scripts" />
     <!-- Optimizador de scripts -->
     <script src="/scripts/optimizeScripts.js" type="module"></script>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-WQS3F67G"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!--   End Google Tag Manager (noscript) -->
   </body>
 </html>
